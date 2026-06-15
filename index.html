@@ -203,36 +203,67 @@
                 height: 110px;
             }
             h1 {
-                font-size: 2.4rem;
+                font-size: clamp(1.9rem, 4.5vw, 2.4rem);
+            }
+        }
+
+        @media (max-width: 700px) {
+            header {
+                min-height: auto;
+            }
+            .header-logo {
+                width: clamp(60px, 14vw, 120px);
+            }
+            .logo-right {
+                max-width: 140px;
+            }
+            .logo-left {
+                max-width: 100px;
             }
         }
 
         @media (max-width: 600px) {
             header {
-                padding: 40px 14px;
+                flex-direction: column;
+                padding: 28px 14px 24px;
+                align-items: center;
+                min-height: auto;
             }
             .header-logo-left,
             .header-logo-right {
                 position: static;
                 transform: none;
-                margin: 0 auto 20px;
+                margin: 0 auto 18px;
             }
-            .logo-right {
-                width: 140px;
+            .header-logo {
+                width: 100%;
+                max-width: 150px;
             }
             .header-content {
                 padding: 0;
+                width: 100%;
+            }
+            .logo-right {
+                width: 100%;
+                max-width: 140px;
+            }
+            .logo-left {
+                width: 100%;
+                max-width: 100px;
             }
             .icon {
-                width: 100px;
-                height: 100px;
+                width: 92px;
+                height: 92px;
             }
             h1 {
-                font-size: clamp(1.6rem, 8vw, 2rem);
-                line-height: 1.15;
+                font-size: clamp(1.4rem, 8vw, 1.8rem);
+                line-height: 1.2;
+                margin-bottom: 10px;
             }
             .subtitle {
-                font-size: clamp(0.95rem, 3vw, 1rem);
+                font-size: clamp(0.9rem, 3.5vw, 0.98rem);
+                max-width: 100%;
+                margin: 0 auto;
             }
         }
     </style>
