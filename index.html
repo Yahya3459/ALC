@@ -60,6 +60,10 @@
             width: clamp(72px, 12vw, 180px);
         }
 
+        .header-logo-left {
+            left: 20px;
+        }
+
         .header-logo-right {
             right: 20px;
         }
@@ -74,7 +78,16 @@
         }
         .logo-right {
             width: 100%;
-            max-width: clamp(240px, 40vw, 440px);
+            max-width: clamp(120px, 20vw, 220px);
+            background: transparent;
+            padding: 0;
+            border-radius: 0;
+            margin-bottom: 0;
+        }
+
+        .logo-left {
+            width: 100%;
+            max-width: clamp(70px, 12vw, 110px);
             background: transparent;
             padding: 0;
             border-radius: 0;
@@ -202,7 +215,10 @@
                 width: clamp(60px, 14vw, 120px);
             }
             .logo-right {
-                max-width: 280px;
+                max-width: 140px;
+            }
+            .logo-left {
+                max-width: 100px;
             }
         }
 
@@ -265,6 +281,10 @@
 <body>
 
     <header>
+        <div class="header-logo header-logo-left">
+            <img src="logo2.png" alt="شعار صغير لمركز الأمجاد" class="logo-left">
+        </div>
+
         <div class="header-content">
             <h1>مركز الأمجاد للغات والتدريب</h1>
             <p class="subtitle">
