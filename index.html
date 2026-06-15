@@ -20,12 +20,22 @@
             box-sizing: border-box;
         }
 
+        html {
+            font-size: 16px;
+        }
+
         body {
             font-family: Tahoma, Arial, sans-serif;
             background: radial-gradient(circle at top, #eef5ff 0%, #f8fbff 40%, #f5f7fa 100%);
             color: var(--text);
             min-height: 100vh;
             line-height: 1.6;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
         }
 
         header {
@@ -36,16 +46,18 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 70px 20px;
+            padding: clamp(30px, 5vw, 70px) 16px;
             border-bottom-left-radius: 40px;
             border-bottom-right-radius: 40px;
             box-shadow: 0 20px 60px rgba(15, 91, 183, 0.18);
+            min-height: clamp(300px, 36vh, 460px);
         }
 
         .header-logo {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
+            width: clamp(72px, 12vw, 180px);
         }
 
         .header-logo-left {
@@ -57,14 +69,16 @@
         }
 
         .header-content {
-            max-width: 700px;
+            max-width: min(720px, 100%);
+            width: min(90vw, 720px);
             margin: 0 auto;
             text-align: center;
             padding: 0 15px;
+            overflow-wrap: break-word;
         }
         .logo-right {
-            width: 200px;
-            max-width: 100%;
+            width: 100%;
+            max-width: clamp(120px, 20vw, 220px);
             background: transparent;
             padding: 0;
             border-radius: 0;
@@ -72,8 +86,8 @@
         }
 
         .logo-left {
-            width: 90px;
-            max-width: 100%;
+            width: 100%;
+            max-width: clamp(70px, 12vw, 110px);
             background: transparent;
             padding: 0;
             border-radius: 0;
@@ -82,17 +96,19 @@
 
         h1 {
             margin-bottom: 15px;
-            font-size: 3rem;
+            font-size: clamp(1.6rem, 5vw, 2.6rem);
             font-weight: 700;
             letter-spacing: 0.02em;
+            line-height: 1.1;
         }
 
         .subtitle {
-            font-size: 1.1rem;
+            font-size: clamp(0.95rem, 2.5vw, 1.05rem);
             color: rgba(255,255,255,0.9);
             max-width: 620px;
             margin-left: auto;
             margin-right: auto;
+            line-height: 1.6;
         }
 
         .cards {
@@ -100,8 +116,8 @@
             margin: 50px auto 30px;
             padding: 0 20px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+            gap: clamp(20px, 3vw, 32px);
         }
 
         .card {
@@ -109,7 +125,7 @@
             text-decoration: none;
             color: var(--text);
             border-radius: 28px;
-            padding: 35px 25px;
+            padding: clamp(24px, 2.2vw, 35px) clamp(18px, 2vw, 25px);
             text-align: center;
             box-shadow: 0 20px 40px rgba(15,91,183,0.08);
             border: 1px solid rgba(15,91,183,0.08);
@@ -127,8 +143,8 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 120px;
-            height: 120px;
+            width: clamp(90px, 12vw, 120px);
+            height: clamp(90px, 12vw, 120px);
             border-radius: 24px;
             margin-left: auto;
             margin-right: auto;
@@ -157,7 +173,7 @@
             display: inline-block;
             background: linear-gradient(90deg, #fbe03f 0%, #f2c200 100%);
             color: #000;
-            padding: 12px 28px;
+            padding: clamp(10px, 1.4vw, 14px) clamp(20px, 3vw, 28px);
             border-radius: 999px;
             font-weight: 700;
             box-shadow: 0 14px 25px rgba(251,224,63,0.18);
@@ -193,7 +209,7 @@
 
         @media (max-width: 600px) {
             header {
-                padding: 50px 16px;
+                padding: 40px 14px;
             }
             .header-logo-left,
             .header-logo-right {
@@ -212,10 +228,11 @@
                 height: 100px;
             }
             h1 {
-                font-size: 2rem;
+                font-size: clamp(1.6rem, 8vw, 2rem);
+                line-height: 1.15;
             }
             .subtitle {
-                font-size: 1rem;
+                font-size: clamp(0.95rem, 3vw, 1rem);
             }
         }
     </style>
