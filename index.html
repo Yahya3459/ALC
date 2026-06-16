@@ -106,15 +106,15 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            width: clamp(72px, 12vw, 180px);
+            width: clamp(60px, 10vw, 140px);
         }
 
         .header-logo-left {
-            left: 20px;
+            left: 15px;
         }
 
         .header-logo-right {
-            right: 20px;
+            right: 15px;
         }
 
         .header-content {
@@ -127,7 +127,7 @@
         }
         .logo-right {
             width: 100%;
-            max-width: clamp(120px, 20vw, 220px);
+            max-width: clamp(100px, 15vw, 180px);
             background: transparent;
             padding: 0;
             border-radius: 0;
@@ -136,7 +136,7 @@
 
         .logo-left {
             width: 100%;
-            max-width: clamp(70px, 12vw, 110px);
+            max-width: clamp(60px, 10vw, 100px);
             background: transparent;
             padding: 0;
             border-radius: 0;
@@ -243,6 +243,7 @@
             cursor: pointer;
             box-shadow: 0 14px 25px rgba(251,224,63,0.18);
             transition: transform 0.25s ease, box-shadow 0.25s ease;
+            text-decoration: none;
         }
 
         .btn:hover {
@@ -250,37 +251,174 @@
             box-shadow: 0 18px 30px rgba(251,224,63,0.28);
         }
 
-        /* Contact Form Section */
-        .contact-section {
-            max-width: 700px;
-            margin: 60px auto 40px;
+        /* Contact Section - Main Page */
+        .contact-widget-section {
+            max-width: 1100px;
+            margin: 80px auto 60px;
             padding: 0 20px;
         }
 
-        .contact-title {
+        .contact-widget-title {
             text-align: center;
             font-size: clamp(1.8rem, 4vw, 2.2rem);
-            margin-bottom: 30px;
+            margin-bottom: 40px;
             color: #0b3f86;
             font-weight: 700;
         }
 
-        html.dark-mode .contact-title {
+        html.dark-mode .contact-widget-title {
+            color: #64b5f6;
+        }
+
+        .contact-widgets {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+            gap: clamp(20px, 3vw, 32px);
+        }
+
+        .contact-widget {
+            background: var(--bg-light);
+            padding: clamp(30px, 3vw, 40px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(15,91,183,0.08);
+            border: 1px solid rgba(15,91,183,0.08);
+            text-align: center;
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+            text-decoration: none;
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        html.dark-mode .contact-widget {
+            background: var(--bg-secondary);
+            box-shadow: 0 20px 40px rgba(15,91,183,0.15);
+            border: 1px solid rgba(15,91,183,0.2);
+        }
+
+        .contact-widget:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 30px 55px rgba(15,91,183,0.14);
+        }
+
+        .widget-icon {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .contact-widget h3 {
+            color: #0b3f86;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        html.dark-mode .contact-widget h3 {
+            color: #64b5f6;
+        }
+
+        .contact-widget p {
+            color: #555;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        html.dark-mode .contact-widget p {
+            color: #b0b0b0;
+        }
+
+        .widget-link {
+            display: inline-block;
+            background: linear-gradient(90deg, #0F5BB7 0%, #1762c6 100%);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            box-shadow: 0 8px 20px rgba(15,91,183,0.2);
+        }
+
+        .widget-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(15,91,183,0.3);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: var(--bg-light);
+            margin: 5% auto;
+            padding: clamp(25px, 3vw, 40px);
+            border-radius: 20px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            animation: slideDown 0.3s ease;
+        }
+
+        html.dark-mode .modal-content {
+            background: var(--bg-secondary);
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close-btn {
+            color: #aaa;
+            float: left;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-btn:hover {
+            color: #000;
+        }
+
+        html.dark-mode .close-btn:hover {
+            color: #fff;
+        }
+
+        .modal h2 {
+            text-align: center;
+            color: #0b3f86;
+            margin-bottom: 25px;
+            margin-top: 10px;
+            font-size: 1.8rem;
+        }
+
+        html.dark-mode .modal h2 {
             color: #64b5f6;
         }
 
         .contact-form {
-            background: var(--bg-light);
-            padding: clamp(25px, 3vw, 40px);
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(15,91,183,0.08);
-            border: 1px solid rgba(15,91,183,0.08);
-        }
-
-        html.dark-mode .contact-form {
-            background: var(--bg-secondary);
-            box-shadow: 0 20px 40px rgba(15,91,183,0.15);
-            border: 1px solid rgba(15,91,183,0.2);
+            width: 100%;
         }
 
         .form-group {
@@ -411,13 +549,13 @@
                 min-height: auto;
             }
             .header-logo {
-                width: clamp(60px, 14vw, 120px);
+                width: clamp(50px, 10vw, 100px);
             }
             .logo-right {
-                max-width: 140px;
+                max-width: 120px;
             }
             .logo-left {
-                max-width: 100px;
+                max-width: 80px;
             }
 
             .theme-toggle {
@@ -429,7 +567,6 @@
         }
 
         @media (max-width: 600px) {
-            /* Keep header horizontal on small screens: left logo, centered text, right logo */
             header {
                 flex-direction: row;
                 padding: 20px 12px;
@@ -446,26 +583,24 @@
                 position: absolute;
                 top: 50%;
                 transform: translateY(-50%);
-                width: clamp(52px, 12vw, 120px);
+                width: clamp(48px, 10vw, 100px);
             }
             .header-content {
-                padding: 0 40px; /* reduce side padding to give more space for text */
+                padding: 0 40px;
                 width: 100%;
                 box-sizing: border-box;
             }
-            /* Make the right logo larger and left logo standard */
             .logo-right {
-                max-width: clamp(200px, 36vw, 380px);
+                max-width: clamp(140px, 30vw, 340px);
             }
             .logo-left {
-                max-width: clamp(70px, 12vw, 100px);
+                max-width: clamp(60px, 10vw, 90px);
             }
             .icon {
                 width: 84px;
                 height: 84px;
             }
             h1 {
-                /* Allow wrapping and scale text to fit small screens */
                 font-size: clamp(1rem, 5.8vw, 1.6rem);
                 line-height: 1.12;
                 margin-bottom: 8px;
@@ -473,7 +608,6 @@
                 word-break: break-word;
             }
             .subtitle {
-                /* Force single-line subtitle by reducing size and preventing wrap */
                 font-size: clamp(0.68rem, 2.0vw, 0.85rem);
                 white-space: nowrap;
                 overflow: hidden;
@@ -487,6 +621,11 @@
                 left: 12px;
                 padding: 9px 12px;
                 font-size: 14px;
+            }
+
+            .modal-content {
+                width: 95%;
+                margin: 30% auto;
             }
         }
     </style>
@@ -580,43 +719,73 @@
 
     </section>
 
-    <!-- Contact Form Section -->
-    <section class="contact-section">
-        <h2 class="contact-title">📞 نموذج الاتصال</h2>
-        <form class="contact-form" onsubmit="handleSubmit(event)">
-            <div class="form-group">
-                <label for="name">الاسم الكامل *</label>
-                <input type="text" id="name" name="name" placeholder="أدخل اسمك الكامل" required>
+    <!-- Contact Widgets Section - Main Page -->
+    <section class="contact-widget-section">
+        <h2 class="contact-widget-title">هل لديك استفسار؟ تواصل معنا 👋</h2>
+        <div class="contact-widgets">
+            <div class="contact-widget" onclick="openContactModal()">
+                <span class="widget-icon">📧</span>
+                <h3>نموذج الاتصال</h3>
+                <p>أرسل لنا رسالة من خلال النموذج المتقدم</p>
+                <span class="widget-link">ملء النموذج</span>
             </div>
 
-            <div class="form-group">
-                <label for="phone">رقم الهاتف *</label>
-                <input type="tel" id="phone" name="phone" placeholder="أدخل رقم هاتفك" required>
-            </div>
+            <a href="tel:+967778005033" class="contact-widget">
+                <span class="widget-icon">📞</span>
+                <h3>اتصل بنا مباشرة</h3>
+                <p>تحدث معنا عبر الهاتف للردود الفورية</p>
+                <span class="widget-link">رقم الاتصال</span>
+            </a>
 
-            <div class="form-group">
-                <label for="email">البريد الإلكتروني</label>
-                <input type="email" id="email" name="email" placeholder="أدخل بريدك الإلكتروني">
-            </div>
-
-            <div class="form-group">
-                <label for="subject">الموضوع *</label>
-                <input type="text" id="subject" name="subject" placeholder="ما الموضوع؟" required>
-            </div>
-
-            <div class="form-group">
-                <label for="message">الرسالة *</label>
-                <textarea id="message" name="message" placeholder="اكتب رسالتك هنا..." required></textarea>
-            </div>
-
-            <button type="submit" class="form-submit">إرسال الرسالة</button>
-
-            <div class="phone-info">
-                أو اتصل بنا مباشرة على:
-                <a href="tel:+967778005033">📱 +967 778 005 033</a>
-            </div>
-        </form>
+            <a href="https://wa.me/967778005033" target="_blank" class="contact-widget">
+                <span class="widget-icon">💬</span>
+                <h3>واتساب</h3>
+                <p>اضغط للتواصل مباشرة عبر واتساب</p>
+                <span class="widget-link">ابدأ المحادثة</span>
+            </a>
+        </div>
     </section>
+
+    <!-- Contact Modal -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeContactModal()">&times;</span>
+            <h2>📞 نموذج الاتصال</h2>
+            <form class="contact-form" onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label for="name">الاسم الكامل *</label>
+                    <input type="text" id="name" name="name" placeholder="أدخل اسمك الكامل" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">رقم الهاتف *</label>
+                    <input type="tel" id="phone" name="phone" placeholder="أدخل رقم هاتفك" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">البريد الإلكتروني</label>
+                    <input type="email" id="email" name="email" placeholder="أدخل بريدك الإلكتروني">
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">الموضوع *</label>
+                    <input type="text" id="subject" name="subject" placeholder="ما الموضوع؟" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">الرسالة *</label>
+                    <textarea id="message" name="message" placeholder="اكتب رسالتك هنا..." required></textarea>
+                </div>
+
+                <button type="submit" class="form-submit">إرسال الرسالة</button>
+
+                <div class="phone-info">
+                    أو اتصل بنا مباشرة على:
+                    <a href="tel:+967778005033">📱 +967 778 005 033</a>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <footer>
         <p>جميع الحقوق محفوظة © 2026 | تصميم وتطوير: يحيى المريسي</p>
@@ -654,6 +823,23 @@
             }
         });
 
+        // Modal Functions
+        function openContactModal() {
+            document.getElementById('contactModal').style.display = 'block';
+        }
+
+        function closeContactModal() {
+            document.getElementById('contactModal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('contactModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
         // Handle Contact Form Submission
         function handleSubmit(event) {
             event.preventDefault();
@@ -676,6 +862,9 @@
             
             // Show confirmation message
             alert('تم إرسال رسالتك بنجاح! سيتم الرد عليك قريباً.');
+            
+            // Close modal
+            closeContactModal();
         }
     </script>
 
