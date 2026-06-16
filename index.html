@@ -12,6 +12,18 @@
             --white: #ffffff;
             --gray: #f5f7fa;
             --text: #333333;
+            --bg-light: #ffffff;
+            --bg-secondary: #f5f7fa;
+        }
+
+        html.dark-mode {
+            --blue: #0F5BB7;
+            --yellow: #FBE03F;
+            --white: #1a1a2e;
+            --gray: #16213e;
+            --text: #e0e0e0;
+            --bg-light: #16213e;
+            --bg-secondary: #0f3460;
         }
 
         * {
@@ -30,12 +42,43 @@
             color: var(--text);
             min-height: 100vh;
             line-height: 1.6;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        html.dark-mode body {
+            background: linear-gradient(135deg, #0f1419 0%, #1a2332 50%, #0f3460 100%);
         }
 
         img {
             display: block;
             max-width: 100%;
             height: auto;
+        }
+
+        /* Dark Mode Toggle Button */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            background: var(--blue);
+            color: white;
+            border: none;
+            padding: 12px 16px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 15px rgba(15, 91, 183, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.05);
+            background: #0a3f7f;
         }
 
         header {
@@ -51,6 +94,12 @@
             border-bottom-right-radius: 40px;
             box-shadow: 0 20px 60px rgba(15, 91, 183, 0.18);
             min-height: clamp(300px, 36vh, 460px);
+            transition: box-shadow 0.3s ease;
+        }
+
+        html.dark-mode header {
+            background: linear-gradient(135deg, #1a2f5a 0%, #0f3460 100%);
+            box-shadow: 0 20px 60px rgba(15, 91, 183, 0.3);
         }
 
         .header-logo {
@@ -121,7 +170,7 @@
         }
 
         .card {
-            background: var(--white);
+            background: var(--bg-light);
             text-decoration: none;
             color: var(--text);
             border-radius: 28px;
@@ -130,6 +179,12 @@
             box-shadow: 0 20px 40px rgba(15,91,183,0.08);
             border: 1px solid rgba(15,91,183,0.08);
             transition: transform 0.35s ease, box-shadow 0.35s ease;
+        }
+
+        html.dark-mode .card {
+            background: var(--bg-secondary);
+            box-shadow: 0 20px 40px rgba(15,91,183,0.15);
+            border: 1px solid rgba(15,91,183,0.2);
         }
 
         .card:hover {
@@ -163,10 +218,18 @@
             font-size: 1.35rem;
         }
 
+        html.dark-mode .card h2 {
+            color: #64b5f6;
+        }
+
         .card p {
             margin-bottom: 25px;
             line-height: 1.8;
             color: #555;
+        }
+
+        html.dark-mode .card p {
+            color: #b0b0b0;
         }
 
         .btn {
@@ -176,6 +239,8 @@
             padding: clamp(10px, 1.4vw, 14px) clamp(20px, 3vw, 28px);
             border-radius: 999px;
             font-weight: 700;
+            border: none;
+            cursor: pointer;
             box-shadow: 0 14px 25px rgba(251,224,63,0.18);
             transition: transform 0.25s ease, box-shadow 0.25s ease;
         }
@@ -185,6 +250,135 @@
             box-shadow: 0 18px 30px rgba(251,224,63,0.28);
         }
 
+        /* Contact Form Section */
+        .contact-section {
+            max-width: 700px;
+            margin: 60px auto 40px;
+            padding: 0 20px;
+        }
+
+        .contact-title {
+            text-align: center;
+            font-size: clamp(1.8rem, 4vw, 2.2rem);
+            margin-bottom: 30px;
+            color: #0b3f86;
+            font-weight: 700;
+        }
+
+        html.dark-mode .contact-title {
+            color: #64b5f6;
+        }
+
+        .contact-form {
+            background: var(--bg-light);
+            padding: clamp(25px, 3vw, 40px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(15,91,183,0.08);
+            border: 1px solid rgba(15,91,183,0.08);
+        }
+
+        html.dark-mode .contact-form {
+            background: var(--bg-secondary);
+            box-shadow: 0 20px 40px rgba(15,91,183,0.15);
+            border: 1px solid rgba(15,91,183,0.2);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #0b3f86;
+            font-size: 0.95rem;
+        }
+
+        html.dark-mode .form-group label {
+            color: #64b5f6;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid rgba(15,91,183,0.1);
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            background: var(--white);
+            color: var(--text);
+        }
+
+        html.dark-mode .form-group input,
+        html.dark-mode .form-group textarea {
+            background: #0f1419;
+            color: var(--text);
+            border-color: rgba(15,91,183,0.2);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #0F5BB7;
+            box-shadow: 0 0 0 3px rgba(15,91,183,0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 14px 20px;
+            background: linear-gradient(90deg, #0F5BB7 0%, #1762c6 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            box-shadow: 0 14px 25px rgba(15,91,183,0.2);
+        }
+
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 18px 35px rgba(15,91,183,0.3);
+        }
+
+        .phone-info {
+            text-align: center;
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(15,91,183,0.1);
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        html.dark-mode .phone-info {
+            border-top-color: rgba(15,91,183,0.2);
+            color: #b0b0b0;
+        }
+
+        .phone-info a {
+            color: #0F5BB7;
+            text-decoration: none;
+            font-weight: 600;
+            margin-right: 5px;
+        }
+
+        html.dark-mode .phone-info a {
+            color: #64b5f6;
+        }
+
+        .phone-info a:hover {
+            text-decoration: underline;
+        }
+
         footer {
             background: rgba(15, 91, 183, 0.95);
             color: white;
@@ -192,6 +386,11 @@
             padding: 25px 20px;
             margin-top: 40px;
             font-size: 0.95rem;
+            transition: background 0.3s ease;
+        }
+
+        html.dark-mode footer {
+            background: rgba(15, 91, 183, 0.7);
         }
 
         @media (max-width: 900px) {
@@ -219,6 +418,13 @@
             }
             .logo-left {
                 max-width: 100px;
+            }
+
+            .theme-toggle {
+                top: 15px;
+                left: 15px;
+                padding: 10px 14px;
+                font-size: 16px;
             }
         }
 
@@ -275,10 +481,23 @@
                 max-width: 100%;
                 margin: 0 auto;
             }
+
+            .theme-toggle {
+                top: 12px;
+                left: 12px;
+                padding: 9px 12px;
+                font-size: 14px;
+            }
         }
     </style>
 </head>
 <body>
+
+    <!-- Dark Mode Toggle Button -->
+    <button class="theme-toggle" onclick="toggleDarkMode()" title="تبديل الوضع الليلي">
+        <span id="theme-icon">🌙</span>
+        <span id="theme-text">ليلي</span>
+    </button>
 
     <header>
         <div class="header-logo header-logo-left">
@@ -361,9 +580,104 @@
 
     </section>
 
+    <!-- Contact Form Section -->
+    <section class="contact-section">
+        <h2 class="contact-title">📞 نموذج الاتصال</h2>
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+            <div class="form-group">
+                <label for="name">الاسم الكامل *</label>
+                <input type="text" id="name" name="name" placeholder="أدخل اسمك الكامل" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">رقم الهاتف *</label>
+                <input type="tel" id="phone" name="phone" placeholder="أدخل رقم هاتفك" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">البريد الإلكتروني</label>
+                <input type="email" id="email" name="email" placeholder="أدخل بريدك الإلكتروني">
+            </div>
+
+            <div class="form-group">
+                <label for="subject">الموضوع *</label>
+                <input type="text" id="subject" name="subject" placeholder="ما الموضوع؟" required>
+            </div>
+
+            <div class="form-group">
+                <label for="message">الرسالة *</label>
+                <textarea id="message" name="message" placeholder="اكتب رسالتك هنا..." required></textarea>
+            </div>
+
+            <button type="submit" class="form-submit">إرسال الرسالة</button>
+
+            <div class="phone-info">
+                أو اتصل بنا مباشرة على:
+                <a href="tel:+967778005033">📱 +967 778 005 033</a>
+            </div>
+        </form>
+    </section>
+
     <footer>
         <p>جميع الحقوق محفوظة © 2026 | تصميم وتطوير: يحيى المريسي</p>
     </footer>
+
+    <script>
+        // Dark Mode Toggle
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            const isDarkMode = html.classList.toggle('dark-mode');
+            
+            // Save preference to localStorage
+            localStorage.setItem('darkMode', isDarkMode);
+            
+            // Update button text and icon
+            const themeIcon = document.getElementById('theme-icon');
+            const themeText = document.getElementById('theme-text');
+            
+            if (isDarkMode) {
+                themeIcon.textContent = '☀️';
+                themeText.textContent = 'فاتح';
+            } else {
+                themeIcon.textContent = '🌙';
+                themeText.textContent = 'ليلي';
+            }
+        }
+
+        // Load dark mode preference on page load
+        window.addEventListener('load', function() {
+            const isDarkMode = localStorage.getItem('darkMode') === 'true';
+            if (isDarkMode) {
+                document.documentElement.classList.add('dark-mode');
+                document.getElementById('theme-icon').textContent = '☀️';
+                document.getElementById('theme-text').textContent = 'فاتح';
+            }
+        });
+
+        // Handle Contact Form Submission
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // Create WhatsApp message
+            const whatsappMessage = `*رسالة من نموذج الاتصال* 📧\n\n*الاسم:* ${name}\n*الهاتف:* ${phone}\n*البريد الإلكتروني:* ${email || 'غير محدد'}\n*الموضوع:* ${subject}\n*الرسالة:* ${message}`;
+            
+            // Send via WhatsApp
+            const whatsappUrl = `https://wa.me/967778005033?text=${encodeURIComponent(whatsappMessage)}`;
+            window.open(whatsappUrl, '_blank');
+            
+            // Reset form
+            document.querySelector('.contact-form').reset();
+            
+            // Show confirmation message
+            alert('تم إرسال رسالتك بنجاح! سيتم الرد عليك قريباً.');
+        }
+    </script>
 
 </body>
 </html>
