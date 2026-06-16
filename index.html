@@ -782,8 +782,15 @@ const course = document.getElementById('regCourse').value.trim();
 const level = document.getElementById('regLevel').value.trim();
 const message = document.getElementById('regMessage').value.trim();
 
-const registrationMessage = طلب تسجيل جديد\n\nالاسم: ${name}\nالهاتف: ${phone}\nالبريد الإلكتروني: ${email || 'غير محدد'}\nالبرنامج أو الدورة: ${course}\nالمستوى الحالي: ${level || 'غير محدد'}\nالملاحظات: ${message};
-const whatsappUrl = https://wa.me/967778005033?text=${encodeURIComponent(registrationMessage)};
+const registrationMessage = `طلب تسجيل جديد
+
+الاسم: ${name}
+الهاتف: ${phone}
+البريد الإلكتروني: ${email || 'غير محدد'}
+البرنامج أو الدورة: ${course}
+المستوى الحالي: ${level || 'غير محدد'}
+الملاحظات: ${message}`;
+const whatsappUrl = `https://wa.me/967778005033?text=${encodeURIComponent(registrationMessage)}`;
 
 window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
 document.querySelector('#registrationModal .contact-form').reset();
