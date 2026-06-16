@@ -1,754 +1,795 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مركز الأمجاد للغات والتدريب</title>
-    
-    <!-- استيراد خط القاهرة من الكود الأول -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-    
-    <!-- مكتبة Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- إعدادات Tailwind من الكود الأول مع الحركات التفاعلية لمساعد الذكاء الاصطناعي -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Cairo', 'sans-serif'],
-                    },
-                    colors: {
-                        brand: {
-                            blue: '#0f5bb7',
-                            dark: '#0b3f86',
-                            gold: '#fbe03f',
-                            goldDark: '#e5c100',
-                            slate: '#0f172a'
-                        }
-                    },
-                    animation: {
-                        'pulse-glow': 'pulseGlow 2.5s infinite ease-in-out',
-                        'float': 'float 5s ease-in-out infinite',
-                        'fade-in-up': 'fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both',
-                        'slide-in': 'slideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both'
-                    }
-                }
-            }
-        }
-    </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مركز الأمجاد للغات والتدريب</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<style>
+:root {
+--blue: #0f5bb7;
+--blue-dark: #0b3f86;
+--yellow: #fbe03f;
+--white: #ffffff;
+--gray: #f5f7fa;
+--text: #333333;
+}
 
-    <style type="text/css">
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateY(40px) scale(0.95); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-        @keyframes pulseGlow {
-            0%, 100% { opacity: 0.4; transform: scale(1); box-shadow: 0 0 0 0 rgba(15, 91, 183, 0.4); }
-            50% { opacity: 0.8; transform: scale(1.05); box-shadow: 0 0 20px 8px rgba(15, 91, 183, 0.2); }
-        }
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-8px) rotate(1deg); }
-        }
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
 
-        .animate-fade-in-up {
-            animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
-        }
+html {
+font-size: 16px;
+}
 
-        /* تخصيص شريط التمرير */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f1f5f9;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #0f5bb7;
-            border-radius: 999px;
-            border: 2px solid #f1f5f9;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #0b3f86;
-        }
+body {
+font-family: Tahoma, Arial, sans-serif;
+background: radial-gradient(circle at top, #eef5ff 0%, #f8fbff 40%, #f5f7fa 100%);
+color: var(--text);
+min-height: 100vh;
+line-height: 1.6;
+}
 
-        /* تأثير الزجاج المتطور */
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-        }
+img {
+display: block;
+max-width: 100%;
+height: auto;
+}
 
-        /* تأثيرات الإشعاع الفاخر للخلفية */
-        .bg-glow-blue {
-            background: radial-gradient(circle, rgba(15, 91, 183, 0.12) 0%, rgba(255,255,255,0) 70%);
-        }
-        .bg-glow-gold {
-            background: radial-gradient(circle, rgba(251, 224, 63, 0.1) 0%, rgba(255,255,255,0) 70%);
-        }
-    </style>
+a {
+color: inherit;
+}
+
+header {
+position: relative;
+background: linear-gradient(135deg, #0f5bb7 0%, #1762c6 100%);
+color: white;
+display: flex;
+justify-content: center;
+align-items: center;
+text-align: center;
+padding: clamp(30px, 5vw, 72px) 16px;
+border-bottom-left-radius: 40px;
+border-bottom-right-radius: 40px;
+box-shadow: 0 20px 60px rgba(15, 91, 183, 0.18);
+min-height: clamp(300px, 36vh, 460px);
+overflow: hidden;
+}
+
+header::before {
+content: "";
+position: absolute;
+inset: 0;
+background: radial-gradient(circle at top right, rgba(255,255,255,0.16), transparent 35%),
+radial-gradient(circle at bottom left, rgba(255,255,255,0.12), transparent 35%);
+pointer-events: none;
+}
+
+.header-logo {
+position: absolute;
+top: 50%;
+transform: translateY(-50%);
+width: clamp(60px, 10vw, 140px);
+z-index: 1;
+}
+
+.header-logo-left {
+left: 15px;
+}
+
+.header-logo-right {
+right: 15px;
+}
+
+.header-content {
+position: relative;
+z-index: 1;
+max-width: min(720px, 100%);
+width: min(90vw, 720px);
+margin: 0 auto;
+text-align: center;
+padding: 0 15px;
+overflow-wrap: break-word;
+animation: fadeUp 0.7s ease both;
+}
+
+.logo-right {
+width: 100%;
+max-width: clamp(100px, 15vw, 180px);
+background: transparent;
+padding: 0;
+border-radius: 0;
+margin-bottom: 0;
+}
+
+.logo-left {
+width: 100%;
+max-width: clamp(60px, 10vw, 100px);
+background: transparent;
+padding: 0;
+border-radius: 0;
+margin-bottom: 0;
+}
+
+h1 {
+margin-bottom: 15px;
+font-size: clamp(1.6rem, 5vw, 2.6rem);
+font-weight: 700;
+letter-spacing: 0.02em;
+line-height: 1.1;
+}
+
+.subtitle {
+font-size: clamp(0.95rem, 2.5vw, 1.05rem);
+color: rgba(255,255,255,0.9);
+max-width: 620px;
+margin-left: auto;
+margin-right: auto;
+line-height: 1.7;
+}
+
+.cards {
+max-width: 1100px;
+margin: 50px auto 30px;
+padding: 0 20px;
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+gap: clamp(20px, 3vw, 32px);
+}
+
+.card {
+background: var(--white);
+text-decoration: none;
+color: var(--text);
+border-radius: 28px;
+padding: clamp(24px, 2.2vw, 35px) clamp(18px, 2vw, 25px);
+text-align: center;
+box-shadow: 0 20px 40px rgba(15,91,183,0.08);
+border: 1px solid rgba(15,91,183,0.08);
+transition: transform 0.35s ease, box-shadow 0.35s ease;
+position: relative;
+animation: fadeUp 0.7s ease both;
+}
+
+.cards .card:nth-child(2) { animation-delay: 0.05s; }
+.cards .card:nth-child(3) { animation-delay: 0.1s; }
+.cards .card:nth-child(4) { animation-delay: 0.15s; }
+.cards .card:nth-child(5) { animation-delay: 0.2s; }
+
+.card:hover {
+transform: translateY(-12px);
+box-shadow: 0 30px 55px rgba(15,91,183,0.14);
+}
+
+.card-badge {
+position: absolute;
+top: -12px;
+right: 20px;
+background: #27ae60;
+color: white;
+padding: 4px 12px;
+border-radius: 20px;
+font-size: 0.75rem;
+font-weight: 700;
+}
+
+.icon {
+font-size: 60px;
+margin-bottom: 20px;
+display: inline-flex;
+align-items: center;
+justify-content: center;
+width: clamp(90px, 12vw, 120px);
+height: clamp(90px, 12vw, 120px);
+border-radius: 24px;
+margin-left: auto;
+margin-right: auto;
+background: linear-gradient(180deg, rgba(15,91,183,0.07), rgba(15,91,183,0.02));
+}
+
+.icon svg,
+.icon img {
+width: 70%;
+height: 70%;
+object-fit: contain;
+}
+
+.card h2 {
+color: var(--blue-dark);
+margin-bottom: 12px;
+font-size: 1.35rem;
+}
+
+.card p {
+margin-bottom: 25px;
+line-height: 1.8;
+color: #555;
+}
+
+.btn {
+display: inline-block;
+background: linear-gradient(90deg, #fbe03f 0%, #f2c200 100%);
+color: #000;
+padding: clamp(10px, 1.4vw, 14px) clamp(20px, 3vw, 28px);
+border-radius: 999px;
+font-weight: 700;
+border: none;
+cursor: pointer;
+box-shadow: 0 14px 25px rgba(251,224,63,0.18);
+transition: transform 0.25s ease, box-shadow 0.25s ease;
+text-decoration: none;
+}
+
+.btn:hover {
+transform: translateY(-2px);
+box-shadow: 0 18px 30px rgba(251,224,63,0.28);
+}
+
+.bottom-actions {
+max-width: 900px;
+margin: 42px auto 46px;
+padding: 0 20px;
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+gap: 18px;
+}
+
+.action-tile {
+background: rgba(255,255,255,0.86);
+backdrop-filter: blur(10px);
+border: 1px solid rgba(15,91,183,0.1);
+border-radius: 18px;
+box-shadow: 0 16px 32px rgba(15,91,183,0.08);
+padding: 18px 18px 16px;
+text-decoration: none;
+color: var(--text);
+display: flex;
+align-items: center;
+gap: 14px;
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+animation: fadeUp 0.7s ease both;
+}
+
+.action-tile:nth-child(2) {
+animation-delay: 0.08s;
+}
+
+.action-tile:hover {
+transform: translateY(-8px);
+box-shadow: 0 22px 42px rgba(15,91,183,0.14);
+}
+
+.action-icon {
+flex: 0 0 auto;
+width: 52px;
+height: 52px;
+border-radius: 16px;
+display: inline-flex;
+align-items: center;
+justify-content: center;
+background: linear-gradient(180deg, rgba(15,91,183,0.12), rgba(15,91,183,0.04));
+color: var(--blue-dark);
+}
+
+.action-icon svg {
+width: 26px;
+height: 26px;
+}
+
+.action-copy {
+flex: 1;
+text-align: right;
+}
+
+.action-copy h3 {
+color: var(--blue-dark);
+margin-bottom: 4px;
+font-size: 1.1rem;
+}
+
+.action-copy p {
+color: #5c5c5c;
+font-size: 0.92rem;
+line-height: 1.6;
+}
+
+.action-cta {
+margin-top: 8px;
+display: inline-block;
+background: linear-gradient(90deg, #0F5BB7 0%, #1762c6 100%);
+color: white;
+padding: 10px 18px;
+border-radius: 999px;
+font-weight: 700;
+font-size: 0.95rem;
+box-shadow: 0 8px 20px rgba(15,91,183,0.18);
+}
+
+.action-tile[role="button"] {
+cursor: pointer;
+}
+
+.modal {
+display: none;
+position: fixed;
+z-index: 2000;
+left: 0;
+top: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.5);
+animation: fadeIn 0.25s ease;
+overflow-y: auto;
+padding: 24px 0;
+}
+
+@keyframes fadeIn {
+from { opacity: 0; }
+to { opacity: 1; }
+}
+
+.modal-content {
+background: var(--white);
+margin: 4% auto;
+padding: clamp(25px, 3vw, 40px);
+border-radius: 20px;
+width: min(92%, 620px);
+box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+animation: slideDown 0.28s ease;
+}
+
+@keyframes slideDown {
+from {
+transform: translateY(-30px);
+opacity: 0;
+}
+to {
+transform: translateY(0);
+opacity: 1;
+}
+}
+
+.close-btn {
+color: #aaa;
+float: left;
+font-size: 28px;
+font-weight: bold;
+cursor: pointer;
+transition: color 0.3s ease;
+line-height: 1;
+}
+
+.close-btn:hover {
+color: #000;
+}
+
+.modal h2 {
+text-align: center;
+color: var(--blue-dark);
+margin-bottom: 25px;
+margin-top: 10px;
+font-size: 1.8rem;
+}
+
+.contact-form {
+width: 100%;
+}
+
+.form-group {
+margin-bottom: 20px;
+}
+
+.form-group label {
+display: block;
+margin-bottom: 8px;
+font-weight: 600;
+color: var(--blue-dark);
+font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+width: 100%;
+padding: 12px 16px;
+border: 2px solid rgba(15,91,183,0.1);
+border-radius: 12px;
+font-family: inherit;
+font-size: 1rem;
+transition: border-color 0.3s ease, box-shadow 0.3s ease;
+background: var(--white);
+color: var(--text);
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+outline: none;
+border-color: #0F5BB7;
+box-shadow: 0 0 0 3px rgba(15,91,183,0.1);
+}
+
+.form-group textarea {
+resize: vertical;
+min-height: 120px;
+}
+
+.form-submit {
+width: 100%;
+padding: 14px 20px;
+background: linear-gradient(90deg, #0F5BB7 0%, #1762c6 100%);
+color: white;
+border: none;
+border-radius: 12px;
+font-size: 1rem;
+font-weight: 700;
+cursor: pointer;
+transition: transform 0.25s ease, box-shadow 0.25s ease;
+box-shadow: 0 14px 25px rgba(15,91,183,0.2);
+}
+
+.form-submit:hover {
+transform: translateY(-2px);
+box-shadow: 0 18px 35px rgba(15,91,183,0.3);
+}
+
+.phone-info {
+text-align: center;
+margin-top: 25px;
+padding-top: 25px;
+border-top: 1px solid rgba(15,91,183,0.1);
+color: #555;
+font-size: 0.95rem;
+}
+
+.phone-info a {
+color: #0F5BB7;
+text-decoration: none;
+font-weight: 600;
+margin-right: 5px;
+}
+
+.phone-info a:hover {
+text-decoration: underline;
+}
+
+footer {
+background: rgba(15, 91, 183, 0.95);
+color: white;
+text-align: center;
+padding: 25px 20px;
+margin-top: 40px;
+font-size: 0.95rem;
+}
+
+@keyframes fadeUp {
+from {
+opacity: 0;
+transform: translateY(18px);
+}
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+
+@media (max-width: 900px) {
+.cards {
+gap: 20px;
+}
+
+.icon {
+width: 110px;
+height: 110px;
+}
+
+h1 {
+font-size: clamp(1.9rem, 4.5vw, 2.4rem);
+}
+}
+
+@media (max-width: 700px) {
+header {
+min-height: auto;
+}
+
+.header-logo {
+width: clamp(50px, 10vw, 100px);
+}
+
+.logo-right {
+max-width: 120px;
+}
+
+.logo-left {
+max-width: 80px;
+}
+
+.bottom-actions {
+grid-template-columns: 1fr;
+}
+}
+
+@media (max-width: 600px) {
+header {
+flex-direction: row;
+padding: 20px 12px;
+align-items: center;
+min-height: auto;
+}
+
+.header-logo-left {
+left: 12px;
+}
+
+.header-logo-right {
+right: 12px;
+}
+
+.header-logo {
+position: absolute;
+top: 50%;
+transform: translateY(-50%);
+width: clamp(48px, 10vw, 100px);
+}
+
+.header-content {
+padding: 0 40px;
+width: 100%;
+box-sizing: border-box;
+}
+
+.logo-right {
+max-width: clamp(140px, 30vw, 340px);
+}
+
+.logo-left {
+max-width: clamp(60px, 10vw, 90px);
+}
+
+.icon {
+width: 84px;
+height: 84px;
+}
+
+h1 {
+font-size: clamp(1rem, 5.8vw, 1.6rem);
+line-height: 1.12;
+margin-bottom: 8px;
+white-space: normal;
+word-break: break-word;
+}
+
+.subtitle {
+font-size: clamp(0.68rem, 2.0vw, 0.85rem);
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+max-width: 100%;
+margin: 0 auto;
+}
+
+.modal-content {
+width: 95%;
+margin: 18% auto;
+}
+
+.action-tile {
+align-items: flex-start;
+}
+
+.action-copy {
+text-align: right;
+}
+}
+</style>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col relative overflow-x-hidden antialiased">
-
-    <!-- خلفيات إشعاعية ناعمة متناسبة مع الهوية الفاخرة للموقع -->
-    <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-glow-blue pointer-events-none z-0"></div>
-    <div class="absolute top-[45%] left-0 w-[600px] h-[600px] bg-glow-gold pointer-events-none z-0"></div>
-
-    <!-- قسم الرأس (الهيدر) المطور والأكثر فخامة وملاءمة للهوية البصرية -->
-    <header class="relative bg-gradient-to-tr from-brand-dark via-brand-blue to-blue-600 pb-28 pt-8 px-4 rounded-b-[2.5rem] md:rounded-b-[5rem] shadow-[0_20px_50px_rgba(11,63,134,0.25)] overflow-hidden border-b-4 border-brand-gold/15 z-10">
-        <!-- تأثير النجوم والهندسة البصرية بالخلفية -->
-        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNyIvPjwvc3ZnPg==')] pointer-events-none opacity-60"></div>
-        <div class="absolute -bottom-10 -left-10 w-48 h-48 bg-white/5 rounded-full blur-2xl"></div>
-        <div class="absolute -top-10 -right-10 w-64 h-64 bg-brand-gold/10 rounded-full blur-3xl"></div>
-
-        <!-- شريط التنقل العلوي المرن (Navbar) -->
-        <nav class="max-w-7xl mx-auto flex items-center justify-between mb-8 relative z-20">
-            <!-- الشعار الصغير الأيسر -->
-            <div class="flex items-center">
-                <div class="bg-white/10 backdrop-blur-md p-2.5 rounded-2xl border border-white/20 shadow-md transition-transform hover:scale-105 duration-300">
-                    <img src="logo2.png" alt="شعار صغير لمركز الأمجاد" class="h-10 md:h-14 w-auto object-contain" onerror="this.style.display='none'">
-                </div>
-            </div>
-
-            <!-- لوحة التوثيق الأكاديمي والمهني -->
-            <div class="hidden sm:inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/20 shadow-sm text-white font-semibold text-xs tracking-wider">
-                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                مستشار الذكاء الاصطناعي الأكاديمي نشط الآن
-            </div>
-
-            <!-- معلومات فرعية -->
-            <div class="flex items-center">
-                <span class="text-white text-xs opacity-85 font-semibold hidden md:block">المركز الرئيسي المعتمد للتدريب</span>
-            </div>
-        </nav>
-
-        <!-- المحتوى المركزي الفاخر للهيدر مع إبراز وتكبير الشعار الرئيسي -->
-        <div class="max-w-4xl mx-auto relative z-10 flex flex-col items-center text-center mt-6">
-            
-            <!-- إطار الشعار المحسّن والأكبر حجماً لمنحه حضوراً قوياً يليق بالمركز -->
-            <div class="relative mb-8 group animate-float">
-                <!-- توهج ذهبي دافئ خلف الشعار -->
-                <div class="absolute inset-x-0 top-0 bottom-0 bg-brand-gold/30 rounded-full blur-3xl scale-110 opacity-70 group-hover:opacity-90 transition-opacity duration-500"></div>
-                
-                <div class="relative bg-white p-6 md:p-8 rounded-[2.5rem] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.35)] border-2 border-white/40 max-w-[190px] sm:max-w-[240px] md:max-w-[270px] mx-auto transition-all duration-500 group-hover:scale-105 group-hover:rotate-1">
-                    <img src="logo.png" alt="شعار مركز الأمجاد" class="w-full h-auto object-contain drop-shadow-xl" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMGIzZjg2IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBvbHlnb24gcG9pbnRzPSIxMiAyIDIyIDguNSAyMiAxNS41IDEyIDIyIDIgMTUuNSAyIDguNSAxMiAyIi8+PC9zdmc+'">
-                    <span class="absolute bottom-3 left-1/2 transform -translate-x-1/2 bg-brand-dark text-brand-gold text-[10px] font-bold px-3 py-1 rounded-full shadow-md whitespace-nowrap tracking-wide border border-brand-gold/20">تأسس عام 2026</span>
-                </div>
-            </div>
-
-            <!-- النصوص والعناوين الاحترافية بتدرج رائع -->
-            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white mb-5 tracking-tight drop-shadow-md leading-tight animate-fade-in-up">
-                مركز الأمجاد للغات والتدريب
-            </h1>
-            <p class="text-blue-100 text-base sm:text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-semibold px-4 animate-fade-in-up delay-100 drop-shadow-sm">
-                صناع التميز، قادة المستقبل. تابع حساباتنا الرسمية وتواصل معنا لبدء رحلة نجاحك الأكاديمي والمهني.
-            </p>
-        </div>
-    </header>
-
-    <!-- شبكة البطاقات الاجتماعية الموزعة بتناسق ممتاز مع الهوية الجديدة الفاخرة من الكود الأول -->
-    <main class="flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-16 relative z-20 pb-16">
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            
-            <!-- إنستغرام: لمسة عصرية جذابة وتفاعلية مع مؤثرات التحويم ثلاثية الأبعاد -->
-            <a href="https://www.instagram.com/alc_yemen?utm_source=qr&igsh=dmpva2l1bDY3MHZv" target="_blank" rel="noopener noreferrer" class="group bg-white rounded-3xl p-6 shadow-[0_15px_35px_rgba(15,91,183,0.05)] hover:shadow-[0_25px_50px_rgba(219,39,119,0.15)] border border-slate-100 transition-all duration-300 hover:-translate-y-2 relative overflow-hidden flex flex-col h-full animate-fade-in-up">
-                <div class="absolute top-0 right-0 w-36 h-36 bg-pink-500/5 rounded-bl-full pointer-events-none group-hover:scale-120 transition-transform duration-500"></div>
-                <span class="absolute top-4 left-4 bg-gradient-to-r from-pink-500 to-purple-600 text-white text-[11px] font-bold px-3.5 py-1.5 rounded-full shadow-sm">متابعة الآن</span>
-                
-                <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 flex items-center justify-center text-white mb-6 shadow-md transform group-hover:rotate-6 transition-transform duration-300">
-                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-                </div>
-                
-                <h2 class="text-xl md:text-2xl font-black text-slate-800 mb-2">إنستغرام</h2>
-                <p class="text-slate-500 mb-6 flex-grow leading-relaxed font-semibold text-sm md:text-base text-right">تابع أحدث الأخبار والبرامج والأنشطة الخاصة بالمركز.</p>
-                
-                <div class="mt-auto flex items-center text-pink-600 font-bold group-hover:translate-x-[-4px] transition-transform duration-300">
-                    <span class="text-sm md:text-base">متابعة الصفحة</span>
-                    <svg class="w-5 h-5 mr-1.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-                </div>
-            </a>
-
-            <!-- فيسبوك: أسلوب وتوهج ذو طابع كلاسيكي فاخر -->
-            <a href="https://www.facebook.com/ALC.Yemen/?from_intent_redirect=1" target="_blank" rel="noopener noreferrer" class="group bg-white rounded-3xl p-6 shadow-[0_15px_35px_rgba(15,91,183,0.05)] hover:shadow-[0_25px_50px_rgba(15,91,183,0.15)] border border-slate-100 transition-all duration-300 hover:-translate-y-2 relative overflow-hidden flex flex-col h-full animate-fade-in-up delay-100">
-                <div class="absolute top-0 right-0 w-36 h-36 bg-blue-500/5 rounded-bl-full pointer-events-none group-hover:scale-120 transition-transform duration-500"></div>
-                <span class="absolute top-4 left-4 bg-brand-blue text-white text-[11px] font-bold px-3.5 py-1.5 rounded-full shadow-sm">جديدنا</span>
-                
-                <div class="w-16 h-16 rounded-2xl bg-brand-blue flex items-center justify-center text-white mb-6 shadow-md transform group-hover:rotate-6 transition-transform duration-300">
-                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                </div>
-                
-                <h2 class="text-xl md:text-2xl font-black text-slate-800 mb-2">فيسبوك</h2>
-                <p class="text-slate-500 mb-6 flex-grow leading-relaxed font-semibold text-sm md:text-base text-right">لا تفوّت فرص التسجيل؛ تابع أحدث العروض والخصومات.</p>
-                
-                <div class="mt-auto flex items-center text-brand-blue font-bold group-hover:translate-x-[-4px] transition-transform duration-300">
-                    <span class="text-sm md:text-base">اكتشف المزيد</span>
-                    <svg class="w-5 h-5 mr-1.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-                </div>
-            </a>
-
-            <!-- واتساب للدردشة والمراسلة الفورية -->
-            <a href="https://wa.me/967778005033" target="_blank" rel="noopener noreferrer" class="group bg-white rounded-3xl p-6 shadow-[0_15px_35px_rgba(15,91,183,0.05)] hover:shadow-[0_25px_50px_rgba(34,197,94,0.15)] border border-slate-100 transition-all duration-300 hover:-translate-y-2 relative overflow-hidden flex flex-col h-full animate-fade-in-up delay-200">
-                <div class="absolute top-0 right-0 w-36 h-36 bg-green-500/5 rounded-bl-full pointer-events-none group-hover:scale-120 transition-transform duration-500"></div>
-                <span class="absolute top-4 left-4 bg-emerald-500 text-white text-[11px] font-bold px-3.5 py-1.5 rounded-full shadow-sm">رد فوري</span>
-                
-                <div class="w-16 h-16 rounded-2xl bg-green-500 flex items-center justify-center text-white mb-6 shadow-md transform group-hover:rotate-6 transition-transform duration-300">
-                    <svg class="w-9 h-9" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                </div>
-                
-                <h2 class="text-xl md:text-2xl font-black text-slate-800 mb-2">واتساب</h2>
-                <p class="text-slate-500 mb-6 flex-grow leading-relaxed font-semibold text-sm md:text-base text-right">تواصل معنا عبر واتساب لطرح أسئلتك واستفساراتك بسهولة.</p>
-                
-                <div class="mt-auto flex items-center text-emerald-600 font-bold group-hover:translate-x-[-4px] transition-transform duration-300">
-                    <span class="text-sm md:text-base">دردشة واتساب</span>
-                    <svg class="w-5 h-5 mr-1.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-                </div>
-            </a>
-
-            <!-- قناة واتساب: حيوية ومواكبة للأحداث اليومية -->
-            <a href="https://whatsapp.com/channel/0029VaPru5D5q08boHy1Yo0u" target="_blank" rel="noopener noreferrer" class="group bg-white rounded-3xl p-6 shadow-[0_15px_35px_rgba(15,91,183,0.05)] hover:shadow-[0_25px_50px_rgba(16,185,129,0.15)] border border-slate-100 transition-all duration-300 hover:-translate-y-2 relative overflow-hidden flex flex-col h-full animate-fade-in-up delay-300">
-                <div class="absolute top-0 right-0 w-36 h-36 bg-emerald-500/5 rounded-bl-full pointer-events-none group-hover:scale-120 transition-transform duration-500"></div>
-                <span class="absolute top-4 left-4 bg-emerald-500 text-white text-[11px] font-bold px-3.5 py-1.5 rounded-full shadow-sm">تحديثات يومية</span>
-                
-                <div class="w-16 h-16 rounded-2xl bg-emerald-500 flex items-center justify-center text-white mb-6 shadow-md transform group-hover:rotate-6 transition-transform duration-300 relative">
-                    <svg class="w-9 h-9" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                    <span class="absolute top-0 right-0 block h-3.5 w-3.5 rounded-full bg-red-500 ring-2 ring-white transform translate-x-1 -translate-y-1 animate-ping"></span>
-                    <span class="absolute top-0 right-0 block h-3.5 w-3.5 rounded-full bg-red-500 ring-2 ring-white transform translate-x-1 -translate-y-1"></span>
-                </div>
-                
-                <h2 class="text-xl md:text-2xl font-black text-slate-800 mb-2">قناة واتساب</h2>
-                <p class="text-slate-500 mb-6 flex-grow leading-relaxed font-semibold text-sm md:text-base text-right">تابع قناة المركز الرسمية على واتساب للأخبار الحصرية والعروض اليومية.</p>
-                
-                <div class="mt-auto flex items-center text-emerald-600 font-bold group-hover:translate-x-[-4px] transition-transform duration-300">
-                    <span class="text-sm md:text-base">فتح القناة</span>
-                    <svg class="w-5 h-5 mr-1.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-                </div>
-            </a>
-
-            <!-- الموقع الجغرافي: خريطة تفاعلية للوصول السريع -->
-            <a href="https://maps.app.goo.gl/tRwSPfsoHGSUfkkf7?g_st=ac" target="_blank" rel="noopener noreferrer" class="group bg-white rounded-3xl p-6 shadow-[0_15px_35px_rgba(15,91,183,0.05)] hover:shadow-[0_25px_50px_rgba(239,68,68,0.15)] border border-slate-100 transition-all duration-300 hover:-translate-y-2 relative overflow-hidden flex flex-col h-full lg:col-span-2 xl:col-span-1 animate-fade-in-up delay-400">
-                <div class="absolute top-0 right-0 w-36 h-36 bg-red-500/5 rounded-bl-full pointer-events-none group-hover:scale-120 transition-transform duration-500"></div>
-                <span class="absolute top-4 left-4 bg-brand-gold text-brand-dark text-[11px] font-extrabold px-3.5 py-1.5 rounded-full shadow-sm">اضغط للخريطة</span>
-                
-                <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center text-white mb-6 shadow-md transform group-hover:rotate-6 transition-transform duration-300">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                </div>
-                
-                <h2 class="text-xl md:text-2xl font-black text-slate-800 mb-2">الموقع الجغرافي</h2>
-                <p class="text-slate-500 mb-6 flex-grow leading-relaxed font-semibold text-sm md:text-base text-right">زيارة موقع ومقر المركز التدريبي على خرائط Google - الوصول بلمحة بصر.</p>
-                
-                <div class="mt-auto flex items-center text-red-600 font-bold group-hover:translate-x-[-4px] transition-transform duration-300">
-                    <span class="text-sm md:text-base">عرض الموقع الفعلي</span>
-                    <svg class="w-5 h-5 mr-1.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-                </div>
-            </a>
-
-        </div>
-    </main>
-
-    <!-- أزرار الإجراءات السريعة الفاخرة: اتصال مباشر وتسجيل إلكتروني -->
-    <section class="max-w-5xl mx-auto w-full px-4 mb-16 relative z-10" aria-label="خيارات التواصل والتسجيل الفورية">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            
-            <!-- لوحة الاتصال السريع المتميزة -->
-            <a href="tel:+967778005033" class="group flex items-center justify-between bg-white p-6 rounded-[2rem] shadow-[0_12px_30px_rgba(15,91,183,0.06)] hover:shadow-[0_20px_45px_rgba(15,91,183,0.12)] border border-slate-100 transition-all duration-300 hover:-translate-y-1">
-                <div class="flex items-center gap-5">
-                    <div class="w-14 h-14 rounded-2xl bg-brand-blue/10 text-brand-blue flex items-center justify-center flex-shrink-0 group-hover:bg-brand-blue group-hover:text-white transition-all duration-300 shadow-sm">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 1.12 4.18 2 2 0 0 1 3.1 2h3a2 2 0 0 1 2 1.72c.12.88.32 1.75.59 2.58a2 2 0 0 1-.45 2.11L7 9a16 16 0 0 0 6 6l.59-.24a2 2 0 0 1 2.11-.45c.83.27 1.7.47 2.58.59A2 2 0 0 1 22 16.92z"/>
-                        </svg>
-                    </div>
-                    <div class="text-right">
-                        <h3 class="text-lg md:text-xl font-black text-slate-800">اتصل بنا هاتفياً</h3>
-                        <p class="text-slate-400 text-xs sm:text-sm mt-0.5 font-semibold">استفسر واستشر خبرائنا مباشرة عبر الهاتف</p>
-                    </div>
-                </div>
-                <div class="bg-slate-50 p-2.5 rounded-full group-hover:bg-brand-blue group-hover:text-white transition-all duration-300">
-                    <svg class="w-5 h-5 transform rotate-180" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-                </div>
-            </a>
-
-            <!-- لوحة التسجيل الفوري بالتصميم اللامع والفريد -->
-            <button onclick="openRegistrationModal()" class="group flex items-center justify-between bg-gradient-to-r from-brand-gold to-yellow-400 p-6 rounded-[2rem] shadow-[0_12px_30px_rgba(251,224,63,0.15)] hover:shadow-[0_22px_45px_rgba(251,224,63,0.25)] transition-all duration-300 hover:-translate-y-1 text-right w-full cursor-pointer border border-brand-gold/10 relative overflow-hidden">
-                <!-- شريط لامع خلفي ناعم -->
-                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] pointer-events-none"></div>
-                
-                <div class="flex items-center gap-5 relative z-10">
-                    <div class="w-14 h-14 rounded-2xl bg-white/40 text-brand-dark flex items-center justify-center flex-shrink-0 group-hover:bg-brand-dark group-hover:text-white transition-all duration-300 shadow-sm">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5.586a1 1 0 0 1 .707.293l5.414 5.414a1 1 0 0 1 .293.707V19a2 2 0 0 1-2 2z"/>
-                        </svg>
-                    </div>
-                    <div>
-                        <h3 class="text-lg md:text-xl font-black text-brand-dark">طلب تسجيل إلكتروني</h3>
-                        <p class="text-brand-dark/70 text-xs sm:text-sm mt-0.5 font-bold">احجز مقعدك فوراً في برامجنا الرائدة</p>
-                    </div>
-                </div>
-                <div class="bg-white/40 p-2.5 rounded-full group-hover:bg-brand-dark group-hover:text-white transition-all duration-300 relative z-10">
-                    <svg class="w-5 h-5 transform rotate-180" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-                </div>
-            </button>
-
-        </div>
-    </section>
-
-    <!-- مساعد أمجاد الأكاديمي الذكي (العنصر العائم والدردشة التفاعلية) -->
-    <!-- زر الذكاء الاصطناعي العائم الفاخر -->
-    <button onclick="toggleAIChat()" class="fixed bottom-6 left-6 z-40 w-16 h-16 bg-gradient-to-tr from-brand-blue to-blue-600 text-white rounded-full shadow-[0_12px_30px_rgba(15,91,183,0.35)] hover:shadow-[0_18px_45px_rgba(15,91,183,0.5)] cursor-pointer flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 animate-pulse-glow" id="aiFloatingBtn" aria-label="افتح مستشار أمجاد الأكاديمي الذكي">
-        <svg class="w-9 h-9" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <!-- أيقونة روبوت فنية -->
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 3v2m6-2v2M9 17v2m6-2v2M4 9h16M4 15h16M6 7h12a2 2 0 012 2v8a2 2 0 01-2 2H6a2 2 0 01-2-2V9a2 2 0 012-2z" />
-            <circle cx="9" cy="12" r="1" fill="currentColor"/>
-            <circle cx="15" cy="12" r="1" fill="currentColor"/>
-        </svg>
-        <span class="absolute -top-1 -right-1 block h-4.5 w-4.5 rounded-full bg-red-500 ring-2 ring-white transform animate-bounce"></span>
-    </button>
-
-    <!-- نافذة مستشار الذكاء الاصطناعي التفاعلية -->
-    <div id="aiChatWindow" class="fixed bottom-24 left-6 z-40 w-[420px] max-w-[calc(100vw-2rem)] h-[580px] max-h-[80vh] bg-white rounded-[2rem] shadow-[0_25px_60px_rgba(15,91,183,0.25)] border border-slate-100 flex flex-col overflow-hidden transition-all duration-300 translate-y-4 opacity-0 pointer-events-none" style="display: none;">
-        <!-- رأس نافذة الدردشة المتدرج الفاخر -->
-        <div class="bg-gradient-to-r from-brand-dark via-brand-blue to-blue-600 p-4 pb-5 text-white relative">
-            <div class="absolute top-0 right-0 left-0 h-1 bg-gradient-to-r from-brand-gold to-yellow-400"></div>
-            <div class="flex items-center justify-between mt-2">
-                <div class="flex items-center gap-3">
-                    <div class="w-11 h-11 rounded-xl bg-white/20 flex items-center justify-center shadow-inner relative">
-                        <svg class="w-6.5 h-6.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 3v2m6-2v2M9 17v2m6-2v2M4 9h16M4 15h16M6 7h12a2 2 0 012 2v8a2 2 0 01-2 2H6a2 2 0 01-2-2V9a2 2 0 012-2z" />
-                        </svg>
-                        <span class="absolute bottom-0 right-0 block h-3 w-3 rounded-full bg-emerald-400 ring-2 ring-brand-blue"></span>
-                    </div>
-                    <div class="text-right">
-                        <h3 class="font-black text-sm sm:text-base">مستشار أمجاد الأكاديمي 🤖</h3>
-                        <p class="text-[11px] text-blue-100 font-semibold">ذكي، تفاعلي، متاح 24/7</p>
-                    </div>
-                </div>
-                <div class="flex items-center gap-1.5">
-                    <button onclick="clearAIChat()" class="p-1.5 rounded-lg hover:bg-white/10 text-white/80 hover:text-white transition-colors cursor-pointer" title="مسح المحادثة">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                        </svg>
-                    </button>
-                    <button onclick="toggleAIChat()" class="p-1.5 rounded-lg hover:bg-white/10 text-white/80 hover:text-white transition-colors cursor-pointer">
-                        <svg class="w-5.5 h-5.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- جسد المحادثة (منطقة استلام وعرض الرسائل) -->
-        <div class="flex-grow overflow-y-auto p-4 space-y-4 bg-slate-50/50" id="aiChatBody">
-            <!-- ترحيب المستشار المبدئي -->
-            <div class="flex gap-2 text-right">
-                <div class="w-8 h-8 rounded-lg bg-brand-blue/10 text-brand-blue flex items-center justify-center flex-shrink-0">🤖</div>
-                <div class="bg-white p-3.5 rounded-2xl rounded-tr-none shadow-sm border border-slate-100 max-w-[85%]">
-                    <p class="text-xs sm:text-sm font-semibold text-slate-800 leading-relaxed">
-                        أهلاً بك في مركز الأمجاد للتدريب! أنا مستشارك الذكي 🔮. كيف يمكنني مساعدتك اليوم؟
-                    </p>
-                    <div class="mt-3 flex flex-wrap gap-2">
-                        <button onclick="sendQuickPrompt('أريد بدء اختبار تفاعلي لتحديد مستوى اللغة الإنجليزية')" class="bg-blue-50 hover:bg-blue-100 text-brand-blue text-[11px] font-black px-3 py-1.5 rounded-lg border border-blue-100/40 transition-colors cursor-pointer text-right">
-                            📝 تحديد مستوى الإنجليزية
-                        </button>
-                        <button onclick="sendQuickPrompt('ساعدني في اختيار الدورة المناسبة لأهدافي الوظيفية')" class="bg-amber-50 hover:bg-amber-100 text-amber-700 text-[11px] font-black px-3 py-1.5 rounded-lg border border-amber-100/40 transition-colors cursor-pointer text-right">
-                            🎓 أي دورة تناسبني؟
-                        </button>
-                        <button onclick="sendQuickPrompt('صمم لي خطة دراسية ذكية لتعلم مهارة جديدة')" class="bg-purple-50 hover:bg-purple-100 text-purple-700 text-[11px] font-black px-3 py-1.5 rounded-lg border border-purple-100/40 transition-colors cursor-pointer text-right">
-                            📅 خطة دراسية ذكية
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- مؤشر جاري الكتابة التفاعلي -->
-        <div class="p-3 bg-white border-t border-slate-100 hidden" id="aiTypingIndicator">
-            <div class="flex items-center gap-2 text-slate-400 font-semibold text-xs text-right pr-3">
-                <span>المستشار يكتب الآن</span>
-                <span class="flex gap-1">
-                    <span class="w-1.5 h-1.5 bg-brand-blue rounded-full animate-bounce"></span>
-                    <span class="w-1.5 h-1.5 bg-brand-blue rounded-full animate-bounce delay-100"></span>
-                    <span class="w-1.5 h-1.5 bg-brand-blue rounded-full animate-bounce delay-200"></span>
-                </span>
-            </div>
-        </div>
-
-        <!-- مدخلات الدردشة التفاعلية السفلى -->
-        <div class="p-3.5 bg-white border-t border-slate-100">
-            <form onsubmit="handleAIChatSubmit(event)" class="flex gap-2">
-                <input type="text" id="aiChatInput" placeholder="اكتب سؤالك هنا أو اطلب تحديد مستوى..." class="flex-grow px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm font-semibold text-slate-800 placeholder-slate-400 focus:outline-none focus:border-brand-blue focus:bg-white transition-all duration-300">
-                <button type="submit" class="w-11 h-11 bg-brand-blue hover:bg-brand-dark text-white rounded-xl flex items-center justify-center shadow-md transition-colors cursor-pointer flex-shrink-0">
-                    <svg class="w-5 h-5 transform rotate-180" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M2 12l20 10V2z" />
-                    </svg>
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <!-- نافذة التسجيل المنبثقة (Modal) المحدثة بتصميمها الأنيق المتناسب مع الخط الجديد والتقنيات العصرية -->
-    <div id="registrationModal" class="modal fixed inset-0 z-50 flex items-center justify-center p-4 bg-brand-slate/80 backdrop-blur-sm" aria-hidden="true" style="display: none;">
-        
-        <div class="modal-content relative bg-white rounded-[2.5rem] w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-100 transition-all duration-500 scale-95 opacity-0 transform" role="dialog" aria-modal="true" aria-labelledby="registrationTitle">
-            
-            <div class="absolute top-0 right-0 left-0 h-3 bg-gradient-to-r from-brand-blue via-brand-gold to-brand-blue"></div>
-            
-            <button onclick="closeRegistrationModal()" class="absolute top-5 left-6 bg-slate-100 text-slate-500 hover:bg-red-50 hover:text-red-600 transition-colors duration-300 p-2.5 rounded-full focus:outline-none focus:ring-2 focus:ring-red-500/20 shadow-sm cursor-pointer z-10" aria-label="إغلاق">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
-            </button>
-
-            <div class="p-6 sm:p-10 pt-10">
-                <div class="text-center mb-8">
-                    <h2 id="registrationTitle" class="text-2xl sm:text-3xl font-black text-brand-dark mb-2">طلب استمارة تسجيل جديدة</h2>
-                    <p class="text-slate-400 font-semibold text-sm">يرجى ملء البيانات التالية بدقة، وسيتم تحويل طلبك مباشرة للقسم الفني للتواصل</p>
-                </div>
-
-                <form class="contact-form space-y-5 text-right" onsubmit="handleRegistrationSubmit(event)">
-                    
-                    <!-- الاسم الكامل -->
-                    <div class="form-group">
-                        <label for="regName" class="block text-slate-700 font-bold text-sm mb-2">الاسم الكامل لطلب الالتحاق *</label>
-                        <div class="relative">
-                            <input type="text" id="regName" name="regName" placeholder="أدخل اسمك الكامل الرباعي" required class="w-full px-5 py-3.5 bg-slate-50 border-2 border-slate-100 rounded-2xl font-semibold text-slate-800 placeholder-slate-400 focus:outline-none focus:border-brand-blue focus:bg-white transition-all duration-300">
-                        </div>
-                    </div>
-
-                    <!-- رقم الهاتف -->
-                    <div class="form-group">
-                        <label for="regPhone" class="block text-slate-700 font-bold text-sm mb-2">رقم الهاتف النشط (يفضل واتساب) *</label>
-                        <div class="relative">
-                            <input type="tel" id="regPhone" name="regPhone" placeholder="أدخل رقم هاتفك الفعلي" required class="w-full px-5 py-3.5 bg-slate-50 border-2 border-slate-100 rounded-2xl font-semibold text-slate-800 placeholder-slate-400 focus:outline-none focus:border-brand-blue focus:bg-white text-left transition-all duration-300" dir="ltr">
-                        </div>
-                    </div>
-
-                    <!-- البريد الإلكتروني -->
-                    <div class="form-group">
-                        <label for="regEmail" class="block text-slate-700 font-bold text-sm mb-2">البريد الإلكتروني للزائر</label>
-                        <div class="relative">
-                            <input type="email" id="regEmail" name="regEmail" placeholder="أدخل بريدك الإلكتروني الشخصي" class="w-full px-5 py-3.5 bg-slate-50 border-2 border-slate-100 rounded-2xl font-semibold text-slate-800 placeholder-slate-400 focus:outline-none focus:border-brand-blue focus:bg-white text-left transition-all duration-300" dir="ltr">
-                        </div>
-                    </div>
-
-                    <!-- البرنامج التدريبي المطلوب -->
-                    <div class="form-group">
-                        <label for="regCourse" class="block text-slate-700 font-bold text-sm mb-2">البرنامج أو الدورة المطلوبة *</label>
-                        <div class="relative">
-                            <input type="text" id="regCourse" name="regCourse" placeholder="مثال: دبلوم لغة إنجليزية، حاسوب ICDL، جرافيكس" required class="w-full px-5 py-3.5 bg-slate-50 border-2 border-slate-100 rounded-2xl font-semibold text-slate-800 placeholder-slate-400 focus:outline-none focus:border-brand-blue focus:bg-white transition-all duration-300">
-                        </div>
-                    </div>
-
-                    <!-- المستوى الحالي -->
-                    <div class="form-group">
-                        <label for="regLevel" class="block text-slate-700 font-bold text-sm mb-2">المستوى الحالي في المجال المحدد</label>
-                        <div class="relative">
-                            <select id="regLevel" name="regLevel" class="w-full px-5 py-3.5 bg-slate-50 border-2 border-slate-100 rounded-2xl font-semibold text-slate-800 focus:outline-none focus:border-brand-blue focus:bg-white cursor-pointer transition-all duration-300 appearance-none">
-                                <option value="" class="font-semibold text-slate-400">يرجى تحديد تقدير مستواك الحالي</option>
-                                <option value="مبتدئ">مبتدئ تماماً</option>
-                                <option value="متوسط">متوسط المعرفة</option>
-                                <option value="متقدم">متقدم وممتاز</option>
-                            </select>
-                            <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none text-slate-400">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- الملاحظات الإضافية -->
-                    <div class="form-group">
-                        <label for="regMessage" class="block text-slate-700 font-bold text-sm mb-2">ملاحظات أو متطلبات خاصة *</label>
-                        <textarea id="regMessage" name="regMessage" placeholder="اكتب أي تفاصيل إضافية أو رغبات تود إعلام لجنة القبول بها..." required class="w-full px-5 py-3.5 bg-slate-50 border-2 border-slate-100 rounded-2xl font-semibold text-slate-800 placeholder-slate-400 focus:outline-none focus:border-brand-blue focus:bg-white h-32 resize-none transition-all duration-300"></textarea>
-                    </div>
-
-                    <button type="submit" class="w-full py-4 bg-gradient-to-r from-brand-blue to-blue-600 hover:from-brand-dark hover:to-brand-blue text-white rounded-2xl font-bold text-base shadow-lg shadow-brand-blue/20 hover:shadow-xl hover:shadow-brand-blue/30 active:scale-[0.99] transition-all duration-300 cursor-pointer flex justify-center items-center gap-2">
-                        <span>تأكيد وإرسال طلب التسجيل</span>
-                        <svg class="w-5 h-5 transform rotate-180" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-                    </button>
-
-                    <div class="phone-info text-center text-slate-500 font-semibold text-xs sm:text-sm pt-6 border-t border-slate-100 mt-5">
-                        أو تواصل فوراً لتحديث طلبك:
-                        <a href="tel:+967778005033" class="text-brand-blue hover:text-brand-dark font-black tracking-wide mr-1.5 inline-block" dir="ltr">+967 778 005 033</a>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- الفوتر الأنيق والمحسّن -->
-    <footer class="mt-auto bg-slate-900 text-slate-400 py-10 text-center relative overflow-hidden border-t-2 border-brand-blue/20">
-        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMC41IiBmaWxsPSIjMDlmYmI3IiBmaWxsLW9wYWNpdHk9IjAuMDMiLz48L3N2Zz4=')] pointer-events-none"></div>
-        
-        <div class="container mx-auto px-6 relative z-10 flex flex-col items-center gap-4">
-            <div class="flex items-center gap-2.5">
-                <span class="w-2.5 h-2.5 rounded-full bg-brand-gold"></span>
-                <p class="text-slate-200 font-extrabold text-sm md:text-base tracking-wide">مركز الأمجاد للغات والتدريب - طريقك نحو التميز</p>
-                <span class="w-2.5 h-2.5 rounded-full bg-brand-gold"></span>
-            </div>
-            
-            <p class="text-[12px] md:text-sm opacity-75 font-medium tracking-wide">
-                جميع الحقوق محفوظة © 2026 | تصميم وتطوير المصمم المحترف: 
-                <span class="text-white font-extrabold hover:text-brand-gold transition-colors">يحيى المريسي</span>
-            </p>
-        </div>
-    </footer>
-
-    <script>
-        const registrationModal = document.getElementById('registrationModal');
-        const modalContent = registrationModal.querySelector('.modal-content');
-
-        // فتح الاستمارة بسلاسة وبشكل حركي متميز
-        function openRegistrationModal() {
-            registrationModal.style.display = 'flex';
-            registrationModal.setAttribute('aria-hidden', 'false');
-            document.body.style.overflow = 'hidden';
-            
-            setTimeout(() => {
-                modalContent.classList.remove('scale-95', 'opacity-0');
-                modalContent.classList.add('scale-100', 'opacity-100');
-            }, 50);
-        }
-
-        // إغلاق الاستمارة بسلاسة تامة
-        function closeRegistrationModal() {
-            modalContent.classList.remove('scale-100', 'opacity-100');
-            modalContent.classList.add('scale-95', 'opacity-0');
-            
-            setTimeout(() => {
-                registrationModal.style.display = 'none';
-                registrationModal.setAttribute('aria-hidden', 'true');
-                document.body.style.overflow = '';
-            }, 300);
-        }
-
-        function handleTileKey(event, action) {
-            if (event.key === 'Enter' || event.key === ' ') {
-                event.preventDefault();
-                action();
-            }
-        }
-
-        // إغلاق المودال عند النقر في الخارج
-        window.addEventListener('click', function(event) {
-            if (event.target === registrationModal) {
-                closeRegistrationModal();
-            }
-        });
-
-        // إغلاق الاستمارة عند الضغط على زر هروب (Escape)
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape' && registrationModal.style.display === 'flex') {
-                closeRegistrationModal();
-            }
-        });
-
-        // معالجة عملية الإرسال الفنية وربطها التلقائي بتطبيق واتس اب
-        function handleRegistrationSubmit(event) {
-            event.preventDefault();
-
-            const name = document.getElementById('regName').value.trim();
-            const phone = document.getElementById('regPhone').value.trim();
-            const email = document.getElementById('regEmail').value.trim();
-            const course = document.getElementById('regCourse').value.trim();
-            const level = document.getElementById('regLevel').value;
-            const message = document.getElementById('regMessage').value.trim();
-
-            const registrationMessage = `*طلب تسجيل جديد - مركز الأمجاد*\n\n` + 
-                `👤 *الاسم:* ${name}\n` +
-                `📱 *الهاتف:* ${phone}\n` +
-                `✉️ *البريد الإلكتروني:* ${email || 'غير محدد'}\n` +
-                `📚 *البرنامج أو الدورة:* ${course}\n` +
-                `📊 *المستوى الحالي:* ${level || 'غير محدد'}\n` +
-                `📝 *ملاحظات:* ${message}`;
-            
-            const whatsappUrl = `https://wa.me/967778005033?text=${encodeURIComponent(registrationMessage)}`;
-
-            window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
-            document.querySelector('#registrationModal .contact-form').reset();
-            closeRegistrationModal();
-        }
-
-        /* -----------------------------------------
-           نظام مستشار الذكاء الاصطناعي الأكاديمي (Gemini API)
-           ----------------------------------------- */
-        
-        let aiChatWindow = document.getElementById('aiChatWindow');
-        let aiChatBody = document.getElementById('aiChatBody');
-        let aiChatInput = document.getElementById('aiChatInput');
-        let aiTypingIndicator = document.getElementById('aiTypingIndicator');
-
-        // مصفوفة لتخزين سجل المحادثة لدعم حوار متعدد الخطوات (Multi-Turn Conversation)
-        let chatHistory = [];
-
-        // تعريف التعليمات البرمجية لتوجيه الموديل بدقة (System Prompt)
-        const systemPrompt = "أنت مستشار أكاديمي ذكي، ودود ومحفز لـ 'مركز الأمجاد للغات والتدريب' في اليمن (تأسس المركز عام 2026). البرامج التدريبية المعتمدة التي تقدمونها هي: دبلوم اللغة الإنجليزية المكثف، رخصة قيادة الحاسوب الدولية (ICDL)، دبلوم التصميم الجرافيكي المتقدم والممتاز، وبرامج التقوية المدرسية لجميع المواد. مهمتك الإجابة بلطف واحترافية باللغة العربية الفصحى أو بلهجة يمنية خفيفة مهذبة ومحببة. عند طلب الطالب تحديد مستواه في اللغة الإنجليزية، ابدأ بطرح 4 أسئلة متدرجة الصعوبة (واحد تلو الآخر) بالإنجليزية لمعرفة مستواه وقدم له النتيجة مع نصيحة مخصصة ودعه ينضم لمركز الأمجاد. وعند طلب تصميم خطة دراسية، اطلب منه هدفه ووقته لتنسيق جدول دراسي مبهر. اختصر إجاباتك قدر الإمكان لتناسب واجهة الهاتف الجوال وركز على تحفيز الطالب للتسجيل بالمركز.";
-
-        // فتح وإغلاق نافذة المحادثة
-        function toggleAIChat() {
-            if (aiChatWindow.style.display === 'none') {
-                aiChatWindow.style.display = 'flex';
-                setTimeout(() => {
-                    aiChatWindow.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
-                    aiChatWindow.classList.add('opacity-100', 'translate-y-0');
-                }, 50);
-            } else {
-                aiChatWindow.classList.remove('opacity-100', 'translate-y-0');
-                aiChatWindow.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
-                setTimeout(() => {
-                    aiChatWindow.style.display = 'none';
-                }, 300);
-            }
-        }
-
-        // مسح محتوى الدردشة واسترجاع الترحيب
-        function clearAIChat() {
-            chatHistory = [];
-            aiChatBody.innerHTML = `
-                <div class="flex gap-2 text-right">
-                    <div class="w-8 h-8 rounded-lg bg-brand-blue/10 text-brand-blue flex items-center justify-center flex-shrink-0">🤖</div>
-                    <div class="bg-white p-3.5 rounded-2xl rounded-tr-none shadow-sm border border-slate-100 max-w-[85%]">
-                        <p class="text-xs sm:text-sm font-semibold text-slate-800 leading-relaxed">
-                            تمت إعادة ضبط المستشار الأكاديمي بنجاح 🔮. كيف يمكنني إرشادك الآن؟
-                        </p>
-                        <div class="mt-3 flex flex-wrap gap-2">
-                            <button onclick="sendQuickPrompt('أريد بدء اختبار تفاعلي لتحديد مستوى اللغة الإنجليزية')" class="bg-blue-50 hover:bg-blue-100 text-brand-blue text-[11px] font-black px-3 py-1.5 rounded-lg border border-blue-100/40 transition-colors cursor-pointer text-right">
-                                📝 تحديد مستوى الإنجليزية
-                            </button>
-                            <button onclick="sendQuickPrompt('ساعدني في اختيار الدورة المناسبة لأهدافي الوظيفية')" class="bg-amber-50 hover:bg-amber-100 text-amber-700 text-[11px] font-black px-3 py-1.5 rounded-lg border border-amber-100/40 transition-colors cursor-pointer text-right">
-                                🎓 أي دورة تناسبني؟
-                            </button>
-                            <button onclick="sendQuickPrompt('صمم لي خطة دراسية ذكية لتعلم مهارة جديدة')" class="bg-purple-50 hover:bg-purple-100 text-purple-700 text-[11px] font-black px-3 py-1.5 rounded-lg border border-purple-100/40 transition-colors cursor-pointer text-right">
-                                📅 خطة دراسية ذكية
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
-
-        // إرسال ردود واقتراحات سريعة بنقرة واحدة
-        function sendQuickPrompt(promptText) {
-            appendMessage('user', promptText);
-            fetchGeminiAIResponse(promptText);
-        }
-
-        // معالجة الضغط على إرسال الرسالة من المدخل اليدوي
-        function handleAIChatSubmit(event) {
-            event.preventDefault();
-            const text = aiChatInput.value.trim();
-            if (!text) return;
-
-            appendMessage('user', text);
-            aiChatInput.value = '';
-            fetchGeminiAIResponse(text);
-        }
-
-        // إضافة الرسالة بصرياً إلى قائمة المحادثة مع معالجة بسيطة لتنسيق النصوص (Markdown)
-        function appendMessage(sender, text) {
-            const msgDiv = document.createElement('div');
-            msgDiv.className = sender === 'user' ? 'flex gap-2 justify-end text-left' : 'flex gap-2 text-right animate-fade-in-up';
-
-            const formattedText = formatMarkdown(text);
-
-            if (sender === 'user') {
-                msgDiv.innerHTML = `
-                    <div class="bg-brand-blue text-white p-3.5 rounded-2xl rounded-tl-none shadow-md max-w-[85%] text-right font-semibold text-xs sm:text-sm">
-                        ${formattedText}
-                    </div>
-                    <div class="w-8 h-8 rounded-lg bg-brand-blue text-white flex items-center justify-center flex-shrink-0 font-extrabold text-xs">أنت</div>
-                `;
-            } else {
-                msgDiv.innerHTML = `
-                    <div class="w-8 h-8 rounded-lg bg-brand-blue/10 text-brand-blue flex items-center justify-center flex-shrink-0">🤖</div>
-                    <div class="bg-white p-3.5 rounded-2xl rounded-tr-none shadow-sm border border-slate-100 max-w-[85%] text-right text-slate-800 font-semibold text-xs sm:text-sm leading-relaxed">
-                        ${formattedText}
-                    </div>
-                `;
-            }
-
-            aiChatBody.appendChild(msgDiv);
-            aiChatBody.scrollTop = aiChatBody.scrollHeight;
-        }
-
-        // معالجة تحويل الرموز البسيطة لـ Markdown كالعناوين الغامقة والنقاط والسطور
-        function formatMarkdown(text) {
-            return text
-                .replace(/\*\*(.*?)\*\*/g, '<strong class="font-extrabold text-brand-blue">$1</strong>')
-                .replace(/\*(.*?)\*/g, '<em class="text-brand-dark">$1</em>')
-                .replace(/^\s*-\s+(.*?)$/gm, '<li class="list-disc list-inside mr-2 text-slate-700 font-medium">$1</li>')
-                .replace(/\n/g, '<br>');
-        }
-
-        // الاتصال المباشر بـ Gemini API مع استخدام آلية إعادة المحاولة عند حدوث ضغط (Exponential Backoff)
-        async function fetchGeminiAIResponse(userMessage) {
-            aiTypingIndicator.classList.remove('hidden');
-            aiChatBody.scrollTop = aiChatBody.scrollHeight;
-
-            // تحديث مصفوفة سجل المحادثة
-            chatHistory.push({ role: "user", parts: [{ text: userMessage }] });
-
-            const apiKey = ""; // ترك المفتاح كمتغير فارغ ليقوم النظام بحقنه تلقائياً في بيئة التشغيل
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
-
-            const payload = {
-                contents: chatHistory,
-                systemInstruction: {
-                    parts: [{ text: systemPrompt }]
-                }
-            };
-
-            try {
-                const response = await fetchWithExponentialBackoff(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-
-                const result = await response.json();
-                const candidate = result.candidates?.[0];
-                const modelText = candidate?.content?.parts?.[0]?.text || "عذراً يا صديقي، واجهت مشكلة صغيرة في التحميل الفني. أرجو منك المحاولة مرة أخرى، أو يمكنك الاستفسار هاتفياً أو حجز مقعدك بالمركز مباشرة!";
-
-                // تحديث السجل برسالة الاستجابة لضمان سلاسة وتناسق المحادثة وتذكر السياق
-                chatHistory.push({ role: "model", parts: [{ text: modelText }] });
-
-                aiTypingIndicator.classList.add('hidden');
-                appendMessage('model', modelText);
-
-            } catch (error) {
-                console.error("Gemini API Error:", error);
-                aiTypingIndicator.classList.add('hidden');
-                appendMessage('model', "عذراً، أواجه صعوبة مؤقتة في الاتصال بنظام الذكاء الاصطناعي الأكاديمي. تفضل بمواصلة استفسارك أو يمكنك حجز مقعدك فوراً في أي دبلوم من خلال استمارة طلب التسجيل الإلكتروني السريعة!");
-            }
-        }
-
-        // دالة مخصصة للتعامل مع طلبات الـ API وإعادة المحاولة التلقائية عند الوصول للحد الأقصى أو الـ Throttling
-        async function fetchWithExponentialBackoff(url, options, maxRetries = 4, delay = 1000) {
-            for (let i = 0; i < maxRetries; i++) {
-                try {
-                    const response = await fetch(url, options);
-                    if (response.ok) return response;
-                    
-                    // إذا كان الخطأ 429 (Too Many Requests)، انتظر قليلاً ثم أعد المحاولة بنسق تصاعدي
-                    if (response.status === 429 && i < maxRetries - 1) {
-                        await new Promise(resolve => setTimeout(resolve, delay));
-                        delay *= 2; // مضاعفة وقت الانتظار
-                        continue;
-                    }
-                    return response; // إرجاع الاستجابة بالخطأ لتتم معالجتها في الـ catch الرئيسي
-                } catch (err) {
-                    if (i === maxRetries - 1) throw err;
-                    await new Promise(resolve => setTimeout(resolve, delay));
-                    delay *= 2;
-                }
-            }
-        }
-    </script>
+<body>
+
+<header>
+<div class="header-logo header-logo-left">
+<img src="logo2.png" alt="شعار صغير لمركز الأمجاد" class="logo-left">
+</div>
+
+<div class="header-content">
+<h1>مركز الأمجاد للغات والتدريب</h1>
+<p class="subtitle">تابع حسابات المركز الرسمية على منصات التواصل الاجتماعي</p>
+</div>
+
+<div class="header-logo header-logo-right">
+<img src="logo.png" alt="شعار مركز الأمجاد" class="logo-right">
+</div>
+</header>
+
+<section class="cards">
+<a class="card" href="https://www.instagram.com/alc_yemen?utm_source=qr&igsh=dmpva2l1bDY3MHZv" target="_blank" rel="noopener noreferrer">
+<span class="card-badge">متابعة الآن</span>
+<div class="icon">
+<img src="logo.i.png" alt="Instagram" />
+</div>
+<h2>إنستغرام</h2>
+<p>تابع أحدث الأخبار والبرامج والأنشطة الخاصة بالمركز.</p>
+<span class="btn">متابعة</span>
+</a>
+
+<a class="card" href="https://www.facebook.com/ALC.Yemen/?from_intent_redirect=1" target="_blank" rel="noopener noreferrer">
+<span class="card-badge">جديدنا</span>
+<div class="icon">
+<img src="logo.f.png" alt="Facebook" />
+</div>
+<h2>فيسبوك</h2>
+<p>لا تفوّت فرص التسجيل؛ تابع أحدث العروض والخصومات.</p>
+<span class="btn">اكتشف المزيد</span>
+</a>
+
+<a class="card" href="https://wa.me/967778005033" target="_blank" rel="noopener noreferrer">
+<span class="card-badge">رد فوري</span>
+<div class="icon">
+<img src="logo.w.png" alt="WhatsApp" />
+</div>
+<h2>واتساب</h2>
+<p>تواصل معنا عبر واتساب لطرح أسئلتك بسهولة.</p>
+<span class="btn">دردشة واتساب</span>
+</a>
+
+<a class="card" href="https://whatsapp.com/channel/0029VaPru5D5q08boHy1Yo0u" target="_blank" rel="noopener noreferrer">
+<span class="card-badge">تحديثات يومية</span>
+<div class="icon">
+<img src="logo.w.png" alt="WhatsApp" />
+</div>
+<h2>قناة واتساب</h2>
+<p>تابع قناة المركز الرسمية على واتساب للأخبار والعروض.</p>
+<span class="btn">فتح القناة</span>
+</a>
+
+<a class="card" href="https://maps.app.goo.gl/tRwSPfsoHGSUfkkf7?g_st=ac" target="_blank" rel="noopener noreferrer">
+<span class="card-badge">اضغط للخريطة</span>
+<div class="icon">
+<img src="logo.p.png" alt="الموقع" />
+</div>
+<h2>الموقع</h2>
+<p>زيارة موقع المركز على خرائط Google - تجدنا بسهولة.</p>
+<span class="btn">انقر للوصول</span>
+</a>
+</section>
+
+<section class="bottom-actions" aria-label="خيارات التواصل والتسجيل">
+<a href="tel:+967778005033" class="action-tile">
+<div class="action-icon" aria-hidden="true">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 1.12 4.18 2 2 0 0 1 3.1 2h3a2 2 0 0 1 2 1.72c.12.88.32 1.75.59 2.58a2 2 0 0 1-.45 2.11L7 9a16 16 0 0 0 6 6l.59-.24a2 2 0 0 1 2.11-.45c.83.27 1.7.47 2.58.59A2 2 0 0 1 22 16.92z"/>
+</svg>
+</div>
+<div class="action-copy">
+<h3>اتصل بنا</h3>
+<p>تحدث معنا عبر الهاتف للرد السريع والاستفسارات.</p>
+<span class="action-cta">الاتصال الآن</span>
+</div>
+</a>
+
+<div class="action-tile" role="button" tabindex="0" onclick="openRegistrationModal()" onkeydown="handleTileKey(event, openRegistrationModal)">
+<div class="action-icon" aria-hidden="true">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<path d="M4 19.5V5.5A1.5 1.5 0 0 1 5.5 4h9.75L20 8.75V19.5A1.5 1.5 0 0 1 18.5 21h-13A1.5 1.5 0 0 1 4 19.5z"/>
+<path d="M14.5 4V9h5"/>
+<path d="M8 13h8M8 16h8"/>
+</svg>
+</div>
+<div class="action-copy">
+<h3>طلب تسجيل</h3>
+<p> لإرسال طلب تسجيل جديد .</p>
+<span class="action-cta">فتح الاستمارة</span>
+</div>
+</div>
+</section>
+
+<div id="registrationModal" class="modal" aria-hidden="true">
+<div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="registrationTitle">
+<span class="close-btn" onclick="closeRegistrationModal()" aria-label="إغلاق">×</span>
+<h2 id="registrationTitle">طلب تسجيل</h2>
+<form class="contact-form" onsubmit="handleRegistrationSubmit(event)">
+<div class="form-group">
+<label for="regName">الاسم الكامل *</label>
+<input type="text" id="regName" name="regName" placeholder="أدخل اسمك الكامل" required>
+</div>
+
+<div class="form-group">
+<label for="regPhone">رقم الهاتف *</label>
+<input type="tel" id="regPhone" name="regPhone" placeholder="أدخل رقم هاتفك" required>
+</div>
+
+<div class="form-group">
+<label for="regEmail">البريد الإلكتروني</label>
+<input type="email" id="regEmail" name="regEmail" placeholder="أدخل بريدك الإلكتروني">
+</div>
+
+<div class="form-group">
+<label for="regCourse">البرنامج أو الدورة *</label>
+<input type="text" id="regCourse" name="regCourse" placeholder="مثال: لغة إنجليزية، حاسوب ICDL، جرافيكس" required>
+</div>
+
+<div class="form-group">
+<label for="regLevel">المستوى الحالي</label>
+<select id="regLevel" name="regLevel">
+<option value="">اختر المستوى</option>
+<option value="مبتدئ">مبتدئ</option>
+<option value="متوسط">متوسط</option>
+<option value="متقدم">متقدم</option>
+</select>
+</div>
+
+<div class="form-group">
+<label for="regMessage">ملاحظات إضافية *</label>
+<textarea id="regMessage" name="regMessage" placeholder="اكتب أي تفاصيل إضافية تود مشاركتها..." required></textarea>
+</div>
+
+<button type="submit" class="form-submit">إرسال طلب التسجيل</button>
+
+<div class="phone-info">
+أو اتصل بنا على:
+<a href="tel:+967778005033">+967 778 005 033</a>
+</div>
+</form>
+</div>
+</div>
+
+<footer>
+<p>جميع الحقوق محفوظة © 2026 | تصميم وتطوير: يحيى المريسي</p>
+</footer>
+
+<script>
+const registrationModal = document.getElementById('registrationModal');
+
+function openRegistrationModal() {
+registrationModal.style.display = 'block';
+registrationModal.setAttribute('aria-hidden', 'false');
+}
+
+function closeRegistrationModal() {
+registrationModal.style.display = 'none';
+registrationModal.setAttribute('aria-hidden', 'true');
+}
+
+function handleTileKey(event, action) {
+if (event.key === 'Enter' || event.key === ' ') {
+event.preventDefault();
+action();
+}
+}
+
+window.addEventListener('click', function(event) {
+if (event.target === registrationModal) {
+closeRegistrationModal();
+}
+});
+
+document.addEventListener('keydown', function(event) {
+if (event.key === 'Escape' && registrationModal.style.display === 'block') {
+closeRegistrationModal();
+}
+});
+
+function handleRegistrationSubmit(event) {
+event.preventDefault();
+
+const name = document.getElementById('regName').value.trim();
+const phone = document.getElementById('regPhone').value.trim();
+const email = document.getElementById('regEmail').value.trim();
+const course = document.getElementById('regCourse').value.trim();
+const level = document.getElementById('regLevel').value.trim();
+const message = document.getElementById('regMessage').value.trim();
+
+const registrationMessage = طلب تسجيل جديد\n\nالاسم: ${name}\nالهاتف: ${phone}\nالبريد الإلكتروني: ${email || 'غير محدد'}\nالبرنامج أو الدورة: ${course}\nالمستوى الحالي: ${level || 'غير محدد'}\nالملاحظات: ${message};
+const whatsappUrl = https://wa.me/967778005033?text=${encodeURIComponent(registrationMessage)};
+
+window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+document.querySelector('#registrationModal .contact-form').reset();
+closeRegistrationModal();
+}
+</script>
 
 </body>
 </html>
