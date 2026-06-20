@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -15,7 +16,7 @@
 --text: #333333;
 }
 
-* {
+• {
 margin: 0;
 padding: 0;
 box-sizing: border-box;
@@ -43,83 +44,88 @@ a {
 color: inherit;
 }
 
-/* التحديث الفاخر للهيدر وإبراز الهوية البصرية */
 header {
 position: relative;
-background: linear-gradient(135deg, #0b2545 0%, #0f5bb7 100%);
+background: linear-gradient(135deg, #0f5bb7 0%, #1762c6 100%);
 color: white;
 display: flex;
-flex-direction: column;
 justify-content: center;
 align-items: center;
 text-align: center;
-padding: clamp(40px, 6vw, 80px) 20px;
+padding: clamp(30px, 5vw, 72px) 16px;
 border-bottom-left-radius: 40px;
 border-bottom-right-radius: 40px;
-box-shadow: 0 25px 65px rgba(15, 91, 183, 0.22);
+box-shadow: 0 20px 60px rgba(15, 91, 183, 0.18);
+min-height: clamp(300px, 36vh, 460px);
 overflow: hidden;
-border-bottom: 5px solid var(--yellow);
 }
 
 header::before {
 content: "";
 position: absolute;
 inset: 0;
-background: radial-gradient(circle at top right, rgba(255,255,255,0.12), transparent 40%),
-            radial-gradient(circle at bottom left, rgba(255,255,255,0.08), transparent 40%);
+background: radial-gradient(circle at top right, rgba(255,255,255,0.16), transparent 35%),
+radial-gradient(circle at bottom left, rgba(255,255,255,0.12), transparent 35%);
 pointer-events: none;
 }
 
-/* حاوية الشعار الحصري والمعزول لإبراز الفخامة */
-.brand-showcase {
-position: relative;
-z-index: 2;
-background: var(--white);
-padding: clamp(16px, 3vw, 24px) clamp(30px, 5vw, 55px);
-border-radius: 24px;
-box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
-margin-bottom: 25px;
-display: inline-flex;
-align-items: center;
-justify-content: center;
-gap: 20px;
-border: 1px solid rgba(255, 255, 255, 0.8);
-animation: fadeInDown 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) both;
+.header-logo {
+position: absolute;
+top: 50%;
+transform: translateY(-50%);
+width: clamp(60px, 10vw, 140px);
+z-index: 1;
 }
 
-.logo-main-display {
-width: 100%;
-max-width: clamp(120px, 18vw, 190px);
-height: auto;
-object-fit: contain;
-filter: drop-shadow(0 4px 6px rgba(0,0,0,0.02));
+.header-logo-left {
+left: 15px;
+}
+
+.header-logo-right {
+right: 15px;
 }
 
 .header-content {
 position: relative;
-z-index: 2;
+z-index: 1;
 max-width: min(720px, 100%);
 width: min(90vw, 720px);
 margin: 0 auto;
 text-align: center;
 padding: 0 15px;
 overflow-wrap: break-word;
-animation: fadeUp 0.7s ease 0.2s both;
+animation: fadeUp 0.7s ease both;
+}
+
+.logo-right {
+width: 100%;
+max-width: clamp(100px, 15vw, 180px);
+background: transparent;
+padding: 0;
+border-radius: 0;
+margin-bottom: 0;
+}
+
+.logo-left {
+width: 100%;
+max-width: clamp(60px, 10vw, 100px);
+background: transparent;
+padding: 0;
+border-radius: 0;
+margin-bottom: 0;
 }
 
 h1 {
-margin-bottom: 12px;
-font-size: clamp(1.7rem, 5.5vw, 2.8rem);
+margin-bottom: 15px;
+font-size: clamp(1.6rem, 5vw, 2.6rem);
 font-weight: 700;
 letter-spacing: 0.02em;
-line-height: 1.2;
-color: var(--white);
-text-shadow: 0 2px 10px rgba(0,0,0,0.15);
+line-height: 1.1;
 }
 
 .subtitle {
-font-size: clamp(0.95rem, 2.5vw, 1.1rem);
-color: rgba(255,255,255,0.85);
+font-size: clamp(0.95rem, 2.5vw, 1.05rem);
+color: rgba(255,255,255,0.9);
 max-width: 620px;
 margin-left: auto;
 margin-right: auto;
@@ -347,17 +353,6 @@ opacity: 1;
 }
 }
 
-@keyframes fadeInDown {
-from {
-opacity: 0;
-transform: translateY(-20px);
-}
-to {
-opacity: 1;
-transform: translateY(0);
-}
-}
-
 .close-btn {
 color: #aaa;
 float: left;
@@ -483,38 +478,130 @@ transform: translateY(0);
 }
 
 @media (max-width: 900px) {
-.cards { gap: 20px; }
-.icon { width: 110px; height: 110px; }
-h1 { font-size: clamp(1.9rem, 4.5vw, 2.4rem); }
+.cards {
+gap: 20px;
+}
+
+.icon {
+width: 110px;
+height: 110px;
+}
+
+h1 {
+font-size: clamp(1.9rem, 4.5vw, 2.4rem);
+}
 }
 
 @media (max-width: 700px) {
-.bottom-actions { grid-template-columns: 1fr; }
+header {
+min-height: auto;
+}
+
+.header-logo {
+width: clamp(50px, 10vw, 100px);
+}
+
+.logo-right {
+max-width: 120px;
+}
+
+.logo-left {
+max-width: 80px;
+}
+
+.bottom-actions {
+grid-template-columns: 1fr;
+}
 }
 
 @media (max-width: 600px) {
-header { padding: 35px 15px; }
-.brand-showcase { padding: 12px 25px; margin-bottom: 18px; }
-.icon { width: 84px; height: 84px; }
-h1 { font-size: clamp(1.4rem, 5.8vw, 1.9rem); margin-bottom: 8px; }
-.subtitle { font-size: clamp(0.85rem, 2.5vw, 0.95rem); }
-.modal-content { width: 95%; margin: 18% auto; }
-.action-tile { align-items: flex-start; }
-.action-copy { text-align: right; }
+header {
+flex-direction: row;
+padding: 20px 12px;
+align-items: center;
+min-height: auto;
+}
+
+.header-logo-left {
+left: 12px;
+}
+
+.header-logo-right {
+right: 12px;
+}
+
+.header-logo {
+position: absolute;
+top: 50%;
+transform: translateY(-50%);
+width: clamp(48px, 10vw, 100px);
+}
+
+.header-content {
+padding: 0 40px;
+width: 100%;
+box-sizing: border-box;
+}
+
+.logo-right {
+max-width: clamp(140px, 30vw, 340px);
+}
+
+.logo-left {
+max-width: clamp(60px, 10vw, 90px);
+}
+
+.icon {
+width: 84px;
+height: 84px;
+}
+
+h1 {
+font-size: clamp(1rem, 5.8vw, 1.6rem);
+line-height: 1.12;
+margin-bottom: 8px;
+white-space: normal;
+word-break: break-word;
+}
+
+.subtitle {
+font-size: clamp(0.68rem, 2.0vw, 0.85rem);
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+max-width: 100%;
+margin: 0 auto;
+}
+
+.modal-content {
+width: 95%;
+margin: 18% auto;
+}
+
+.action-tile {
+align-items: flex-start;
+}
+
+.action-copy {
+text-align: right;
+}
 }
 </style>
 </head>
 <body>
 
-<!-- الهيدر المطور: الشعار يظهر في بيئة معزولة تبرز فخامته وبشكل متناسق وممركز تماماً -->
 <header>
-<div class="brand-showcase">
-<img src="logo.png" alt="شعار مركز الأمجاد" class="logo-main-display">
+<div class="header-logo header-logo-left">
+<img src="logo2.png" alt="شعار صغير لمركز الأمجاد" class="logo-left">
 </div>
 
 <div class="header-content">
 <h1>مركز الأمجاد للغات والتدريب</h1>
 <p class="subtitle">تابع حسابات المركز الرسمية على منصات التواصل الاجتماعي</p>
+</div>
+
+<div class="header-logo header-logo-right">
+<img src="logo.png" alt="شعار مركز الأمجاد" class="logo-right">
 </div>
 </header>
 
@@ -698,14 +785,15 @@ const message = document.getElementById('regMessage').value.trim();
 
 const registrationMessage = `طلب تسجيل جديد
 
-الاسم: ${name}
-الهاتف: ${phone}
-البريد الإلكتروني: ${email}
-البرنامج: ${course}
-المستوى الحالي: ${level}
-الملاحظات: ${message}`;
+الاسم: 
 
-const whatsappUrl = `https://wa.me/967778005033?text=${encodeURIComponent(registrationMessage)}`;
+{phone}
+البريد الإلكتروني: 
+
+{course}
+المستوى الحالي: 
+
+{message}; const whatsappUrl =https://wa.me/967778005033?text=${encodeURIComponent(registrationMessage)}`;
 
 window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
 document.querySelector('#registrationModal .contact-form').reset();
