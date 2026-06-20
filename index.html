@@ -1,647 +1,803 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>مركز الأمجاد للغات والتدريب | التميز في التعليم الدولي</title>
+<title>مركز الأمجاد للغات والتدريب</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 <style>
-/* لوحة ألوان تعكس الفخامة والمكانة الأكاديمية للمركز */
 :root {
---luxury-navy: #0b192c;
---luxury-blue: #1e3e62;
---gold-primary: #f1c40f;
---gold-dark: #d4af37;
---bg-soft: #f4f6f9;
---bg-pure: #ffffff;
---text-main: #1a2530;
---text-muted: #627183;
---border-subtle: #eef2f5;
+--blue: #0f5bb7;
+--blue-dark: #0b3f86;
+--yellow: #fbe03f;
+--white: #ffffff;
+--gray: #f5f7fa;
+--text: #333333;
 }
 
-* {
+• {
 margin: 0;
 padding: 0;
 box-sizing: border-box;
 }
 
+html {
+font-size: 16px;
+}
+
 body {
-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-background-color: var(--bg-soft);
-color: var(--text-main);
+font-family: Tahoma, Arial, sans-serif;
+background: radial-gradient(circle at top, #eef5ff 0%, #f8fbff 40%, #f5f7fa 100%);
+color: var(--text);
+min-height: 100vh;
 line-height: 1.6;
-overflow-x: hidden;
+}
+
+img {
+display: block;
+max-width: 100%;
+height: auto;
 }
 
 a {
-text-decoration: none;
 color: inherit;
 }
 
-/* الهيدر: مدخل سينمائي فاخر ومهيب للموقع */
-.premium-hero {
-background: linear-gradient(135deg, #06101e 0%, var(--luxury-navy) 100%);
-color: var(--bg-pure);
-padding: 90px 20px;
+header {
 position: relative;
+background: linear-gradient(135deg, #0f5bb7 0%, #1762c6 100%);
+color: white;
+display: flex;
+justify-content: center;
+align-items: center;
 text-align: center;
-border-bottom: 5px solid var(--gold-dark);
+padding: clamp(30px, 5vw, 72px) 16px;
+border-bottom-left-radius: 40px;
+border-bottom-right-radius: 40px;
+box-shadow: 0 20px 60px rgba(15, 91, 183, 0.18);
+min-height: clamp(300px, 36vh, 460px);
+overflow: hidden;
 }
 
-/* حماية الشعار في حاوية مخصصة تبرز فخامته وتمنع التداخل */
-.brand-identity {
-margin-bottom: 40px;
-display: inline-block;
-background: var(--bg-pure);
-padding: 25px 45px;
+header::before {
+content: "";
+position: absolute;
+inset: 0;
+background: radial-gradient(circle at top right, rgba(255,255,255,0.16), transparent 35%),
+radial-gradient(circle at bottom left, rgba(255,255,255,0.12), transparent 35%);
+pointer-events: none;
+}
+
+.header-logo {
+position: absolute;
+top: 50%;
+transform: translateY(-50%);
+width: clamp(60px, 10vw, 140px);
+z-index: 1;
+}
+
+.header-logo-left {
+left: 15px;
+}
+
+.header-logo-right {
+right: 15px;
+}
+
+.header-content {
+position: relative;
+z-index: 1;
+max-width: min(720px, 100%);
+width: min(90vw, 720px);
+margin: 0 auto;
+text-align: center;
+padding: 0 15px;
+overflow-wrap: break-word;
+animation: fadeUp 0.7s ease both;
+}
+
+.logo-right {
+width: 100%;
+max-width: clamp(100px, 15vw, 180px);
+background: transparent;
+padding: 0;
+border-radius: 0;
+margin-bottom: 0;
+}
+
+.logo-left {
+width: 100%;
+max-width: clamp(60px, 10vw, 100px);
+background: transparent;
+padding: 0;
+border-radius: 0;
+margin-bottom: 0;
+}
+
+h1 {
+margin-bottom: 15px;
+font-size: clamp(1.6rem, 5vw, 2.6rem);
+font-weight: 700;
+letter-spacing: 0.02em;
+line-height: 1.1;
+}
+
+.subtitle {
+font-size: clamp(0.95rem, 2.5vw, 1.05rem);
+color: rgba(255,255,255,0.9);
+max-width: 620px;
+margin-left: auto;
+margin-right: auto;
+line-height: 1.7;
+}
+
+.cards {
+max-width: 1100px;
+margin: 50px auto 30px;
+padding: 0 20px;
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+gap: clamp(20px, 3vw, 32px);
+}
+
+.card {
+background: var(--white);
+text-decoration: none;
+color: var(--text);
+border-radius: 28px;
+padding: clamp(24px, 2.2vw, 35px) clamp(18px, 2vw, 25px);
+text-align: center;
+box-shadow: 0 20px 40px rgba(15,91,183,0.08);
+border: 1px solid rgba(15,91,183,0.08);
+transition: transform 0.35s ease, box-shadow 0.35s ease;
+position: relative;
+animation: fadeUp 0.7s ease both;
+}
+
+.cards .card:nth-child(2) { animation-delay: 0.05s; }
+.cards .card:nth-child(3) { animation-delay: 0.1s; }
+.cards .card:nth-child(4) { animation-delay: 0.15s; }
+.cards .card:nth-child(5) { animation-delay: 0.2s; }
+
+.card:hover {
+transform: translateY(-12px);
+box-shadow: 0 30px 55px rgba(15,91,183,0.14);
+}
+
+.card-badge {
+position: absolute;
+top: -12px;
+right: 20px;
+background: #27ae60;
+color: white;
+padding: 4px 12px;
 border-radius: 20px;
-box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-animation: fadeIn 1s ease-out;
-}
-
-.brand-identity img {
-max-width: 280px;
-height: auto;
-display: block;
-}
-
-.hero-statement {
-max-width: 800px;
-margin: 0 auto;
-}
-
-.hero-statement h1 {
-font-size: clamp(2.2rem, 4vw, 3.2rem);
-color: var(--bg-pure);
-font-weight: 800;
-letter-spacing: -0.5px;
-margin-bottom: 20px;
-text-shadow: 0 2px 4px rgba(0,0,0,0.2);
-}
-
-.hero-statement h1 span {
-color: var(--gold-primary);
-}
-
-.hero-statement p {
-font-size: clamp(1.1rem, 2vw, 1.4rem);
-color: #b0c4de;
-font-weight: 300;
-max-width: 650px;
-margin: 0 auto;
-}
-
-/* العناوين الرئيسية للأقسام بلمسة كلاسيكية فاخرة */
-.premium-title {
-text-align: center;
-margin: 80px auto 40px;
-position: relative;
-}
-
-.premium-title h2 {
-font-size: 2.2rem;
-color: var(--luxury-navy);
+font-size: 0.75rem;
 font-weight: 700;
-letter-spacing: -0.5px;
 }
 
-.premium-title::after {
-content: '';
-display: block;
-width: 60px;
-height: 3px;
-background: var(--gold-dark);
-margin: 15px auto 0;
-}
-
-/* شبكة البرامج التعليمية المستوحاة بياناتها من البرشور */
-.academy-grid {
-max-width: 1200px;
-margin: 0 auto 80px;
-padding: 0 20px;
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-gap: 35px;
-}
-
-.academy-card {
-background: var(--bg-pure);
-border-radius: 16px;
-padding: 40px 30px;
-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
-border: 1px solid var(--border-subtle);
-display: flex;
-flex-direction: column;
-position: relative;
-transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-
-.academy-card:hover {
-transform: translateY(-8px);
-box-shadow: 0 25px 50px rgba(11, 25, 44, 0.08);
-border-color: rgba(212, 175, 55, 0.3);
-}
-
-/* شريط جانبي ذهبي رفيع للكروت يعطي إيحاء بالفخامة */
-.academy-card::before {
-content: '';
-position: absolute;
-top: 0;
-right: 0;
-height: 100%;
-width: 4px;
-background: var(--luxury-blue);
-border-top-right-radius: 16px;
-border-bottom-right-radius: 16px;
-transition: background 0.3s ease;
-}
-
-.academy-card:hover::before {
-background: var(--gold-dark);
-}
-
-.card-icon {
-color: var(--luxury-blue);
-margin-bottom: 25px;
-display: flex;
+.icon {
+font-size: 60px;
+margin-bottom: 20px;
+display: inline-flex;
 align-items: center;
+justify-content: center;
+width: clamp(90px, 12vw, 120px);
+height: clamp(90px, 12vw, 120px);
+border-radius: 24px;
+margin-left: auto;
+margin-right: auto;
+background: linear-gradient(180deg, rgba(15,91,183,0.07), rgba(15,91,183,0.02));
 }
 
-.academy-card:hover .card-icon {
-color: var(--gold-dark);
+.icon svg,
+.icon img {
+width: 70%;
+height: 70%;
+object-fit: contain;
 }
 
-.academy-card h3 {
-font-size: 1.4rem;
-color: var(--luxury-navy);
-margin-bottom: 20px;
-font-weight: 700;
-}
-
-.academy-card ul {
-list-style: none;
-flex-grow: 1;
-margin-bottom: 35px;
-}
-
-.academy-card ul li {
-font-size: 0.98rem;
-color: var(--text-main);
+.card h2 {
+color: var(--blue-dark);
 margin-bottom: 12px;
-position: relative;
-padding-right: 22px;
+font-size: 1.35rem;
 }
 
-.academy-card ul li::before {
-content: '✓';
-position: absolute;
-right: 0;
-color: var(--gold-dark);
-font-weight: bold;
+.card p {
+margin-bottom: 25px;
+line-height: 1.8;
+color: #555;
 }
 
-.card-action-btn {
-display: block;
-text-align: center;
-padding: 14px;
-border: 1px solid var(--luxury-blue);
-color: var(--luxury-blue);
-border-radius: 8px;
-font-weight: 600;
-font-size: 0.95rem;
-transition: all 0.3s ease;
+.btn {
+display: inline-block;
+background: linear-gradient(90deg, #fbe03f 0%, #f2c200 100%);
+color: #000;
+padding: clamp(10px, 1.4vw, 14px) clamp(20px, 3vw, 28px);
+border-radius: 999px;
+font-weight: 700;
+border: none;
+cursor: pointer;
+box-shadow: 0 14px 25px rgba(251,224,63,0.18);
+transition: transform 0.25s ease, box-shadow 0.25s ease;
+text-decoration: none;
 }
 
-.academy-card:hover .card-action-btn {
-background: var(--luxury-navy);
-color: var(--bg-pure);
-border-color: var(--luxury-navy);
+.btn:hover {
+transform: translateY(-2px);
+box-shadow: 0 18px 30px rgba(251,224,63,0.28);
 }
 
-/* قسم مميزات المركز بأسلوب الشركات والمؤسسات الكبرى */
-.institution-features {
-background-color: var(--bg-pure);
-padding: 80px 20px;
-border-top: 1px solid var(--border-subtle);
-border-bottom: 1px solid var(--border-subtle);
-}
-
-.features-container {
-max-width: 1200px;
-margin: 0 auto;
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-gap: 40px;
-}
-
-.feature-box {
-text-align: center;
-padding: 10px;
-}
-
-.feature-box-icon {
-width: 60px;
-height: 60px;
-margin: 0 auto 20px;
-color: var(--gold-dark);
-background: #fdfaf0;
-border-radius: 50%;
-display: flex;
-align-items: center;
-justify-content: center;
-}
-
-.feature-box h4 {
-font-size: 1.2rem;
-color: var(--luxury-navy);
-font-weight: 600;
-margin-bottom: 10px;
-}
-
-/* أزرار الاتصال وحجز المقاعد السفلية */
-.interactive-actions {
+.bottom-actions {
 max-width: 900px;
-margin: 60px auto;
+margin: 42px auto 46px;
 padding: 0 20px;
 display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 30px;
+grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+gap: 18px;
 }
 
-.action-card {
-background: var(--bg-pure);
-border: 1px solid var(--border-subtle);
-padding: 30px;
-border-radius: 12px;
+.action-tile {
+background: rgba(255,255,255,0.86);
+backdrop-filter: blur(10px);
+border: 1px solid rgba(15,91,183,0.1);
+border-radius: 18px;
+box-shadow: 0 16px 32px rgba(15,91,183,0.08);
+padding: 18px 18px 16px;
+text-decoration: none;
+color: var(--text);
 display: flex;
 align-items: center;
-gap: 25px;
-cursor: pointer;
-transition: all 0.3s ease;
-box-shadow: 0 4px 10px rgba(0,0,0,0.01);
+gap: 14px;
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+animation: fadeUp 0.7s ease both;
 }
 
-.action-card:hover {
-transform: translateY(-3px);
-border-color: var(--gold-dark);
-box-shadow: 0 15px 30px rgba(6, 16, 30, 0.05);
+.action-tile:nth-child(2) {
+animation-delay: 0.08s;
 }
 
-.action-card-icon {
-width: 55px;
-height: 55px;
-background: var(--bg-soft);
-border-radius: 10px;
-display: flex;
+.action-tile:hover {
+transform: translateY(-8px);
+box-shadow: 0 22px 42px rgba(15,91,183,0.14);
+}
+
+.action-icon {
+flex: 0 0 auto;
+width: 52px;
+height: 52px;
+border-radius: 16px;
+display: inline-flex;
 align-items: center;
 justify-content: center;
-color: var(--luxury-blue);
-flex-shrink: 0;
+background: linear-gradient(180deg, rgba(15,91,183,0.12), rgba(15,91,183,0.04));
+color: var(--blue-dark);
 }
 
-.action-card:hover .action-card-icon {
-background: var(--luxury-navy);
-color: var(--bg-pure);
+.action-icon svg {
+width: 26px;
+height: 26px;
 }
 
-.action-card-text h3 {
-font-size: 1.25rem;
-color: var(--luxury-navy);
-margin-bottom: 5px;
+.action-copy {
+flex: 1;
+text-align: right;
 }
 
-.action-card-text p {
-font-size: 0.9rem;
-color: var(--text-muted);
+.action-copy h3 {
+color: var(--blue-dark);
+margin-bottom: 4px;
+font-size: 1.1rem;
 }
 
-/* استمارة طلب التسجيل الفاخرة المودال */
-.registration-overlay {
+.action-copy p {
+color: #5c5c5c;
+font-size: 0.92rem;
+line-height: 1.6;
+}
+
+.action-cta {
+margin-top: 8px;
+display: inline-block;
+background: linear-gradient(90deg, #0F5BB7 0%, #1762c6 100%);
+color: white;
+padding: 10px 18px;
+border-radius: 999px;
+font-weight: 700;
+font-size: 0.95rem;
+box-shadow: 0 8px 20px rgba(15,91,183,0.18);
+}
+
+.action-tile[role="button"] {
+cursor: pointer;
+}
+
+.modal {
 display: none;
 position: fixed;
-z-index: 9999;
-inset: 0;
-background-color: rgba(6, 16, 30, 0.6);
-backdrop-filter: blur(5px);
+z-index: 2000;
+left: 0;
+top: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.5);
+animation: fadeIn 0.25s ease;
 overflow-y: auto;
-padding: 40px 15px;
-}
-
-.registration-window {
-background: var(--bg-pure);
-padding: 45px;
-border-radius: 16px;
-width: min(100%, 600px);
-margin: 2% auto;
-box-shadow: 0 30px 60px rgba(0,0,0,0.25);
-position: relative;
-animation: slideUp 0.4s ease;
-}
-
-@keyframes slideUp {
-from { transform: translateY(20px); opacity: 0; }
-to { transform: translateY(0); opacity: 1; }
-}
-
-.dismiss-btn {
-position: absolute;
-top: 25px;
-left: 25px;
-font-size: 30px;
-color: var(--text-muted);
-cursor: pointer;
-line-height: 0.5;
-}
-
-.dismiss-btn:hover { color: #d9534f; }
-
-.registration-window h2 {
-text-align: center;
-color: var(--luxury-navy);
-margin-bottom: 30px;
-font-size: 1.8rem;
-font-weight: 700;
-}
-
-.input-container { margin-bottom: 25px; }
-
-.input-container label {
-display: block;
-margin-bottom: 8px;
-font-weight: 600;
-color: var(--luxury-navy);
-font-size: 0.95rem;
-}
-
-.input-container input, .input-container textarea, .input-container select {
-width: 100%;
-padding: 14px 18px;
-border: 1px solid #cbd5e1;
-border-radius: 8px;
-font-family: inherit;
-font-size: 1rem;
-background: #f8fafc;
-transition: all 0.2s ease;
-}
-
-.input-container input:focus, .input-container textarea:focus, .input-container select:focus {
-outline: none;
-border-color: var(--luxury-blue);
-background: var(--bg-pure);
-box-shadow: 0 0 0 4px rgba(30, 62, 98, 0.15);
-}
-
-.submit-trigger {
-width: 100%;
-padding: 16px;
-background: var(--luxury-navy);
-color: white;
-border: none;
-border-radius: 8px;
-font-size: 1.05rem;
-font-weight: 700;
-cursor: pointer;
-transition: background 0.2s ease;
-}
-
-.submit-trigger:hover { background: #06101e; }
-
-/* فوتر رسمي يعكس العنوان الفعلي المذكور في البرشور */
-.premium-footer {
-background: #06101e;
-color: #94a3b8;
-padding: 50px 20px;
-text-align: center;
-font-size: 1rem;
-border-top: 4px solid var(--gold-dark);
-}
-
-.premium-footer .location-details {
-color: var(--gold-primary);
-margin-bottom: 15px;
-font-weight: 500;
-letter-spacing: 0.5px;
+padding: 24px 0;
 }
 
 @keyframes fadeIn {
-from { opacity: 0; transform: translateY(-10px); }
-to { opacity: 1; transform: translateY(0); }
+from { opacity: 0; }
+to { opacity: 1; }
 }
 
-@media (max-width: 768px) {
-.premium-hero { padding: 60px 15px; }
-.brand-identity { padding: 20px 30px; }
-.brand-identity img { max-width: 220px; }
-.interactive-actions { grid-template-columns: 1fr; gap: 20px; }
-.registration-window { padding: 30px 20px; }
+.modal-content {
+background: var(--white);
+margin: 4% auto;
+padding: clamp(25px, 3vw, 40px);
+border-radius: 20px;
+width: min(92%, 620px);
+box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+animation: slideDown 0.28s ease;
+}
+
+@keyframes slideDown {
+from {
+transform: translateY(-30px);
+opacity: 0;
+}
+to {
+transform: translateY(0);
+opacity: 1;
+}
+}
+
+.close-btn {
+color: #aaa;
+float: left;
+font-size: 28px;
+font-weight: bold;
+cursor: pointer;
+transition: color 0.3s ease;
+line-height: 1;
+}
+
+.close-btn:hover {
+color: #000;
+}
+
+.modal h2 {
+text-align: center;
+color: var(--blue-dark);
+margin-bottom: 25px;
+margin-top: 10px;
+font-size: 1.8rem;
+}
+
+.contact-form {
+width: 100%;
+}
+
+.form-group {
+margin-bottom: 20px;
+}
+
+.form-group label {
+display: block;
+margin-bottom: 8px;
+font-weight: 600;
+color: var(--blue-dark);
+font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+width: 100%;
+padding: 12px 16px;
+border: 2px solid rgba(15,91,183,0.1);
+border-radius: 12px;
+font-family: inherit;
+font-size: 1rem;
+transition: border-color 0.3s ease, box-shadow 0.3s ease;
+background: var(--white);
+color: var(--text);
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+outline: none;
+border-color: #0F5BB7;
+box-shadow: 0 0 0 3px rgba(15,91,183,0.1);
+}
+
+.form-group textarea {
+resize: vertical;
+min-height: 120px;
+}
+
+.form-submit {
+width: 100%;
+padding: 14px 20px;
+background: linear-gradient(90deg, #0F5BB7 0%, #1762c6 100%);
+color: white;
+border: none;
+border-radius: 12px;
+font-size: 1rem;
+font-weight: 700;
+cursor: pointer;
+transition: transform 0.25s ease, box-shadow 0.25s ease;
+box-shadow: 0 14px 25px rgba(15,91,183,0.2);
+}
+
+.form-submit:hover {
+transform: translateY(-2px);
+box-shadow: 0 18px 35px rgba(15,91,183,0.3);
+}
+
+.phone-info {
+text-align: center;
+margin-top: 25px;
+padding-top: 25px;
+border-top: 1px solid rgba(15,91,183,0.1);
+color: #555;
+font-size: 0.95rem;
+}
+
+.phone-info a {
+color: #0F5BB7;
+text-decoration: none;
+font-weight: 600;
+margin-right: 5px;
+}
+
+.phone-info a:hover {
+text-decoration: underline;
+}
+
+footer {
+background: rgba(15, 91, 183, 0.95);
+color: white;
+text-align: center;
+padding: 25px 20px;
+margin-top: 40px;
+font-size: 0.95rem;
+}
+
+@keyframes fadeUp {
+from {
+opacity: 0;
+transform: translateY(18px);
+}
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+
+@media (max-width: 900px) {
+.cards {
+gap: 20px;
+}
+
+.icon {
+width: 110px;
+height: 110px;
+}
+
+h1 {
+font-size: clamp(1.9rem, 4.5vw, 2.4rem);
+}
+}
+
+@media (max-width: 700px) {
+header {
+min-height: auto;
+}
+
+.header-logo {
+width: clamp(50px, 10vw, 100px);
+}
+
+.logo-right {
+max-width: 120px;
+}
+
+.logo-left {
+max-width: 80px;
+}
+
+.bottom-actions {
+grid-template-columns: 1fr;
+}
+}
+
+@media (max-width: 600px) {
+header {
+flex-direction: row;
+padding: 20px 12px;
+align-items: center;
+min-height: auto;
+}
+
+.header-logo-left {
+left: 12px;
+}
+
+.header-logo-right {
+right: 12px;
+}
+
+.header-logo {
+position: absolute;
+top: 50%;
+transform: translateY(-50%);
+width: clamp(48px, 10vw, 100px);
+}
+
+.header-content {
+padding: 0 40px;
+width: 100%;
+box-sizing: border-box;
+}
+
+.logo-right {
+max-width: clamp(140px, 30vw, 340px);
+}
+
+.logo-left {
+max-width: clamp(60px, 10vw, 90px);
+}
+
+.icon {
+width: 84px;
+height: 84px;
+}
+
+h1 {
+font-size: clamp(1rem, 5.8vw, 1.6rem);
+line-height: 1.12;
+margin-bottom: 8px;
+white-space: normal;
+word-break: break-word;
+}
+
+.subtitle {
+font-size: clamp(0.68rem, 2.0vw, 0.85rem);
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+max-width: 100%;
+margin: 0 auto;
+}
+
+.modal-content {
+width: 95%;
+margin: 18% auto;
+}
+
+.action-tile {
+align-items: flex-start;
+}
+
+.action-copy {
+text-align: right;
+}
 }
 </style>
 </head>
 <body>
 
-<!-- الهيدر السينمائي الفاخر المعزول -->
-<header class="premium-hero">
-<div class="brand-identity">
-<img src="logo.png" alt="شعار مركز الأمجاد">
+<header>
+<div class="header-logo header-logo-left">
+<img src="logo2.png" alt="شعار صغير لمركز الأمجاد" class="logo-left">
 </div>
-<div class="hero-statement">
-<h1>انطلق من هُنَا <span>لتحقيق حُلمك</span></h1>
-<p>مؤسسة تعليمية رائدة تقدم برامج تدريبية بمعايير دولية لصناعة فرص النجاح الدائم والتميز المهني.</p>
+
+<div class="header-content">
+<h1>مركز الأمجاد للغات والتدريب</h1>
+<p class="subtitle">تابع حسابات المركز الرسمية على منصات التواصل الاجتماعي</p>
+</div>
+
+<div class="header-logo header-logo-right">
+<img src="logo.png" alt="شعار مركز الأمجاد" class="logo-right">
 </div>
 </header>
 
-<!-- قسم البرامج المأخوذة من البرشور وطرحها بأسلوب فاخر -->
-<div class="premium-title">
-<h2>البرامج التعليمية والتدريبية المعتمدة</h2>
+<section class="cards">
+<a class="card" href="https://www.instagram.com/alc_yemen?utm_source=qr&igsh=dmpva2l1bDY3MHZv" target="_blank" rel="noopener noreferrer">
+<span class="card-badge">متابعة الآن</span>
+<div class="icon">
+<img src="logo.i.png" alt="Instagram" />
 </div>
+<h2>إنستغرام</h2>
+<p>تابع أحدث الأخبار والبرامج والأنشطة الخاصة بالمركز.</p>
+<span class="btn">متابعة</span>
+</a>
 
-<section class="academy-grid">
-<!-- 1. برنامج اللغة الإنجليزية -->
-<div class="academy-card">
-<div class="card-icon">
-<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+<a class="card" href="https://www.facebook.com/ALC.Yemen/?from_intent_redirect=1" target="_blank" rel="noopener noreferrer">
+<span class="card-badge">جديدنا</span>
+<div class="icon">
+<img src="logo.f.png" alt="Facebook" />
 </div>
-<h3>برنامج اللغة الإنجليزية</h3>
-<ul>
-<li>دبلوم اللغة الإنجليزية المتكامل.</li>
-<li>برنامج التأهيل لاختبار التوفل الدولي (TOEFL).</li>
-<li>دورات تخصصية مخصصة للموظفين والشركات.</li>
-<li>دورة المراسلات التجارية والمصطلحات الطبية.</li>
-</ul>
-<a href="https://www.instagram.com/alc_yemen?utm_source=qr&igsh=dmpva2l1bDY3MHZv" target="_blank" rel="noopener noreferrer" class="card-action-btn">استعراض التفاصيل</a>
-</div>
+<h2>فيسبوك</h2>
+<p>لا تفوّت فرص التسجيل؛ تابع أحدث العروض والخصومات.</p>
+<span class="btn">اكتشف المزيد</span>
+</a>
 
-<!-- 2. دبلوم الجرافيكس -->
-<div class="academy-card">
-<div class="card-icon">
-<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"></path><path d="M12 8V16"></path><path d="M8 12H16"></path></svg>
+<a class="card" href="https://wa.me/967778005033" target="_blank" rel="noopener noreferrer">
+<span class="card-badge">رد فوري</span>
+<div class="icon">
+<img src="logo.w.png" alt="WhatsApp" />
 </div>
-<h3>دبلوم الجرافيكس والذكاء الاصطناعي</h3>
-<ul>
-<li>أساسيات ومفاهيم التصميم الإبداعي الحديث.</li>
-<li>احتراف برامج أدوبي العالمية المعتمدة.</li>
-<li>تطبيقات عملية على أدوات الذكاء الاصطناعي.</li>
-<li>التأهيل المتكامل لمتطلبات سوق العمل الحر.</li>
-</ul>
-<a href="https://www.facebook.com/ALC.Yemen/?from_intent_redirect=1" target="_blank" rel="noopener noreferrer" class="card-action-btn">استعراض التفاصيل</a>
-</div>
+<h2>واتساب</h2>
+<p>تواصل معنا عبر واتساب لطرح أسئلتك بسهولة.</p>
+<span class="btn">دردشة واتساب</span>
+</a>
 
-<!-- 3. دبلوم الحاسوب ICDL -->
-<div class="academy-card">
-<div class="card-icon">
-<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+<a class="card" href="https://whatsapp.com/channel/0029VaPru5D5q08boHy1Yo0u" target="_blank" rel="noopener noreferrer">
+<span class="card-badge">تحديثات يومية</span>
+<div class="icon">
+<img src="logo.w.png" alt="WhatsApp" />
 </div>
-<h3>حاسوب الرخصه الدولية ICDL</h3>
-<ul>
-<li>أساسيات الحاسوب ونظم التشغيل والإنترنت.</li>
-<li>إدارة الملفات باحترافية وأمان رقمي عالي.</li>
-<li>تطبيقات مايكروسوفت أوفيس الأساسية والمتقدمة.</li>
-<li>قواعد البيانات وتكنولوجيا المعلومات والاتصالات.</li>
-</ul>
-<a href="https://whatsapp.com/channel/0029VaPru5D5q08boHy1Yo0u" target="_blank" rel="noopener noreferrer" class="card-action-btn">استعراض التفاصيل</a>
-</div>
+<h2>قناة واتساب</h2>
+<p>تابع قناة المركز الرسمية على واتساب للأخبار والعروض.</p>
+<span class="btn">فتح القناة</span>
+</a>
 
-<!-- 4. برنامج التقوية والإثراء -->
-<div class="academy-card">
-<div class="card-icon">
-<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"></path></svg>
+<a class="card" href="https://maps.app.goo.gl/tRwSPfsoHGSUfkkf7?g_st=ac" target="_blank" rel="noopener noreferrer">
+<span class="card-badge">اضغط للخريطة</span>
+<div class="icon">
+<img src="logo.p.png" alt="الموقع" />
 </div>
-<h3>برنامج التقوية والإثراء الدراسي</h3>
-<ul>
-<li>مخصص لطلاب الشهادة الأساسية (تاسع) والثانوية.</li>
-<li>تحت إشراف وتدريس نخبة من خبراء التعليم.</li>
-<li>حل وتفكيك النماذج الامتحانية الوزارية الشاملة.</li>
-<li>تهيئة نفسية وعلمية كاملة لضمان التفوق والريادة.</li>
-</ul>
-<a href="https://wa.me/967778005033" target="_blank" rel="noopener noreferrer" class="card-action-btn">استعراض التفاصيل</a>
-</div>
+<h2>الموقع</h2>
+<p>زيارة موقع المركز على خرائط Google - تجدنا بسهولة.</p>
+<span class="btn">انقر للوصول</span>
+</a>
 </section>
 
-<!-- قسم المزايا المؤسسية المستوحاة من البرشور -->
-<section class="institution-features">
-<div class="premium-title" style="margin-top: 0;">
-<h2>الركائز والامتيازات التعليمية بالمركز</h2>
+<section class="bottom-actions" aria-label="خيارات التواصل والتسجيل">
+<a href="tel:+967778005033" class="action-tile">
+<div class="action-icon" aria-hidden="true">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 1.12 4.18 2 2 0 0 1 3.1 2h3a2 2 0 0 1 2 1.72c.12.88.32 1.75.59 2.58a2 2 0 0 1-.45 2.11L7 9a16 16 0 0 0 6 6l.59-.24a2 2 0 0 1 2.11-.45c.83.27 1.7.47 2.58.59A2 2 0 0 1 22 16.92z"/>
+</svg>
 </div>
-<div class="features-container">
-<div class="feature-box">
-<div class="feature-box-icon">
-<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-</div>
-<h4>التركيز على النتائج وتطوير القدرات</h4>
-</div>
-<div class="feature-box">
-<div class="feature-box-icon">
-<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-</div>
-<h4>مهارات عملية لمستقبل مهني</h4>
-</div>
-<div class="feature-box">
-<div class="feature-box-icon">
-<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-</div>
-<h4>بيئة تعليمية داعمة ومحفزة</h4>
-</div>
-<div class="feature-box">
-<div class="feature-box-icon">
-<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
-</div>
-<h4>مدربون بخبرة وكفاءة عالية</h4>
-</div>
-<div class="feature-box">
-<div class="feature-box-icon">
-<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138z"></path></svg>
-</div>
-<h4>شهادات معتمدة ومناهج دولية</h4>
-</div>
-</div>
-</section>
-
-<!-- أزرار التواصل السريعة والثابتة -->
-<div class="interactive-actions">
-<a href="tel:+967778005033" class="action-card">
-<div class="action-card-icon">
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 1.12 4.18 2 2 0 0 1 3.1 2h3a2 2 0 0 1 2 1.72c.12.88.32 1.75.59 2.58a2 2 0 0 1-.45 2.11L7 9a16 16 0 0 0 6 6l.59-.24a2 2 0 0 1 2.11-.45c.83.27 1.7.47 2.58.59A2 2 0 0 1 22 16.92z"/></svg>
-</div>
-<div class="action-card-text">
-<h3>اتصل بنا هاتفياً</h3>
-<p>للاستفسار المباشر والسريع من قسم خدمة العملاء</p>
+<div class="action-copy">
+<h3>اتصل بنا</h3>
+<p>تحدث معنا عبر الهاتف للرد السريع والاستفسارات.</p>
+<span class="action-cta">الاتصال الآن</span>
 </div>
 </a>
 
-<div class="action-card" onclick="toggleRegistrationModal(true)">
-<div class="action-card-icon">
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+<div class="action-tile" role="button" tabindex="0" onclick="openRegistrationModal()" onkeydown="handleTileKey(event, openRegistrationModal)">
+<div class="action-icon" aria-hidden="true">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<path d="M4 19.5V5.5A1.5 1.5 0 0 1 5.5 4h9.75L20 8.75V19.5A1.5 1.5 0 0 1 18.5 21h-13A1.5 1.5 0 0 1 4 19.5z"/>
+<path d="M14.5 4V9h5"/>
+<path d="M8 13h8M8 16h8"/>
+</svg>
 </div>
-<div class="action-card-text">
-<h3>التسجيل الإلكتروني المباشر</h3>
-<p>احجز مقعدك الدراسي الآن وسنقوم بالتواصل معك وتأكيد البيانات</p>
+<div class="action-copy">
+<h3>طلب تسجيل</h3>
+<p> لإرسال طلب تسجيل جديد .</p>
+<span class="action-cta">فتح الاستمارة</span>
 </div>
 </div>
+</section>
+
+<div id="registrationModal" class="modal" aria-hidden="true">
+<div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="registrationTitle">
+<span class="close-btn" onclick="closeRegistrationModal()" aria-label="إغلاق">×</span>
+<h2 id="registrationTitle">طلب تسجيل</h2>
+<form class="contact-form" onsubmit="handleRegistrationSubmit(event)">
+<div class="form-group">
+<label for="regName">الاسم الكامل *</label>
+<input type="text" id="regName" name="regName" placeholder="أدخل اسمك الكامل" required>
 </div>
 
-<!-- نافذة المودال لطلب التسجيل -->
-<div id="registrationModal" class="registration-overlay">
-<div class="registration-window" role="dialog" aria-modal="true">
-<span class="dismiss-btn" onclick="toggleRegistrationModal(false)">×</span>
-<h2>استمارة حجز مقعد دراسي</h2>
-<form onsubmit="processRegistration(event)">
-<div class="input-container">
-<label for="regName">الاسم الكامل *</label>
-<input type="text" id="regName" placeholder="أدخل اسمك الثلاثي أو الرباعي كالمعتاد" required>
+<div class="form-group">
+<label for="regPhone">رقم الهاتف *</label>
+<input type="tel" id="regPhone" name="regPhone" placeholder="أدخل رقم هاتفك" required>
 </div>
-<div class="input-container">
-<label for="regPhone">رقم التواصل (واتساب) *</label>
-<input type="tel" id="regPhone" placeholder="مثال: 77XXXXXXX" required>
+
+<div class="form-group">
+<label for="regEmail">البريد الإلكتروني</label>
+<input type="email" id="regEmail" name="regEmail" placeholder="أدخل بريدك الإلكتروني">
 </div>
-<div class="input-container">
-<label for="regCourse">البرنامج التدريبي المطلوب *</label>
-<select id="regCourse" required>
-<option value="" disabled selected>اختر الدورة المُراد التسجيل بها</option>
-<option value="دبلوم لغة إنجليزية">دبلوم لغة إنجليزية</option>
-<option value="برنامج التأهيل لاختبار التوفل">برنامج التأهيل لاختبار التوفل الدولي (TOEFL)</option>
-<option value="دبلوم حاسوب قيادة دولية ICDL">دبلوم رخصة الحاسوب الدولية ICDL</option>
-<option value="دبلوم تصميم جرافيكس والذكاء الاصطناعي">دبلوم تصميم جرافيكس بالذكاء الاصطناعي</option>
-<option value="برنامج التقوية الدراسي (تاسع / ثالث ثانوي)">برنامج التقوية الدراسي (تاسع / ثالث ثانوي)</option>
+
+<div class="form-group">
+<label for="regCourse">البرنامج أو الدورة *</label>
+<input type="text" id="regCourse" name="regCourse" placeholder="مثال: لغة إنجليزية، حاسوب ICDL، جرافيكس" required>
+</div>
+
+<div class="form-group">
+<label for="regLevel">المستوى الحالي</label>
+<select id="regLevel" name="regLevel">
+<option value="">اختر المستوى</option>
+<option value="مبتدئ">مبتدئ</option>
+<option value="متوسط">متوسط</option>
+<option value="متقدم">متقدم</option>
 </select>
 </div>
-<div class="input-container">
-<label for="regMessage">ملاحظات أو استفسارات أخرى (اختياري)</label>
-<textarea id="regMessage" placeholder="اكتب أي تفاصيل إضافية تود إخبارنا بها..."></textarea>
+
+<div class="form-group">
+<label for="regMessage">ملاحظات إضافية *</label>
+<textarea id="regMessage" name="regMessage" placeholder="اكتب أي تفاصيل إضافية تود مشاركتها..." required></textarea>
 </div>
-<button type="submit" class="submit-trigger">تأكيد البيانات وإرسال الطلب</button>
+
+<button type="submit" class="form-submit">إرسال طلب التسجيل</button>
+
+<div class="phone-info">
+أو اتصل بنا على:
+<a href="tel:+967778005033">+967 778 005 033</a>
+</div>
 </form>
 </div>
 </div>
 
-<!-- الفوتر المؤسسي الرسمي والفاخر بالمعلومات الفعلية للموقع والاتصال -->
-<footer class="premium-footer">
-<p class="location-details">صنعاء - الحصبة - خط السائلة - جوار مدارس الأمجاد الدولية</p>
-<p>جميع الحقوق محفوظة © 2026 | مركز الأمجاد للغات والتدريب</p>
+<footer>
+<p>جميع الحقوق محفوظة © 2026 | تصميم وتطوير: يحيى المريسي</p>
 </footer>
 
 <script>
-const modalOverlay = document.getElementById('registrationModal');
+const registrationModal = document.getElementById('registrationModal');
 
-function toggleRegistrationModal(show) {
-modalOverlay.style.display = show ? 'block' : 'none';
-document.body.style.overflow = show ? 'hidden' : 'auto';
+function openRegistrationModal() {
+registrationModal.style.display = 'block';
+registrationModal.setAttribute('aria-hidden', 'false');
 }
 
-window.onclick = function(event) {
-if (event.target === modalOverlay) {
-toggleRegistrationModal(false);
-}
+function closeRegistrationModal() {
+registrationModal.style.display = 'none';
+registrationModal.setAttribute('aria-hidden', 'true');
 }
 
-function processRegistration(event) {
+function handleTileKey(event, action) {
+if (event.key === 'Enter' || event.key === ' ') {
 event.preventDefault();
+action();
+}
+}
+
+window.addEventListener('click', function(event) {
+if (event.target === registrationModal) {
+closeRegistrationModal();
+}
+});
+
+document.addEventListener('keydown', function(event) {
+if (event.key === 'Escape' && registrationModal.style.display === 'block') {
+closeRegistrationModal();
+}
+});
+
+function handleRegistrationSubmit(event) {
+event.preventDefault();
+
 const name = document.getElementById('regName').value.trim();
 const phone = document.getElementById('regPhone').value.trim();
-const course = document.getElementById('regCourse').value;
+const email = document.getElementById('regEmail').value.trim();
+const course = document.getElementById('regCourse').value.trim();
+const level = document.getElementById('regLevel').value.trim();
 const message = document.getElementById('regMessage').value.trim();
 
-const formattedText = `*طلب تسجيل إلكتروني جديد - مركز الأمجاد* 📝\n\n👤 *الاسم الكامل:* ${name}\n📞 *رقم التواصل:* ${phone}\n📚 *البرنامج المطلوب:* ${course}\n💬 *الملاحظات:* ${message || 'لا يوجد'}`;
-window.open(`https://wa.me/967778005033?text=${encodeURIComponent(formattedText)}`, '_blank');
-toggleRegistrationModal(false);
+const registrationMessage = `طلب تسجيل جديد
+
+الاسم: 
+
+{phone}
+البريد الإلكتروني: 
+
+{course}
+المستوى الحالي: 
+
+{message}; const whatsappUrl =https://wa.me/967778005033?text=${encodeURIComponent(registrationMessage)}`;
+
+window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+document.querySelector('#registrationModal .contact-form').reset();
+closeRegistrationModal();
 }
 </script>
 
