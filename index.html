@@ -3,18 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>مركز الأمجاد للغات والتدريب</title>
+<title>مركز الأمجاد للغات والتدريب | تعلم بمعايير دولية</title>
 <style>
-/* هويّة بصرية متطورة ومحدثة لعام 2026 */
+/* الهوية اللونية الرسمية المستوحاة من برشور المركز 1000657443.jpg */
 :root {
---bg-gradient: radial-gradient(circle at 50% 0%, #1e4b91 0%, #0a2558 50%, #030d22 100%);
---card-bg: rgba(255, 255, 255, 0.04);
---card-border: rgba(255, 255, 255, 0.08);
---card-hover-bg: rgba(255, 255, 255, 0.08);
---gold-gradient: linear-gradient(135deg, #ffe066 0%, #f5b041 100%);
---blue-light: #4facfe;
---text-primary: #ffffff;
---text-secondary: #b0c4de;
+--brand-blue: #0f5bb7;
+--brand-blue-dark: #0b3f86;
+--brand-yellow: #fbe03f;
+--brand-gold: #f2c200;
+--bg-light: #f8fbc20;
+--bg-pure: #ffffff;
+--text-dark: #1e293b;
+--text-muted: #64748b;
+--border-color: #e2e8f0;
 }
 
 * {
@@ -30,11 +31,10 @@ scroll-behavior: smooth;
 
 body {
 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-background: var(--bg-gradient);
-color: var(--text-primary);
+background-color: #f8fafc;
+color: var(--text-dark);
 min-height: 100vh;
 line-height: 1.6;
-overflow-x: hidden;
 }
 
 img {
@@ -44,654 +44,633 @@ height: auto;
 }
 
 a {
-color: inherit;
 text-decoration: none;
+color: inherit;
 }
 
-/* هيدر سينمائي فاخر معزول هندسياً لمنع أي تداخل */
-header {
+/* الهيدر الفاخر والمستوحى من تصميم واجهة البرشور */
+.hero-header {
+background: linear-gradient(135deg, var(--brand-blue-dark) 0%, var(--brand-blue) 100%);
+color: var(--bg-pure);
 position: relative;
-padding: 40px 20px;
+padding: 60px 40px;
+border-bottom-left-radius: 60px;
+border-bottom-right-radius: 60px;
+box-shadow: 0 15px 30px rgba(15, 91, 183, 0.1);
+overflow: hidden;
+}
+
+/* الخلفية الديناميكية المنحنية كما في البرشور */
+.hero-header::after {
+content: '';
+position: absolute;
+bottom: -10%;
+left: -5%;
+width: 40%;
+height: 120%;
+background: rgba(255, 255, 255, 0.03);
+transform: skewX(-15deg);
+border-radius: 40px;
+pointer-events: none;
+}
+
+.hero-container {
+max-width: 1200px;
+margin: 0 auto;
+display: grid;
+grid-template-columns: 1fr 1.2fr;
+align-items: center;
+gap: 40px;
+position: relative;
+z-index: 2;
+}
+
+/* جزء الشعار: محمي تماماً من أي تداخل ومستقل */
+.logo-wrapper {
 display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: center;
-min-height: 420px;
-text-align: center;
-z-index: 10;
+background: var(--bg-pure);
+padding: 30px;
+border-radius: 30px;
+box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+width: fit-content;
+margin: 0 auto;
 }
 
-.header-blur-bg {
-position: absolute;
-top: -50%;
-width: 600px;
-height: 600px;
-background: radial-gradient(circle, rgba(79, 172, 254, 0.15) 0%, transparent 70%);
-z-index: 1;
-pointer-events: none;
+.logo-wrapper img {
+width: 260px;
+height: auto;
 }
 
-.header-logo-container {
-position: relative;
-z-index: 5;
-margin-bottom: 25px;
-animation: float 4s ease-in-out infinite;
+/* جزء العبارة الترحيبية الرسمية */
+.hero-intro {
+text-align: right;
 }
 
-.logo-center {
-width: clamp(280px, 45vw, 380px);
-filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.5));
-transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+.hero-intro h1 {
+font-size: clamp(2rem, 4vw, 2.8rem);
+color: var(--brand-yellow);
+margin-bottom: 15px;
+font-weight: 800;
+line-height: 1.3;
 }
 
-.logo-center:hover {
-transform: scale(1.05) rotate(1deg);
-}
-
-.header-content {
-position: relative;
-z-index: 5;
-max-width: 650px;
-padding: 0 15px;
-}
-
-.subtitle {
-font-size: clamp(1rem, 2.5vw, 1.2.5rem);
-color: var(--text-secondary);
+.hero-intro p {
+font-size: clamp(1.1rem, 2vw, 1.3rem);
+color: rgba(255, 255, 255, 0.9);
+max-width: 550px;
 font-weight: 300;
-letter-spacing: 0.5px;
-text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-position: relative;
-display: inline-block;
-padding-bottom: 10px;
 }
 
-.subtitle::after {
+/* العنوان الرئيسي للأقسام */
+.section-title {
+text-align: center;
+margin: 60px auto 40px;
+position: relative;
+padding-bottom: 15px;
+max-width: 600px;
+}
+
+.section-title h2 {
+font-size: 2rem;
+color: var(--brand-blue-dark);
+font-weight: 700;
+}
+
+.section-title::after {
 content: '';
 position: absolute;
 bottom: 0;
-left: 25%;
-width: 50%;
-height: 2px;
-background: var(--gold-gradient);
+left: 50%;
+transform: translateX(-50%);
+width: 80px;
+height: 4px;
+background: var(--brand-gold);
 border-radius: 2px;
 }
 
-/* شبكة الكروت الزجاجية العصرية */
-.cards {
+/* شبكة البرامج الأكاديمية المحدثة بناءً على بطاقات البرشور */
+.programs-grid {
 max-width: 1200px;
-margin: 40px auto;
-padding: 0 25px;
+margin: 0 auto 60px;
+padding: 0 20px;
 display: grid;
-grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 gap: 30px;
-position: relative;
-z-index: 5;
 }
 
-.card {
-background: var(--card-bg);
-backdrop-filter: blur(12px);
--webkit-backdrop-filter: blur(12px);
-border: 1px solid var(--card-border);
+.program-card {
+background: var(--bg-pure);
 border-radius: 24px;
-padding: 40px 25px 30px 25px;
-text-align: center;
-transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-position: relative;
+border: 1px solid var(--border-color);
+padding: 35px 25px;
 display: flex;
 flex-direction: column;
-justify-content: space-between;
-align-items: center;
-overflow: hidden;
-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+position: relative;
+box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
-.card::before {
+.program-card:hover {
+transform: translateY(-5px);
+box-shadow: 0 20px 25px -5px rgba(15, 91, 183, 0.1);
+border-color: rgba(15, 91, 183, 0.2);
+}
+
+.program-card::before {
 content: '';
 position: absolute;
 top: 0;
-left: 0;
+right: 0;
 width: 100%;
-height: 100%;
-background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, transparent 100%);
-pointer-events: none;
+height: 6px;
+background: var(--brand-blue);
+border-top-left-radius: 24px;
+border-top-right-radius: 24px;
 }
 
-.card:hover {
-transform: translateY(-10px);
-background: var(--card-hover-bg);
-border-color: rgba(79, 172, 254, 0.3);
-box-shadow: 0 20px 40px rgba(79, 172, 254, 0.15);
+.program-card.featured::before {
+background: var(--brand-gold);
 }
 
-.card-badge {
-position: absolute;
-top: 15px;
-right: 15px;
-background: rgba(39, 174, 96, 0.2);
-border: 1px solid rgba(39, 174, 96, 0.3);
-color: #2ecc71;
-padding: 4px 12px;
-border-radius: 12px;
-font-size: 0.75rem;
-font-weight: 600;
-backdrop-filter: blur(5px);
-}
-
-.icon {
-margin-bottom: 25px;
-display: inline-flex;
+.program-icon {
+width: 65px;
+height: 65px;
+background: #f0f7ff;
+border-radius: 16px;
+display: flex;
 align-items: center;
 justify-content: center;
-width: 80px;
-height: 80px;
-border-radius: 20px;
-background: rgba(255, 255, 255, 0.03);
-border: 1px solid rgba(255, 255, 255, 0.05);
-transition: all 0.4s ease;
+margin-bottom: 20px;
+color: var(--brand-blue);
 }
 
-.card:hover .icon {
-transform: scale(1.1) rotate(5deg);
-background: rgba(79, 172, 254, 0.1);
-border-color: rgba(79, 172, 254, 0.2);
+.program-card.featured .program-icon {
+background: #fffdf0;
+color: var(--brand-gold);
 }
 
-.card h2 {
-color: var(--text-primary);
+.program-card h3 {
+font-size: 1.35rem;
+color: var(--brand-blue-dark);
 margin-bottom: 15px;
-font-size: 1.4rem;
-font-weight: 600;
+font-weight: 700;
 }
 
-.card p {
+.program-card ul {
+list-style: none;
 margin-bottom: 30px;
-line-height: 1.7;
-color: var(--text-secondary);
-font-size: 0.95rem;
 flex-grow: 1;
 }
 
-.btn {
-display: inline-block;
-background: transparent;
-color: #ffffff;
-padding: 12px 35px;
-border-radius: 14px;
-font-weight: 600;
-border: 1px solid rgba(255,255,255,0.2);
-transition: all 0.3s ease;
-width: 100%;
+.program-card ul li {
+font-size: 0.95rem;
+color: var(--text-dark);
+margin-bottom: 10px;
 position: relative;
-z-index: 2;
-overflow: hidden;
+padding-right: 20px;
 }
 
-.btn::before {
-content: '';
+.program-card ul li::before {
+content: '•';
 position: absolute;
-inset: 0;
-background: var(--gold-gradient);
-opacity: 0;
-transition: opacity 0.3s ease;
-z-index: -1;
+right: 0;
+color: var(--brand-blue);
+font-weight: bold;
+font-size: 1.2rem;
+line-height: 1;
 }
 
-.card:hover .btn {
-border-color: transparent;
-color: #0c1b33;
-box-shadow: 0 10px 20px rgba(245, 176, 65, 0.3);
+.program-btn {
+display: block;
+text-align: center;
+background: #f1f5f9;
+color: var(--brand-blue-dark);
+padding: 12px;
+border-radius: 12px;
+font-weight: 600;
+transition: all 0.2s ease;
 }
 
-.card:hover .btn::before {
-opacity: 1;
+.program-card:hover .program-btn {
+background: var(--brand-blue);
+color: var(--bg-pure);
 }
 
-/* الأزرار السفلية الطائرة التفاعلية */
-.bottom-actions {
+/* قسم المميزات: لماذا مركز الأمجاد؟ */
+.features-section {
+background-color: var(--bg-pure);
+padding: 60px 20px;
+border-top: 1px solid var(--border-color);
+border-bottom: 1px solid var(--border-color);
+}
+
+.features-grid {
+max-width: 1200px;
+margin: 0 auto;
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+gap: 25px;
+}
+
+.feature-item {
+text-align: center;
+padding: 20px 15px;
+}
+
+.feature-icon-box {
+width: 50px;
+height: 50px;
+margin: 0 auto 15px;
+color: var(--brand-blue);
+}
+
+.feature-item h4 {
+font-size: 1.1rem;
+color: var(--brand-blue-dark);
+font-weight: 700;
+}
+
+/* الأزرار السفلية التفاعلية الثابتة */
+.cta-wrapper {
 max-width: 900px;
 margin: 50px auto;
-padding: 0 25px;
+padding: 0 20px;
 display: grid;
-grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
-gap: 25px;
-z-index: 5;
-position: relative;
+grid-template-columns: 1fr 1fr;
+gap: 20px;
 }
 
-.action-tile {
-background: rgba(255, 255, 255, 0.02);
-backdrop-filter: blur(15px);
--webkit-backdrop-filter: blur(15px);
-border: 1px solid var(--card-border);
-border-radius: 24px;
+.cta-tile {
+background: var(--bg-pure);
+border: 1px solid var(--border-color);
 padding: 25px;
+border-radius: 20px;
 display: flex;
 align-items: center;
 gap: 20px;
-transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+transition: all 0.3s ease;
 cursor: pointer;
 }
 
-.action-tile:hover {
-transform: translateY(-5px);
-background: rgba(255,255,255,0.06);
-border-color: rgba(255,255,255,0.2);
-box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+.cta-tile:hover {
+transform: translateY(-3px);
+border-color: var(--brand-blue);
+box-shadow: 0 12px 20px rgba(15, 91, 183, 0.08);
 }
 
-.action-icon {
-width: 60px;
-height: 60px;
-border-radius: 18px;
-display: inline-flex;
+.cta-icon-box {
+width: 55px;
+height: 55px;
+background: #f0f7ff;
+border-radius: 14px;
+display: flex;
 align-items: center;
 justify-content: center;
-background: rgba(79, 172, 254, 0.1);
-color: var(--blue-light);
-border: 1px solid rgba(79, 172, 254, 0.2);
-transition: all 0.3s ease;
+color: var(--brand-blue);
+flex-shrink: 0;
 }
 
-.action-tile:hover {
-color: #fff;
+.cta-tile:hover .cta-icon-box {
+background: var(--brand-blue);
+color: var(--bg-pure);
 }
 
-.action-tile:hover .action-icon {
-background: var(--gold-gradient);
-color: #0c1b33;
-border-color: transparent;
-}
-
-.action-copy h3 {
-color: var(--text-primary);
-margin-bottom: 6px;
+.cta-info h3 {
 font-size: 1.2rem;
+color: var(--brand-blue-dark);
+margin-bottom: 4px;
 }
 
-.action-copy p {
-color: var(--text-secondary);
-font-size: 0.9rem;
-margin-bottom: 12px;
-}
-
-.action-cta {
-display: inline-block;
-color: var(--blue-light);
-font-weight: 600;
+.cta-info p {
 font-size: 0.88rem;
-transition: color 0.3s ease;
+color: var(--text-muted);
 }
 
-.action-tile:hover .action-cta {
-color: #f5b041;
-}
-
-/* نافذة المودال الفاخرة */
+/* نافذة المودال لطلب التسجيل */
 .modal {
 display: none;
 position: fixed;
 z-index: 2000;
 inset: 0;
-background-color: rgba(3, 13, 34, 0.8);
-backdrop-filter: blur(10px);
--webkit-backdrop-filter: blur(10px);
+background-color: rgba(15, 23, 42, 0.6);
+backdrop-filter: blur(4px);
 overflow-y: auto;
-padding: 40px 15px;
+padding: 40px 10px;
 }
 
 .modal-content {
-background: #0a1931;
-border: 1px solid rgba(255,255,255,0.1);
+background: var(--bg-pure);
 padding: 40px;
-border-radius: 32px;
-width: min(100%, 600px);
-margin: 3% auto;
-box-shadow: 0 35px 70px rgba(0, 0, 0, 0.6);
+border-radius: 24px;
+width: min(100%, 580px);
+margin: 2% auto;
+box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 position: relative;
-animation: modalSlide 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+animation: slideUp 0.3s ease-out;
 }
 
-@keyframes modalSlide {
-from { transform: translateY(-30px); opacity: 0; }
+@keyframes slideUp {
+from { transform: translateY(20px); opacity: 0; }
 to { transform: translateY(0); opacity: 1; }
 }
 
 .close-btn {
 position: absolute;
-top: 25px;
-left: 25px;
-color: var(--text-secondary);
-font-size: 35px;
+top: 20px;
+left: 20px;
+font-size: 28px;
+color: var(--text-muted);
 cursor: pointer;
-transition: color 0.3s ease;
-line-height: 0.3;
+line-height: 0.5;
 }
 
-.close-btn:hover { color: #e74c3c; }
+.close-btn:hover { color: #ef4444; }
 
 .modal h2 {
 text-align: center;
-color: #fff;
-margin-bottom: 30px;
-font-size: 1.8rem;
-background: var(--gold-gradient);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
+color: var(--brand-blue-dark);
+margin-bottom: 25px;
+font-size: 1.6rem;
 }
 
-.form-group { margin-bottom: 25px; }
+.form-group { margin-bottom: 20px; }
 
 .form-group label {
 display: block;
-margin-bottom: 10px;
-font-weight: 500;
-color: var(--text-secondary);
-font-size: 0.95rem;
+margin-bottom: 8px;
+font-weight: 600;
+color: var(--text-dark);
+font-size: 0.9rem;
 }
 
-.form-group input,
-.form-group textarea,
-.form-group select {
+.form-group input, .form-group textarea, .form-group select {
 width: 100%;
-padding: 16px;
-background: rgba(255, 255, 255, 0.03);
-border: 1px solid rgba(255, 255, 255, 0.1);
-border-radius: 16px;
-color: #fff;
+padding: 12px 16px;
+border: 1px solid var(--border-color);
+border-radius: 12px;
 font-family: inherit;
-font-size: 1rem;
-transition: all 0.3s ease;
+font-size: 0.95rem;
+background: #f8fafc;
+transition: all 0.2s ease;
 }
 
-.form-group select option {
-background: #0a1931;
-color: #fff;
-}
-
-.form-group input:focus,
-.form-group textarea:focus,
-.form-group select:focus {
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus {
 outline: none;
-border-color: var(--blue-light);
-background: rgba(255, 255, 255, 0.07);
-box-shadow: 0 0 15px rgba(79, 172, 254, 0.2);
+border-color: var(--brand-blue);
+background: var(--bg-pure);
+box-shadow: 0 0 0 4px rgba(15, 91, 183, 0.1);
 }
 
 .form-submit {
 width: 100%;
-padding: 16px;
-background: var(--gold-gradient);
-color: #0c1b33;
+padding: 14px;
+background: var(--brand-blue);
+color: white;
 border: none;
-border-radius: 16px;
-font-size: 1.1rem;
+border-radius: 12px;
+font-size: 1rem;
 font-weight: 700;
 cursor: pointer;
-transition: all 0.3s ease;
-box-shadow: 0 10px 25px rgba(245, 176, 65, 0.2);
+box-shadow: 0 4px 6px rgba(15, 91, 183, 0.2);
+transition: background 0.2s ease;
 }
 
-.form-submit:hover {
-transform: translateY(-2px);
-box-shadow: 0 15px 35px rgba(245, 176, 65, 0.4);
-}
+.form-submit:hover { background: var(--brand-blue-dark); }
 
-.phone-info {
-text-align: center;
-margin-top: 30px;
-padding-top: 20px;
-border-top: 1px solid rgba(255,255,255,0.05);
-color: var(--text-secondary);
-}
-
-.phone-info a {
-color: var(--blue-light);
-font-weight: 600;
-margin-right: 5px;
-}
-
+/* تذييل الموقع الفاخر مع العنوان الفعلي في صنعاء */
 footer {
-background: rgba(3, 13, 34, 0.6);
-backdrop-filter: blur(5px);
-border-top: 1px solid var(--card-border);
-color: var(--text-secondary);
+background: var(--brand-blue-dark);
+color: rgba(255, 255, 255, 0.8);
+padding: 40px 20px;
 text-align: center;
-padding: 30px;
-margin-top: 60px;
-font-size: 0.9rem;
+font-size: 0.95rem;
+border-top: 4px solid var(--brand-gold);
 }
 
-/* حركات الانميشن الذكية */
-@keyframes float {
-0%, 100% { transform: translateY(0px); }
-50% { transform: translateY(-10px); }
+footer .address {
+margin-bottom: 15px;
+color: var(--brand-yellow);
+font-weight: 500;
 }
 
+/* التوافق التام مع الشاشات والموبايل */
 @media (max-width: 768px) {
-header { min-height: 350px; padding-top: 30px; }
-.cards { gap: 20px; padding: 0 15px; }
-.bottom-actions { padding: 0 15px; }
-.modal-content { padding: 25px 20px; }
+.hero-header { border-radius: 0 0 40px 40px; padding: 40px 20px; }
+.hero-container { grid-template-columns: 1fr; gap: 30px; text-align: center; }
+.hero-intro { text-align: center; }
+.logo-wrapper img { width: 200px; }
+.cta-wrapper { grid-template-columns: 1fr; gap: 15px; }
 }
 </style>
 </head>
 <body>
 
-<header>
-<div class="header-blur-bg"></div>
-<div class="header-logo-container">
-<img src="logo.png" alt="شعار مركز الأمجاد" class="logo-center">
+<!-- الهيدر الأكاديمي المطور والمحمي هندسياً من التداخل -->
+<header class="hero-header">
+<div class="hero-container">
+<div class="logo-wrapper">
+<img src="logo.png" alt="شعار مركز الأمجاد">
 </div>
-<div class="header-content">
-<p class="subtitle">تابع حسابات المركز الرسمية على منصات التواصل الاجتماعي</p>
+<div class="hero-intro">
+<h1>انطلق من هُنَا لتحقيق حُلمك</h1>
+<p>تعليم احترافي يفتح لك آفاق المعرفة ويصنع فرص النجاح. تابع حسابات المركز الرسمية واكتشف برامجنا الدولية.</p>
+</div>
 </div>
 </header>
 
-<section class="cards">
-<a class="card" href="https://www.instagram.com/alc_yemen?utm_source=qr&igsh=dmpva2l1bDY3MHZv" target="_blank" rel="noopener noreferrer">
-<span class="card-badge">متابعة الآن</span>
-<div class="icon">
-<svg viewBox="0 0 24 24" fill="none" stroke="#e1306c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+<!-- قسم البرامج التدريبية المأخوذة من البرشور 1000657443.jpg -->
+<div class="section-title">
+<h2>البرامج التعليمية المعتمدة</h2>
 </div>
-<h2>إنستغرام</h2>
-<p>تابع أحدث الأخبار والبرامج والأنشطة الخاصة بالمركز أولاً بأول.</p>
-<span class="btn">متابعة</span>
-</a>
 
-<a class="card" href="https://www.facebook.com/ALC.Yemen/?from_intent_redirect=1" target="_blank" rel="noopener noreferrer">
-<span class="card-badge">جديدنا</span>
-<div class="icon">
-<svg viewBox="0 0 24 24" fill="none" stroke="#1877f2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+<section class="programs-grid">
+<!-- 1. برنامج اللغة الإنجليزية -->
+<div class="program-card featured">
+<span style="position:absolute; top:15px; left:15px; font-size:0.75rem; background:#fffdf0; color:var(--brand-gold); padding:3px 8px; border-radius:8px; font-weight:700; border:1px solid rgba(242,194,0,0.3)">الأكثر طلباً</span>
+<div class="program-icon">
+<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
 </div>
-<h2>فيسبوك</h2>
-<p>لا تفوّت فرص التسجيل والمنح؛ تابع أحدث العروض والخصومات.</p>
-<span class="btn">اكتشف المزيد</span>
-</a>
+<h3>برنامج اللغة الإنجليزية</h3>
+<ul>
+<li>دبلوم اللغة الإنجليزية المتكامل</li>
+<li>برنامج التأهيل لاختبار التوفل الدولي (TOEFL)</li>
+<li>دورات لغة إنجليزية مخصصة للموظفين</li>
+<li>دورة المراسلات التجارية والمصطلحات الطبية</li>
+</ul>
+<a href="https://www.instagram.com/alc_yemen?utm_source=qr&igsh=dmpva2l1bDY3MHZv" target="_blank" rel="noopener noreferrer" class="program-btn">تفاصيل البرنامج</a>
+</div>
 
-<a class="card" href="https://wa.me/967778005033" target="_blank" rel="noopener noreferrer">
-<span class="card-badge">رد فوري</span>
-<div class="icon">
-<svg viewBox="0 0 24 24" fill="none" stroke="#25d366" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+<!-- 2. دبلوم الجرافيكس -->
+<div class="program-card">
+<div class="program-icon">
+<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"></path><path d="M12 8V16"></path><path d="M8 12H16"></path></svg>
 </div>
-<h2>واتساب</h2>
-<p>تواصل مباشرة مع خدمة العملاء لطرح استفساراتك بسهولة.</p>
-<span class="btn">دردشة واتساب</span>
-</a>
+<h3>دبلوم الجرافيكس والذكاء الاصطناعي</h3>
+<ul>
+<li>أساسيات التصميم الإبداعي بالذكاء الاصطناعي</li>
+<li>احتراف برامج أدوبي (Photoshop, Illustrator)</li>
+<li>التأهيل الكامل لسوق العمل الحر</li>
+<li>تطبيق عملي ومشاريع وتكاليف يومية مستمرة</li>
+</ul>
+<a href="https://www.facebook.com/ALC.Yemen/?from_intent_redirect=1" target="_blank" rel="noopener noreferrer" class="program-btn">تفاصيل البرنامج</a>
+</div>
 
-<a class="card" href="https://whatsapp.com/channel/0029VaPru5D5q08boHy1Yo0u" target="_blank" rel="noopener noreferrer">
-<span class="card-badge">تحديثات يومية</span>
-<div class="icon">
-<svg viewBox="0 0 24 24" fill="none" stroke="#00a884" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+<!-- 3. دبلوم الحاسوب ICDL -->
+<div class="program-card">
+<div class="program-icon">
+<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
 </div>
-<h2>قناة واتساب</h2>
-<p>اشترك في قناة المركز الرسمية لتلقي التنبيهات اليومية.</p>
-<span class="btn">فتح القناة</span>
-</a>
+<h3>حاسوب الرخصه الدولية ICDL</h3>
+<ul>
+<li>أساسيات الحاسوب ونظم التشغيل Windows</li>
+<li>إنترنت، البريد الإلكتروني وإدارة الملفات الآمنة</li>
+<li>مجموعة مايكروسوفت أوفيس (Word, Excel, PowerPoint)</li>
+<li>قواعد البيانات Access وتكنولوجيا المعلومات IT</li>
+</ul>
+<a href="https://whatsapp.com/channel/0029VaPru5D5q08boHy1Yo0u" target="_blank" rel="noopener noreferrer" class="program-btn">تفاصيل البرنامج</a>
+</div>
 
-<a class="card" href="https://maps.app.goo.gl/tRwSPfsoHGSUfkkf7?g_st=ac" target="_blank" rel="noopener noreferrer">
-<span class="card-badge">اضغط للخريطة</span>
-<div class="icon">
-<svg viewBox="0 0 24 24" fill="none" stroke="#ea4335" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+<!-- 4. برنامج التقوية والإثراء -->
+<div class="program-card">
+<div class="program-icon">
+<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"></path></svg>
 </div>
-<h2>الموقع الجغراهمي</h2>
-<p>تفضل بزيارة مقرنا الرئيسي - انقر لمعاينة الموقع عبر الخرائط.</p>
-<span class="btn">انقر للوصول</span>
-</a>
+<h3>التقوية والإثراء (تاسع / ثالث ثانوي)</h3>
+<ul>
+<li>الدراسة مع نخبة من خبراء التعليم في اليمن</li>
+<li>حل وتفكيك النماذج الامتحانية الوزارية الشاملة</li>
+<li>التدريب العملي والنفسي للتعامل مع ورقة الامتحان</li>
+<li>متابعة مستمرة ودقيقة تؤهل الطلاب للتفوق والريادة</li>
+</ul>
+<a href="https://wa.me/967778005033" target="_blank" rel="noopener noreferrer" class="program-btn">تفاصيل البرنامج</a>
+</div>
 </section>
 
-<section class="bottom-actions" aria-label="خيارات التواصل والتسجيل">
-<a href="tel:+967778005033" class="action-tile">
-<div class="action-icon" aria-hidden="true">
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 1.12 4.18 2 2 0 0 1 3.1 2h3a2 2 0 0 1 2 1.72c.12.88.32 1.75.59 2.58a2 2 0 0 1-.45 2.11L7 9a16 16 0 0 0 6 6l.59-.24a2 2 0 0 1 2.11-.45c.83.27 1.7.47 2.58.59A2 2 0 0 1 22 16.92z"/>
-</svg>
+<!-- قسم مميزات المركز (لماذا مركز الأمجاد للغات؟) كما ورد في البرشور -->
+<section class="features-section">
+<div class="section-title" style="margin-top: 0;">
+<h2>لماذا مركز الأمجاد للغات؟</h2>
 </div>
-<div class="action-copy">
+<div class="features-grid">
+<div class="feature-item">
+<div class="feature-icon-box">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+</div>
+<h4>التركيز على النتائج وتطوير القدرات</h4>
+</div>
+<div class="feature-item">
+<div class="feature-icon-box">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+</div>
+<h4>مهارات عملية لمستقبل مهني</h4>
+</div>
+<div class="feature-item">
+<div class="feature-icon-box">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+</div>
+<h4>بيئة تعليمية داعمة ومحفزة</h4>
+</div>
+<div class="feature-item">
+<div class="feature-icon-box">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+</div>
+<h4>مدربون بخبرة وكفاءة عالية</h4>
+</div>
+<div class="feature-item">
+<div class="feature-item">
+<div class="feature-icon-box">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>
+</div>
+<h4>شهادات معتمدة ومناهج دولية</h4>
+</div>
+</div>
+</section>
+
+<!-- الأزرار السفلية الطائرة التفاعلية -->
+<div class="cta-wrapper">
+<a href="tel:+967778005033" class="cta-tile">
+<div class="cta-icon-box">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 1.12 4.18 2 2 0 0 1 3.1 2h3a2 2 0 0 1 2 1.72c.12.88.32 1.75.59 2.58a2 2 0 0 1-.45 2.11L7 9a16 16 0 0 0 6 6l.59-.24a2 2 0 0 1 2.11-.45c.83.27 1.7.47 2.58.59A2 2 0 0 1 22 16.92z"/></svg>
+</div>
+<div class="cta-info">
 <h3>اتصل بنا هاتفياً</h3>
-<p>للاستفسار المباشر والسريع وتوفير الوقت.</p>
-<span class="action-cta">الاتصال الآن ←</span>
+<p>للاستفسار المباشر والسريع من خدمة العملاء</p>
 </div>
 </a>
 
-<div class="action-tile" role="button" tabindex="0" onclick="openRegistrationModal()" onkeydown="handleTileKey(event, openRegistrationModal)">
-<div class="action-icon" aria-hidden="true">
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-<path d="M4 19.5V5.5A1.5 1.5 0 0 1 5.5 4h9.75L20 8.75V19.5A1.5 1.5 0 0 1 18.5 21h-13A1.5 1.5 0 0 1 4 19.5z"/>
-<path d="M14.5 4V9h5"/>
-<path d="M8 13h8M8 16h8"/>
-</svg>
+<div class="cta-tile" onclick="openRegistrationModal()">
+<div class="cta-icon-box">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
 </div>
-<div class="action-copy">
+<div class="cta-info">
 <h3>طلب تسجيل إلكتروني</h3>
-<p>احجز مقعدك الدراسي الدراسي الآن من خلال تعبئة البيانات.</p>
-<span class="action-cta">فتح الاستمارة ←</span>
+<p>احجز مقعدك الدراسي الآن وسنتصل بك</p>
 </div>
 </div>
-</section>
+</div>
 
+<!-- Modal استمارة طلب التسجيل الفاخرة -->
 <div id="registrationModal" class="modal" aria-hidden="true">
-<div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="registrationTitle">
-<span class="close-btn" onclick="closeRegistrationModal()" aria-label="إغلاق">×</span>
-<h2 id="registrationTitle">استمارة طلب التسجيل</h2>
-<form class="contact-form" onsubmit="handleRegistrationSubmit(event)">
+<div class="modal-content" role="dialog" aria-modal="true">
+<span class="close-btn" onclick="closeRegistrationModal()">×</span>
+<h2>استمارة طلب التسجيل بالمركز</h2>
+<form onsubmit="handleRegistrationSubmit(event)">
 <div class="form-group">
 <label for="regName">الاسم الكامل *</label>
-<input type="text" id="regName" name="regName" placeholder="أدخل اسمك الثلاثي أو الرباعي" required>
+<input type="text" id="regName" placeholder="أدخل اسمك الثلاثي أو الرباعي" required>
 </div>
-
 <div class="form-group">
 <label for="regPhone">رقم الهاتف (واتساب) *</label>
-<input type="tel" id="regPhone" name="regPhone" placeholder="مثال: 77XXXXXXX" required>
+<input type="tel" id="regPhone" placeholder="مثال: 77XXXXXXX" required>
 </div>
-
-<div class="form-group">
-<label for="regEmail">البريد الإلكتروني (اختياري)</label>
-<input type="email" id="regEmail" name="regEmail" placeholder="name@example.com">
-</div>
-
 <div class="form-group">
 <label for="regCourse">البرنامج أو الدورة المطلوبة *</label>
-<select id="regCourse" name="regCourse" required>
+<select id="regCourse" required>
 <option value="" disabled selected>اختر الدورة المُراد التسجيل بها</option>
 <option value="دبلوم لغة إنجليزية">دبلوم لغة إنجليزية</option>
 <option value="محادثة لغة إنجليزية مكثف">محادثة لغة إنجليزية مكثف</option>
 <option value="إعداد توفل (TOEFL)">توفل الدولي (TOEFL)</option>
 <option value="دبلوم حاسوب قيادة دولية ICDL">دبلوم رخصة الحاسوب الدولية ICDL</option>
-<option value="دبلوم تصميم جرافيكس">دبلوم تصميم جرافيكس</option>
-<option value="صيانة حاسوب وموبايل">صيانة حاسوب وموبايل</option>
-<option value="برمجة وتطوير مواقع">برمجة وتطوير مواقع</option>
-<option value="دورة مهارات بشرية وإدارية">علوم إدارية وتنمية بشرية</option>
+<option value="دبلوم تصميم جرافيكس">دبلوم تصميم جرافيكس بالذكاء الاصطناعي</option>
+<option value="برنامج التقوية (تاسع وثالث ثانوي)">برنامج التقوية (تاسع وثالث ثانوي)</option>
 </select>
 </div>
-
 <div class="form-group">
-<label for="regLevel">المستوى الحالي في المادة</label>
-<select id="regLevel" name="regLevel">
-<option value="غير محدد">اختر مستواك التقريبي</option>
-<option value="مبتدئ">مبتدئ (من الصفر)</option>
-<option value="متوسط">متوسط</option>
-<option value="متقدم">متقدم</option>
-</select>
+<label for="regMessage">ملاحظات إضافية (اختياري)</label>
+<textarea id="regMessage" placeholder="أي استفسار تود إضافته..."></textarea>
 </div>
-
-<div class="form-group">
-<label for="regMessage">ملاحظات أو استفسارات إضافية (اختياري)</label>
-<textarea id="regMessage" name="regMessage" placeholder="اكتب هنا أي تفاصيل أخرى تود إعلامنا بها..."></textarea>
-</div>
-
 <button type="submit" class="form-submit">تأكيد وإرسال عبر الواتساب</button>
-
-<div class="phone-info">
-أو يمكنك التواصل المباشر:
-<a href="tel:+967778005033">778005033 967+</a>
-</div>
 </form>
 </div>
 </div>
 
+<!-- تذييل يحتوي على العنوان والبيانات الرسمية الحقيقية للمركز -->
 <footer>
-<p>جميع الحقوق محفوظة © 2026 | تصميم وتطوير: يحيى المريسي</p>
+<p class="address">صنعاء - الحصبة - خط السائلة - جوار مدارس الأمجاد الدولية</p>
+<p>جميع الحقوق محفوظة © 2026 | مركز الأمجاد للغات والتدريب</p>
 </footer>
 
 <script>
-const registrationModal = document.getElementById('registrationModal');
+const modal = document.getElementById('registrationModal');
 
-function openRegistrationModal() {
-registrationModal.style.display = 'block';
-registrationModal.setAttribute('aria-hidden', 'false');
-document.body.style.overflow = 'hidden'; 
-}
+function openRegistrationModal() { modal.style.display = 'block'; document.body.style.overflow = 'hidden'; }
+function closeRegistrationModal() { modal.style.display = 'none'; document.body.style.overflow = 'auto'; }
 
-function closeRegistrationModal() {
-registrationModal.style.display = 'none';
-registrationModal.setAttribute('aria-hidden', 'true');
-document.body.style.overflow = 'auto'; 
-}
+window.onclick = function(e) { if (e.target === modal) closeRegistrationModal(); }
 
-function handleTileKey(event, action) {
-if (event.key === 'Enter' || event.key === ' ') {
-event.preventDefault();
-action();
-}
-}
-
-window.addEventListener('click', function(event) {
-if (event.target === registrationModal) {
-closeRegistrationModal();
-}
-});
-
-document.addEventListener('keydown', function(event) {
-if (event.key === 'Escape' && registrationModal.style.display === 'block') {
-closeRegistrationModal();
-}
-});
-
-function handleRegistrationSubmit(event) {
-event.preventDefault();
-
+function handleRegistrationSubmit(e) {
+e.preventDefault();
 const name = document.getElementById('regName').value.trim();
 const phone = document.getElementById('regPhone').value.trim();
-const email = document.getElementById('regEmail').value.trim();
 const course = document.getElementById('regCourse').value;
-const level = document.getElementById('regLevel').value;
 const message = document.getElementById('regMessage').value.trim();
 
-const registrationMessage = `*طلب تسجيل جديد - مركز الأمجاد* 📝
-
-👤 *الاسم:* ${name}
-📞 *الهاتف:* ${phone}
-📧 *البريد الإلكتروني:* ${email || 'غير محدد'}
-📚 *الدورة المطلوبة:* ${course}
-📊 *المستوى الحالي:* ${level}
-💬 *الملاحظات:* ${message || 'لا يوجد'}`;
-
-const whatsappUrl = `https://wa.me/967778005033?text=${encodeURIComponent(registrationMessage)}`;
-
-window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
-document.querySelector('#registrationModal .contact-form').reset();
+const regText = `*طلب تسجيل جديد - مركز الأمجاد* 📝\n\n👤 *الاسم:* ${name}\n📞 *الهاتف:* ${phone}\n📚 *الدورة:* ${course}\n💬 *الملاحظات:* ${message || 'لا يوجد'}`;
+window.open(`https://wa.me/967778005033?text=${encodeURIComponent(regText)}`, '_blank');
 closeRegistrationModal();
 }
 </script>
