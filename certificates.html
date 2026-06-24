@@ -226,16 +226,21 @@ color: var(--blue-dark);
 <!-- اختيار الدورة -->
 <div class="form-group">
 <label for="courseName">اسم الدورة *</label>
-<select id="courseName" name="courseName" required>
-<option value="">-- اختر الدورة --</option>
-<option value="دورة تطوير الويب">دورة تطوير الويب</option>
-<option value="دورة تطوير تطبيقات الجوال">دورة تطوير تطبيقات الجوال</option>
-<option value="دورة تحليل البيانات">دورة تحليل البيانات</option>
-<option value="دورة الذكاء الاصطناعي">دورة الذكاء الاصطناعي</option>
-<option value="دورة إدارة المشاريع">دورة إدارة المشاريع</option>
-<option value="دورة التسويق الرقمي">دورة التسويق الرقمي</option>
-</select>
-</div>
+	<select id="courseName" name="courseName" required onchange="toggleOtherCourse(this.value)">
+	<option value="">-- اختر الدورة --</option>
+	<option value="الرخصة الدولية في الحاسوب (ICDL)">الرخصة الدولية في الحاسوب (ICDL)</option>
+	<option value="دبلوم جرافيكس">دبلوم جرافيكس</option>
+	<option value="شهادة اختبار التوفل (TOEFL)">شهادة اختبار التوفل (TOEFL)</option>
+	<option value="دبلوم اللغة الإنجليزية">دبلوم اللغة الإنجليزية</option>
+	<option value="other">أخرى (اكتب اسم الشهادة)</option>
+	</select>
+	</div>
+
+	<!-- حقل اسم الشهادة الأخرى -->
+	<div class="form-group" id="otherCourseGroup" style="display: none;">
+	<label for="otherCourseName">اسم الشهادة المطلوبة *</label>
+	<input type="text" id="otherCourseName" name="otherCourseName" placeholder="اكتب اسم الشهادة هنا">
+	</div>
 
 <!-- الأسماء -->
 <div class="form-row">
@@ -305,11 +310,27 @@ color: var(--blue-dark);
 <script>
 const API_BASE = 'https://alc-admin-production.up.railway.app';
 
-async function submitCertificateRequest(event) {
-event.preventDefault();
+	function toggleOtherCourse(value) {
+	const otherGroup = document.getElementById('otherCourseGroup');
+	const otherInput = document.getElementById('otherCourseName');
+	if (value === 'other') {
+	otherGroup.style.display = 'block';
+	otherInput.required = true;
+	} else {
+	otherGroup.style.display = 'none';
+	otherInput.required = false;
+	}
+	}
 
-const courseName = document.getElementById('courseName').value;
-const fullNameAr = document.getElementById('fullNameAr').value.trim();
+	async function submitCertificateRequest(event) {
+	event.preventDefault();
+	
+	let courseName = document.getElementById('courseName').value;
+	if (courseName === 'other') {
+	courseName = document.getElementById('otherCourseName').value.trim();
+	}
+	
+	const fullNameAr = document.getElementById('fullNameAr').value.trim();
 const fullNameEn = document.getElementById('fullNameEn').value.trim();
 const phone = document.getElementById('phone').value.trim();
 const birthCity = document.getElementById('birthCity').value.trim();
