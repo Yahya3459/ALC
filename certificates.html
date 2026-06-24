@@ -158,6 +158,7 @@ font-weight: 600;
 text-align: center;
 display: none;
 animation: slideDown 0.3s ease;
+white-space: pre-wrap;
 }
 
 .alert.show { display: block; }
@@ -374,7 +375,8 @@ let idCardUrl = undefined;
 	});
 
 if (!uploadResponse.ok) {
-throw new Error('فشل رفع الملف');
+    const errorData = await uploadResponse.json().catch(() => ({}));
+    throw new Error(`فشل رفع الملف: ${errorData.error || uploadResponse.statusText}`);
 }
 
 const uploadData = await uploadResponse.json();
@@ -415,7 +417,7 @@ errorMsg.classList.add('show');
 }
 	} catch (err) {
 	console.error('Submit error:', err);
-	errorMsg.textContent = '✗ تعذّر الاتصال بالخادم: ' + (err.message || 'خطأ غير معروف');
+	errorMsg.textContent = '✗ تعذّر الاتصال بالخادم:\n' + (err.message || 'خطأ غير معروف');
 	errorMsg.classList.add('show');
 	} finally {
 submitBtn.disabled = false;
