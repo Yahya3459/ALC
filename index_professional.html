@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مركز الأمجاد للغات والتدريب</title>
+
+    <style>
+        :root {
+            --blue: #0F5BB7;
+            --blue-dark: #0A3F86;
+            --yellow: #FBE03F;
+            --yellow-dark: #D2A700;
+            --white: #FFFFFF;
+            --gray: #F4F6FB;
+            --text: #222222;
+            --muted: #5F6B83;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+            color: var(--text);
+            line-height: 1.7;
+            background: #f5f7fb;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        main {
+            max-width: 1140px;
+            margin: 0 auto;
+        }
+
+        header {
+            position: relative;
+            overflow: hidden;
+            background: #0e57b6;
+            color: var(--white);
+            border-bottom-left-radius: 36px;
+            border-bottom-right-radius: 36px;
+            box-shadow: 0 24px 60px rgba(15, 91, 183, 0.15);
+            padding: clamp(32px, 4vw, 56px) 18px 36px;
+            margin: 0 12px;
+        }
+
+        .header-inner {
+            display: grid;
+            grid-template-columns: minmax(0, 1.7fr) minmax(240px, 1fr);
+            gap: 28px;
+            align-items: center;
+            position: relative;
+            min-height: 260px;
+        }
+
+        .header-left {
+            text-align: right;
+            z-index: 1;
+        }
+
+        .header-title {
+            font-size: clamp(2.2rem, 5vw, 3.2rem);
+            font-weight: 800;
+            letter-spacing: 0.02em;
+            line-height: 1.04;
+            margin-bottom: 14px;
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.92);
+            font-size: clamp(1rem, 2.1vw, 1.1rem);
+            max-width: 680px;
+            margin-left: auto;
+            line-height: 1.75;
+            word-break: break-word;
+        }
+
+        .header-side {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .logo-right {
+            width: clamp(180px, 30vw, 320px);
+            border-radius: 26px;
+            padding: 14px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.24);
+            box-shadow: 0 24px 52px rgba(0, 0, 0, 0.14);
+        }
+
+        .logo-right img {
+            border-radius: 24px;
+        }
+
+        .section-heading {
+            max-width: 1240px;
+            margin: 40px auto 10px;
+            padding: 0 20px;
+            text-align: right;
+        }
+
+        .section-label {
+            color: var(--blue-dark);
+            font-size: 0.92rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            margin-bottom: 8px;
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 3.6vw, 2.5rem);
+            font-weight: 800;
+            color: #21355e;
+            line-height: 1.05;
+        }
+
+        .cards {
+            max-width: 1240px;
+            margin: 0 auto 30px;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+            gap: clamp(20px, 3vw, 32px);
+        }
+
+        .card {
+            background: #fff;
+            text-decoration: none;
+            color: var(--text);
+            border-radius: 28px;
+            padding: clamp(26px, 2.2vw, 34px);
+            text-align: center;
+            box-shadow: 0 24px 45px rgba(15, 91, 183, 0.08);
+            border: 1px solid rgba(15, 91, 183, 0.07);
+            transition: transform 0.28s ease, box-shadow 0.28s ease;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 32px 65px rgba(15, 91, 183, 0.14);
+        }
+
+        .icon {
+            margin-bottom: 22px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: clamp(90px, 12vw, 120px);
+            height: clamp(90px, 12vw, 120px);
+            border-radius: 24px;
+            background: rgba(15, 91, 183, 0.08);
+        }
+
+        .icon svg,
+        .icon img {
+            width: 62%;
+            height: 62%;
+            object-fit: contain;
+        }
+
+        .card h2 {
+            color: var(--blue-dark);
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+
+        .card p {
+            margin-bottom: 22px;
+            line-height: 1.8;
+            color: var(--muted);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(90deg, var(--yellow) 0%, var(--yellow-dark) 100%);
+            color: #1a1a1a;
+            padding: clamp(12px, 1.2vw, 14px) clamp(24px, 3vw, 30px);
+            border-radius: 999px;
+            font-weight: 800;
+            box-shadow: 0 16px 30px rgba(251, 224, 63, 0.18);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 34px rgba(251, 224, 63, 0.24);
+        }
+
+        footer {
+            background: rgba(15, 91, 183, 0.95);
+            color: white;
+            text-align: center;
+            padding: 24px 20px;
+            margin-top: 26px;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 900px) {
+            .header-inner {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .header-left {
+                text-align: center;
+            }
+            .header-side {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .section-heading {
+                margin-top: 28px;
+            }
+            .header-logo-left {
+                top: 16px;
+                left: 16px;
+                width: clamp(52px, 12vw, 92px);
+            }
+            .logo-right {
+                width: clamp(190px, 38vw, 280px);
+            }
+            .header-title {
+                font-size: clamp(1.9rem, 5vw, 2.8rem);
+            }
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 24px 14px 34px;
+            }
+            .header-inner {
+                gap: 24px;
+            }
+            .hero-badge {
+                right: 50%;
+                left: 50%;
+                transform: translateX(-50%);
+                bottom: -12px;
+                top: auto;
+            }
+            .logo-right {
+                width: clamp(220px, 56vw, 280px);
+                padding: 12px;
+            }
+            .section-title {
+                font-size: clamp(1.5rem, 5vw, 2rem);
+            }
+            .cards {
+                gap: 18px;
+            }
+            .icon {
+                width: 84px;
+                height: 84px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <main>
+        <header>
+            <div class="header-inner">
+                <div class="header-left">
+                    <h1 class="header-title">مركز الأمجاد للغات والتدريب</h1>
+                    <p class="subtitle">
+                        نقدم برامج تعليمية متميزة للغات والدورات التدريبية بتقنيات حديثة وخبرة احترافية.
+                    </p>
+                </div>
+
+                <div class="header-side">
+                    <img src="logo.png" alt="شعار مركز الأمجاد" class="logo-right">
+                </div>
+            </div>
+        </header>
+
+        <section class="section-heading">
+            <p class="section-label">وسائل التواصل</p>
+            <h2 class="section-title">تابعنا بسهولة عبر القنوات الرسمية</h2>
+        </section>
+
+        <section class="cards">
+
+        <a class="card"
+           href="https://www.instagram.com/alc_yemen?utm_source=qr&igsh=dmpva2l1bDY3MHZv"
+           target="_blank">
+
+            <div class="icon">
+                <img src="logo.i.png" alt="Instagram" />
+            </div>
+            <h2>إنستغرام</h2>
+            <p>تابع أحدث الأخبار والبرامج والأنشطة الخاصة بالمركز.</p>
+            <span class="btn">فتح الحساب</span>
+        </a>
+
+        <a class="card"
+           href="https://www.facebook.com/ALC.Yemen/?from_intent_redirect=1"
+           target="_blank">
+
+            <div class="icon">
+                <img src="logo.f.png" alt="Facebook" />
+            </div>
+            <h2>فيسبوك</h2>
+            <p>زيارة الصفحة الرسمية لمركز الأمجاد للغات والتدريب.</p>
+            <span class="btn">فتح الصفحة</span>
+        </a>
+
+        <a class="card"
+           href="https://wa.me/967778005033"
+           target="_blank">
+
+            <div class="icon">
+                <img src="logo.w.png" alt="WhatsApp" />
+            </div>
+            <h2>واتساب مباشر</h2>
+            <p>اضغط هنا للدردشة مباشرة مع المركز عبر واتساب.</p>
+            <span class="btn">دردشة واتساب</span>
+        </a>
+
+        <a class="card"
+           href="https://whatsapp.com/channel/0029VaPru5D5q08boHy1Yo0u"
+           target="_blank">
+
+            <div class="icon">
+                <img src="logo.w.png" alt="WhatsApp" />
+            </div>
+            <h2>قناة واتساب</h2>
+            <p>تابع قناة المركز الرسمية على واتساب.</p>
+            <span class="btn">فتح القناة</span>
+        </a>
+
+        <a class="card"
+           href="https://www.google.com/maps/search/%D8%B5%D9%86%D8%B9%D8%A7%D8%A1%20%D8%A7%D9%84%D8%AD%D8%A8%D8%A7%D8%B1%D9%8A%0A%D8%AC%D9%88%D8%A7%D8%B1%20%D9%85%D8%AF%D8%A7%D8%B1%D8%B3%20%D8%A7%D9%84%D8%A3%D9%85%D8%AC%D8%A7%D8%AF%20%D8%A7%D9%84%D8%A3%D9%87%D9%84%D9%8A%D8%A9%20%D8%A7%D9%84%D8%AF%D9%88%D9%84%D9%8A%D8%A9/@15.384,44.2163,17z?hl=ar"
+           target="_blank">
+
+            <div class="icon">
+                <img src="logo.p.png" alt="الموقع" />
+            </div>
+            <h2>الموقع</h2>
+            <p>زيارة موقع المركز على خريطة جوجل.</p>
+            <span class="btn">عرض الموقع</span>
+        </a>
+
+    </section>
+    </main>
+
+    <footer>
+        <p>جميع الحقوق محفوظة © 2026 | تصميم وتطوير: يحيى المريسي</p>
+    </footer>
+
+</body>
+</html>
