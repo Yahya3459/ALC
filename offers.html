@@ -161,16 +161,17 @@ left: 0;
 top: 0;
 width: 100%;
 height: 100%;
-background-color: rgba(0, 0, 0, 0.5);
-animation: fadeIn 0.25s ease;
+background-color: rgba(0, 0, 0, 0.6);
+backdrop-filter: blur(5px);
+animation: fadeIn 0.3s ease;
 overflow-y: auto;
-padding: 24px 0;
+padding: 20px;
+align-items: center;
+justify-content: center;
 }
 
 .modal.active {
 display: flex;
-align-items: center;
-justify-content: center;
 }
 
 @keyframes fadeIn {
@@ -180,31 +181,44 @@ to { opacity: 1; }
 
 .modal-content {
 background: white;
-padding: clamp(25px, 3vw, 40px);
-border-radius: 20px;
-width: min(92%, 620px);
-box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
-animation: slideDown 0.28s ease;
+padding: clamp(20px, 4vw, 40px);
+border-radius: 30px;
+width: min(95%, 550px);
+box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+animation: slideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 position: relative;
+max-height: 90vh;
+overflow-y: auto;
 }
 
-@keyframes slideDown {
-from { transform: translateY(-30px); opacity: 0; }
+@keyframes slideUp {
+from { transform: translateY(50px); opacity: 0; }
 to { transform: translateY(0); opacity: 1; }
 }
 
 .close-btn {
-color: #aaa;
 position: absolute;
-top: 20px;
-left: 20px;
-font-size: 28px;
-font-weight: bold;
+top: 15px;
+left: 15px;
+width: 40px;
+height: 40px;
+background: #f0f2f5;
+color: #555;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 24px;
 cursor: pointer;
-transition: color 0.3s ease;
-line-height: 1;
-background: none;
+transition: all 0.3s ease;
 border: none;
+z-index: 100;
+}
+
+.close-btn:hover {
+background: #ff4757;
+color: white;
+transform: rotate(90deg);
 }
 
 .close-btn:hover {
@@ -634,12 +648,19 @@ function sendViaWhatsApp() {
     }, 500);
 }
 
-// إغلاق النافذة عند الضغط خارجها
-window.onclick = function(event) {
-    if (event.target == modal) {
+// إغلاق النافذة عند الضغط خارج المحتوى
+modal.addEventListener('click', function(event) {
+    if (event.target === modal) {
         closeRegistrationModal();
     }
-}
+});
+
+// إغلاق النافذة عند الضغط على زر Escape في الكيبورد
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape' && modal.classList.contains('active')) {
+        closeRegistrationModal();
+    }
+});
 
 // تحميل العروض عند تحميل الصفحة
 window.onload = loadNextOffer;
