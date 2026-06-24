@@ -235,6 +235,7 @@ cursor: pointer;
 
 .action-tile:nth-child(2) { animation-delay: 0.08s; }
 .action-tile:nth-child(3) { animation-delay: 0.16s; }
+.action-tile:nth-child(4) { animation-delay: 0.24s; }
 
 .action-tile:hover {
 transform: translateY(-8px);
@@ -469,9 +470,7 @@ header { padding: 200px 16px 40px 16px; border-radius: 0 0 30px 30px; }
 <section class="cards">
 <a class="card" href="https://www.instagram.com/alc_yemen?utm_source=qr&igsh=dmpva2l1bDY3MHZv" target="_blank" rel="noopener noreferrer">
 <span class="card-badge">متابعة الآن</span>
-<div class="icon">
-<img src="logo.i.png" alt="Instagram" />
-</div>
+<div class="icon"><img src="logo.i.png" alt="Instagram" /></div>
 <h2>إنستغرام</h2>
 <p>تابع أحدث الأخبار والبرامج والأنشطة الخاصة بالمركز.</p>
 <span class="btn">متابعة</span>
@@ -479,9 +478,7 @@ header { padding: 200px 16px 40px 16px; border-radius: 0 0 30px 30px; }
 
 <a class="card" href="https://www.facebook.com/ALC.Yemen/?from_intent_redirect=1" target="_blank" rel="noopener noreferrer">
 <span class="card-badge">جديدنا</span>
-<div class="icon">
-<img src="logo.f.png" alt="Facebook" />
-</div>
+<div class="icon"><img src="logo.f.png" alt="Facebook" /></div>
 <h2>فيسبوك</h2>
 <p>لا تفوّت فرص التسجيل؛ تابع أحدث العروض والخصومات.</p>
 <span class="btn">اكتشف المزيد</span>
@@ -489,9 +486,7 @@ header { padding: 200px 16px 40px 16px; border-radius: 0 0 30px 30px; }
 
 <a class="card" href="https://wa.me/967778005033" target="_blank" rel="noopener noreferrer">
 <span class="card-badge">رد فوري</span>
-<div class="icon">
-<img src="logo.w.png" alt="WhatsApp" />
-</div>
+<div class="icon"><img src="logo.w.png" alt="WhatsApp" /></div>
 <h2>واتساب</h2>
 <p>تواصل معنا عبر واتساب لطرح أسئلتك بسهولة.</p>
 <span class="btn">دردشة واتساب</span>
@@ -499,9 +494,7 @@ header { padding: 200px 16px 40px 16px; border-radius: 0 0 30px 30px; }
 
 <a class="card" href="https://whatsapp.com/channel/0029VaPru5D5q08boHy1Yo0u" target="_blank" rel="noopener noreferrer">
 <span class="card-badge">تحديثات يومية</span>
-<div class="icon">
-<img src="logo.w.png" alt="WhatsApp" />
-</div>
+<div class="icon"><img src="logo.w.png" alt="WhatsApp" /></div>
 <h2>قناة واتساب</h2>
 <p>تابع قناة المركز الرسمية على واتساب للأخبار والعروض.</p>
 <span class="btn">فتح القناة</span>
@@ -509,9 +502,7 @@ header { padding: 200px 16px 40px 16px; border-radius: 0 0 30px 30px; }
 
 <a class="card" href="https://maps.app.goo.gl/tRwSPfsoHGSUfkkf7?g_st=ac" target="_blank" rel="noopener noreferrer">
 <span class="card-badge">اضغط للخريطة</span>
-<div class="icon">
-<img src="logo.p.png" alt="الموقع" />
-</div>
+<div class="icon"><img src="logo.p.png" alt="الموقع" /></div>
 <h2>الموقع</h2>
 <p>زيارة موقع المركز على خرائط Google - تجدنا بسهولة.</p>
 <span class="btn">انقر للوصول</span>
@@ -519,7 +510,7 @@ header { padding: 200px 16px 40px 16px; border-radius: 0 0 30px 30px; }
 </section>
 
 <section class="bottom-actions" aria-label="خيارات إضافية">
-<!-- الزر الأول: اتصل بنا -->
+<!-- 1. اتصل بنا -->
 <a href="tel:+967778005033" class="action-tile">
 <div class="action-icon" aria-hidden="true">
 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -533,7 +524,7 @@ header { padding: 200px 16px 40px 16px; border-radius: 0 0 30px 30px; }
 </div>
 </a>
 
-<!-- الزر الثاني: طلب تسجيل -->
+<!-- 2. طلب تسجيل -->
 <div class="action-tile" role="button" tabindex="0" onclick="openRegistrationModal()" onkeydown="handleTileKey(event, openRegistrationModal)">
 <div class="action-icon" aria-hidden="true">
 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -549,7 +540,22 @@ header { padding: 200px 16px 40px 16px; border-radius: 0 0 30px 30px; }
 </div>
 </div>
 
-<!-- الزر الثالث والأخير: هويتنا التعليمية -->
+<!-- 3. العروض الحالية (الزر الجديد) -->
+<a href="offers.html" class="action-tile">
+<div class="action-icon" aria-hidden="true">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+<line x1="7" y1="7" x2="7.01" y2="7"></line>
+</svg>
+</div>
+<div class="action-copy">
+<h3>العروض الحالية</h3>
+<p>تصفح أحدث الخصومات والعروض على برامجنا.</p>
+<span class="action-cta">شاهد العروض</span>
+</div>
+</a>
+
+<!-- 4. هويتنا التعليمية (الزر الأخير) -->
 <a href="about.html" class="action-tile">
 <div class="action-icon" aria-hidden="true">
 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -560,130 +566,56 @@ header { padding: 200px 16px 40px 16px; border-radius: 0 0 30px 30px; }
 </div>
 <div class="action-copy">
 <h3>هويتنا التعليمية</h3>
-<p>تعرف على أهداف مركز الأمجاد، رؤيتنا، ورسالتنا التعليمية.</p>
+<p>تعرف على أهداف مركز الأمجاد، ورسالتنا.</p>
 <span class="action-cta">اكتشف المزيد</span>
 </div>
 </a>
 </section>
 
+<!-- النافذة المنبثقة للتسجيل (بدون تعديل) -->
 <div id="registrationModal" class="modal" aria-hidden="true">
 <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="registrationTitle">
 <span class="close-btn" onclick="closeRegistrationModal()" aria-label="إغلاق">×</span>
 <h2 id="registrationTitle">طلب تسجيل</h2>
 <form class="contact-form" onsubmit="handleRegistrationSubmit(event)">
-<div class="form-group">
-<label for="regName">الاسم الكامل *</label>
-<input type="text" id="regName" name="regName" placeholder="أدخل اسمك الكامل" required>
+<div class="form-group"><label for="regName">الاسم الكامل *</label><input type="text" id="regName" name="regName" placeholder="أدخل اسمك الكامل" required></div>
+<div class="form-group"><label for="regPhone">رقم الهاتف *</label><input type="tel" id="regPhone" name="regPhone" placeholder="أدخل رقم هاتفك" required></div>
+<div class="form-group"><label for="regEmail">البريد الإلكتروني</label><input type="email" id="regEmail" name="regEmail" placeholder="أدخل بريدك الإلكتروني"></div>
+<div class="form-group"><label for="regCourse">البرنامج أو الدورة *</label><input type="text" id="regCourse" name="regCourse" placeholder="مثال: لغة إنجليزية، حاسوب ICDL" required></div>
+<div class="form-group"><label for="regLevel">المستوى الحالي</label>
+<select id="regLevel" name="regLevel"><option value="">اختر المستوى</option><option value="مبتدئ">مبتدئ</option><option value="متوسط">متوسط</option><option value="متقدم">متقدم</option></select>
 </div>
-
-<div class="form-group">
-<label for="regPhone">رقم الهاتف *</label>
-<input type="tel" id="regPhone" name="regPhone" placeholder="أدخل رقم هاتفك" required>
-</div>
-
-<div class="form-group">
-<label for="regEmail">البريد الإلكتروني</label>
-<input type="email" id="regEmail" name="regEmail" placeholder="أدخل بريدك الإلكتروني">
-</div>
-
-<div class="form-group">
-<label for="regCourse">البرنامج أو الدورة *</label>
-<input type="text" id="regCourse" name="regCourse" placeholder="مثال: لغة إنجليزية، حاسوب ICDL، جرافيكس" required>
-</div>
-
-<div class="form-group">
-<label for="regLevel">المستوى الحالي</label>
-<select id="regLevel" name="regLevel">
-<option value="">اختر المستوى</option>
-<option value="مبتدئ">مبتدئ</option>
-<option value="متوسط">متوسط</option>
-<option value="متقدم">متقدم</option>
-</select>
-</div>
-
-<div class="form-group">
-<label for="regMessage">ملاحظات إضافية *</label>
-<textarea id="regMessage" name="regMessage" placeholder="اكتب أي تفاصيل إضافية تود مشاركتها..." required></textarea>
-</div>
-
+<div class="form-group"><label for="regMessage">ملاحظات إضافية *</label><textarea id="regMessage" name="regMessage" placeholder="اكتب أي تفاصيل إضافية..." required></textarea></div>
 <button type="submit" class="form-submit">إرسال طلب التسجيل</button>
-
-<div class="phone-info">
-أو اتصل بنا على:
-<a href="tel:+967778005033">+967 778 005 033</a>
-</div>
+<div class="phone-info">أو اتصل بنا على:<a href="tel:+967778005033">+967 778 005 033</a></div>
 </form>
 </div>
 </div>
 
-<footer>
-<p>جميع الحقوق محفوظة © 2026 | تصميم وتطوير: يحيى المريسي</p>
-</footer>
+<footer><p>جميع الحقوق محفوظة © 2026 | تصميم وتطوير: يحيى المريسي</p></footer>
 
 <script>
 const registrationModal = document.getElementById('registrationModal');
-
-function openRegistrationModal() {
-registrationModal.style.display = 'block';
-registrationModal.setAttribute('aria-hidden', 'false');
-}
-
-function closeRegistrationModal() {
-registrationModal.style.display = 'none';
-registrationModal.setAttribute('aria-hidden', 'true');
-}
-
-function handleTileKey(event, action) {
-if (event.key === 'Enter' || event.key === ' ') {
-event.preventDefault();
-action();
-}
-}
-
-window.addEventListener('click', function(event) {
-if (event.target === registrationModal) {
-closeRegistrationModal();
-}
-});
-
-document.addEventListener('keydown', function(event) {
-if (event.key === 'Escape' && registrationModal.style.display === 'block') {
-closeRegistrationModal();
-}
-});
+function openRegistrationModal() { registrationModal.style.display = 'block'; registrationModal.setAttribute('aria-hidden', 'false'); }
+function closeRegistrationModal() { registrationModal.style.display = 'none'; registrationModal.setAttribute('aria-hidden', 'true'); }
+function handleTileKey(event, action) { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); action(); } }
+window.addEventListener('click', function(event) { if (event.target === registrationModal) { closeRegistrationModal(); } });
+document.addEventListener('keydown', function(event) { if (event.key === 'Escape' && registrationModal.style.display === 'block') { closeRegistrationModal(); } });
 
 function handleRegistrationSubmit(event) {
 event.preventDefault();
-
 const name = document.getElementById('regName').value.trim();
 const phone = document.getElementById('regPhone').value.trim();
 const email = document.getElementById('regEmail').value.trim();
 const course = document.getElementById('regCourse').value.trim();
 const level = document.getElementById('regLevel').value.trim();
 const message = document.getElementById('regMessage').value.trim();
-
-const registrationMessage = `طلب تسجيل جديد
-
-الاسم: 
-${name}
-رقم الهاتف:
-${phone}
-البريد الإلكتروني: 
-${email}
-الدورة:
-${course}
-المستوى الحالي: 
-${level}
-الملاحظات: 
-${message}`; 
-
+const registrationMessage = `طلب تسجيل جديد\nالاسم:\n${name}\nرقم الهاتف:\n${phone}\nالبريد الإلكتروني:\n${email}\nالدورة:\n${course}\nالمستوى الحالي:\n${level}\nالملاحظات:\n${message}`; 
 const whatsappUrl = `https://wa.me/967778005033?text=${encodeURIComponent(registrationMessage)}`;
-
 window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
 document.querySelector('#registrationModal .contact-form').reset();
 closeRegistrationModal();
 }
 </script>
-
 </body>
 </html>
