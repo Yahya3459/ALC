@@ -283,6 +283,13 @@ color: var(--blue-dark);
 </select>
 </div>
 
+<!-- رفع صورة الهوية -->
+<div class="form-group">
+<label for="idCard">صورة الهوية أو جواز السفر *</label>
+<input type="file" id="idCard" name="idCard" accept="image/*,.pdf" required>
+<small style="color: #666; display: block; margin-top: 8px;">الصيغ المقبولة: صور (JPG, PNG) أو PDF - الحد الأقصى للحجم: 5 MB</small>
+</div>
+
 <!-- الأزرار -->
 <div class="form-actions">
 <button type="submit" class="form-submit" id="submitBtn">✓ إرسال الطلب</button>
@@ -309,6 +316,7 @@ const birthCity = document.getElementById('birthCity').value.trim();
 const birthRegion = document.getElementById('birthRegion').value.trim();
 const birthDate = document.getElementById('birthDate').value;
 const gender = document.getElementById('gender').value;
+const idCardFile = document.getElementById('idCard').files[0];
 
 const submitBtn = document.getElementById('submitBtn');
 const successMsg = document.getElementById('successMessage');
@@ -317,11 +325,37 @@ const errorMsg = document.getElementById('errorMessage');
 successMsg.classList.remove('show');
 errorMsg.classList.remove('show');
 
+// التحقق من حجم الملف
+if (idCardFile && idCardFile.size > 5 * 1024 * 1024) {
+errorMsg.textContent = '✗ حجم الملف يتجاوز 5 MB، يرجى اختيار ملف أصغر';
+errorMsg.classList.add('show');
+return;
+}
+
 submitBtn.disabled = true;
 submitBtn.innerHTML = '<span class="btn-spinner"></span> جاري الإرسال...';
 
 try {
 const birthPlace = `${birthCity} - ${birthRegion}`;
+let idCardUrl = undefined;
+
+// رفع الملف إذا كان موجوداً
+if (idCardFile) {
+const formData = new FormData();
+formData.append('file', idCardFile);
+
+const uploadResponse = await fetch(`${API_BASE}/api/upload`, {
+method: 'POST',
+body: formData
+});
+
+if (!uploadResponse.ok) {
+throw new Error('فشل رفع الملف');
+}
+
+const uploadData = await uploadResponse.json();
+idCardUrl = uploadData.url;
+}
 
 const response = await fetch(`${API_BASE}/api/trpc/certificate.submit`, {
 method: 'POST',
@@ -335,6 +369,7 @@ phone,
 birthPlace,
 birthDate,
 gender,
+idCardUrl,
 }
 })
 });
