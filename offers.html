@@ -55,7 +55,6 @@ gap: 5px;
 
 header h1 { font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 10px; }
 
-/* شبكة العروض */
 .offers-grid {
 max-width: 1100px;
 margin: 50px auto;
@@ -89,17 +88,11 @@ display: block;
 transition: filter 0.3s ease;
 }
 
-.offer-card:hover img {
-filter: brightness(0.85);
-}
+.offer-card:hover img { filter: brightness(0.85); }
 
-/* طبقة التراكب عند التمرير */
 .offer-overlay {
 position: absolute;
-top: 0;
-left: 0;
-right: 0;
-bottom: 0;
+top: 0; left: 0; right: 0; bottom: 0;
 background: rgba(15, 91, 183, 0.7);
 display: flex;
 align-items: center;
@@ -109,9 +102,7 @@ transition: opacity 0.3s ease;
 z-index: 10;
 }
 
-.offer-card:hover .offer-overlay {
-opacity: 1;
-}
+.offer-card:hover .offer-overlay { opacity: 1; }
 
 .register-btn {
 background: linear-gradient(90deg, #fbe03f 0%, #f2c200 100%);
@@ -152,15 +143,13 @@ animation: spin 1s linear infinite;
 margin: 0 auto 15px;
 }
 
-/* النافذة المنبثقة للتسجيل */
+/* Modal */
 .modal {
 display: none;
 position: fixed;
 z-index: 2000;
-left: 0;
-top: 0;
-width: 100%;
-height: 100%;
+left: 0; top: 0;
+width: 100%; height: 100%;
 background-color: rgba(0, 0, 0, 0.6);
 backdrop-filter: blur(5px);
 animation: fadeIn 0.3s ease;
@@ -170,14 +159,9 @@ align-items: center;
 justify-content: center;
 }
 
-.modal.active {
-display: flex;
-}
+.modal.active { display: flex; }
 
-@keyframes fadeIn {
-from { opacity: 0; }
-to { opacity: 1; }
-}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
 .modal-content {
 background: white;
@@ -198,10 +182,8 @@ to { transform: translateY(0); opacity: 1; }
 
 .close-btn {
 position: absolute;
-top: 15px;
-left: 15px;
-width: 40px;
-height: 40px;
+top: 15px; left: 15px;
+width: 40px; height: 40px;
 background: #f0f2f5;
 color: #555;
 border-radius: 50%;
@@ -215,15 +197,7 @@ border: none;
 z-index: 100;
 }
 
-.close-btn:hover {
-background: #ff4757;
-color: white;
-transform: rotate(90deg);
-}
-
-.close-btn:hover {
-color: #000;
-}
+.close-btn:hover { background: #ff4757; color: white; transform: rotate(90deg); }
 
 .modal h2 {
 text-align: center;
@@ -252,19 +226,10 @@ transition: all 0.3s ease;
 font-size: 0.95rem;
 }
 
-.modal-tab.active {
-color: var(--blue);
-border-bottom-color: var(--blue);
-}
+.modal-tab.active { color: var(--blue); border-bottom-color: var(--blue); }
 
-.tab-content {
-display: none;
-}
-
-.tab-content.active {
-display: block;
-animation: fadeIn 0.25s ease;
-}
+.tab-content { display: none; }
+.tab-content.active { display: block; animation: fadeIn 0.25s ease; }
 
 .contact-form { width: 100%; }
 .form-group { margin-bottom: 20px; }
@@ -299,10 +264,7 @@ border-color: #0F5BB7;
 box-shadow: 0 0 0 3px rgba(15,91,183,0.1);
 }
 
-.form-group textarea {
-resize: vertical;
-min-height: 120px;
-}
+.form-group textarea { resize: vertical; min-height: 120px; }
 
 .form-actions {
 display: grid;
@@ -332,10 +294,8 @@ color: white;
 box-shadow: 0 14px 25px rgba(15,91,183,0.2);
 }
 
-.form-submit:hover {
-transform: translateY(-2px);
-box-shadow: 0 18px 35px rgba(15,91,183,0.3);
-}
+.form-submit:hover { transform: translateY(-2px); box-shadow: 0 18px 35px rgba(15,91,183,0.3); }
+.form-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 
 .whatsapp-submit {
 background: linear-gradient(90deg, #25d366 0%, #20ba5a 100%);
@@ -343,26 +303,31 @@ color: white;
 box-shadow: 0 14px 25px rgba(37,211,102,0.2);
 }
 
-.whatsapp-submit:hover {
-transform: translateY(-2px);
-box-shadow: 0 18px 35px rgba(37,211,102,0.3);
-}
+.whatsapp-submit:hover { transform: translateY(-2px); box-shadow: 0 18px 35px rgba(37,211,102,0.3); }
 
-.success-message {
-background: rgba(39, 174, 96, 0.1);
-border: 2px solid var(--success);
+/* Alert messages */
+.alert {
 border-radius: 12px;
-padding: 16px;
-margin-bottom: 20px;
-color: var(--success);
-text-align: center;
+padding: 14px 16px;
+margin-bottom: 16px;
 font-weight: 600;
+text-align: center;
 display: none;
 animation: slideDown 0.3s ease;
 }
 
-.success-message.show {
-display: block;
+.alert.show { display: block; }
+
+.alert-success {
+background: rgba(39, 174, 96, 0.1);
+border: 2px solid var(--success);
+color: var(--success);
+}
+
+.alert-error {
+background: rgba(231, 76, 60, 0.1);
+border: 2px solid #e74c3c;
+color: #e74c3c;
 }
 
 .offer-info {
@@ -375,8 +340,19 @@ font-size: 0.95rem;
 color: var(--blue-dark);
 }
 
+/* Spinner inside button */
+.btn-spinner {
+display: inline-block;
+width: 16px; height: 16px;
+border: 2px solid rgba(255,255,255,0.4);
+border-top-color: white;
+border-radius: 50%;
+animation: spin 0.8s linear infinite;
+}
+
 @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slideDown { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
 
 footer {
 background: rgba(15, 91, 183, 0.95);
@@ -388,12 +364,8 @@ font-size: 0.95rem;
 }
 
 @media (max-width: 600px) {
-.form-actions {
-grid-template-columns: 1fr;
-}
-.modal-content {
-width: 95%;
-}
+.form-actions { grid-template-columns: 1fr; }
+.modal-content { width: 95%; }
 }
 </style>
 </head>
@@ -410,25 +382,25 @@ width: 95%;
 <p>جاري البحث عن أحدث العروض...</p>
 </div>
 
-<!-- شبكة العروض -->
 <div id="offers-grid" class="offers-grid"></div>
 
-<!-- النافذة المنبثقة للتسجيل -->
+<!-- Modal التسجيل -->
 <div id="registrationModal" class="modal">
 <div class="modal-content">
 <button class="close-btn" onclick="closeRegistrationModal()">&times;</button>
 <h2>التسجيل في العرض</h2>
 
-<!-- التبويبات -->
 <div class="modal-tabs">
-<button class="modal-tab active" onclick="switchTab('form')">📋 نموذج التسجيل</button>
-<button class="modal-tab" onclick="switchTab('whatsapp')">💬 واتساب مباشر</button>
+<button class="modal-tab active" onclick="switchTab('form', this)">📋 نموذج التسجيل</button>
+<button class="modal-tab" onclick="switchTab('whatsapp', this)">💬 واتساب مباشر</button>
 </div>
 
 <!-- تبويب النموذج -->
 <div id="form-tab" class="tab-content active">
 <div class="offer-info" id="offerInfo"></div>
-<div class="success-message" id="successMessage">✓ تم إرسال طلبك بنجاح!</div>
+<div class="alert alert-success" id="successMessage">✓ تم إرسال طلبك بنجاح! سيتواصل معك فريقنا قريباً.</div>
+<div class="alert alert-error" id="errorMessage">✗ حدث خطأ أثناء الإرسال، يرجى المحاولة مرة أخرى.</div>
+
 <form class="contact-form" id="registrationForm" onsubmit="submitRegistration(event)">
 <div class="form-group">
 <label for="fullName">الاسم الكامل *</label>
@@ -451,7 +423,7 @@ width: 95%;
 </div>
 
 <div class="form-actions">
-<button type="submit" class="form-submit">✓ إرسال الطلب</button>
+<button type="submit" class="form-submit" id="submitBtn">✓ إرسال الطلب</button>
 <button type="button" class="whatsapp-submit" onclick="sendViaWhatsApp()">
 <span>💬</span> واتساب
 </button>
@@ -480,7 +452,12 @@ width: 95%;
 </footer>
 
 <script>
-// متغيرات عامة
+// ─── إعدادات ───────────────────────────────────────────────────────────────
+// رابط API الخادم — يُعدَّل بعد النشر
+const API_BASE = 'https://3000-iig6jqh63nravvr3awpph-45da8438.us1.manus.computer';
+const CENTER_WHATSAPP = '967778005033';
+
+// ─── متغيرات عامة ──────────────────────────────────────────────────────────
 const grid = document.getElementById('offers-grid');
 const statusContainer = document.getElementById('status-container');
 const modal = document.getElementById('registrationModal');
@@ -488,57 +465,42 @@ let currentIndex = 1;
 let foundAnyOffer = false;
 let selectedOfferIndex = null;
 
-// رقم واتساب المركز
-const CENTER_WHATSAPP = '967778005033';
-
-// دالة تحميل العروض
+// ─── تحميل العروض ──────────────────────────────────────────────────────────
 function loadNextOffer() {
     const img = new Image();
-    // نحفظ الرقم الحالي قبل بدء التحميل لأن currentIndex قد يتغير
     const currentOfferNum = currentIndex;
-    
     img.src = `offers/${currentOfferNum}.svg`;
-    
+
     img.onload = function() {
         foundAnyOffer = true;
         statusContainer.style.display = 'none';
-        
-        // إنشاء كرت العرض
+
         const card = document.createElement('div');
         card.className = 'offer-card';
         card.setAttribute('data-offer-index', currentOfferNum);
-        
-        // إضافة الصورة
         card.appendChild(img);
-        
-        // إضافة طبقة التراكب مع زر التسجيل
+
         const overlay = document.createElement('div');
         overlay.className = 'offer-overlay';
-        
+
         const registerBtn = document.createElement('button');
         registerBtn.className = 'register-btn';
         registerBtn.innerHTML = '📝 التسجيل في هذا العرض';
-        
-        // نستخدم currentOfferNum لضمان ربط الزر برقم الملف الصحيح
         registerBtn.onclick = (e) => {
             e.preventDefault();
             openRegistrationModal(currentOfferNum);
         };
-        
+
         overlay.appendChild(registerBtn);
         card.appendChild(overlay);
-        
         grid.appendChild(card);
-        
-        // الانتقال للرقم التالي
+
         currentIndex++;
         loadNextOffer();
     };
-    
+
     img.onerror = function() {
-        // إذا فشل التحميل، نحاول القفز عن الأرقام المفقودة (حتى 5 أرقام متتالية)
-        // هذا يسمح بوجود فجوات في الترقيم مثل (1, 2, 5, 10)
-        if (currentIndex < 50) { // حد أقصى للبحث لضمان عدم الدخول في حلقة لا نهائية
+        if (currentIndex < 50) {
             currentIndex++;
             loadNextOffer();
         } else {
@@ -551,118 +513,125 @@ function loadNextOffer() {
     };
 }
 
-// فتح نافذة التسجيل
+// ─── فتح/إغلاق Modal ───────────────────────────────────────────────────────
 function openRegistrationModal(offerIndex) {
     selectedOfferIndex = offerIndex;
     modal.classList.add('active');
-    
-    // تحديث معلومات العرض
+
     const offerInfo = `العرض رقم: <strong>${offerIndex}</strong>`;
     document.getElementById('offerInfo').innerHTML = offerInfo;
     document.getElementById('offerInfoWhatsApp').innerHTML = offerInfo;
-    
-    // إعادة تعيين النموذج
+
     document.getElementById('registrationForm').reset();
     document.getElementById('successMessage').classList.remove('show');
-    
-    // التركيز على حقل الاسم
-    setTimeout(() => {
-        document.getElementById('fullName').focus();
-    }, 300);
+    document.getElementById('errorMessage').classList.remove('show');
+
+    // التبويب الأول افتراضياً
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.modal-tab').forEach(b => b.classList.remove('active'));
+    document.getElementById('form-tab').classList.add('active');
+    document.querySelector('.modal-tab').classList.add('active');
+
+    setTimeout(() => document.getElementById('fullName').focus(), 300);
 }
 
-// إغلاق نافذة التسجيل
 function closeRegistrationModal() {
     modal.classList.remove('active');
     selectedOfferIndex = null;
 }
 
-// التبديل بين التبويبات
-function switchTab(tabName) {
-    // إخفاء جميع التبويبات
-    document.querySelectorAll('.tab-content').forEach(tab => {
-        tab.classList.remove('active');
-    });
-    
-    // إزالة الحالة النشطة من الأزرار
-    document.querySelectorAll('.modal-tab').forEach(btn => {
-        btn.classList.remove('active');
-    });
-    
-    // إظهار التبويب المختار
+// ─── التبديل بين التبويبات ─────────────────────────────────────────────────
+function switchTab(tabName, btn) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.modal-tab').forEach(b => b.classList.remove('active'));
     document.getElementById(tabName + '-tab').classList.add('active');
-    
-    // تفعيل زر التبويب
-    event.target.classList.add('active');
+    if (btn) btn.classList.add('active');
 }
 
-// إرسال النموذج
-function submitRegistration(event) {
+// ─── إرسال النموذج إلى API ─────────────────────────────────────────────────
+async function submitRegistration(event) {
     event.preventDefault();
-    
-    const fullName = document.getElementById('fullName').value;
-    const phone = document.getElementById('phone').value;
-    const email = document.getElementById('email').value;
-    const message = document.getElementById('message').value;
-    
-    // عرض رسالة النجاح
+
+    const fullName = document.getElementById('fullName').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const notes = document.getElementById('message').value.trim();
+
+    const submitBtn = document.getElementById('submitBtn');
     const successMsg = document.getElementById('successMessage');
-    successMsg.classList.add('show');
-    
-    // محاكاة إرسال البيانات (يمكن ربطها بـ API حقيقي)
-    console.log({
-        offerIndex: selectedOfferIndex,
-        fullName,
-        phone,
-        email,
-        message,
-        timestamp: new Date().toISOString()
-    });
-    
-    // إعادة تعيين النموذج بعد ثانية
-    setTimeout(() => {
-        document.getElementById('registrationForm').reset();
-        successMsg.classList.remove('show');
-        closeRegistrationModal();
-    }, 2000);
+    const errorMsg = document.getElementById('errorMessage');
+
+    // إخفاء الرسائل السابقة
+    successMsg.classList.remove('show');
+    errorMsg.classList.remove('show');
+
+    // تعطيل الزر وإظهار spinner
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span class="btn-spinner"></span> جاري الإرسال...';
+
+    try {
+        const response = await fetch(`${API_BASE}/api/trpc/registration.submit`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                json: {
+                    offerIndex: selectedOfferIndex,
+                    fullName,
+                    phone,
+                    email: email || undefined,
+                    notes: notes || undefined,
+                }
+            })
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data?.result?.data?.json?.success) {
+            successMsg.classList.add('show');
+            document.getElementById('registrationForm').reset();
+
+            // إغلاق تلقائي بعد 3 ثوانٍ
+            setTimeout(() => {
+                successMsg.classList.remove('show');
+                closeRegistrationModal();
+            }, 3000);
+        } else {
+            const errMsg = data?.error?.message || 'حدث خطأ غير متوقع';
+            errorMsg.textContent = '✗ ' + errMsg;
+            errorMsg.classList.add('show');
+        }
+    } catch (err) {
+        console.error('Submit error:', err);
+        errorMsg.textContent = '✗ تعذّر الاتصال بالخادم، يرجى التحقق من اتصالك بالإنترنت.';
+        errorMsg.classList.add('show');
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '✓ إرسال الطلب';
+    }
 }
 
-// إرسال عبر واتساب
+// ─── إرسال عبر واتساب ──────────────────────────────────────────────────────
 function sendViaWhatsApp() {
     const fullName = document.getElementById('fullName').value || 'زائر';
     const phone = document.getElementById('phone').value || 'لم يتم تحديده';
     const email = document.getElementById('email').value || 'لم يتم تحديده';
-    
-    // إنشاء رسالة مخصصة
+
     const message = `مرحباً! 👋\n\nأود التسجيل في العرض رقم ${selectedOfferIndex}\n\n📋 بيانات المستخدم:\n• الاسم: ${fullName}\n• الهاتف: ${phone}\n• البريد: ${email}\n\nشكراً لكم! 🙏`;
-    
-    // ترميز الرسالة للـ URL
     const encodedMessage = encodeURIComponent(message);
-    
-    // فتح واتساب
     window.open(`https://wa.me/${CENTER_WHATSAPP}?text=${encodedMessage}`, '_blank');
-    
-    // إغلاق النافذة المنبثقة
-    setTimeout(() => {
-        closeRegistrationModal();
-    }, 500);
+
+    setTimeout(() => closeRegistrationModal(), 500);
 }
 
-// إغلاق النافذة عند الضغط خارج المحتوى
+// ─── أحداث ─────────────────────────────────────────────────────────────────
 modal.addEventListener('click', function(event) {
-    if (event.target === modal) {
-        closeRegistrationModal();
-    }
+    if (event.target === modal) closeRegistrationModal();
 });
 
-// إغلاق النافذة عند الضغط على زر Escape في الكيبورد
 document.addEventListener('keydown', function(event) {
-    if (event.key === 'Escape' && modal.classList.contains('active')) {
-        closeRegistrationModal();
-    }
+    if (event.key === 'Escape' && modal.classList.contains('active')) closeRegistrationModal();
 });
 
-// تحميل العروض عند تحميل الصفحة
 window.onload = loadNextOffer;
 </script>
 
