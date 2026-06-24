@@ -68,6 +68,7 @@ padding: 40px;
 
 .form-group {
 margin-bottom: 25px;
+position: relative;
 }
 
 .form-group label {
@@ -87,7 +88,7 @@ border: 2px solid rgba(15,91,183,0.1);
 border-radius: 12px;
 font-family: inherit;
 font-size: 1rem;
-transition: border-color 0.3s ease, box-shadow 0.3s ease;
+transition: all 0.3s ease;
 background: white;
 color: var(--text);
 }
@@ -100,6 +101,33 @@ border-color: #0F5BB7;
 box-shadow: 0 0 0 3px rgba(15,91,183,0.1);
 }
 
+.form-group input.invalid {
+border-color: var(--error);
+background-color: rgba(231, 76, 60, 0.05);
+animation: shake 0.4s ease-in-out;
+}
+
+@keyframes shake {
+0%, 100% { transform: translateX(0); }
+25% { transform: translateX(-5px); }
+75% { transform: translateX(5px); }
+}
+
+.error-hint {
+color: var(--error);
+font-size: 0.8rem;
+margin-top: 5px;
+display: none;
+font-weight: 600;
+}
+
+.input-hint {
+color: #666;
+font-size: 0.8rem;
+margin-top: 5px;
+display: block;
+}
+
 .form-row {
 display: grid;
 grid-template-columns: 1fr 1fr;
@@ -109,8 +137,6 @@ gap: 20px;
 @media (max-width: 600px) {
 .form-row { grid-template-columns: 1fr; }
 }
-
-.form-group textarea { resize: vertical; min-height: 100px; }
 
 .form-actions {
 display: flex;
@@ -227,34 +253,36 @@ color: var(--blue-dark);
 <!-- اختيار الدورة -->
 <div class="form-group">
 <label for="courseName">اسم الدورة *</label>
-	<select id="courseName" name="courseName" required onchange="toggleOtherCourse(this.value)">
-	<option value="">-- اختر الدورة --</option>
-	<option value="TOEFL">شهادة اختبار التوفل (TOEFL)</option>
-	<option value="ICDL">الرخصة الدولية في الحاسوب (ICDL)</option>
-	<option value="GRAPHICS">دبلوم جرافيكس</option>
-	<option value="DIPLOMA_ADVANCED">دبلوم اللغة الإنجليزية - متقدم</option>
-	<option value="DIPLOMA_INTERMEDIATE">دبلوم اللغة الإنجليزية - متوسط</option>
-	<option value="DIPLOMA_ELEMENTARY">دبلوم اللغة الإنجليزية - مبتدئ</option>
-	<option value="other">أخرى (اكتب اسم الشهادة)</option>
-	</select>
-	</div>
+<select id="courseName" name="courseName" required onchange="toggleOtherCourse(this.value)">
+<option value="">-- اختر الدورة --</option>
+<option value="TOEFL">شهادة اختبار التوفل (TOEFL)</option>
+<option value="ICDL">الرخصة الدولية في الحاسوب (ICDL)</option>
+<option value="GRAPHICS">دبلوم جرافيكس</option>
+<option value="DIPLOMA_ADVANCED">دبلوم اللغة الإنجليزية - متقدم</option>
+<option value="DIPLOMA_INTERMEDIATE">دبلوم اللغة الإنجليزية - متوسط</option>
+<option value="DIPLOMA_ELEMENTARY">دبلوم اللغة الإنجليزية - مبتدئ</option>
+<option value="other">أخرى (اكتب اسم الشهادة)</option>
+</select>
+</div>
 
-	<!-- حقل اسم الشهادة الأخرى -->
-	<div class="form-group" id="otherCourseGroup" style="display: none;">
-	<label for="otherCourseName">اسم الشهادة المطلوبة *</label>
-	<input type="text" id="otherCourseName" name="otherCourseName" placeholder="اكتب اسم الشهادة هنا">
-	</div>
+<!-- حقل اسم الشهادة الأخرى -->
+<div class="form-group" id="otherCourseGroup" style="display: none;">
+<label for="otherCourseName">اسم الشهادة المطلوبة *</label>
+<input type="text" id="otherCourseName" name="otherCourseName" placeholder="اكتب اسم الشهادة هنا">
+</div>
 
 <!-- الأسماء -->
-<div class="form-row">
 <div class="form-group">
-<label for="fullNameAr">الاسم الثلاثي (عربي) *</label>
-<input type="text" id="fullNameAr" name="fullNameAr" required placeholder="مثال: محمد علي أحمد">
+<label for="fullNameAr">الاسم الرباعي (عربي) *</label>
+<input type="text" id="fullNameAr" name="fullNameAr" required placeholder="مثال: محمد علي أحمد حسن" oninput="validateArabicName(this)">
+<span class="error-hint" id="fullNameArError">يجب كتابة الاسم الرباعي باللغة العربية فقط</span>
 </div>
+
 <div class="form-group">
-<label for="fullNameEn">الاسم (إنجليزي) *</label>
-<input type="text" id="fullNameEn" name="fullNameEn" required placeholder="مثال: Mohammed Ali Ahmed">
-</div>
+<label for="fullNameEn">الاسم الرباعي (إنجليزي) *</label>
+<input type="text" id="fullNameEn" name="fullNameEn" required placeholder="مثال: Mohammed Ali Ahmed Hassan" oninput="validateEnglishName(this)">
+<span class="input-hint">يرجى كتابة الاسم بشكل صحيح مطابق لجواز السفر</span>
+<span class="error-hint" id="fullNameEnError">يجب كتابة الاسم الرباعي باللغة الإنجليزية فقط</span>
 </div>
 
 <!-- رقم الهاتف -->
@@ -263,22 +291,16 @@ color: var(--blue-dark);
 <input type="tel" id="phone" name="phone" required placeholder="مثال: 967778005033">
 </div>
 
-<!-- مكان الميلاد -->
+<!-- محل الميلاد وتاريخ الميلاد -->
 <div class="form-row">
 <div class="form-group">
-<label for="birthCity">المدينة *</label>
-<input type="text" id="birthCity" name="birthCity" required placeholder="مثال: صنعاء">
+<label for="birthPlace">محل الميلاد *</label>
+<input type="text" id="birthPlace" name="birthPlace" required placeholder="مثال: صنعاء">
 </div>
-<div class="form-group">
-<label for="birthRegion">المنطقة *</label>
-<input type="text" id="birthRegion" name="birthRegion" required placeholder="مثال: العاصمة">
-</div>
-</div>
-
-<!-- تاريخ الميلاد -->
 <div class="form-group">
 <label for="birthDate">تاريخ الميلاد *</label>
-<input type="date" id="birthDate" name="birthDate" required>
+<input type="text" id="birthDate" name="birthDate" required placeholder="DD/MM/YYYY" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'">
+</div>
 </div>
 
 <!-- الجنس -->
@@ -306,88 +328,132 @@ color: var(--blue-dark);
 <script>
 const API_BASE = 'https://alc-admin-production.up.railway.app'; 
 
-
-	function toggleOtherCourse(value) {
-	const otherGroup = document.getElementById('otherCourseGroup');
-	const otherInput = document.getElementById('otherCourseName');
-	if (value === 'other') {
-	otherGroup.style.display = 'block';
-	otherInput.required = true;
-	} else {
-	otherGroup.style.display = 'none';
-	otherInput.required = false;
-	}
-	}
-
-	async function submitCertificateRequest(event) {
-	event.preventDefault();
-	
-	let courseName = document.getElementById('courseName').value;
-	if (courseName === 'other') {
-	courseName = document.getElementById('otherCourseName').value.trim();
-	}
-	
-	const fullNameAr = document.getElementById('fullNameAr').value.trim();
-const fullNameEn = document.getElementById('fullNameEn').value.trim();
-const phone = document.getElementById('phone').value.trim();
-const birthCity = document.getElementById('birthCity').value.trim();
-const birthRegion = document.getElementById('birthRegion').value.trim();
-const birthDate = document.getElementById('birthDate').value;
-const gender = document.getElementById('gender').value;
-
-const submitBtn = document.getElementById('submitBtn');
-const successMsg = document.getElementById('successMessage');
-const errorMsg = document.getElementById('errorMessage');
-
-successMsg.classList.remove('show');
-errorMsg.classList.remove('show');
-
-submitBtn.disabled = true;
-submitBtn.innerHTML = '<span class="btn-spinner"></span> جاري الإرسال...';
-
-try {
-const birthPlace = `${birthCity} - ${birthRegion}`;
-
-const response = await fetch(`${API_BASE}/api/trpc/certificate.submit`, {
-method: 'POST',
-headers: { 'Content-Type': 'application/json' },
-body: JSON.stringify({
-json: {
-courseName,
-fullNameAr,
-fullNameEn,
-phone,
-birthPlace,
-birthDate,
-gender,
-idCardUrl: undefined,
+function validateArabicName(input) {
+    const value = input.value.trim();
+    const arabicRegex = /^[\u0600-\u06FF\s]+$/;
+    const errorHint = document.getElementById('fullNameArError');
+    
+    if (value && !arabicRegex.test(value)) {
+        input.classList.add('invalid');
+        errorHint.style.display = 'block';
+    } else {
+        input.classList.remove('invalid');
+        errorHint.style.display = 'none';
+    }
 }
-})
-});
 
-const data = await response.json();
-
-if (response.ok && data?.result?.data?.json?.success) {
-successMsg.classList.add('show');
-document.getElementById('certificateForm').reset();
-
-setTimeout(() => {
-successMsg.classList.remove('show');
-window.location.href = 'index.html';
-}, 3000);
-} else {
-const errMsg = data?.error?.message || 'حدث خطأ غير متوقع';
-errorMsg.textContent = '✗ ' + errMsg;
-errorMsg.classList.add('show');
+function validateEnglishName(input) {
+    const value = input.value.trim();
+    const englishRegex = /^[A-Za-z\s]+$/;
+    const errorHint = document.getElementById('fullNameEnError');
+    
+    if (value && !englishRegex.test(value)) {
+        input.classList.add('invalid');
+        errorHint.style.display = 'block';
+    } else {
+        input.classList.remove('invalid');
+        errorHint.style.display = 'none';
+    }
 }
-	} catch (err) {
-	console.error('Submit error:', err);
-	errorMsg.textContent = '✗ تعذّر الاتصال بالخادم:\n' + (err.message || 'خطأ غير معروف');
-	errorMsg.classList.add('show');
-	} finally {
-submitBtn.disabled = false;
-submitBtn.innerHTML = '✓ إرسال الطلب';
+
+function toggleOtherCourse(value) {
+    const otherGroup = document.getElementById('otherCourseGroup');
+    const otherInput = document.getElementById('otherCourseName');
+    if (value === 'other') {
+        otherGroup.style.display = 'block';
+        otherInput.required = true;
+    } else {
+        otherGroup.style.display = 'none';
+        otherInput.required = false;
+    }
 }
+
+async function submitCertificateRequest(event) {
+    event.preventDefault();
+    
+    const fullNameAr = document.getElementById('fullNameAr').value.trim();
+    const fullNameEn = document.getElementById('fullNameEn').value.trim();
+    
+    // Check if names are quad (at least 4 words)
+    const arWords = fullNameAr.split(/\s+/).filter(w => w.length > 0);
+    const enWords = fullNameEn.split(/\s+/).filter(w => w.length > 0);
+    
+    if (arWords.length < 4) {
+        alert('يرجى كتابة الاسم الرباعي باللغة العربية');
+        return;
+    }
+    if (enWords.length < 4) {
+        alert('Please enter your full name (4 parts) in English');
+        return;
+    }
+
+    // Check for language errors before submit
+    if (document.getElementById('fullNameAr').classList.contains('invalid') || 
+        document.getElementById('fullNameEn').classList.contains('invalid')) {
+        alert('يرجى تصحيح الأخطاء في الأسماء قبل الإرسال');
+        return;
+    }
+
+    let courseName = document.getElementById('courseName').value;
+    if (courseName === 'other') {
+        courseName = document.getElementById('otherCourseName').value.trim();
+    }
+    
+    const phone = document.getElementById('phone').value.trim();
+    const birthPlace = document.getElementById('birthPlace').value.trim();
+    const birthDate = document.getElementById('birthDate').value;
+    const gender = document.getElementById('gender').value;
+    
+    const submitBtn = document.getElementById('submitBtn');
+    const successMsg = document.getElementById('successMessage');
+    const errorMsg = document.getElementById('errorMessage');
+    
+    successMsg.classList.remove('show');
+    errorMsg.classList.remove('show');
+    
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span class="btn-spinner"></span> جاري الإرسال...';
+    
+    try {
+        const response = await fetch(`${API_BASE}/api/trpc/certificate.submit`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                json: {
+                    courseName,
+                    fullNameAr,
+                    fullNameEn,
+                    phone,
+                    birthPlace,
+                    birthDate,
+                    gender,
+                    idCardUrl: undefined,
+                }
+            })
+        });
+        
+        const data = await response.json();
+        
+        if (response.ok && data?.result?.data?.json?.success) {
+            successMsg.classList.add('show');
+            document.getElementById('certificateForm').reset();
+            setTimeout(() => {
+                successMsg.classList.remove('show');
+                window.location.href = 'index.html';
+            }, 3000);
+        } else {
+            const errMsg = data?.error?.message || 'حدث خطأ غير متوقع';
+            errorMsg.textContent = '✗ ' + errMsg;
+            errorMsg.classList.add('show');
+        }
+    } catch (err) {
+        console.error('Submit error:', err);
+        errorMsg.textContent = '✗ تعذّر الاتصال بالخادم:\n' + (err.message || 'خطأ غير معروف');
+        errorMsg.classList.add('show');
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '✓ إرسال الطلب';
+    }
 }
 </script>
 
