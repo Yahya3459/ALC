@@ -229,10 +229,12 @@ color: var(--blue-dark);
 <label for="courseName">اسم الدورة *</label>
 	<select id="courseName" name="courseName" required onchange="toggleOtherCourse(this.value)">
 	<option value="">-- اختر الدورة --</option>
-	<option value="الرخصة الدولية في الحاسوب (ICDL)">الرخصة الدولية في الحاسوب (ICDL)</option>
-	<option value="دبلوم جرافيكس">دبلوم جرافيكس</option>
-	<option value="شهادة اختبار التوفل (TOEFL)">شهادة اختبار التوفل (TOEFL)</option>
-	<option value="دبلوم اللغة الإنجليزية">دبلوم اللغة الإنجليزية</option>
+	<option value="TOEFL">شهادة اختبار التوفل (TOEFL)</option>
+	<option value="ICDL">الرخصة الدولية في الحاسوب (ICDL)</option>
+	<option value="GRAPHICS">دبلوم جرافيكس</option>
+	<option value="DIPLOMA_ADVANCED">دبلوم اللغة الإنجليزية - متقدم</option>
+	<option value="DIPLOMA_INTERMEDIATE">دبلوم اللغة الإنجليزية - متوسط</option>
+	<option value="DIPLOMA_ELEMENTARY">دبلوم اللغة الإنجليزية - مبتدئ</option>
 	<option value="other">أخرى (اكتب اسم الشهادة)</option>
 	</select>
 	</div>
@@ -289,13 +291,6 @@ color: var(--blue-dark);
 </select>
 </div>
 
-<!-- رفع صورة الهوية -->
-<div class="form-group">
-<label for="idCard">صورة الهوية أو جواز السفر (اختياري)</label>
-<input type="file" id="idCard" name="idCard" accept="image/*,.pdf">
-<small style="color: #666; display: block; margin-top: 8px;">الصيغ المقبولة: صور (JPG, PNG) أو PDF - الحد الأقصى للحجم: 5 MB</small>
-</div>
-
 <!-- الأزرار -->
 <div class="form-actions">
 <button type="submit" class="form-submit" id="submitBtn">✓ إرسال الطلب</button>
@@ -339,7 +334,6 @@ const birthCity = document.getElementById('birthCity').value.trim();
 const birthRegion = document.getElementById('birthRegion').value.trim();
 const birthDate = document.getElementById('birthDate').value;
 const gender = document.getElementById('gender').value;
-const idCardFile = document.getElementById('idCard').files[0];
 
 const submitBtn = document.getElementById('submitBtn');
 const successMsg = document.getElementById('successMessage');
@@ -348,43 +342,11 @@ const errorMsg = document.getElementById('errorMessage');
 successMsg.classList.remove('show');
 errorMsg.classList.remove('show');
 
-// التحقق من حجم الملف
-if (idCardFile && idCardFile.size > 5 * 1024 * 1024) {
-errorMsg.textContent = '✗ حجم الملف يتجاوز 5 MB، يرجى اختيار ملف أصغر';
-errorMsg.classList.add('show');
-return;
-}
-
 submitBtn.disabled = true;
 submitBtn.innerHTML = '<span class="btn-spinner"></span> جاري الإرسال...';
 
 try {
 const birthPlace = `${birthCity} - ${birthRegion}`;
-let idCardUrl = undefined;
-
-	// محاولة رفع الملف إذا كان موجوداً
-	if (idCardFile) {
-        try {
-            const arrayBuffer = await idCardFile.arrayBuffer();
-            const uploadResponse = await fetch(`${API_BASE}/api/upload`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': idCardFile.type || 'application/octet-stream',
-                    'x-filename': encodeURIComponent(idCardFile.name)
-                },
-                body: arrayBuffer
-            });
-
-            if (uploadResponse.ok) {
-                const uploadData = await uploadResponse.json();
-                idCardUrl = uploadData.url;
-            } else {
-                console.warn('Upload failed, continuing without image');
-            }
-        } catch (uploadErr) {
-            console.warn('Upload error, continuing without image:', uploadErr);
-        }
-	}
 
 const response = await fetch(`${API_BASE}/api/trpc/certificate.submit`, {
 method: 'POST',
@@ -398,7 +360,7 @@ phone,
 birthPlace,
 birthDate,
 gender,
-idCardUrl,
+idCardUrl: undefined,
 }
 })
 });
