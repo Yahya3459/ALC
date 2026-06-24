@@ -291,8 +291,8 @@ color: var(--blue-dark);
 
 <!-- رفع صورة الهوية -->
 <div class="form-group">
-<label for="idCard">صورة الهوية أو جواز السفر *</label>
-<input type="file" id="idCard" name="idCard" accept="image/*,.pdf" required>
+<label for="idCard">صورة الهوية أو جواز السفر (اختياري)</label>
+<input type="file" id="idCard" name="idCard" accept="image/*,.pdf">
 <small style="color: #666; display: block; margin-top: 8px;">الصيغ المقبولة: صور (JPG, PNG) أو PDF - الحد الأقصى للحجم: 5 MB</small>
 </div>
 
@@ -362,26 +362,29 @@ try {
 const birthPlace = `${birthCity} - ${birthRegion}`;
 let idCardUrl = undefined;
 
-	// رفع الملف إذا كان موجوداً
+	// محاولة رفع الملف إذا كان موجوداً
 	if (idCardFile) {
-	const arrayBuffer = await idCardFile.arrayBuffer();
-	const uploadResponse = await fetch(`${API_BASE}/api/upload`, {
-	method: 'POST',
-	headers: {
-	'Content-Type': idCardFile.type || 'application/octet-stream',
-	'x-filename': encodeURIComponent(idCardFile.name)
-	},
-	body: arrayBuffer
-	});
+        try {
+            const arrayBuffer = await idCardFile.arrayBuffer();
+            const uploadResponse = await fetch(`${API_BASE}/api/upload`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': idCardFile.type || 'application/octet-stream',
+                    'x-filename': encodeURIComponent(idCardFile.name)
+                },
+                body: arrayBuffer
+            });
 
-if (!uploadResponse.ok) {
-    const errorData = await uploadResponse.json().catch(() => ({}));
-    throw new Error(`فشل رفع الملف: ${errorData.error || uploadResponse.statusText}`);
-}
-
-const uploadData = await uploadResponse.json();
-idCardUrl = uploadData.url;
-}
+            if (uploadResponse.ok) {
+                const uploadData = await uploadResponse.json();
+                idCardUrl = uploadData.url;
+            } else {
+                console.warn('Upload failed, continuing without image');
+            }
+        } catch (uploadErr) {
+            console.warn('Upload error, continuing without image:', uploadErr);
+        }
+	}
 
 const response = await fetch(`${API_BASE}/api/trpc/certificate.submit`, {
 method: 'POST',
