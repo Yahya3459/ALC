@@ -519,22 +519,7 @@ header { padding: 200px 16px 40px 16px; border-radius: 0 0 30px 30px; }
 </section>
 
 <section class="bottom-actions" aria-label="خيارات إضافية">
-<!-- الزر الجديد: هويتنا التعليمية -->
-<a href="about.html" class="action-tile">
-<div class="action-icon" aria-hidden="true">
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-<circle cx="12" cy="12" r="10"></circle>
-<line x1="12" y1="16" x2="12" y2="12"></line>
-<line x1="12" y1="8" x2="12.01" y2="8"></line>
-</svg>
-</div>
-<div class="action-copy">
-<h3>هويتنا التعليمية</h3>
-<p>تعرف على أهداف مركز الأمجاد، رؤيتنا، ورسالتنا التعليمية.</p>
-<span class="action-cta">اكتشف المزيد</span>
-</div>
-</a>
-
+<!-- الزر الأول: اتصل بنا -->
 <a href="tel:+967778005033" class="action-tile">
 <div class="action-icon" aria-hidden="true">
 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -548,6 +533,7 @@ header { padding: 200px 16px 40px 16px; border-radius: 0 0 30px 30px; }
 </div>
 </a>
 
+<!-- الزر الثاني: طلب تسجيل -->
 <div class="action-tile" role="button" tabindex="0" onclick="openRegistrationModal()" onkeydown="handleTileKey(event, openRegistrationModal)">
 <div class="action-icon" aria-hidden="true">
 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -562,6 +548,22 @@ header { padding: 200px 16px 40px 16px; border-radius: 0 0 30px 30px; }
 <span class="action-cta">فتح الاستمارة</span>
 </div>
 </div>
+
+<!-- الزر الثالث والأخير: هويتنا التعليمية -->
+<a href="about.html" class="action-tile">
+<div class="action-icon" aria-hidden="true">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="12" cy="12" r="10"></circle>
+<line x1="12" y1="16" x2="12" y2="12"></line>
+<line x1="12" y1="8" x2="12.01" y2="8"></line>
+</svg>
+</div>
+<div class="action-copy">
+<h3>هويتنا التعليمية</h3>
+<p>تعرف على أهداف مركز الأمجاد، رؤيتنا، ورسالتنا التعليمية.</p>
+<span class="action-cta">اكتشف المزيد</span>
+</div>
+</a>
 </section>
 
 <div id="registrationModal" class="modal" aria-hidden="true">
@@ -684,4 +686,4 @@ closeRegistrationModal();
 </script>
 
 </body>
-</html> 
+</html>
