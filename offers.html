@@ -480,8 +480,10 @@ const CENTER_WHATSAPP = '967778005033';
 // دالة تحميل العروض
 function loadNextOffer() {
     const img = new Image();
+    // نحفظ الرقم الحالي قبل بدء التحميل لأن currentIndex قد يتغير
+    const currentOfferNum = currentIndex;
     
-    img.src = `offers/${currentIndex}.svg`;
+    img.src = `offers/${currentOfferNum}.svg`;
     
     img.onload = function() {
         foundAnyOffer = true;
@@ -490,7 +492,7 @@ function loadNextOffer() {
         // إنشاء كرت العرض
         const card = document.createElement('div');
         card.className = 'offer-card';
-        card.setAttribute('data-offer-index', currentIndex);
+        card.setAttribute('data-offer-index', currentOfferNum);
         
         // إضافة الصورة
         card.appendChild(img);
@@ -502,9 +504,11 @@ function loadNextOffer() {
         const registerBtn = document.createElement('button');
         registerBtn.className = 'register-btn';
         registerBtn.innerHTML = '📝 التسجيل في هذا العرض';
+        
+        // نستخدم currentOfferNum لضمان ربط الزر برقم الملف الصحيح
         registerBtn.onclick = (e) => {
             e.preventDefault();
-            openRegistrationModal(currentIndex);
+            openRegistrationModal(currentOfferNum);
         };
         
         overlay.appendChild(registerBtn);
@@ -512,15 +516,23 @@ function loadNextOffer() {
         
         grid.appendChild(card);
         
+        // الانتقال للرقم التالي
         currentIndex++;
         loadNextOffer();
     };
     
     img.onerror = function() {
-        if (!foundAnyOffer && currentIndex === 1) {
-            statusContainer.innerHTML = '<p>لا توجد عروض متاحة في الوقت الحالي، ترقبونا قريباً!</p>';
+        // إذا فشل التحميل، نحاول القفز عن الأرقام المفقودة (حتى 5 أرقام متتالية)
+        // هذا يسمح بوجود فجوات في الترقيم مثل (1, 2, 5, 10)
+        if (currentIndex < 50) { // حد أقصى للبحث لضمان عدم الدخول في حلقة لا نهائية
+            currentIndex++;
+            loadNextOffer();
         } else {
-            statusContainer.style.display = 'none';
+            if (!foundAnyOffer) {
+                statusContainer.innerHTML = '<p>لا توجد عروض متاحة في الوقت الحالي، ترقبونا قريباً!</p>';
+            } else {
+                statusContainer.style.display = 'none';
+            }
         }
     };
 }
