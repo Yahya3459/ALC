@@ -360,15 +360,17 @@ try {
 const birthPlace = `${birthCity} - ${birthRegion}`;
 let idCardUrl = undefined;
 
-// رفع الملف إذا كان موجوداً
-if (idCardFile) {
-const formData = new FormData();
-formData.append('file', idCardFile);
-
-const uploadResponse = await fetch(`${API_BASE}/api/upload`, {
-method: 'POST',
-body: formData
-});
+	// رفع الملف إذا كان موجوداً
+	if (idCardFile) {
+	const arrayBuffer = await idCardFile.arrayBuffer();
+	const uploadResponse = await fetch(`${API_BASE}/api/upload`, {
+	method: 'POST',
+	headers: {
+	'Content-Type': idCardFile.type || 'application/octet-stream',
+	'x-filename': encodeURIComponent(idCardFile.name)
+	},
+	body: arrayBuffer
+	});
 
 if (!uploadResponse.ok) {
 throw new Error('فشل رفع الملف');
