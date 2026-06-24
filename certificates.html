@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>طلب شهادة | مركز الأمجاد</title>
+<style>
+:root {
+--blue: #0f5bb7;
+--blue-dark: #0b3f86;
+--text: #333333;
+--success: #27ae60;
+--warning: #f39c12;
+--error: #e74c3c;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+font-family: Tahoma, Arial, sans-serif;
+background: radial-gradient(circle at top, #eef5ff 0%, #f8fbff 40%, #f5f7fa 100%);
+color: var(--text);
+min-height: 100vh;
+line-height: 1.6;
+}
+
+header {
+background: linear-gradient(135deg, #0f5bb7 0%, #1762c6 100%);
+color: white;
+text-align: center;
+padding: 60px 20px 40px;
+border-bottom-left-radius: 40px;
+border-bottom-right-radius: 40px;
+box-shadow: 0 10px 30px rgba(15, 91, 183, 0.15);
+position: relative;
+}
+
+.back-btn {
+position: absolute;
+top: 20px;
+right: 20px;
+background: rgba(255,255,255,0.2);
+color: white;
+text-decoration: none;
+padding: 8px 16px;
+border-radius: 20px;
+font-size: 0.9rem;
+font-weight: bold;
+transition: background 0.3s ease;
+display: flex;
+align-items: center;
+gap: 5px;
+}
+
+.back-btn:hover { background: rgba(255,255,255,0.3); }
+
+header h1 { font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 10px; }
+
+.container {
+max-width: 700px;
+margin: 50px auto;
+padding: 0 20px;
+background: white;
+border-radius: 28px;
+box-shadow: 0 20px 40px rgba(15,91,183,0.08);
+padding: 40px;
+}
+
+.form-group {
+margin-bottom: 25px;
+}
+
+.form-group label {
+display: block;
+margin-bottom: 10px;
+font-weight: 600;
+color: var(--blue-dark);
+font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+width: 100%;
+padding: 12px 16px;
+border: 2px solid rgba(15,91,183,0.1);
+border-radius: 12px;
+font-family: inherit;
+font-size: 1rem;
+transition: border-color 0.3s ease, box-shadow 0.3s ease;
+background: white;
+color: var(--text);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+outline: none;
+border-color: #0F5BB7;
+box-shadow: 0 0 0 3px rgba(15,91,183,0.1);
+}
+
+.form-row {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 20px;
+}
+
+@media (max-width: 600px) {
+.form-row { grid-template-columns: 1fr; }
+}
+
+.form-group textarea { resize: vertical; min-height: 100px; }
+
+.form-actions {
+display: flex;
+gap: 15px;
+margin-top: 30px;
+}
+
+.form-submit,
+.form-cancel {
+flex: 1;
+padding: 14px 20px;
+border: none;
+border-radius: 12px;
+font-size: 1rem;
+font-weight: 700;
+cursor: pointer;
+transition: transform 0.25s ease, box-shadow 0.25s ease;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 8px;
+}
+
+.form-submit {
+background: linear-gradient(90deg, #0F5BB7 0%, #1762c6 100%);
+color: white;
+box-shadow: 0 14px 25px rgba(15,91,183,0.2);
+}
+
+.form-submit:hover { transform: translateY(-2px); box-shadow: 0 18px 35px rgba(15,91,183,0.3); }
+.form-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+.form-cancel {
+background: #f0f2f5;
+color: var(--text);
+}
+
+.form-cancel:hover { background: #e0e2e5; }
+
+.alert {
+border-radius: 12px;
+padding: 14px 16px;
+margin-bottom: 20px;
+font-weight: 600;
+text-align: center;
+display: none;
+animation: slideDown 0.3s ease;
+}
+
+.alert.show { display: block; }
+
+.alert-success {
+background: rgba(39, 174, 96, 0.1);
+border: 2px solid var(--success);
+color: var(--success);
+}
+
+.alert-error {
+background: rgba(231, 76, 60, 0.1);
+border: 2px solid #e74c3c;
+color: #e74c3c;
+}
+
+.btn-spinner {
+display: inline-block;
+width: 16px; height: 16px;
+border: 2px solid rgba(255,255,255,0.4);
+border-top-color: white;
+border-radius: 50%;
+animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+@keyframes slideDown { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+
+footer {
+background: rgba(15, 91, 183, 0.95);
+color: white;
+text-align: center;
+padding: 25px 20px;
+margin-top: 60px;
+font-size: 0.95rem;
+}
+
+.info-box {
+background: rgba(15,91,183,0.05);
+border-right: 4px solid var(--blue);
+padding: 15px;
+border-radius: 8px;
+margin-bottom: 25px;
+font-size: 0.9rem;
+color: var(--blue-dark);
+}
+</style>
+</head>
+<body>
+
+<header>
+<a href="index.html" class="back-btn"><span>&rarr;</span> العودة للرئيسية</a>
+<h1>طلب شهادة</h1>
+<p style="color: rgba(255,255,255,0.9);">قدم طلب شهادة إكمال الدورة التدريبية</p>
+</header>
+
+<div class="container">
+<div class="info-box">
+📋 يرجى ملء جميع البيانات بدقة كما تظهر في بطاقتك الشخصية أو جواز السفر
+</div>
+
+<div class="alert alert-success" id="successMessage">✓ تم إرسال طلب الشهادة بنجاح! سيتم معالجة طلبك قريباً.</div>
+<div class="alert alert-error" id="errorMessage">✗ حدث خطأ أثناء الإرسال، يرجى المحاولة مرة أخرى.</div>
+
+<form id="certificateForm" onsubmit="submitCertificateRequest(event)">
+<!-- اختيار الدورة -->
+<div class="form-group">
+<label for="courseName">اسم الدورة *</label>
+<select id="courseName" name="courseName" required>
+<option value="">-- اختر الدورة --</option>
+<option value="دورة تطوير الويب">دورة تطوير الويب</option>
+<option value="دورة تطوير تطبيقات الجوال">دورة تطوير تطبيقات الجوال</option>
+<option value="دورة تحليل البيانات">دورة تحليل البيانات</option>
+<option value="دورة الذكاء الاصطناعي">دورة الذكاء الاصطناعي</option>
+<option value="دورة إدارة المشاريع">دورة إدارة المشاريع</option>
+<option value="دورة التسويق الرقمي">دورة التسويق الرقمي</option>
+</select>
+</div>
+
+<!-- الأسماء -->
+<div class="form-row">
+<div class="form-group">
+<label for="fullNameAr">الاسم الثلاثي (عربي) *</label>
+<input type="text" id="fullNameAr" name="fullNameAr" required placeholder="مثال: محمد علي أحمد">
+</div>
+<div class="form-group">
+<label for="fullNameEn">الاسم (إنجليزي) *</label>
+<input type="text" id="fullNameEn" name="fullNameEn" required placeholder="مثال: Mohammed Ali Ahmed">
+</div>
+</div>
+
+<!-- رقم الهاتف -->
+<div class="form-group">
+<label for="phone">رقم الهاتف *</label>
+<input type="tel" id="phone" name="phone" required placeholder="مثال: 967778005033">
+</div>
+
+<!-- مكان الميلاد -->
+<div class="form-row">
+<div class="form-group">
+<label for="birthCity">المدينة *</label>
+<input type="text" id="birthCity" name="birthCity" required placeholder="مثال: صنعاء">
+</div>
+<div class="form-group">
+<label for="birthRegion">المنطقة *</label>
+<input type="text" id="birthRegion" name="birthRegion" required placeholder="مثال: العاصمة">
+</div>
+</div>
+
+<!-- تاريخ الميلاد -->
+<div class="form-group">
+<label for="birthDate">تاريخ الميلاد *</label>
+<input type="date" id="birthDate" name="birthDate" required>
+</div>
+
+<!-- الجنس -->
+<div class="form-group">
+<label for="gender">الجنس *</label>
+<select id="gender" name="gender" required>
+<option value="">-- اختر --</option>
+<option value="male">ذكر</option>
+<option value="female">أنثى</option>
+</select>
+</div>
+
+<!-- الأزرار -->
+<div class="form-actions">
+<button type="submit" class="form-submit" id="submitBtn">✓ إرسال الطلب</button>
+<button type="button" class="form-cancel" onclick="window.history.back()">← إلغاء</button>
+</div>
+</form>
+</div>
+
+<footer>
+<p>جميع الحقوق محفوظة © 2026 | تصميم وتطوير: يحيى المريسي</p>
+</footer>
+
+<script>
+const API_BASE = 'https://alc-admin-production.up.railway.app';
+
+async function submitCertificateRequest(event) {
+event.preventDefault();
+
+const courseName = document.getElementById('courseName').value;
+const fullNameAr = document.getElementById('fullNameAr').value.trim();
+const fullNameEn = document.getElementById('fullNameEn').value.trim();
+const phone = document.getElementById('phone').value.trim();
+const birthCity = document.getElementById('birthCity').value.trim();
+const birthRegion = document.getElementById('birthRegion').value.trim();
+const birthDate = document.getElementById('birthDate').value;
+const gender = document.getElementById('gender').value;
+
+const submitBtn = document.getElementById('submitBtn');
+const successMsg = document.getElementById('successMessage');
+const errorMsg = document.getElementById('errorMessage');
+
+successMsg.classList.remove('show');
+errorMsg.classList.remove('show');
+
+submitBtn.disabled = true;
+submitBtn.innerHTML = '<span class="btn-spinner"></span> جاري الإرسال...';
+
+try {
+const birthPlace = `${birthCity} - ${birthRegion}`;
+
+const response = await fetch(`${API_BASE}/api/trpc/certificate.submit`, {
+method: 'POST',
+headers: { 'Content-Type': 'application/json' },
+body: JSON.stringify({
+json: {
+courseName,
+fullNameAr,
+fullNameEn,
+phone,
+birthPlace,
+birthDate,
+gender,
+}
+})
+});
+
+const data = await response.json();
+
+if (response.ok && data?.result?.data?.json?.success) {
+successMsg.classList.add('show');
+document.getElementById('certificateForm').reset();
+
+setTimeout(() => {
+successMsg.classList.remove('show');
+window.location.href = 'index.html';
+}, 3000);
+} else {
+const errMsg = data?.error?.message || 'حدث خطأ غير متوقع';
+errorMsg.textContent = '✗ ' + errMsg;
+errorMsg.classList.add('show');
+}
+} catch (err) {
+console.error('Submit error:', err);
+errorMsg.textContent = '✗ تعذّر الاتصال بالخادم، يرجى التحقق من اتصالك بالإنترنت.';
+errorMsg.classList.add('show');
+} finally {
+submitBtn.disabled = false;
+submitBtn.innerHTML = '✓ إرسال الطلب';
+}
+}
+</script>
+
+</body>
+</html>
