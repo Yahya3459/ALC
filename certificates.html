@@ -325,8 +325,8 @@ color: var(--blue-dark);
 <p>جميع الحقوق محفوظة © 2026 | تصميم وتطوير: يحيى المريسي</p>
 </footer>
 
-<script>
-const API_BASE = 'https://alc-admin-production.up.railway.app'; 
+<script type="module">
+import { submitCertificateRequest } from './firebase-config.js'; 
 
 function validateArabicName(input) {
     const value = input.value.trim();
@@ -415,26 +415,17 @@ async function submitCertificateRequest(event) {
     submitBtn.innerHTML = '<span class="btn-spinner"></span> جاري الإرسال...';
     
     try {
-        const response = await fetch(`${API_BASE}/api/trpc/certificate.submit`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                json: {
-                    courseName,
-                    fullNameAr,
-                    fullNameEn,
-                    phone,
-                    birthPlace,
-                    birthDate,
-                    gender,
-                    idCardUrl: undefined,
-                }
-            })
+        const result = await submitCertificateRequest({
+            courseName,
+            fullNameAr,
+            fullNameEn,
+            phone,
+            birthPlace,
+            birthDate,
+            gender
         });
         
-        const data = await response.json();
-        
-        if (response.ok && data?.result?.data?.json?.success) {
+        if (result.success) {
             successMsg.classList.add('show');
             document.getElementById('certificateForm').reset();
             setTimeout(() => {
@@ -442,13 +433,12 @@ async function submitCertificateRequest(event) {
                 window.location.href = 'index.html';
             }, 3000);
         } else {
-            const errMsg = data?.error?.message || 'حدث خطأ غير متوقع';
-            errorMsg.textContent = '✗ ' + errMsg;
+            errorMsg.textContent = '✗ حدث خطأ أثناء الإرسال';
             errorMsg.classList.add('show');
         }
     } catch (err) {
         console.error('Submit error:', err);
-        errorMsg.textContent = '✗ تعذّر الاتصال بالخادم:\n' + (err.message || 'خطأ غير معروف');
+        errorMsg.textContent = '✗ تعذّر الاتصال بقاعدة البيانات:\n' + (err.message || 'خطأ غير معروف');
         errorMsg.classList.add('show');
     } finally {
         submitBtn.disabled = false;

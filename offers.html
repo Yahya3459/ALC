@@ -451,10 +451,10 @@ font-size: 0.95rem;
 <p>جميع الحقوق محفوظة © 2026 | تصميم وتطوير: يحيى المريسي</p>
 </footer>
 
-<script>
+<script type="module">
+import { submitOfferRequest } from './firebase-config.js';
+
 // ─── إعدادات ───────────────────────────────────────────────────────────────
-	// رابط API الخادم — تم التعديل للربط بلوحة التحكم الجديدة
-	const API_BASE = 'https://alc-admin-production.up.railway.app';
 const CENTER_WHATSAPP = '967778005033';
 
 // ─── متغيرات عامة ──────────────────────────────────────────────────────────
@@ -548,7 +548,7 @@ function switchTab(tabName, btn) {
     if (btn) btn.classList.add('active');
 }
 
-// ─── إرسال النموذج إلى API ─────────────────────────────────────────────────
+// ─── إرسال النموذج إلى Firebase ─────────────────────────────────────────────────
 async function submitRegistration(event) {
     event.preventDefault();
 
@@ -570,23 +570,15 @@ async function submitRegistration(event) {
     submitBtn.innerHTML = '<span class="btn-spinner"></span> جاري الإرسال...';
 
     try {
-        const response = await fetch(`${API_BASE}/api/trpc/registration.submit`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                json: {
-                    offerIndex: selectedOfferIndex,
-                    fullName,
-                    phone,
-                    email: email || undefined,
-                    notes: notes || undefined,
-                }
-            })
+        const result = await submitOfferRequest({
+            offerIndex: selectedOfferIndex,
+            fullName,
+            phone,
+            email: email || null,
+            notes: notes || null
         });
 
-        const data = await response.json();
-
-        if (response.ok && data?.result?.data?.json?.success) {
+        if (result.success) {
             successMsg.classList.add('show');
             document.getElementById('registrationForm').reset();
 
@@ -596,13 +588,12 @@ async function submitRegistration(event) {
                 closeRegistrationModal();
             }, 3000);
         } else {
-            const errMsg = data?.error?.message || 'حدث خطأ غير متوقع';
-            errorMsg.textContent = '✗ ' + errMsg;
+            errorMsg.textContent = '✗ حدث خطأ أثناء الإرسال';
             errorMsg.classList.add('show');
         }
     } catch (err) {
         console.error('Submit error:', err);
-        errorMsg.textContent = '✗ تعذّر الاتصال بالخادم، يرجى التحقق من اتصالك بالإنترنت.';
+        errorMsg.textContent = '✗ تعذّر الاتصال بقاعدة البيانات، يرجى التحقق من اتصالك بالإنترنت.';
         errorMsg.classList.add('show');
     } finally {
         submitBtn.disabled = false;
