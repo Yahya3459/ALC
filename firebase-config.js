@@ -25,10 +25,11 @@ export async function submitOfferRequest(data) {
       applicantName: data.fullName,
       applicantPhone: data.phone,
       applicantEmail: data.email || null,
-      offerType: `عرض رقم ${data.offerIndex}`,
+      offerType: data.offerIndex.toString().includes('عرض') ? data.offerIndex : `عرض رقم ${data.offerIndex}`,
       notes: data.notes || null,
       status: 'pending',
       createdAt: serverTimestamp(),
+      updatedAt: serverTimestamp(),
       source: 'ALC Website'
     });
     return { success: true, id: docRef.id };
@@ -51,6 +52,7 @@ export async function submitCertificateRequest(data) {
       gender: data.gender,
       status: 'pending',
       createdAt: serverTimestamp(),
+      updatedAt: serverTimestamp(),
       source: 'ALC Website'
     });
     return { success: true, id: docRef.id };

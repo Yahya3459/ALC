@@ -608,28 +608,62 @@ to { opacity: 1; transform: translateY(0); }
 
 <footer><p>جميع الحقوق محفوظة © 2026 | تصميم وتطوير: يحيى المريسي</p></footer>
 
-<script>
-const registrationModal = document.getElementById('registrationModal');
+<script type="module">
+import { submitOfferRequest } from './firebase-config.js';
+
+	const registrationModal = document.getElementById('registrationModal');
 function openRegistrationModal() { registrationModal.style.display = 'block'; registrationModal.setAttribute('aria-hidden', 'false'); }
 function closeRegistrationModal() { registrationModal.style.display = 'none'; registrationModal.setAttribute('aria-hidden', 'true'); }
 function handleTileKey(event, action) { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); action(); } }
 window.addEventListener('click', function(event) { if (event.target === registrationModal) { closeRegistrationModal(); } });
 document.addEventListener('keydown', function(event) { if (event.key === 'Escape' && registrationModal.style.display === 'block') { closeRegistrationModal(); } });
 
-function handleRegistrationSubmit(event) {
-event.preventDefault();
-const name = document.getElementById('regName').value.trim();
-const phone = document.getElementById('regPhone').value.trim();
-const email = document.getElementById('regEmail').value.trim();
-const course = document.getElementById('regCourse').value.trim();
-const level = document.getElementById('regLevel').value.trim();
-const message = document.getElementById('regMessage').value.trim();
-const registrationMessage = `طلب تسجيل جديد\nالاسم:\n${name}\nرقم الهاتف:\n${phone}\nالبريد الإلكتروني:\n${email}\nالدورة:\n${course}\nالمستوى الحالي:\n${level}\nالملاحظات:\n${message}`; 
-const whatsappUrl = `https://wa.me/967778005033?text=${encodeURIComponent(registrationMessage)}`;
-window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
-document.querySelector('#registrationModal .contact-form').reset();
-closeRegistrationModal();
-}
+	async function handleRegistrationSubmit(event) {
+	event.preventDefault();
+	const name = document.getElementById('regName').value.trim();
+	const phone = document.getElementById('regPhone').value.trim();
+	const email = document.getElementById('regEmail').value.trim();
+	const course = document.getElementById('regCourse').value.trim();
+	const level = document.getElementById('regLevel').value.trim();
+	const message = document.getElementById('regMessage').value.trim();
+	
+	const submitBtn = event.target.querySelector('button[type="submit"]');
+	const originalBtnText = submitBtn.innerText;
+	submitBtn.disabled = true;
+	submitBtn.innerText = 'جاري الإرسال...';
+
+	try {
+		// 1. إرسال إلى Firebase أولاً
+		await submitOfferRequest({
+			fullName: name,
+			phone: phone,
+			email: email || null,
+			offerIndex: 'عام - ' + course,
+			notes: `المستوى: ${level}\nالملاحظات: ${message}`
+		});
+
+		// 2. فتح واتساب كخيار إضافي أو تأكيدي
+		const registrationMessage = `طلب تسجيل جديد\nالاسم:\n${name}\nرقم الهاتف:\n${phone}\nالبريد الإلكتروني:\n${email}\nالدورة:\n${course}\nالمستوى الحالي:\n${level}\nالملاحظات:\n${message}`; 
+		const whatsappUrl = `https://wa.me/967778005033?text=${encodeURIComponent(registrationMessage)}`;
+		window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+		
+		document.querySelector('#registrationModal .contact-form').reset();
+		closeRegistrationModal();
+		alert('تم إرسال طلبك بنجاح!');
+	} catch (error) {
+		console.error('Firebase submission error:', error);
+		alert('حدث خطأ أثناء الإرسال، يرجى المحاولة مرة أخرى.');
+	} finally {
+		submitBtn.disabled = false;
+		submitBtn.innerText = originalBtnText;
+	}
+	}
+
+	// جعل الدوال متاحة عالمياً لأننا نستخدم type="module"
+	window.openRegistrationModal = openRegistrationModal;
+	window.closeRegistrationModal = closeRegistrationModal;
+	window.handleRegistrationSubmit = handleRegistrationSubmit;
+	window.handleTileKey = handleTileKey;
 </script>
 </body>
 </html>
