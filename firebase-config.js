@@ -1,6 +1,4 @@
-// Firebase Configuration for ALC
-// تكوين Firebase لموقع ALC
-
+// Firebase Configuration for ALC -> alcfri
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js';
 import { getFirestore, collection, addDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js';
 
@@ -14,18 +12,16 @@ const firebaseConfig = {
   measurementId: "G-QX1Z9BGJ6Q"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// دالة لإضافة طلب عرض إلى Firestore
 export async function submitOfferRequest(data) {
   try {
     const docRef = await addDoc(collection(db, 'offerRequests'), {
       applicantName: data.fullName,
       applicantPhone: data.phone,
       applicantEmail: data.email || null,
-      offerType: data.offerIndex.toString().includes('عرض') ? data.offerIndex : `عرض رقم ${data.offerIndex}`,
+      offerType: data.offerIndex,
       notes: data.notes || null,
       status: 'pending',
       createdAt: serverTimestamp(),
@@ -34,12 +30,11 @@ export async function submitOfferRequest(data) {
     });
     return { success: true, id: docRef.id };
   } catch (error) {
-    console.error('Error adding offer request:', error);
+    console.error('Error:', error);
     throw error;
   }
 }
 
-// دالة لإضافة طلب شهادة إلى Firestore
 export async function submitCertificateRequest(data) {
   try {
     const docRef = await addDoc(collection(db, 'certificateRequests'), {
@@ -57,9 +52,7 @@ export async function submitCertificateRequest(data) {
     });
     return { success: true, id: docRef.id };
   } catch (error) {
-    console.error('Error adding certificate request:', error);
+    console.error('Error:', error);
     throw error;
   }
 }
-
-export { db };
