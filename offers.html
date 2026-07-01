@@ -623,8 +623,13 @@ document.addEventListener('keydown', function(event) {
     if (event.key === 'Escape' && modal.classList.contains('active')) closeRegistrationModal();
 });
 
-window.onload = loadNextOffer;
-</script>
+	window.onload = loadNextOffer;
+	window.openRegistrationModal = openRegistrationModal;
+	window.closeRegistrationModal = closeRegistrationModal;
+	window.switchTab = switchTab;
+	window.submitRegistration = submitRegistration;
+	window.sendViaWhatsApp = sendViaWhatsApp;
+	</script>
 
 </body>
 </html>

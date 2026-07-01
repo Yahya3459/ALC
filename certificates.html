@@ -326,9 +326,9 @@ color: var(--blue-dark);
 </footer>
 
 <script type="module">
-import { submitCertificateRequest } from './firebase-config.js'; 
+	import { submitCertificateRequest, submitOfferRequest } from './firebase-config.js'; 
 
-function validateArabicName(input) {
+	function validateArabicName(input) {
     const value = input.value.trim();
     const arabicRegex = /^[\u0600-\u06FF\s]+$/;
     const errorHint = document.getElementById('fullNameArError');
@@ -414,16 +414,21 @@ async function submitCertificateRequest(event) {
     submitBtn.disabled = true;
     submitBtn.innerHTML = '<span class="btn-spinner"></span> جاري الإرسال...';
     
-    try {
-        const result = await submitCertificateRequest({
-            courseName,
-            fullNameAr,
-            fullNameEn,
-            phone,
-            birthPlace,
-            birthDate,
-            gender
-        });
+	    try {
+	        const result = await submitCertificateRequest({
+	            courseName,
+	            fullNameAr,
+	            fullNameEn,
+	            phone,
+	            birthPlace,
+	            birthDate,
+	            gender
+	        });
+
+	        // إرسال نسخة إلى الواتساب كرسالة تأكيدية
+	        const whatsappMessage = `طلب شهادة جديد\nالدورة: ${courseName}\nالاسم (عربي): ${fullNameAr}\nالاسم (إنجليزي): ${fullNameEn}\nالهاتف: ${phone}\nمحل الميلاد: ${birthPlace}\nتاريخ الميلاد: ${birthDate}\nالجنس: ${gender}`;
+	        const whatsappUrl = `https://wa.me/967778005033?text=${encodeURIComponent(whatsappMessage)}`;
+	        window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
         
         if (result.success) {
             successMsg.classList.add('show');
@@ -442,10 +447,15 @@ async function submitCertificateRequest(event) {
         errorMsg.classList.add('show');
     } finally {
         submitBtn.disabled = false;
-        submitBtn.innerHTML = '✓ إرسال الطلب';
-    }
-}
-</script>
+	        submitBtn.innerHTML = '✓ إرسال الطلب';
+	    }
+	}
+
+	window.validateArabicName = validateArabicName;
+	window.validateEnglishName = validateEnglishName;
+	window.toggleOtherCourse = toggleOtherCourse;
+	window.submitCertificateRequest = submitCertificateRequest;
+	</script>
 
 </body>
 </html>
