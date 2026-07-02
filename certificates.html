@@ -249,7 +249,7 @@ color: var(--blue-dark);
 <div class="alert alert-success" id="successMessage">✓ تم إرسال طلب الشهادة بنجاح! سيتم معالجة طلبك قريباً.</div>
 <div class="alert alert-error" id="errorMessage">✗ حدث خطأ أثناء الإرسال، يرجى المحاولة مرة أخرى.</div>
 
-<form id="certificateForm" onsubmit="submitCertificateRequest(event)">
+<form id="certificateForm" onsubmit="handleCertificateSubmit(event)">
 <!-- اختيار الدورة -->
 <div class="form-group">
 <label for="courseName">اسم الدورة *</label>
@@ -368,7 +368,7 @@ function toggleOtherCourse(value) {
     }
 }
 
-async function submitCertificateRequest(event) {
+async function handleCertificateSubmit(event) {
     event.preventDefault();
     
     const fullNameAr = document.getElementById('fullNameAr').value.trim();
@@ -454,7 +454,7 @@ async function submitCertificateRequest(event) {
 	window.validateArabicName = validateArabicName;
 	window.validateEnglishName = validateEnglishName;
 	window.toggleOtherCourse = toggleOtherCourse;
-	window.submitCertificateRequest = submitCertificateRequest;
+	window.handleCertificateSubmit = handleCertificateSubmit;
 	</script>
 
 </body>
