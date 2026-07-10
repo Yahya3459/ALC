@@ -338,7 +338,30 @@ background: rgba(15,91,183,0.08);
 <div class="form-group">
 <label for="birthDate">تاريخ الميلاد *</label>
 <input type="text" id="birthDate" name="birthDate" required placeholder="مثال: 1990/01/01" inputmode="numeric" oninput="formatBirthDate(this)">
-<span class="input-hint">اكتب التاريخ يدويًا وسيتم إضافة / تلقائياً</span>
+<div style="display:flex; gap:8px; margin-top:8px; flex-wrap:wrap;">
+  <select id="birthDay" onchange="updateBirthDateFromParts()" style="min-width:80px;">
+    <option value="">اليوم</option>
+  </select>
+  <select id="birthMonth" onchange="updateBirthDateFromParts()" style="min-width:90px;">
+    <option value="">الشهر</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    <option value="9">9</option>
+    <option value="10">10</option>
+    <option value="11">11</option>
+    <option value="12">12</option>
+  </select>
+  <select id="birthYear" onchange="updateBirthDateFromParts()" style="min-width:95px;">
+    <option value="">السنة</option>
+  </select>
+</div>
+<span class="input-hint">اكتب التاريخ يدويًا أو اختر اليوم والشهر والسنة</span>
 </div>
 </div>
 
@@ -411,6 +434,39 @@ function setBirthDateLimits() {
     const birthDateInput = document.getElementById('birthDate');
     birthDateInput.removeAttribute('min');
     birthDateInput.removeAttribute('max');
+
+    const yearSelect = document.getElementById('birthYear');
+    const currentYear = new Date().getFullYear();
+    for (let year = currentYear; year >= 1900; year--) {
+        const option = document.createElement('option');
+        option.value = year;
+        option.textContent = year;
+        yearSelect.appendChild(option);
+    }
+
+    const daySelect = document.getElementById('birthDay');
+    for (let day = 1; day <= 31; day++) {
+        const option = document.createElement('option');
+        option.value = day;
+        option.textContent = day;
+        daySelect.appendChild(option);
+    }
+}
+
+function updateBirthDateFromParts() {
+    const year = document.getElementById('birthYear').value;
+    const month = document.getElementById('birthMonth').value;
+    const day = document.getElementById('birthDay').value;
+    const birthDateInput = document.getElementById('birthDate');
+
+    if (year && month && day) {
+        birthDateInput.value = `${year}/${String(month).padStart(2, '0')}/${String(day).padStart(2, '0')}`;
+        validateBirthDate(birthDateInput);
+    } else if (year && month) {
+        birthDateInput.value = `${year}/${String(month).padStart(2, '0')}`;
+    } else if (year) {
+        birthDateInput.value = year;
+    }
 }
 
 function formatBirthDate(input) {
@@ -654,6 +710,7 @@ window.toggleOtherCourse = toggleOtherCourse;
 window.formatPhoneNumber = formatPhoneNumber;
 window.validateBirthDate = validateBirthDate;
 window.formatBirthDate = formatBirthDate;
+window.updateBirthDateFromParts = updateBirthDateFromParts;
 window.filterBirthPlaces = filterBirthPlaces;
 window.selectBirthPlace = selectBirthPlace;
 window.handleCertificateSubmit = handleCertificateSubmit;
