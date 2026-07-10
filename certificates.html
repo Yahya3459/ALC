@@ -414,20 +414,25 @@ function setBirthDateLimits() {
 }
 
 function formatBirthDate(input) {
-    const digits = input.value.replace(/\D/g, '').slice(0, 8);
-    let formatted = '';
+    const raw = input.value.replace(/\D/g, '').slice(0, 8);
+    let digits = raw;
 
     if (digits.length > 4) {
-        formatted = `${digits.slice(0, 4)}/${digits.slice(4, 6)}`;
-    } else {
-        formatted = digits.slice(0, 4);
+        digits = digits.slice(0, 4) + '/' + digits.slice(4);
     }
 
-    if (digits.length > 6) {
-        formatted += `/${digits.slice(6, 8)}`;
+    if (digits.includes('/')) {
+        const parts = digits.split('/');
+        if (parts[1]) {
+            parts[1] = parts[1].slice(0, 2);
+        }
+        if (parts[2]) {
+            parts[2] = parts[2].slice(0, 2);
+        }
+        digits = parts.join('/');
     }
 
-    input.value = formatted;
+    input.value = digits;
     validateBirthDate(input);
 }
 
