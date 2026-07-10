@@ -337,8 +337,8 @@ background: rgba(15,91,183,0.08);
 </div>
 <div class="form-group">
 <label for="birthDate">تاريخ الميلاد *</label>
-<input type="date" id="birthDate" name="birthDate" required placeholder="اختر التاريخ" oninput="validateBirthDate(this)">
-<span class="input-hint">اختر التاريخ من التقويم</span>
+<input type="text" id="birthDate" name="birthDate" required placeholder="مثال: 1990-01-01" inputmode="numeric" oninput="validateBirthDate(this)">
+<span class="input-hint">اكتب التاريخ يدويًا بصيغة YYYY-MM-DD</span>
 </div>
 </div>
 
@@ -409,25 +409,38 @@ function toggleOtherCourse(value) {
 
 function setBirthDateLimits() {
     const birthDateInput = document.getElementById('birthDate');
-    const today = new Date();
-    const yyyy = today.getFullYear();
-    const mm = String(today.getMonth() + 1).padStart(2, '0');
-    const dd = String(today.getDate()).padStart(2, '0');
-    birthDateInput.max = `${yyyy}-${mm}-${dd}`;
-    birthDateInput.min = '1900-01-01';
+    birthDateInput.removeAttribute('min');
+    birthDateInput.removeAttribute('max');
 }
 
 function validateBirthDate(input) {
-    const value = input.value;
+    const value = input.value.trim();
     if (!value) {
         input.classList.remove('invalid');
         return;
     }
 
-    const selectedDate = new Date(value);
+    const normalized = value.replace(/[/.]/g, '-');
+    const datePattern = /^\d{4}-\d{2}-\d{2}$/;
+
+    if (!datePattern.test(normalized)) {
+        input.classList.add('invalid');
+        return;
+    }
+
+    const [year, month, day] = normalized.split('-').map(Number);
+    const selectedDate = new Date(year, month - 1, day);
     const today = new Date();
+    const isValidDate = selectedDate.getFullYear() === year &&
+        selectedDate.getMonth() === month - 1 &&
+        selectedDate.getDate() === day;
     const isFuture = selectedDate > today;
-    input.classList.toggle('invalid', isFuture);
+
+    input.classList.toggle('invalid', !isValidDate || isFuture);
+
+    if (isValidDate) {
+        input.value = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+    }
 }
 
 function formatPhoneNumber(input) {
