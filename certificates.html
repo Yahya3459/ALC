@@ -338,7 +338,8 @@ background: rgba(15,91,183,0.08);
 <div class="form-group">
 <label for="birthDate">تاريخ الميلاد *</label>
 <input type="text" id="birthDate" name="birthDate" required placeholder="مثال: 1990/01/01" inputmode="numeric" oninput="formatBirthDate(this)">
-<div style="display:flex; gap:8px; margin-top:8px; flex-wrap:wrap;">
+<button type="button" id="toggleDatePickerBtn" onclick="toggleBirthDatePicker()" style="margin-top:8px; padding:6px 10px; border:1px solid #ccc; border-radius:6px; background:#f8f8f8; cursor:pointer;">اختيار من القوائم</button>
+<div id="birthDatePicker" style="display:none; margin-top:8px; gap:8px; flex-wrap:wrap;">
   <select id="birthDay" onchange="updateBirthDateFromParts()" style="min-width:80px;">
     <option value="">اليوم</option>
   </select>
@@ -361,7 +362,7 @@ background: rgba(15,91,183,0.08);
     <option value="">السنة</option>
   </select>
 </div>
-<span class="input-hint">اكتب التاريخ يدويًا أو اختر اليوم والشهر والسنة</span>
+<span class="input-hint">اكتب التاريخ يدويًا أو اضغط على الزر لاختيار اليوم والشهر والسنة</span>
 </div>
 </div>
 
@@ -453,6 +454,14 @@ function setBirthDateLimits() {
     }
 }
 
+function toggleBirthDatePicker() {
+    const picker = document.getElementById('birthDatePicker');
+    const button = document.getElementById('toggleDatePickerBtn');
+    const isHidden = picker.style.display === 'none';
+    picker.style.display = isHidden ? 'flex' : 'none';
+    button.textContent = isHidden ? 'إخفاء القوائم' : 'اختيار من القوائم';
+}
+
 function updateBirthDateFromParts() {
     const year = document.getElementById('birthYear').value;
     const month = document.getElementById('birthMonth').value;
@@ -469,26 +478,32 @@ function updateBirthDateFromParts() {
     }
 }
 
+function syncBirthDateDropdownsFromInput(input) {
+    const value = input.value.trim();
+    const parts = value.split('/').filter(Boolean);
+
+    if (parts.length >= 3) {
+        document.getElementById('birthYear').value = parts[0];
+        document.getElementById('birthMonth').value = String(parts[1]).padStart(2, '0').replace(/^0/, '');
+        document.getElementById('birthDay').value = String(parts[2]).padStart(2, '0').replace(/^0/, '');
+    }
+}
+
 function formatBirthDate(input) {
-    const raw = input.value.replace(/\D/g, '').slice(0, 8);
-    let digits = raw;
+    const raw = input.value.replace(/[^\d/]/g, '');
+    const parts = raw.split('/');
 
-    if (digits.length > 4) {
-        digits = digits.slice(0, 4) + '/' + digits.slice(4);
+    if (parts[0]) {
+        parts[0] = parts[0].slice(0, 4);
+    }
+    if (parts[1]) {
+        parts[1] = parts[1].slice(0, 2);
+    }
+    if (parts[2]) {
+        parts[2] = parts[2].slice(0, 2);
     }
 
-    if (digits.includes('/')) {
-        const parts = digits.split('/');
-        if (parts[1]) {
-            parts[1] = parts[1].slice(0, 2);
-        }
-        if (parts[2]) {
-            parts[2] = parts[2].slice(0, 2);
-        }
-        digits = parts.join('/');
-    }
-
-    input.value = digits;
+    input.value = parts.slice(0, 3).join('/');
     validateBirthDate(input);
 }
 
@@ -499,26 +514,35 @@ function validateBirthDate(input) {
         return;
     }
 
-    const normalized = value.replace(/[/.]/g, '-');
-    const datePattern = /^\d{4}-\d{2}-\d{2}$/;
-
-    if (!datePattern.test(normalized)) {
+    const parts = value.split(/[/.]/).filter(Boolean);
+    if (parts.length < 3) {
         input.classList.add('invalid');
         return;
     }
 
-    const [year, month, day] = normalized.split('-').map(Number);
+    const year = Number(parts[0]);
+    const month = Number(parts[1]);
+    const day = Number(parts[2]);
+    const isValidDate = Number.isInteger(year) && Number.isInteger(month) && Number.isInteger(day) &&
+        month >= 1 && month <= 12 && day >= 1 && day <= 31;
+
+    if (!isValidDate) {
+        input.classList.add('invalid');
+        return;
+    }
+
     const selectedDate = new Date(year, month - 1, day);
     const today = new Date();
-    const isValidDate = selectedDate.getFullYear() === year &&
+    const isRealDate = selectedDate.getFullYear() === year &&
         selectedDate.getMonth() === month - 1 &&
         selectedDate.getDate() === day;
     const isFuture = selectedDate > today;
 
-    input.classList.toggle('invalid', !isValidDate || isFuture);
+    input.classList.toggle('invalid', !isRealDate || isFuture);
 
-    if (isValidDate) {
+    if (isRealDate) {
         input.value = `${year}/${String(month).padStart(2, '0')}/${String(day).padStart(2, '0')}`;
+        syncBirthDateDropdownsFromInput(input);
     }
 }
 
@@ -711,6 +735,7 @@ window.formatPhoneNumber = formatPhoneNumber;
 window.validateBirthDate = validateBirthDate;
 window.formatBirthDate = formatBirthDate;
 window.updateBirthDateFromParts = updateBirthDateFromParts;
+window.toggleBirthDatePicker = toggleBirthDatePicker;
 window.filterBirthPlaces = filterBirthPlaces;
 window.selectBirthPlace = selectBirthPlace;
 window.handleCertificateSubmit = handleCertificateSubmit;
