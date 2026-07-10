@@ -619,6 +619,12 @@ modal.addEventListener('click', function(event) {
     if (event.target === modal) closeRegistrationModal();
 });
 
+window.openRegistrationModal = openRegistrationModal;
+window.closeRegistrationModal = closeRegistrationModal;
+window.switchTab = switchTab;
+window.submitRegistration = submitRegistration;
+window.sendViaWhatsApp = sendViaWhatsApp;
+
 document.addEventListener('keydown', function(event) {
     if (event.key === 'Escape' && modal.classList.contains('active')) closeRegistrationModal();
 });
