@@ -231,6 +231,38 @@ margin-bottom: 25px;
 font-size: 0.9rem;
 color: var(--blue-dark);
 }
+
+.suggestions {
+position: absolute;
+z-index: 20;
+left: 0;
+right: 0;
+top: calc(100% + 6px);
+background: white;
+border: 1px solid rgba(15,91,183,0.15);
+border-radius: 12px;
+box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+max-height: 220px;
+overflow-y: auto;
+padding: 6px;
+display: none;
+}
+
+.suggestion-item {
+width: 100%;
+text-align: right;
+padding: 10px 12px;
+border: none;
+border-radius: 8px;
+background: white;
+color: var(--text);
+cursor: pointer;
+font-size: 0.95rem;
+}
+
+.suggestion-item:hover {
+background: rgba(15,91,183,0.08);
+}
 </style>
 </head>
 <body>
@@ -288,35 +320,20 @@ color: var(--blue-dark);
 <!-- رقم الهاتف -->
 <div class="form-group">
 <label for="phone">رقم الهاتف *</label>
-<input type="tel" id="phone" name="phone" required placeholder="مثال: 771234567" inputmode="tel" maxlength="13" autocomplete="tel" oninput="formatPhoneNumber(this)">
+<input type="tel" id="phone" name="phone" required placeholder="مثال: 771234567" inputmode="tel" maxlength="12" autocomplete="tel" oninput="formatPhoneNumber(this)">
 <span class="input-hint">سيتم إضافة +967 تلقائياً</span>
 <span class="error-hint" id="phoneError">يرجى إدخال رقم هاتف يمني صحيح يبدأ بـ +967 ويحتوي على 9 أرقام</span>
 </div>
 
 <!-- محل الميلاد وتاريخ الميلاد -->
 <div class="form-row">
-<div class="form-group">
+<div class="form-group" id="birthPlaceGroup">
 <label for="birthPlace">محل الميلاد *</label>
-<input type="text" id="birthPlace" name="birthPlace" required placeholder="اكتب أو اختر المدينة" list="citiesList" autocomplete="off">
-<datalist id="citiesList">
-<option value="صنعاء"></option>
-<option value="عدن"></option>
-<option value="تعز"></option>
-<option value="إب"></option>
-<option value="الحديدة"></option>
-<option value="ذمار"></option>
-<option value="حضرموت"></option>
-<option value="المكلاء"></option>
-<option value="شبوة"></option>
-<option value="مأرب"></option>
-<option value="البيضاء"></option>
-<option value="عمران"></option>
-<option value="الجوف"></option>
-<option value="الضالع"></option>
-<option value="ريمة"></option>
-<option value="صعدة"></option>
-</datalist>
-<span class="input-hint">اكتب اسم المدينة ثم اخترها من القائمة</span>
+<div style="position: relative;">
+<input type="text" id="birthPlace" name="birthPlace" required placeholder="اكتب اسم المحافظة" autocomplete="off" oninput="filterBirthPlaces(this.value)">
+<div id="birthPlaceSuggestions" class="suggestions"></div>
+</div>
+<span class="input-hint">اكتب اسم المحافظة ثم اخترها من القائمة</span>
 </div>
 <div class="form-group">
 <label for="birthDate">تاريخ الميلاد *</label>
@@ -426,7 +443,7 @@ function formatPhoneNumber(input) {
 function validatePhoneNumber(input) {
     const value = input.value.trim();
     const errorHint = document.getElementById('phoneError');
-    const isValid = /^\+967(70|71|73|77|78)\d{6}$/.test(value);
+    const isValid = /^\+967(70|71|73|77|78)\d{7}$/.test(value);
 
     if (value && !isValid) {
         input.classList.add('invalid');
@@ -437,8 +454,46 @@ function validatePhoneNumber(input) {
     }
 }
 
+const governorates = [
+    'صنعاء','عدن','تعز','إب','الحديدة','ذمار','حضرموت','المكلاء','شبوة','مأرب','البيضاء','عمران','الجوف','الضالع','ريمة','صعدة','مارب','لحج','سقطرى'
+];
+
+function filterBirthPlaces(query) {
+    const suggestions = document.getElementById('birthPlaceSuggestions');
+    const value = (query || '').trim();
+
+    if (!value) {
+        suggestions.style.display = 'none';
+        suggestions.innerHTML = '';
+        return;
+    }
+
+    const filtered = governorates.filter(item => item.includes(value));
+    if (!filtered.length) {
+        suggestions.style.display = 'none';
+        suggestions.innerHTML = '';
+        return;
+    }
+
+    suggestions.innerHTML = filtered.map(item => `<button type="button" class="suggestion-item" onclick="selectBirthPlace('${item.replace(/'/g, "\\'")}', this)">${item}</button>`).join('');
+    suggestions.style.display = 'block';
+}
+
+function selectBirthPlace(value) {
+    document.getElementById('birthPlace').value = value;
+    document.getElementById('birthPlaceSuggestions').style.display = 'none';
+}
+
+function hideBirthPlaceSuggestions(event) {
+    const suggestions = document.getElementById('birthPlaceSuggestions');
+    const group = document.getElementById('birthPlaceGroup');
+    if (!group.contains(event.target)) {
+        suggestions.style.display = 'none';
+    }
+}
+
 function isChildCourse(courseName) {
-    return /\b(طفل|أطفال|child|children|kids)\b/i.test(courseName);
+    return /\b(طفل|أطفال|child|children|kids|الطفل الذكي|smart child|smart children)\b/i.test(courseName);
 }
 
 async function handleCertificateSubmit(event) {
@@ -498,8 +553,8 @@ async function handleCertificateSubmit(event) {
         return;
     }
 
-    if (!isChildCourse(courseName) && age < 12) {
-        alert('يجب أن يكون عمر المتقدم 12 سنة على الأقل لهذه الدورة');
+    if (!isChildCourse(courseName) && age < 10) {
+        alert('يجب أن يكون عمر المتقدم 10 سنوات على الأقل لهذه الدورة');
         return;
     }
     
@@ -551,11 +606,14 @@ async function handleCertificateSubmit(event) {
 }
 
 setBirthDateLimits();
+document.addEventListener('click', hideBirthPlaceSuggestions);
 window.validateArabicName = validateArabicName;
 window.validateEnglishName = validateEnglishName;
 window.toggleOtherCourse = toggleOtherCourse;
 window.formatPhoneNumber = formatPhoneNumber;
 window.validateBirthDate = validateBirthDate;
+window.filterBirthPlaces = filterBirthPlaces;
+window.selectBirthPlace = selectBirthPlace;
 window.handleCertificateSubmit = handleCertificateSubmit;
 </script>
 
