@@ -337,8 +337,8 @@ background: rgba(15,91,183,0.08);
 </div>
 <div class="form-group">
 <label for="birthDate">تاريخ الميلاد *</label>
-<input type="text" id="birthDate" name="birthDate" required placeholder="مثال: 1990-01-01" inputmode="numeric" oninput="validateBirthDate(this)">
-<span class="input-hint">اكتب التاريخ يدويًا بصيغة YYYY-MM-DD</span>
+<input type="text" id="birthDate" name="birthDate" required placeholder="مثال: 1990/01/01" inputmode="numeric" oninput="formatBirthDate(this)">
+<span class="input-hint">اكتب التاريخ يدويًا وسيتم إضافة / تلقائياً</span>
 </div>
 </div>
 
@@ -413,6 +413,24 @@ function setBirthDateLimits() {
     birthDateInput.removeAttribute('max');
 }
 
+function formatBirthDate(input) {
+    const digits = input.value.replace(/\D/g, '').slice(0, 8);
+    let formatted = '';
+
+    if (digits.length > 4) {
+        formatted = `${digits.slice(0, 4)}/${digits.slice(4, 6)}`;
+    } else {
+        formatted = digits.slice(0, 4);
+    }
+
+    if (digits.length > 6) {
+        formatted += `/${digits.slice(6, 8)}`;
+    }
+
+    input.value = formatted;
+    validateBirthDate(input);
+}
+
 function validateBirthDate(input) {
     const value = input.value.trim();
     if (!value) {
@@ -439,15 +457,19 @@ function validateBirthDate(input) {
     input.classList.toggle('invalid', !isValidDate || isFuture);
 
     if (isValidDate) {
-        input.value = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+        input.value = `${year}/${String(month).padStart(2, '0')}/${String(day).padStart(2, '0')}`;
     }
 }
 
 function formatPhoneNumber(input) {
     let digits = input.value.replace(/\D/g, '');
+
     if (digits.startsWith('967')) {
         digits = digits.slice(3);
+    } else if (digits.startsWith('0')) {
+        digits = digits.slice(1);
     }
+
     digits = digits.slice(0, 9);
     input.value = digits ? `+967${digits}` : '';
     validatePhoneNumber(input);
@@ -541,12 +563,13 @@ async function handleCertificateSubmit(event) {
     }
     
     const phoneInput = document.getElementById('phone');
+    formatPhoneNumber(phoneInput);
     const phone = phoneInput.value.trim();
     const birthPlace = document.getElementById('birthPlace').value.trim();
     const birthDate = document.getElementById('birthDate').value;
     const gender = document.getElementById('gender').value;
     
-    if (!/^\+967(70|71|73|77|78)\d{6}$/.test(phone)) {
+    if (!/^\+967(70|71|73|77|78)\d{7}$/.test(phone)) {
         validatePhoneNumber(phoneInput);
         alert('يرجى إدخال رقم هاتف يمني صحيح يبدأ بـ +967');
         return;
@@ -625,6 +648,7 @@ window.validateEnglishName = validateEnglishName;
 window.toggleOtherCourse = toggleOtherCourse;
 window.formatPhoneNumber = formatPhoneNumber;
 window.validateBirthDate = validateBirthDate;
+window.formatBirthDate = formatBirthDate;
 window.filterBirthPlaces = filterBirthPlaces;
 window.selectBirthPlace = selectBirthPlace;
 window.handleCertificateSubmit = handleCertificateSubmit;
