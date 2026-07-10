@@ -284,7 +284,7 @@ background: rgba(15,91,183,0.08);
 <form id="certificateForm" onsubmit="handleCertificateSubmit(event)">
 <!-- اختيار الدورة -->
 <div class="form-group">
-<label for="courseName">اسم الدورة *</label>
+<label for="courseName">اسم الدورة </label>
 <select id="courseName" name="courseName" required onchange="toggleOtherCourse(this.value)">
 <option value="">-- اختر الدورة --</option>
 <option value="TOEFL">شهادة اختبار التوفل (TOEFL)</option>
@@ -299,19 +299,19 @@ background: rgba(15,91,183,0.08);
 
 <!-- حقل اسم الشهادة الأخرى -->
 <div class="form-group" id="otherCourseGroup" style="display: none;">
-<label for="otherCourseName">اسم الشهادة المطلوبة *</label>
+<label for="otherCourseName">اسم الشهادة المطلوبة </label>
 <input type="text" id="otherCourseName" name="otherCourseName" placeholder="اكتب اسم الشهادة هنا">
 </div>
 
 <!-- الأسماء -->
 <div class="form-group">
-<label for="fullNameAr">الاسم الرباعي (عربي) *</label>
+<label for="fullNameAr">الاسم الرباعي (عربي) </label>
 <input type="text" id="fullNameAr" name="fullNameAr" required placeholder="مثال: محمد علي أحمد حسن" oninput="validateArabicName(this)">
 <span class="error-hint" id="fullNameArError">يجب كتابة الاسم الرباعي باللغة العربية فقط</span>
 </div>
 
 <div class="form-group">
-<label for="fullNameEn">الاسم الرباعي (إنجليزي) *</label>
+<label for="fullNameEn">الاسم الرباعي (إنجليزي) </label>
 <input type="text" id="fullNameEn" name="fullNameEn" required placeholder="مثال: Mohammed Ali Ahmed Hassan" oninput="validateEnglishName(this)">
 <span class="input-hint">يرجى كتابة الاسم بشكل صحيح مطابق لجواز السفر</span>
 <span class="error-hint" id="fullNameEnError">يجب كتابة الاسم الرباعي باللغة الإنجليزية فقط</span>
@@ -319,7 +319,7 @@ background: rgba(15,91,183,0.08);
 
 <!-- رقم الهاتف -->
 <div class="form-group">
-<label for="phone">رقم الهاتف *</label>
+<label for="phone">رقم الهاتف </label>
 <input type="tel" id="phone" name="phone" required placeholder="مثال: 771234567" inputmode="tel" maxlength="13" autocomplete="tel" oninput="formatPhoneNumber(this)">
 <span class="input-hint">سيتم إضافة +967 تلقائياً</span>
 <span class="error-hint" id="phoneError">يرجى إدخال رقم هاتف يمني صحيح يبدأ بـ +967 ويحتوي على 9 أرقام</span>
@@ -328,7 +328,7 @@ background: rgba(15,91,183,0.08);
 <!-- محل الميلاد وتاريخ الميلاد -->
 <div class="form-row">
 <div class="form-group" id="birthPlaceGroup">
-<label for="birthPlace">محل الميلاد *</label>
+<label for="birthPlace">محل الميلاد </label>
 <div style="position: relative;">
 <input type="text" id="birthPlace" name="birthPlace" required placeholder="اكتب اسم المحافظة" autocomplete="off" oninput="filterBirthPlaces(this.value)">
 <div id="birthPlaceSuggestions" class="suggestions"></div>
@@ -336,7 +336,7 @@ background: rgba(15,91,183,0.08);
 <span class="input-hint">اكتب اسم المحافظة ثم اخترها من القائمة</span>
 </div>
 <div class="form-group">
-<label for="birthDate">تاريخ الميلاد *</label>
+<label for="birthDate">تاريخ الميلاد </label>
 <input type="text" id="birthDate" name="birthDate" required placeholder="مثال: 1990/01/01" inputmode="numeric" oninput="formatBirthDate(this)">
 <button type="button" id="toggleDatePickerBtn" onclick="toggleBirthDatePicker()" style="margin-top:8px; padding:6px 10px; border:1px solid #ccc; border-radius:6px; background:#f8f8f8; cursor:pointer;">اختيار من القوائم</button>
 <div id="birthDatePicker" style="display:none; margin-top:8px; gap:8px; flex-wrap:wrap;">
@@ -368,7 +368,7 @@ background: rgba(15,91,183,0.08);
 
 <!-- الجنس -->
 <div class="form-group">
-<label for="gender">الجنس *</label>
+<label for="gender">الجنس </label>
 <select id="gender" name="gender" required>
 <option value="">-- اختر --</option>
 <option value="male">ذكر</option>
