@@ -3,208 +3,151 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مركز الأمجاد للغات والتدريب | التميز في التعليم</title>
+    <title>مركز الأمجاد للغات والتدريب | القائمة الذكية V3</title>
     
-    <!-- Meta Tags -->
-    <meta name="description" content="مركز الأمجاد للغات والتدريب - تجربة تعليمية مذهلة وبرامج تدريبية عالمية في اليمن.">
-    
-    <!-- Fonts & Styles -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Styles -->
     <link rel="stylesheet" href="css/style.css">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#0f5bb7',
-                        secondary: '#fbe03f',
-                        dark: '#083a7a',
-                    }
-                }
-            }
-        }
-    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
 
-    <!-- Decorative Background Shapes -->
-    <div class="bg-shape shape-1"></div>
-    <div class="bg-shape shape-2"></div>
-
-    <!-- Hero Header Section -->
+    <!-- Header Section -->
     <header>
-        <div class="logo-wrapper">
-            <img src="1.svg" alt="ALC Logo" class="logo-main">
-        </div>
-        <div class="hero-text">
-            <h1 class="animate-fade-up">مستقبلك يبدأ من هنا</h1>
-            <p class="animate-fade-up" style="animation-delay: 0.2s;">
-                نحن لا نقدم مجرد دورات، بل نصنع قصص نجاح ملهمة. انضم إلى عائلة مركز الأمجاد واستعد لمستقبل مشرق.
-            </p>
+        <img src="1.svg" alt="شعار مركز الأمجاد" class="logo-main animate-up">
+        <div class="header-content animate-up" style="animation-delay: 0.1s;">
+            <h1>مرحباً بكم في مركز الأمجاد</h1>
+            <p>بوابتكم للتميز في تعلم اللغات ومهارات الحاسوب. تواصل معنا وسجل في دوراتنا بسهولة.</p>
         </div>
     </header>
 
-    <!-- Main Content Section -->
-    <main class="main-content">
-        <div class="premium-grid">
+    <!-- Main Content -->
+    <main class="container">
+        <div class="services-grid">
             
-            <!-- Instagram Card -->
-            <a href="https://www.instagram.com/alc_yemen" target="_blank" class="glass-card animate-fade-up" style="animation-delay: 0.1s;">
-                <div class="card-icon-box">
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/alc_yemen" target="_blank" class="service-card animate-up" style="animation-delay: 0.2s;">
+                <div class="icon-wrapper">
                     <img src="logo.i.png" alt="Instagram">
                 </div>
                 <h2>إنستغرام</h2>
-                <p>عالم من الصور والفعاليات والقصص اليومية التي تعكس حياة المركز.</p>
-                <div class="btn-premium">
-                    <span>متابعة</span>
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                </div>
+                <p>تابع أنشطتنا اليومية وقصص نجاح طلابنا عبر الصور والفيديوهات.</p>
+                <span class="card-action">متابعة الآن</span>
             </a>
 
-            <!-- Facebook Card -->
-            <a href="https://www.facebook.com/ALC.Yemen" target="_blank" class="glass-card animate-fade-up" style="animation-delay: 0.2s;">
-                <div class="card-icon-box">
+            <!-- Facebook -->
+            <a href="https://www.facebook.com/ALC.Yemen" target="_blank" class="service-card animate-up" style="animation-delay: 0.3s;">
+                <div class="icon-wrapper">
                     <img src="logo.f.png" alt="Facebook">
                 </div>
                 <h2>فيسبوك</h2>
-                <p>ابقَ على اطلاع دائم بآخر العروض والمنح والبرامج التدريبية الجديدة.</p>
-                <div class="btn-premium">
-                    <span>اكتشف المزيد</span>
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                </div>
+                <p>ابقَ على تواصل مع مجتمعنا وتابع أحدث الأخبار والمنشورات التعليمية.</p>
+                <span class="card-action">زيارة الصفحة</span>
             </a>
 
-            <!-- WhatsApp Card -->
-            <a href="https://wa.me/967778005033" target="_blank" class="glass-card animate-fade-up" style="animation-delay: 0.3s;">
-                <div class="card-icon-box">
+            <!-- WhatsApp -->
+            <a href="https://wa.me/967778005033" target="_blank" class="service-card animate-up" style="animation-delay: 0.4s;">
+                <div class="icon-wrapper">
                     <img src="logo.w.png" alt="WhatsApp">
                 </div>
                 <h2>واتساب</h2>
-                <p>فريقنا متاح دائماً للرد على استفساراتك وتقديم المشورة التعليمية.</p>
-                <div class="btn-premium">
-                    <span>دردشة فورية</span>
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                </div>
+                <p>دردشة مباشرة مع فريق الاستعلامات للإجابة على كافة تساؤلاتكم.</p>
+                <span class="card-action">تواصل معنا</span>
             </a>
 
-            <!-- Registration Card -->
-            <div onclick="openRegistrationModal()" class="glass-card cursor-pointer animate-fade-up" style="animation-delay: 0.4s;">
-                <div class="card-icon-box">
-                    <svg class="w-12 h-12 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
-                    </svg>
+            <!-- Certificate Request (RESTORED) -->
+            <a href="certificates.html" class="service-card animate-up" style="animation-delay: 0.5s;">
+                <div class="icon-wrapper">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                </div>
+                <h2>طلب شهادة</h2>
+                <p>اطلب إصدار شهادتك المعتمدة إلكترونياً بعد إتمام دورتك التدريبية.</p>
+                <span class="card-action">تقديم طلب</span>
+            </a>
+
+            <!-- Registration -->
+            <div onclick="openRegistrationModal()" class="service-card cursor-pointer animate-up" style="animation-delay: 0.6s;">
+                <div class="icon-wrapper">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
                 </div>
                 <h2>طلب تسجيل</h2>
-                <p>سجل بياناتك الآن لنتواصل معك ونرشدك للبرنامج التدريبي الأنسب لك.</p>
-                <div class="btn-premium">
-                    <span>فتح النموذج</span>
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                </div>
+                <p>بادر بحجز مقعدك في إحدى دوراتنا القادمة عبر تعبئة هذا النموذج.</p>
+                <span class="card-action">فتح النموذج</span>
             </div>
 
-            <!-- About Card -->
-            <a href="about.html" class="glass-card animate-fade-up" style="animation-delay: 0.5s;">
-                <div class="card-icon-box">
-                    <svg class="w-12 h-12 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-                    </svg>
-                </div>
-                <h2>عن المركز</h2>
-                <p>تعرف على مسيرتنا الممتدة لسنوات في خدمة التعليم والتدريب في اليمن.</p>
-                <div class="btn-premium">
-                    <span>المزيد عنا</span>
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                </div>
-            </a>
-
-            <!-- Offers Card -->
-            <a href="offers.html" class="glass-card animate-fade-up" style="animation-delay: 0.6s;">
-                <div class="card-icon-box">
-                    <svg class="w-12 h-12 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"></path>
-                    </svg>
+            <!-- Offers -->
+            <a href="offers.html" class="service-card animate-up" style="animation-delay: 0.7s;">
+                <div class="icon-wrapper">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"></path></svg>
                 </div>
                 <h2>العروض والمنح</h2>
-                <p>لا تفوت فرصة الاستفادة من المنح الدراسية والخصومات الحصرية المتاحة.</p>
-                <div class="btn-premium">
-                    <span>عرض العروض</span>
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                </div>
+                <p>اكتشف أحدث الخصومات والمنح الدراسية المتاحة حالياً في المركز.</p>
+                <span class="card-action">مشاهدة العروض</span>
             </a>
 
-        </div>
-
-        <!-- Location Section -->
-        <div class="mt-20 text-center animate-fade-up">
-            <h3 class="text-2xl font-bold text-dark mb-6">تفضل بزيارتنا في المقر الرئيسي</h3>
-            <a href="https://maps.app.goo.gl/tRwSPfsoHGSUfkkf7" target="_blank" class="inline-flex items-center gap-4 p-4 bg-white rounded-3xl shadow-lg border border-slate-100 hover:shadow-2xl transition-all">
-                <div class="bg-primary p-4 rounded-2xl">
-                    <img src="logo.p.png" alt="Map" class="w-8 h-8 filter brightness-0 invert">
+            <!-- About -->
+            <a href="about.html" class="service-card animate-up" style="animation-delay: 0.8s;">
+                <div class="icon-wrapper">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                 </div>
-                <div class="text-right ml-4">
-                    <span class="block font-bold text-primary">الموقع على الخريطة</span>
-                    <span class="text-sm text-slate-500">صنعاء - شارع الستين - بجانب...</span>
-                </div>
-                <svg class="w-6 h-6 text-slate-300 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                <h2>عن المركز</h2>
+                <p>تعرف على رؤيتنا، رسالتنا، وتاريخنا في خدمة المجتمع التعليمي.</p>
+                <span class="card-action">اقرأ المزيد</span>
             </a>
+
+            <!-- Location -->
+            <a href="https://maps.app.goo.gl/tRwSPfsoHGSUfkkf7" target="_blank" class="service-card animate-up" style="animation-delay: 0.9s;">
+                <div class="icon-wrapper">
+                    <img src="logo.p.png" alt="الموقع">
+                </div>
+                <h2>موقعنا</h2>
+                <p>تفضل بزيارتنا في مقرنا الرئيسي. ننتظر تشريفكم لنا في أي وقت.</p>
+                <span class="card-action">خرائط جوجل</span>
+            </a>
+
         </div>
     </main>
 
     <!-- Registration Modal -->
-    <div id="registrationModal" class="premium-modal">
-        <div class="modal-inner">
-            <button onclick="closeRegistrationModal()" class="absolute top-6 left-6 text-slate-400 hover:text-dark text-3xl">&times;</button>
-            <h2 class="text-3xl font-black text-primary mb-8 text-center">طلب تسجيل جديد</h2>
+    <div id="registrationModal" class="modal">
+        <div class="modal-content animate-up">
+            <span class="close-btn" onclick="closeRegistrationModal()">&times;</span>
+            <h2 class="text-2xl font-black text-primary mb-6 text-center">طلب تسجيل جديد</h2>
             
-            <form id="registrationForm" onsubmit="handleRegistrationSubmit(event)" class="space-y-6">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label class="block text-sm font-bold text-dark mb-2">الاسم الكامل *</label>
-                        <input type="text" id="regName" class="w-full p-4 bg-slate-50 border-2 border-transparent focus:border-primary focus:bg-white rounded-2xl outline-none transition-all" placeholder="أدخل اسمك الرباعي" required>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-bold text-dark mb-2">رقم الهاتف *</label>
-                        <input type="tel" id="regPhone" class="w-full p-4 bg-slate-50 border-2 border-transparent focus:border-primary focus:bg-white rounded-2xl outline-none transition-all" placeholder="777 000 000" required>
-                    </div>
+            <form id="registrationForm" onsubmit="handleRegistrationSubmit(event)">
+                <div class="form-group">
+                    <label>الاسم الكامل *</label>
+                    <input type="text" id="regName" class="form-input" placeholder="أدخل اسمك الرباعي" required>
                 </div>
-                
-                <div>
-                    <label class="block text-sm font-bold text-dark mb-2">البرنامج التدريبي *</label>
-                    <select id="regCourse" class="w-full p-4 bg-slate-50 border-2 border-transparent focus:border-primary focus:bg-white rounded-2xl outline-none transition-all" required>
-                        <option value="">اختر البرنامج</option>
-                        <option value="English">دبلوم اللغة الإنجليزية</option>
-                        <option value="ICDL">دبلوم الحاسوب ICDL</option>
-                        <option value="Graphic">التصميم الجرافيكي</option>
-                        <option value="Programming">برمجة تطبيقات الويب</option>
+                <div class="form-group">
+                    <label>رقم الهاتف *</label>
+                    <input type="tel" id="regPhone" class="form-input" placeholder="777 000 000" required>
+                </div>
+                <div class="form-group">
+                    <label>البرنامج المطلوب *</label>
+                    <select id="regCourse" class="form-input" required>
+                        <option value="">اختر البرنامج التدريبي</option>
+                        <option value="English">لغة إنجليزية</option>
+                        <option value="ICDL">حاسوب ICDL</option>
+                        <option value="Graphic">تصميم جرافيك</option>
                     </select>
                 </div>
-
-                <div>
-                    <label class="block text-sm font-bold text-dark mb-2">ملاحظات</label>
-                    <textarea id="regMessage" class="w-full p-4 bg-slate-50 border-2 border-transparent focus:border-primary focus:bg-white rounded-2xl outline-none transition-all" rows="3" placeholder="أي تفاصيل أخرى تود إضافتها؟"></textarea>
-                </div>
-
-                <button type="submit" id="submitBtn" class="btn-premium w-full justify-center py-5">
-                    إرسال الطلب الآن
-                </button>
+                <button type="submit" id="submitBtn" class="btn-submit mt-4">إرسال الطلب</button>
             </form>
+            <div class="mt-6 text-center border-t pt-6">
+                <p class="text-slate-500 text-sm">أو اتصل بنا مباشرة:</p>
+                <a href="tel:+967778005033" class="text-primary font-bold text-lg">+967 778 005 033</a>
+            </div>
         </div>
     </div>
 
     <footer>
-        <img src="1.svg" alt="Footer Logo" class="footer-logo mx-auto filter brightness-0 opacity-20">
-        <p class="text-lg font-bold text-primary mb-4">مركز الأمجاد للغات والتدريب</p>
-        <div class="flex justify-center gap-6 mb-8">
-            <a href="#" class="text-slate-400 hover:text-primary transition-colors">عن المركز</a>
-            <a href="#" class="text-slate-400 hover:text-primary transition-colors">اتصل بنا</a>
-            <a href="#" class="text-slate-400 hover:text-primary transition-colors">الأسئلة الشائعة</a>
-        </div>
-        <p class="copyright">جميع الحقوق محفوظة &copy; 2026 | تطوير النسخة الفاخرة V2</p>
+        <p>جميع الحقوق محفوظة &copy; 2026 | مركز الأمجاد للغات والتدريب</p>
+        <p class="mt-2 opacity-50">تصميم وتطوير: يحيى المريسي - النسخة الراقية V3</p>
     </footer>
 
     <script type="module">
@@ -230,8 +173,8 @@
             const data = {
                 fullName: document.getElementById('regName').value,
                 phone: document.getElementById('regPhone').value,
-                offerIndex: 'عام - ' + document.getElementById('regCourse').value,
-                notes: document.getElementById('regMessage').value
+                offerIndex: 'تسجيل عام - ' + document.getElementById('regCourse').value,
+                notes: ''
             };
 
             submitBtn.disabled = true;
@@ -239,23 +182,21 @@
 
             try {
                 await submitOfferRequest(data);
-                const msg = `طلب تسجيل جديد (V2)\nالاسم: ${data.fullName}\nالهاتف: ${data.phone}\nالدورة: ${data.offerIndex}`;
+                const msg = `طلب تسجيل جديد (V3)\nالاسم: ${data.fullName}\nالهاتف: ${data.phone}\nالدورة: ${data.offerIndex}`;
                 window.open(`https://wa.me/967778005033?text=${encodeURIComponent(msg)}`, '_blank');
                 
-                alert('تم استلام طلبك بنجاح! شكراً لثقتك بمركز الأمجاد.');
+                alert('تم استلام طلبك بنجاح! شكراً لك.');
                 closeRegistrationModal();
                 event.target.reset();
             } catch (error) {
-                alert('حدث خطأ. يرجى المحاولة مرة أخرى.');
+                alert('حدث خطأ. يرجى المحاولة ثانية.');
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.innerText = originalText;
             }
         };
 
-        window.onclick = (event) => {
-            if (event.target === modal) closeRegistrationModal();
-        };
+        window.onclick = (event) => { if (event.target === modal) closeRegistrationModal(); };
     </script>
 </body>
 </html>
