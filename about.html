@@ -3,79 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>عن المركز | مركز الأمجاد للغات والتدريب</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <title>هويتنا | مركز الأمجاد للغات والتدريب</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="bg-slate-50">
+    <div class="bg-shape shape-1"></div>
 
-    <header class="h-48 md:h-64 flex items-center justify-center">
-        <div class="header-logo-container">
+    <header style="min-height: 40vh; border-radius: 0 0 60px 60px;">
+        <div class="logo-wrapper">
             <a href="index.html">
-                <img src="1.svg" alt="شعار مركز الأمجاد" class="logo-center w-48 md:w-64">
+                <img src="1.svg" alt="ALC Logo" class="logo-main" style="width: 250px;">
             </a>
+        </div>
+        <div class="hero-text">
+            <h1 class="text-4xl font-black">قصتنا وهويتنا</h1>
         </div>
     </header>
 
-    <main class="container -mt-10 md:-mt-20 relative z-10 pb-20">
-        <div class="bg-white rounded-3xl shadow-xl p-8 md:p-12 animate-fade-up">
-            <h1 class="text-3xl md:text-4xl font-extrabold text-primary mb-8 border-r-8 border-secondary pr-4">من نحن</h1>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                <div class="space-y-6">
-                    <p class="text-lg text-slate-700 leading-relaxed">
-                        مركز الأمجاد للغات والتدريب هو مؤسسة تعليمية رائدة تسعى لتمكين الشباب والطلاب من خلال تقديم برامج تدريبية عالية الجودة في مجالات اللغات، الحاسوب، والمهارات الإدارية.
+    <main class="main-content" style="margin-top: -50px;">
+        <div class="glass-card p-10 md:p-20 text-right block animate-fade-up">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-4xl font-black text-primary mb-8">من نحن؟</h2>
+                    <p class="text-xl text-slate-600 leading-loose mb-10">
+                        نحن في مركز الأمجاد نؤمن بأن التعليم هو المفتاح الحقيقي لتغيير المستقبل. منذ انطلاقتنا، وضعنا نصب أعيننا هدفاً واحداً: تقديم تعليم نوعي يجمع بين الأصالة والحداثة، لتمكين جيل يمني قادر على المنافسة عالمياً.
                     </p>
-                    <div class="flex items-start gap-4 bg-blue-50 p-6 rounded-2xl">
-                        <img src="R.svg" alt="Vision" class="w-12 h-12">
-                        <div>
-                            <h3 class="font-bold text-xl text-primary mb-2">رؤيتنا</h3>
-                            <p class="text-slate-600">أن نكون المركز التدريبي الأول في اليمن المتميز بجودة التعليم ومخرجاته المواكبة لسوق العمل.</p>
+                    
+                    <div class="space-y-8">
+                        <div class="flex items-start gap-6 p-6 bg-blue-50 rounded-3xl border border-blue-100">
+                            <div class="bg-primary p-4 rounded-2xl shadow-lg">
+                                <img src="R.svg" alt="Vision" class="w-10 h-10 filter brightness-0 invert">
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-primary mb-2">رؤيتنا</h3>
+                                <p class="text-slate-600">الريادة في صناعة الكفاءات البشرية المتميزة لغوياً وتقنياً على مستوى الوطن.</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="flex items-start gap-4 bg-yellow-50 p-6 rounded-2xl">
-                        <img src="O.svg" alt="Mission" class="w-12 h-12">
-                        <div>
-                            <h3 class="font-bold text-xl text-primary mb-2">رسالتنا</h3>
-                            <p class="text-slate-600">تقديم بيئة تعليمية محفزة وأدوات تدريبية حديثة تساهم في تطوير مهارات الفرد والمجتمع.</p>
+
+                        <div class="flex items-start gap-6 p-6 bg-yellow-50 rounded-3xl border border-yellow-100">
+                            <div class="bg-secondary p-4 rounded-2xl shadow-lg">
+                                <img src="O.svg" alt="Mission" class="w-10 h-10">
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-primary mb-2">رسالتنا</h3>
+                                <p class="text-slate-600">تقديم برامج تدريبية بمعايير عالمية وبيئة تعليمية محفزة تضمن أقصى درجات الاستفادة للطلاب.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="rounded-3xl overflow-hidden shadow-2xl">
-                    <img src="Untitled-1.png" alt="ALC Building" class="w-full h-full object-cover">
+                <div class="relative">
+                    <div class="absolute -inset-4 bg-primary/10 rounded-full blur-3xl"></div>
+                    <img src="Untitled-1.png" alt="ALC Campus" class="relative z-10 w-full rounded-[40px] shadow-2xl border-8 border-white">
                 </div>
             </div>
 
-            <div class="mt-16 text-center">
-                <h2 class="text-2xl font-bold text-primary mb-6">لماذا تختار مركز الأمجاد؟</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                    <div class="p-6 border border-slate-100 rounded-2xl">
-                        <div class="text-4xl mb-4">🏆</div>
-                        <h4 class="font-bold mb-2">شهادات معتمدة</h4>
-                        <p class="text-sm text-slate-500">شهاداتنا مقبولة ومعترف بها محلياً ودولياً.</p>
-                    </div>
-                    <div class="p-6 border border-slate-100 rounded-2xl">
-                        <div class="text-4xl mb-4">👨‍🏫</div>
-                        <h4 class="font-bold mb-2">كادر متخصص</h4>
-                        <p class="text-sm text-slate-500">نخبة من أفضل المدربين ذوي الخبرة الكبيرة.</p>
-                    </div>
-                    <div class="p-6 border border-slate-100 rounded-2xl">
-                        <div class="text-4xl mb-4">💻</div>
-                        <h4 class="font-bold mb-2">تجهيزات حديثة</h4>
-                        <p class="text-sm text-slate-500">معامل حاسوب متطورة وقاعات مجهزة بأحدث الوسائل.</p>
-                    </div>
+            <div class="mt-24 grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="text-center p-8 bg-white rounded-3xl shadow-sm border border-slate-50">
+                    <div class="text-5xl mb-6">💎</div>
+                    <h4 class="text-xl font-bold text-primary mb-4">الجودة أولاً</h4>
+                    <p class="text-slate-500">نلتزم بأعلى معايير الجودة في كل تفاصيل العملية التدريبية.</p>
+                </div>
+                <div class="text-center p-8 bg-white rounded-3xl shadow-sm border border-slate-50">
+                    <div class="text-5xl mb-6">🚀</div>
+                    <h4 class="text-xl font-bold text-primary mb-4">الابتكار</h4>
+                    <p class="text-slate-500">نستخدم أحدث الوسائل التكنولوجية في التعليم التفاعلي.</p>
+                </div>
+                <div class="text-center p-8 bg-white rounded-3xl shadow-sm border border-slate-50">
+                    <div class="text-5xl mb-6">🤝</div>
+                    <h4 class="text-xl font-bold text-primary mb-4">الشراكة</h4>
+                    <p class="text-slate-500">نبني علاقات مستدامة مع طلابنا ونرافقهم في مسيرة نجاحهم.</p>
                 </div>
             </div>
 
-            <div class="mt-12 text-center">
-                <a href="index.html" class="btn btn-primary px-12">العودة للرئيسية</a>
+            <div class="mt-20 text-center">
+                <a href="index.html" class="btn-premium px-16">العودة للرئيسية</a>
             </div>
         </div>
     </main>
 
-    <footer class="bg-primary-dark text-white text-center py-8">
-        <p>جميع الحقوق محفوظة &copy; 2026 | مركز الأمجاد للغات والتدريب</p>
+    <footer class="bg-white py-12 text-center">
+        <p class="text-slate-400">جميع الحقوق محفوظة &copy; 2026 | مركز الأمجاد للغات والتدريب</p>
     </footer>
 </body>
 </html>
