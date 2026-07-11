@@ -1,641 +1,103 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>العروض الحالية | مركز الأمجاد</title>
-<style>
-:root {
---blue: #0f5bb7;
---blue-dark: #0b3f86;
---text: #333333;
---success: #27ae60;
---warning: #f39c12;
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-body {
-font-family: Tahoma, Arial, sans-serif;
-background: radial-gradient(circle at top, #eef5ff 0%, #f8fbff 40%, #f5f7fa 100%);
-color: var(--text);
-min-height: 100vh;
-line-height: 1.6;
-}
-
-header {
-background: linear-gradient(135deg, #0f5bb7 0%, #1762c6 100%);
-color: white;
-text-align: center;
-padding: 60px 20px 40px;
-border-bottom-left-radius: 40px;
-border-bottom-right-radius: 40px;
-box-shadow: 0 10px 30px rgba(15, 91, 183, 0.15);
-position: relative;
-}
-
-.back-btn {
-position: absolute;
-top: 20px;
-right: 20px;
-background: rgba(255,255,255,0.2);
-color: white;
-text-decoration: none;
-padding: 8px 16px;
-border-radius: 20px;
-font-size: 0.9rem;
-font-weight: bold;
-transition: background 0.3s ease;
-display: flex;
-align-items: center;
-gap: 5px;
-}
-
-.back-btn:hover { background: rgba(255,255,255,0.3); }
-
-header h1 { font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 10px; }
-
-.offers-grid {
-max-width: 1100px;
-margin: 50px auto;
-padding: 0 20px;
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
-gap: 35px;
-}
-
-.offer-card {
-background: white;
-border-radius: 28px;
-overflow: hidden;
-box-shadow: 0 20px 40px rgba(15,91,183,0.08);
-border: 1px solid rgba(15,91,183,0.08);
-transition: transform 0.3s ease, box-shadow 0.3s ease;
-animation: fadeUp 0.6s ease both;
-position: relative;
-cursor: pointer;
-}
-
-.offer-card:hover {
-transform: translateY(-10px);
-box-shadow: 0 30px 55px rgba(15,91,183,0.14);
-}
-
-.offer-card img {
-width: 100%;
-height: auto;
-display: block;
-transition: filter 0.3s ease;
-}
-
-.offer-card:hover img { filter: brightness(0.85); }
-
-.offer-overlay {
-position: absolute;
-top: 0; left: 0; right: 0; bottom: 0;
-background: rgba(15, 91, 183, 0.7);
-display: flex;
-align-items: center;
-justify-content: center;
-opacity: 0;
-transition: opacity 0.3s ease;
-z-index: 10;
-}
-
-.offer-card:hover .offer-overlay { opacity: 1; }
-
-.register-btn {
-background: linear-gradient(90deg, #fbe03f 0%, #f2c200 100%);
-color: #000;
-border: none;
-padding: 14px 32px;
-border-radius: 999px;
-font-weight: 700;
-font-size: 1.1rem;
-cursor: pointer;
-box-shadow: 0 14px 25px rgba(251,224,63,0.3);
-transition: transform 0.2s ease, box-shadow 0.2s ease;
-display: flex;
-align-items: center;
-gap: 8px;
-}
-
-.register-btn:hover {
-transform: scale(1.05);
-box-shadow: 0 18px 35px rgba(251,224,63,0.4);
-}
-
-.status-message {
-text-align: center;
-margin: 60px auto;
-font-size: 1.2rem;
-color: var(--blue-dark);
-font-weight: bold;
-}
-
-.loader {
-border: 4px solid rgba(15,91,183,0.1);
-border-top: 4px solid var(--blue);
-border-radius: 50%;
-width: 40px;
-height: 40px;
-animation: spin 1s linear infinite;
-margin: 0 auto 15px;
-}
-
-/* Modal */
-.modal {
-display: none;
-position: fixed;
-z-index: 2000;
-left: 0; top: 0;
-width: 100%; height: 100%;
-background-color: rgba(0, 0, 0, 0.6);
-backdrop-filter: blur(5px);
-animation: fadeIn 0.3s ease;
-overflow-y: auto;
-padding: 20px;
-align-items: center;
-justify-content: center;
-}
-
-.modal.active { display: flex; }
-
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-.modal-content {
-background: white;
-padding: clamp(20px, 4vw, 40px);
-border-radius: 30px;
-width: min(95%, 550px);
-box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
-animation: slideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-position: relative;
-max-height: 90vh;
-overflow-y: auto;
-}
-
-@keyframes slideUp {
-from { transform: translateY(50px); opacity: 0; }
-to { transform: translateY(0); opacity: 1; }
-}
-
-.close-btn {
-position: absolute;
-top: 15px; left: 15px;
-width: 40px; height: 40px;
-background: #f0f2f5;
-color: #555;
-border-radius: 50%;
-display: flex;
-align-items: center;
-justify-content: center;
-font-size: 24px;
-cursor: pointer;
-transition: all 0.3s ease;
-border: none;
-z-index: 100;
-}
-
-.close-btn:hover { background: #ff4757; color: white; transform: rotate(90deg); }
-
-.modal h2 {
-text-align: center;
-color: var(--blue-dark);
-margin-bottom: 25px;
-margin-top: 10px;
-font-size: 1.8rem;
-}
-
-.modal-tabs {
-display: flex;
-gap: 10px;
-margin-bottom: 25px;
-border-bottom: 2px solid rgba(15,91,183,0.1);
-}
-
-.modal-tab {
-padding: 12px 20px;
-background: none;
-border: none;
-color: #999;
-font-weight: 600;
-cursor: pointer;
-border-bottom: 3px solid transparent;
-transition: all 0.3s ease;
-font-size: 0.95rem;
-}
-
-.modal-tab.active { color: var(--blue); border-bottom-color: var(--blue); }
-
-.tab-content { display: none; }
-.tab-content.active { display: block; animation: fadeIn 0.25s ease; }
-
-.contact-form { width: 100%; }
-.form-group { margin-bottom: 20px; }
-
-.form-group label {
-display: block;
-margin-bottom: 8px;
-font-weight: 600;
-color: var(--blue-dark);
-font-size: 0.95rem;
-}
-
-.form-group input,
-.form-group textarea,
-.form-group select {
-width: 100%;
-padding: 12px 16px;
-border: 2px solid rgba(15,91,183,0.1);
-border-radius: 12px;
-font-family: inherit;
-font-size: 1rem;
-transition: border-color 0.3s ease, box-shadow 0.3s ease;
-background: white;
-color: var(--text);
-}
-
-.form-group input:focus,
-.form-group textarea:focus,
-.form-group select:focus {
-outline: none;
-border-color: #0F5BB7;
-box-shadow: 0 0 0 3px rgba(15,91,183,0.1);
-}
-
-.form-group textarea { resize: vertical; min-height: 120px; }
-
-.form-actions {
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 12px;
-margin-top: 25px;
-}
-
-.form-submit,
-.whatsapp-submit {
-padding: 14px 20px;
-border: none;
-border-radius: 12px;
-font-size: 1rem;
-font-weight: 700;
-cursor: pointer;
-transition: transform 0.25s ease, box-shadow 0.25s ease;
-display: flex;
-align-items: center;
-justify-content: center;
-gap: 8px;
-}
-
-.form-submit {
-background: linear-gradient(90deg, #0F5BB7 0%, #1762c6 100%);
-color: white;
-box-shadow: 0 14px 25px rgba(15,91,183,0.2);
-}
-
-.form-submit:hover { transform: translateY(-2px); box-shadow: 0 18px 35px rgba(15,91,183,0.3); }
-.form-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
-
-.whatsapp-submit {
-background: linear-gradient(90deg, #25d366 0%, #20ba5a 100%);
-color: white;
-box-shadow: 0 14px 25px rgba(37,211,102,0.2);
-}
-
-.whatsapp-submit:hover { transform: translateY(-2px); box-shadow: 0 18px 35px rgba(37,211,102,0.3); }
-
-/* Alert messages */
-.alert {
-border-radius: 12px;
-padding: 14px 16px;
-margin-bottom: 16px;
-font-weight: 600;
-text-align: center;
-display: none;
-animation: slideDown 0.3s ease;
-}
-
-.alert.show { display: block; }
-
-.alert-success {
-background: rgba(39, 174, 96, 0.1);
-border: 2px solid var(--success);
-color: var(--success);
-}
-
-.alert-error {
-background: rgba(231, 76, 60, 0.1);
-border: 2px solid #e74c3c;
-color: #e74c3c;
-}
-
-.offer-info {
-background: rgba(15,91,183,0.05);
-border-right: 4px solid var(--blue);
-padding: 12px 16px;
-border-radius: 8px;
-margin-bottom: 20px;
-font-size: 0.95rem;
-color: var(--blue-dark);
-}
-
-/* Spinner inside button */
-.btn-spinner {
-display: inline-block;
-width: 16px; height: 16px;
-border: 2px solid rgba(255,255,255,0.4);
-border-top-color: white;
-border-radius: 50%;
-animation: spin 0.8s linear infinite;
-}
-
-@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes slideDown { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
-
-footer {
-background: rgba(15, 91, 183, 0.95);
-color: white;
-text-align: center;
-padding: 25px 20px;
-margin-top: 60px;
-font-size: 0.95rem;
-}
-
-@media (max-width: 600px) {
-.form-actions { grid-template-columns: 1fr; }
-.modal-content { width: 95%; }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>العروض والمنح | مركز الأمجاد للغات والتدريب</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="bg-slate-50">
 
-<header>
-<a href="index.html" class="back-btn"><span>&rarr;</span> العودة للرئيسية</a>
-<h1>العروض الحالية</h1>
-<p style="color: rgba(255,255,255,0.9);">اكتشف أحدث البرامج والخصومات المتاحة حالياً</p>
-</header>
+    <header class="h-48 flex items-center justify-center">
+        <div class="header-logo-container">
+            <a href="index.html">
+                <img src="1.svg" alt="شعار مركز الأمجاد" class="logo-center w-48">
+            </a>
+        </div>
+    </header>
 
-<div id="status-container" class="status-message">
-<div class="loader"></div>
-<p>جاري البحث عن أحدث العروض...</p>
-</div>
+    <main class="container -mt-10 relative z-10 pb-20">
+        <div class="text-center mb-12 animate-fade-up">
+            <h1 class="text-4xl font-extrabold text-primary mb-4">أحدث العروض والمنح</h1>
+            <p class="text-slate-600">استثمر في مستقبلك مع أفضل العروض التدريبية المتاحة حالياً</p>
+        </div>
 
-<div id="offers-grid" class="offers-grid"></div>
+        <div id="offers-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- سيتم تحميل العروض ديناميكياً هنا -->
+            <div id="loader" class="col-span-full text-center py-20">
+                <div class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-primary border-t-transparent"></div>
+                <p class="mt-4 text-slate-500">جاري تحميل العروض الحالية...</p>
+            </div>
+        </div>
 
-<!-- Modal التسجيل -->
-<div id="registrationModal" class="modal">
-<div class="modal-content">
-<button class="close-btn" onclick="closeRegistrationModal()">&times;</button>
-<h2>التسجيل في العرض</h2>
+        <div class="mt-16 bg-primary rounded-3xl p-8 md:p-12 text-white text-center shadow-2xl animate-fade-up">
+            <h2 class="text-3xl font-bold mb-4">هل لديك استفسار عن عرض معين؟</h2>
+            <p class="mb-8 opacity-90 text-lg">فريقنا جاهز للرد على جميع تساؤلاتكم حول المنح المتاحة والخصومات الجارية.</p>
+            <a href="https://wa.me/967778005033" class="bg-white text-primary px-10 py-4 rounded-full font-bold hover:bg-slate-100 transition-all transform hover:scale-105 inline-block shadow-lg">
+                تواصل معنا عبر واتساب
+            </a>
+        </div>
+    </main>
 
-<div class="modal-tabs">
-<button class="modal-tab active" onclick="switchTab('form', this)">📋 نموذج التسجيل</button>
-<button class="modal-tab" onclick="switchTab('whatsapp', this)">💬 واتساب مباشر</button>
-</div>
+    <footer class="bg-primary-dark text-white text-center py-8">
+        <p>جميع الحقوق محفوظة &copy; 2026 | مركز الأمجاد للغات والتدريب</p>
+    </footer>
 
-<!-- تبويب النموذج -->
-<div id="form-tab" class="tab-content active">
-<div class="offer-info" id="offerInfo"></div>
-<div class="alert alert-success" id="successMessage">✓ تم إرسال طلبك بنجاح! سيتواصل معك فريقنا قريباً.</div>
-<div class="alert alert-error" id="errorMessage">✗ حدث خطأ أثناء الإرسال، يرجى المحاولة مرة أخرى.</div>
+    <script>
+        const offersContainer = document.getElementById('offers-container');
+        const loader = document.getElementById('loader');
+        let offerIndex = 1;
+        let foundAny = false;
 
-<form class="contact-form" id="registrationForm" onsubmit="submitRegistration(event)">
-<div class="form-group">
-<label for="fullName">الاسم الكامل *</label>
-<input type="text" id="fullName" name="fullName" required placeholder="أدخل اسمك الكامل">
-</div>
+        function checkNextOffer() {
+            const img = new Image();
+            const currentIdx = offerIndex;
+            img.src = `offers/${currentIdx}.svg`;
 
-<div class="form-group">
-<label for="phone">رقم الهاتف *</label>
-<input type="tel" id="phone" name="phone" required placeholder="مثال: 967778005033">
-</div>
+            img.onload = () => {
+                foundAny = true;
+                loader.style.display = 'none';
+                
+                const card = document.createElement('div');
+                card.className = 'bg-white rounded-3xl shadow-lg overflow-hidden border border-slate-100 flex flex-col animate-fade-up';
+                card.style.animationDelay = `${currentIdx * 0.1}s`;
+                
+                card.innerHTML = `
+                    <div class="relative overflow-hidden group">
+                        <img src="offers/${currentIdx}.svg" alt="Offer ${currentIdx}" class="w-full h-auto transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-primary mb-3">عرض تدريبي رقم ${currentIdx}</h3>
+                            <p class="text-slate-600 text-sm mb-6">اكتشف تفاصيل هذا العرض المميز وبادر بالتسجيل للاستفادة من الخصم المتاح.</p>
+                        </div>
+                        <button onclick="registerInterest(${currentIdx})" class="btn btn-primary w-full">سجل اهتمامك الآن</button>
+                    </div>
+                `;
+                
+                offersContainer.appendChild(card);
+                offerIndex++;
+                if (offerIndex <= 10) checkNextOffer(); // نفحص حتى 10 عروض كمثال
+            };
 
-<div class="form-group">
-<label for="email">البريد الإلكتروني</label>
-<input type="email" id="email" name="email" placeholder="بريدك الإلكتروني (اختياري)">
-</div>
-
-<div class="form-group">
-<label for="message">ملاحظات إضافية</label>
-<textarea id="message" name="message" placeholder="أي استفسارات أو ملاحظات..."></textarea>
-</div>
-
-<div class="form-actions">
-<button type="submit" class="form-submit" id="submitBtn">✓ إرسال الطلب</button>
-<button type="button" class="whatsapp-submit" onclick="sendViaWhatsApp()">
-<span>💬</span> واتساب
-</button>
-</div>
-</form>
-</div>
-
-<!-- تبويب واتساب -->
-<div id="whatsapp-tab" class="tab-content">
-<div class="offer-info" id="offerInfoWhatsApp"></div>
-<p style="text-align: center; margin-bottom: 20px; color: #555;">
-اضغط الزر أدناه للتواصل مباشرة عبر واتساب
-</p>
-<button class="whatsapp-submit" onclick="sendViaWhatsApp()" style="width: 100%; justify-content: center;">
-<span>💬</span> فتح واتساب الآن
-</button>
-<p style="text-align: center; margin-top: 20px; font-size: 0.9rem; color: #999;">
-سيتم فتح تطبيق واتساب بشكل مباشر مع رسالة معدة مسبقاً
-</p>
-</div>
-</div>
-</div>
-
-<footer>
-<p>جميع الحقوق محفوظة © 2026 | تصميم وتطوير: يحيى المريسي</p>
-</footer>
-
-<script type="module">
-import { submitOfferRequest } from './firebase-config.js';
-
-// ─── إعدادات ───────────────────────────────────────────────────────────────
-const CENTER_WHATSAPP = '967778005033';
-
-// ─── متغيرات عامة ──────────────────────────────────────────────────────────
-const grid = document.getElementById('offers-grid');
-const statusContainer = document.getElementById('status-container');
-const modal = document.getElementById('registrationModal');
-let currentIndex = 1;
-let foundAnyOffer = false;
-let selectedOfferIndex = null;
-
-// ─── تحميل العروض ──────────────────────────────────────────────────────────
-function loadNextOffer() {
-    const img = new Image();
-    const currentOfferNum = currentIndex;
-    img.src = `offers/${currentOfferNum}.svg`;
-
-    img.onload = function() {
-        foundAnyOffer = true;
-        statusContainer.style.display = 'none';
-
-        const card = document.createElement('div');
-        card.className = 'offer-card';
-        card.setAttribute('data-offer-index', currentOfferNum);
-        card.appendChild(img);
-
-        const overlay = document.createElement('div');
-        overlay.className = 'offer-overlay';
-
-        const registerBtn = document.createElement('button');
-        registerBtn.className = 'register-btn';
-        registerBtn.innerHTML = '📝 التسجيل في هذا العرض';
-        registerBtn.onclick = (e) => {
-            e.preventDefault();
-            openRegistrationModal(currentOfferNum);
-        };
-
-        overlay.appendChild(registerBtn);
-        card.appendChild(overlay);
-        grid.appendChild(card);
-
-        currentIndex++;
-        loadNextOffer();
-    };
-
-    img.onerror = function() {
-        if (currentIndex < 50) {
-            currentIndex++;
-            loadNextOffer();
-        } else {
-            if (!foundAnyOffer) {
-                statusContainer.innerHTML = '<p>لا توجد عروض متاحة في الوقت الحالي، ترقبونا قريباً!</p>';
-            } else {
-                statusContainer.style.display = 'none';
-            }
+            img.onerror = () => {
+                if (offerIndex === 1) {
+                    loader.innerHTML = '<p class="text-slate-500">لا توجد عروض متاحة حالياً. تابعنا لتصلك أحدث المنح.</p>';
+                } else {
+                    loader.style.display = 'none';
+                }
+            };
         }
-    };
-}
 
-// ─── فتح/إغلاق Modal ───────────────────────────────────────────────────────
-function openRegistrationModal(offerIndex) {
-    selectedOfferIndex = offerIndex;
-    modal.classList.add('active');
-
-    const offerInfo = `العرض رقم: <strong>${offerIndex}</strong>`;
-    document.getElementById('offerInfo').innerHTML = offerInfo;
-    document.getElementById('offerInfoWhatsApp').innerHTML = offerInfo;
-
-    document.getElementById('registrationForm').reset();
-    document.getElementById('successMessage').classList.remove('show');
-    document.getElementById('errorMessage').classList.remove('show');
-
-    // التبويب الأول افتراضياً
-    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.modal-tab').forEach(b => b.classList.remove('active'));
-    document.getElementById('form-tab').classList.add('active');
-    document.querySelector('.modal-tab').classList.add('active');
-
-    setTimeout(() => document.getElementById('fullName').focus(), 300);
-}
-
-function closeRegistrationModal() {
-    modal.classList.remove('active');
-    selectedOfferIndex = null;
-}
-
-// ─── التبديل بين التبويبات ─────────────────────────────────────────────────
-function switchTab(tabName, btn) {
-    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.modal-tab').forEach(b => b.classList.remove('active'));
-    document.getElementById(tabName + '-tab').classList.add('active');
-    if (btn) btn.classList.add('active');
-}
-
-// ─── إرسال النموذج إلى Firebase ─────────────────────────────────────────────────
-async function submitRegistration(event) {
-    event.preventDefault();
-
-    const fullName = document.getElementById('fullName').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const notes = document.getElementById('message').value.trim();
-
-    const submitBtn = document.getElementById('submitBtn');
-    const successMsg = document.getElementById('successMessage');
-    const errorMsg = document.getElementById('errorMessage');
-
-    // إخفاء الرسائل السابقة
-    successMsg.classList.remove('show');
-    errorMsg.classList.remove('show');
-
-    // تعطيل الزر وإظهار spinner
-    submitBtn.disabled = true;
-    submitBtn.innerHTML = '<span class="btn-spinner"></span> جاري الإرسال...';
-
-    try {
-        const result = await submitOfferRequest({
-            offerIndex: selectedOfferIndex,
-            fullName,
-            phone,
-            email: email || null,
-            notes: notes || null
-        });
-
-        if (result.success) {
-            successMsg.classList.add('show');
-            document.getElementById('registrationForm').reset();
-
-            // إغلاق تلقائي بعد 3 ثوانٍ
-            setTimeout(() => {
-                successMsg.classList.remove('show');
-                closeRegistrationModal();
-            }, 3000);
-        } else {
-            errorMsg.textContent = '✗ حدث خطأ أثناء الإرسال';
-            errorMsg.classList.add('show');
+        function registerInterest(id) {
+            const msg = `مرحباً مركز الأمجاد، أود الاستفسار والتسجيل في العرض رقم: ${id}`;
+            window.open(`https://wa.me/967778005033?text=${encodeURIComponent(msg)}`, '_blank');
         }
-    } catch (err) {
-        console.error('Submit error:', err);
-        errorMsg.textContent = '✗ تعذّر الاتصال بقاعدة البيانات، يرجى التحقق من اتصالك بالإنترنت.';
-        errorMsg.classList.add('show');
-    } finally {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = '✓ إرسال الطلب';
-    }
-}
 
-// ─── إرسال عبر واتساب ──────────────────────────────────────────────────────
-function sendViaWhatsApp() {
-    const fullName = document.getElementById('fullName').value || 'زائر';
-    const phone = document.getElementById('phone').value || 'لم يتم تحديده';
-    const email = document.getElementById('email').value || 'لم يتم تحديده';
-
-    const message = `مرحباً! 👋\n\nأود التسجيل في العرض رقم ${selectedOfferIndex}\n\n📋 بيانات المستخدم:\n• الاسم: ${fullName}\n• الهاتف: ${phone}\n• البريد: ${email}\n\nشكراً لكم! 🙏`;
-    const encodedMessage = encodeURIComponent(message);
-    window.open(`https://wa.me/${CENTER_WHATSAPP}?text=${encodedMessage}`, '_blank');
-
-    setTimeout(() => closeRegistrationModal(), 500);
-}
-
-// ──أحداث ─────────────────────────────────────────────────────────────
-modal.addEventListener('click', function(event) {
-    if (event.target === modal) closeRegistrationModal();
-});
-
-window.openRegistrationModal = openRegistrationModal;
-window.closeRegistrationModal = closeRegistrationModal;
-window.switchTab = switchTab;
-window.submitRegistration = submitRegistration;
-window.sendViaWhatsApp = sendViaWhatsApp;
-
-document.addEventListener('keydown', function(event) {
-    if (event.key === 'Escape' && modal.classList.contains('active')) closeRegistrationModal();
-});
-
-	window.onload = loadNextOffer;
-	window.openRegistrationModal = openRegistrationModal;
-	window.closeRegistrationModal = closeRegistrationModal;
-	window.switchTab = switchTab;
-	window.submitRegistration = submitRegistration;
-	window.sendViaWhatsApp = sendViaWhatsApp;
-	</script>
-
+        window.onload = checkNextOffer;
+    </script>
 </body>
 </html>

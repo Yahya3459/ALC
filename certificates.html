@@ -1,745 +1,122 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>طلب شهادة | مركز الأمجاد</title>
-<style>
-:root {
---blue: #0f5bb7;
---blue-dark: #0b3f86;
---text: #333333;
---success: #27ae60;
---warning: #f39c12;
---error: #e74c3c;
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-body {
-font-family: Tahoma, Arial, sans-serif;
-background: radial-gradient(circle at top, #eef5ff 0%, #f8fbff 40%, #f5f7fa 100%);
-color: var(--text);
-min-height: 100vh;
-line-height: 1.6;
-}
-
-header {
-background: linear-gradient(135deg, #0f5bb7 0%, #1762c6 100%);
-color: white;
-text-align: center;
-padding: 60px 20px 40px;
-border-bottom-left-radius: 40px;
-border-bottom-right-radius: 40px;
-box-shadow: 0 10px 30px rgba(15, 91, 183, 0.15);
-position: relative;
-}
-
-.back-btn {
-position: absolute;
-top: 20px;
-right: 20px;
-background: rgba(255,255,255,0.2);
-color: white;
-text-decoration: none;
-padding: 8px 16px;
-border-radius: 20px;
-font-size: 0.9rem;
-font-weight: bold;
-transition: background 0.3s ease;
-display: flex;
-align-items: center;
-gap: 5px;
-}
-
-.back-btn:hover { background: rgba(255,255,255,0.3); }
-
-header h1 { font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 10px; }
-
-.container {
-max-width: 700px;
-margin: 50px auto;
-padding: 0 20px;
-background: white;
-border-radius: 28px;
-box-shadow: 0 20px 40px rgba(15,91,183,0.08);
-padding: 40px;
-}
-
-.form-group {
-margin-bottom: 25px;
-position: relative;
-}
-
-.form-group label {
-display: block;
-margin-bottom: 10px;
-font-weight: 600;
-color: var(--blue-dark);
-font-size: 0.95rem;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-width: 100%;
-padding: 12px 16px;
-border: 2px solid rgba(15,91,183,0.1);
-border-radius: 12px;
-font-family: inherit;
-font-size: 1rem;
-transition: all 0.3s ease;
-background: white;
-color: var(--text);
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-outline: none;
-border-color: #0F5BB7;
-box-shadow: 0 0 0 3px rgba(15,91,183,0.1);
-}
-
-.form-group input.invalid {
-border-color: var(--error);
-background-color: rgba(231, 76, 60, 0.05);
-animation: shake 0.4s ease-in-out;
-}
-
-@keyframes shake {
-0%, 100% { transform: translateX(0); }
-25% { transform: translateX(-5px); }
-75% { transform: translateX(5px); }
-}
-
-.error-hint {
-color: var(--error);
-font-size: 0.8rem;
-margin-top: 5px;
-display: none;
-font-weight: 600;
-}
-
-.input-hint {
-color: #666;
-font-size: 0.8rem;
-margin-top: 5px;
-display: block;
-}
-
-.form-row {
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 20px;
-}
-
-@media (max-width: 600px) {
-.form-row { grid-template-columns: 1fr; }
-}
-
-.form-actions {
-display: flex;
-gap: 15px;
-margin-top: 30px;
-}
-
-.form-submit,
-.form-cancel {
-flex: 1;
-padding: 14px 20px;
-border: none;
-border-radius: 12px;
-font-size: 1rem;
-font-weight: 700;
-cursor: pointer;
-transition: transform 0.25s ease, box-shadow 0.25s ease;
-display: flex;
-align-items: center;
-justify-content: center;
-gap: 8px;
-}
-
-.form-submit {
-background: linear-gradient(90deg, #0F5BB7 0%, #1762c6 100%);
-color: white;
-box-shadow: 0 14px 25px rgba(15,91,183,0.2);
-}
-
-.form-submit:hover { transform: translateY(-2px); box-shadow: 0 18px 35px rgba(15,91,183,0.3); }
-.form-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
-
-.form-cancel {
-background: #f0f2f5;
-color: var(--text);
-}
-
-.form-cancel:hover { background: #e0e2e5; }
-
-.alert {
-border-radius: 12px;
-padding: 14px 16px;
-margin-bottom: 20px;
-font-weight: 600;
-text-align: center;
-display: none;
-animation: slideDown 0.3s ease;
-white-space: pre-wrap;
-}
-
-.alert.show { display: block; }
-
-.alert-success {
-background: rgba(39, 174, 96, 0.1);
-border: 2px solid var(--success);
-color: var(--success);
-}
-
-.alert-error {
-background: rgba(231, 76, 60, 0.1);
-border: 2px solid #e74c3c;
-color: #e74c3c;
-}
-
-.btn-spinner {
-display: inline-block;
-width: 16px; height: 16px;
-border: 2px solid rgba(255,255,255,0.4);
-border-top-color: white;
-border-radius: 50%;
-animation: spin 0.8s linear infinite;
-}
-
-@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-@keyframes slideDown { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
-
-footer {
-background: rgba(15, 91, 183, 0.95);
-color: white;
-text-align: center;
-padding: 25px 20px;
-margin-top: 60px;
-font-size: 0.95rem;
-}
-
-.info-box {
-background: rgba(15,91,183,0.05);
-border-right: 4px solid var(--blue);
-padding: 15px;
-border-radius: 8px;
-margin-bottom: 25px;
-font-size: 0.9rem;
-color: var(--blue-dark);
-}
-
-.suggestions {
-position: absolute;
-z-index: 20;
-left: 0;
-right: 0;
-top: calc(100% + 6px);
-background: white;
-border: 1px solid rgba(15,91,183,0.15);
-border-radius: 12px;
-box-shadow: 0 10px 20px rgba(0,0,0,0.08);
-max-height: 220px;
-overflow-y: auto;
-padding: 6px;
-display: none;
-}
-
-.suggestion-item {
-width: 100%;
-text-align: right;
-padding: 10px 12px;
-border: none;
-border-radius: 8px;
-background: white;
-color: var(--text);
-cursor: pointer;
-font-size: 0.95rem;
-}
-
-.suggestion-item:hover {
-background: rgba(15,91,183,0.08);
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>طلب شهادة | مركز الأمجاد للغات والتدريب</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="bg-slate-50">
 
-<header>
-<a href="index.html" class="back-btn"><span>&rarr;</span> العودة للرئيسية</a>
-<h1>طلب شهادة</h1>
-<p style="color: rgba(255,255,255,0.9);">قدم طلب شهادة إكمال الدورة التدريبية</p>
-</header>
+    <header class="h-48 flex items-center justify-center">
+        <div class="header-logo-container">
+            <a href="index.html">
+                <img src="1.svg" alt="شعار مركز الأمجاد" class="logo-center w-48">
+            </a>
+        </div>
+    </header>
 
-<div class="container">
-<div class="info-box">
-📋 يرجى ملء جميع البيانات بدقة كما تظهر في بطاقتك الشخصية أو جواز السفر
-</div>
+    <main class="container -mt-10 relative z-10 pb-20">
+        <div class="bg-white rounded-3xl shadow-xl p-8 max-w-3xl mx-auto animate-fade-up">
+            <h1 class="text-3xl font-extrabold text-primary mb-2 text-center">طلب إصدار شهادة</h1>
+            <p class="text-slate-500 text-center mb-8">يرجى تعبئة البيانات بدقة كما هي في البطاقة الشخصية</p>
 
-<div class="alert alert-success" id="successMessage">✓ تم إرسال طلب الشهادة بنجاح! سيتم معالجة طلبك قريباً.</div>
-<div class="alert alert-error" id="errorMessage">✗ حدث خطأ أثناء الإرسال، يرجى المحاولة مرة أخرى.</div>
+            <form id="certificateForm" onsubmit="handleCertificateSubmit(event)" class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="form-group">
+                        <label for="fullNameAr">الاسم باللغة العربية *</label>
+                        <input type="text" id="fullNameAr" class="form-control" placeholder="أدخل اسمك الرباعي" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="fullNameEn">الاسم باللغة الإنجليزية *</label>
+                        <input type="text" id="fullNameEn" class="form-control" placeholder="Full Name in English" required>
+                    </div>
+                </div>
 
-<form id="certificateForm" onsubmit="handleCertificateSubmit(event)">
-<!-- اختيار الدورة -->
-<div class="form-group">
-<label for="courseName">اسم الدورة </label>
-<select id="courseName" name="courseName" required onchange="toggleOtherCourse(this.value)">
-<option value="">-- اختر الدورة --</option>
-<option value="TOEFL">شهادة اختبار التوفل (TOEFL)</option>
-<option value="ICDL">الرخصة الدولية في الحاسوب (ICDL)</option>
-<option value="GRAPHICS">دبلوم جرافيكس</option>
-<option value="DIPLOMA_ADVANCED">دبلوم اللغة الإنجليزية - متقدم</option>
-<option value="DIPLOMA_INTERMEDIATE">دبلوم اللغة الإنجليزية - متوسط</option>
-<option value="DIPLOMA_ELEMENTARY">دبلوم اللغة الإنجليزية - مبتدئ</option>
-<option value="other">أخرى (اكتب اسم الشهادة)</option>
-</select>
-</div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="form-group">
+                        <label for="phone">رقم الهاتف *</label>
+                        <input type="tel" id="phone" class="form-control" placeholder="777 000 000" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="courseName">اسم الدورة التدريبية *</label>
+                        <input type="text" id="courseName" class="form-control" placeholder="مثال: لغة إنجليزية - مستوى أول" required>
+                    </div>
+                </div>
 
-<!-- حقل اسم الشهادة الأخرى -->
-<div class="form-group" id="otherCourseGroup" style="display: none;">
-<label for="otherCourseName">اسم الشهادة المطلوبة </label>
-<input type="text" id="otherCourseName" name="otherCourseName" placeholder="اكتب اسم الشهادة هنا">
-</div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="form-group">
+                        <label for="birthPlace">مكان الميلاد</label>
+                        <input type="text" id="birthPlace" class="form-control" placeholder="المحافظة/المديرية">
+                    </div>
+                    <div class="form-group">
+                        <label for="birthDate">تاريخ الميلاد</label>
+                        <input type="date" id="birthDate" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">الجنس</label>
+                        <select id="gender" class="form-control">
+                            <option value="ذكر">ذكر</option>
+                            <option value="أنثى">أنثى</option>
+                        </select>
+                    </div>
+                </div>
 
-<!-- الأسماء -->
-<div class="form-group">
-<label for="fullNameAr">الاسم الرباعي (عربي) </label>
-<input type="text" id="fullNameAr" name="fullNameAr" required placeholder="مثال: محمد علي أحمد حسن" oninput="validateArabicName(this)">
-<span class="error-hint" id="fullNameArError">يجب كتابة الاسم الرباعي باللغة العربية فقط</span>
-</div>
+                <div class="bg-blue-50 p-6 rounded-2xl border border-blue-100 mb-6">
+                    <p class="text-sm text-blue-800 leading-relaxed">
+                        <strong>ملاحظة:</strong> بعد إرسال الطلب، سيقوم فريقنا بمراجعة البيانات والتواصل معك لاستكمال إجراءات استلام الشهادة. قد يتطلب الأمر دفع رسوم الإصدار المقررة.
+                    </p>
+                </div>
 
-<div class="form-group">
-<label for="fullNameEn">الاسم الرباعي (إنجليزي) </label>
-<input type="text" id="fullNameEn" name="fullNameEn" required placeholder="مثال: Mohammed Ali Ahmed Hassan" oninput="validateEnglishName(this)">
-<span class="input-hint">يرجى كتابة الاسم بشكل صحيح مطابق لجواز السفر</span>
-<span class="error-hint" id="fullNameEnError">يجب كتابة الاسم الرباعي باللغة الإنجليزية فقط</span>
-</div>
+                <button type="submit" id="submitBtn" class="btn btn-primary w-full py-4 text-lg">
+                    إرسال طلب الشهادة
+                </button>
+            </form>
+        </div>
+    </main>
 
-<!-- رقم الهاتف -->
-<div class="form-group">
-<label for="phone">رقم الهاتف </label>
-<input type="tel" id="phone" name="phone" required placeholder="مثال: 771234567" inputmode="tel" maxlength="13" autocomplete="tel" oninput="formatPhoneNumber(this)">
-<span class="input-hint">سيتم إضافة +967 تلقائياً</span>
-<span class="error-hint" id="phoneError">يرجى إدخال رقم هاتف يمني صحيح يبدأ بـ +967 ويحتوي على 9 أرقام</span>
-</div>
+    <footer class="bg-primary-dark text-white text-center py-8">
+        <p>جميع الحقوق محفوظة &copy; 2026 | مركز الأمجاد للغات والتدريب</p>
+    </footer>
 
-<!-- محل الميلاد وتاريخ الميلاد -->
-<div class="form-row">
-<div class="form-group" id="birthPlaceGroup">
-<label for="birthPlace">محل الميلاد </label>
-<div style="position: relative;">
-<input type="text" id="birthPlace" name="birthPlace" required placeholder="اكتب اسم المحافظة" autocomplete="off" oninput="filterBirthPlaces(this.value)">
-<div id="birthPlaceSuggestions" class="suggestions"></div>
-</div>
-<span class="input-hint">اكتب اسم المحافظة ثم اخترها من القائمة</span>
-</div>
-<div class="form-group">
-<label for="birthDate">تاريخ الميلاد </label>
-<input type="text" id="birthDate" name="birthDate" required placeholder="مثال: 1990/01/01" inputmode="numeric" oninput="formatBirthDate(this)">
-<button type="button" id="toggleDatePickerBtn" onclick="toggleBirthDatePicker()" style="margin-top:8px; padding:6px 10px; border:1px solid #ccc; border-radius:6px; background:#f8f8f8; cursor:pointer;">اختيار من القوائم</button>
-<div id="birthDatePicker" style="display:none; margin-top:8px; gap:8px; flex-wrap:wrap;">
-  <select id="birthDay" onchange="updateBirthDateFromParts()" style="min-width:80px;">
-    <option value="">اليوم</option>
-  </select>
-  <select id="birthMonth" onchange="updateBirthDateFromParts()" style="min-width:90px;">
-    <option value="">الشهر</option>
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-    <option value="6">6</option>
-    <option value="7">7</option>
-    <option value="8">8</option>
-    <option value="9">9</option>
-    <option value="10">10</option>
-    <option value="11">11</option>
-    <option value="12">12</option>
-  </select>
-  <select id="birthYear" onchange="updateBirthDateFromParts()" style="min-width:95px;">
-    <option value="">السنة</option>
-  </select>
-</div>
-<span class="input-hint">اكتب التاريخ يدويًا أو اضغط على الزر لاختيار اليوم والشهر والسنة</span>
-</div>
-</div>
+    <script type="module">
+        import { submitCertificateRequest } from './firebase-config.js';
 
-<!-- الجنس -->
-<div class="form-group">
-<label for="gender">الجنس </label>
-<select id="gender" name="gender" required>
-<option value="">-- اختر --</option>
-<option value="male">ذكر</option>
-<option value="female">أنثى</option>
-</select>
-</div>
+        window.handleCertificateSubmit = async (event) => {
+            event.preventDefault();
+            const submitBtn = document.getElementById('submitBtn');
+            const originalText = submitBtn.innerText;
 
-<!-- الأزرار -->
-<div class="form-actions">
-<button type="submit" class="form-submit" id="submitBtn">✓ إرسال الطلب</button>
-<button type="button" class="form-cancel" onclick="window.history.back()">← إلغاء</button>
-</div>
-</form>
-</div>
+            const data = {
+                fullNameAr: document.getElementById('fullNameAr').value,
+                fullNameEn: document.getElementById('fullNameEn').value,
+                phone: document.getElementById('phone').value,
+                courseName: document.getElementById('courseName').value,
+                birthPlace: document.getElementById('birthPlace').value,
+                birthDate: document.getElementById('birthDate').value,
+                gender: document.getElementById('gender').value
+            };
 
-<footer>
-<p>جميع الحقوق محفوظة © 2026 | تصميم وتطوير: يحيى المريسي</p>
-</footer>
+            submitBtn.disabled = true;
+            submitBtn.innerText = 'جاري المعالجة...';
 
-<script type="module">
-	import { submitCertificateRequest, submitOfferRequest } from './firebase-config.js'; 
-
-function validateArabicName(input) {
-    const value = input.value.trim();
-    const arabicRegex = /^[\u0600-\u06FF\s]+$/;
-    const errorHint = document.getElementById('fullNameArError');
-    
-    if (value && !arabicRegex.test(value)) {
-        input.classList.add('invalid');
-        errorHint.style.display = 'block';
-    } else {
-        input.classList.remove('invalid');
-        errorHint.style.display = 'none';
-    }
-}
-
-function validateEnglishName(input) {
-    const value = input.value.trim();
-    const englishRegex = /^[A-Za-z\s'-]+$/;
-    const errorHint = document.getElementById('fullNameEnError');
-    
-    if (value && !englishRegex.test(value)) {
-        input.classList.add('invalid');
-        errorHint.style.display = 'block';
-    } else {
-        input.classList.remove('invalid');
-        errorHint.style.display = 'none';
-    }
-}
-
-function toggleOtherCourse(value) {
-    const otherGroup = document.getElementById('otherCourseGroup');
-    const otherInput = document.getElementById('otherCourseName');
-    if (value === 'other') {
-        otherGroup.style.display = 'block';
-        otherInput.required = true;
-    } else {
-        otherGroup.style.display = 'none';
-        otherInput.required = false;
-    }
-}
-
-function setBirthDateLimits() {
-    const birthDateInput = document.getElementById('birthDate');
-    birthDateInput.removeAttribute('min');
-    birthDateInput.removeAttribute('max');
-
-    const yearSelect = document.getElementById('birthYear');
-    const currentYear = new Date().getFullYear();
-    for (let year = currentYear; year >= 1900; year--) {
-        const option = document.createElement('option');
-        option.value = year;
-        option.textContent = year;
-        yearSelect.appendChild(option);
-    }
-
-    const daySelect = document.getElementById('birthDay');
-    for (let day = 1; day <= 31; day++) {
-        const option = document.createElement('option');
-        option.value = day;
-        option.textContent = day;
-        daySelect.appendChild(option);
-    }
-}
-
-function toggleBirthDatePicker() {
-    const picker = document.getElementById('birthDatePicker');
-    const button = document.getElementById('toggleDatePickerBtn');
-    const isHidden = picker.style.display === 'none';
-    picker.style.display = isHidden ? 'flex' : 'none';
-    button.textContent = isHidden ? 'إخفاء القوائم' : 'اختيار من القوائم';
-}
-
-function updateBirthDateFromParts() {
-    const year = document.getElementById('birthYear').value;
-    const month = document.getElementById('birthMonth').value;
-    const day = document.getElementById('birthDay').value;
-    const birthDateInput = document.getElementById('birthDate');
-
-    if (year && month && day) {
-        birthDateInput.value = `${year}/${String(month).padStart(2, '0')}/${String(day).padStart(2, '0')}`;
-        validateBirthDate(birthDateInput);
-    } else if (year && month) {
-        birthDateInput.value = `${year}/${String(month).padStart(2, '0')}`;
-    } else if (year) {
-        birthDateInput.value = year;
-    }
-}
-
-function syncBirthDateDropdownsFromInput(input) {
-    const value = input.value.trim();
-    const parts = value.split('/').filter(Boolean);
-
-    if (parts.length >= 3) {
-        document.getElementById('birthYear').value = parts[0];
-        document.getElementById('birthMonth').value = String(parts[1]).padStart(2, '0').replace(/^0/, '');
-        document.getElementById('birthDay').value = String(parts[2]).padStart(2, '0').replace(/^0/, '');
-    }
-}
-
-function formatBirthDate(input) {
-    const raw = input.value.replace(/[^\d/]/g, '');
-    const parts = raw.split('/');
-
-    if (parts[0]) {
-        parts[0] = parts[0].slice(0, 4);
-    }
-    if (parts[1]) {
-        parts[1] = parts[1].slice(0, 2);
-    }
-    if (parts[2]) {
-        parts[2] = parts[2].slice(0, 2);
-    }
-
-    input.value = parts.slice(0, 3).join('/');
-    validateBirthDate(input);
-}
-
-function validateBirthDate(input) {
-    const value = input.value.trim();
-    if (!value) {
-        input.classList.remove('invalid');
-        return;
-    }
-
-    const parts = value.split(/[/.]/).filter(Boolean);
-    if (parts.length < 3) {
-        input.classList.add('invalid');
-        return;
-    }
-
-    const year = Number(parts[0]);
-    const month = Number(parts[1]);
-    const day = Number(parts[2]);
-    const isValidDate = Number.isInteger(year) && Number.isInteger(month) && Number.isInteger(day) &&
-        month >= 1 && month <= 12 && day >= 1 && day <= 31;
-
-    if (!isValidDate) {
-        input.classList.add('invalid');
-        return;
-    }
-
-    const selectedDate = new Date(year, month - 1, day);
-    const today = new Date();
-    const isRealDate = selectedDate.getFullYear() === year &&
-        selectedDate.getMonth() === month - 1 &&
-        selectedDate.getDate() === day;
-    const isFuture = selectedDate > today;
-
-    input.classList.toggle('invalid', !isRealDate || isFuture);
-
-    if (isRealDate) {
-        input.value = `${year}/${String(month).padStart(2, '0')}/${String(day).padStart(2, '0')}`;
-        syncBirthDateDropdownsFromInput(input);
-    }
-}
-
-function formatPhoneNumber(input) {
-    let digits = input.value.replace(/\D/g, '');
-
-    if (digits.startsWith('967')) {
-        digits = digits.slice(3);
-    } else if (digits.startsWith('0')) {
-        digits = digits.slice(1);
-    }
-
-    digits = digits.slice(0, 9);
-    input.value = digits ? `+967${digits}` : '';
-    validatePhoneNumber(input);
-}
-
-function validatePhoneNumber(input) {
-    const value = input.value.trim();
-    const errorHint = document.getElementById('phoneError');
-    const isValid = /^\+967(70|71|73|77|78)\d{7}$/.test(value);
-
-    if (value && !isValid) {
-        input.classList.add('invalid');
-        errorHint.style.display = 'block';
-    } else {
-        input.classList.remove('invalid');
-        errorHint.style.display = 'none';
-    }
-}
-
-const governorates = [
-    'صنعاء','عدن','تعز','إب','الحديدة','ذمار','حضرموت','المكلاء','شبوة','مأرب','البيضاء','عمران','الجوف','الضالع','ريمة','صعدة','مارب','لحج','سقطرى'
-];
-
-function filterBirthPlaces(query) {
-    const suggestions = document.getElementById('birthPlaceSuggestions');
-    const value = (query || '').trim();
-
-    if (!value) {
-        suggestions.style.display = 'none';
-        suggestions.innerHTML = '';
-        return;
-    }
-
-    const filtered = governorates.filter(item => item.includes(value));
-    if (!filtered.length) {
-        suggestions.style.display = 'none';
-        suggestions.innerHTML = '';
-        return;
-    }
-
-    suggestions.innerHTML = filtered.map(item => `<button type="button" class="suggestion-item" onclick="selectBirthPlace('${item.replace(/'/g, "\\'")}', this)">${item}</button>`).join('');
-    suggestions.style.display = 'block';
-}
-
-function selectBirthPlace(value) {
-    document.getElementById('birthPlace').value = value;
-    document.getElementById('birthPlaceSuggestions').style.display = 'none';
-}
-
-function hideBirthPlaceSuggestions(event) {
-    const suggestions = document.getElementById('birthPlaceSuggestions');
-    const group = document.getElementById('birthPlaceGroup');
-    if (!group.contains(event.target)) {
-        suggestions.style.display = 'none';
-    }
-}
-
-function isChildCourse(courseName) {
-    return /\b(طفل|أطفال|child|children|kids|الطفل الذكي|smart child|smart children)\b/i.test(courseName);
-}
-
-async function handleCertificateSubmit(event) {
-    event.preventDefault();
-    
-    const fullNameAr = document.getElementById('fullNameAr').value.trim();
-    const fullNameEn = document.getElementById('fullNameEn').value.trim();
-    
-    // Check if names are quad (at least 4 words)
-    const arWords = fullNameAr.split(/\s+/).filter(w => w.length > 0);
-    const enWords = fullNameEn.split(/\s+/).filter(w => w.length > 0);
-    
-    if (arWords.length < 4) {
-        alert('يرجى كتابة الاسم الرباعي باللغة العربية');
-        return;
-    }
-    if (enWords.length < 4) {
-        alert('Please enter your full name (4 parts) in English');
-        return;
-    }
-
-    // Check for language errors before submit
-    if (document.getElementById('fullNameAr').classList.contains('invalid') || 
-        document.getElementById('fullNameEn').classList.contains('invalid')) {
-        alert('يرجى تصحيح الأخطاء في الأسماء قبل الإرسال');
-        return;
-    }
-
-    let courseName = document.getElementById('courseName').value;
-    if (courseName === 'other') {
-        courseName = document.getElementById('otherCourseName').value.trim();
-    }
-    
-    const phoneInput = document.getElementById('phone');
-    formatPhoneNumber(phoneInput);
-    const phone = phoneInput.value.trim();
-    const birthPlace = document.getElementById('birthPlace').value.trim();
-    const birthDate = document.getElementById('birthDate').value;
-    const gender = document.getElementById('gender').value;
-    
-    if (!/^\+967(70|71|73|77|78)\d{7}$/.test(phone)) {
-        validatePhoneNumber(phoneInput);
-        alert('يرجى إدخال رقم هاتف يمني صحيح يبدأ بـ +967');
-        return;
-    }
-
-    if (!birthDate) {
-        alert('يرجى اختيار تاريخ الميلاد');
-        return;
-    }
-
-    const selectedDate = new Date(birthDate);
-    const today = new Date();
-    const age = today.getFullYear() - selectedDate.getFullYear() - ((today.getMonth() < selectedDate.getMonth() || (today.getMonth() === selectedDate.getMonth() && today.getDate() < selectedDate.getDate())) ? 1 : 0);
-
-    if (selectedDate > today) {
-        alert('تاريخ الميلاد لا يمكن أن يكون في المستقبل');
-        return;
-    }
-
-    if (!isChildCourse(courseName) && age < 10) {
-        alert('يجب أن يكون عمر المتقدم 10 سنوات على الأقل لهذه الدورة');
-        return;
-    }
-    
-    const submitBtn = document.getElementById('submitBtn');
-    const successMsg = document.getElementById('successMessage');
-    const errorMsg = document.getElementById('errorMessage');
-    
-    successMsg.classList.remove('show');
-    errorMsg.classList.remove('show');
-    
-    submitBtn.disabled = true;
-    submitBtn.innerHTML = '<span class="btn-spinner"></span> جاري الإرسال...';
-    
-        try {
-            const result = await submitCertificateRequest({
-                courseName,
-                fullNameAr,
-                fullNameEn,
-                phone,
-                birthPlace,
-                birthDate,
-                gender
-            });
-
-            // إرسال نسخة إلى الواتساب كرسالة تأكيدية
-            const whatsappMessage = `طلب شهادة جديد\nالدورة: ${courseName}\nالاسم (عربي): ${fullNameAr}\nالاسم (إنجليزي): ${fullNameEn}\nالهاتف: ${phone}\nمحل الميلاد: ${birthPlace}\nتاريخ الميلاد: ${birthDate}\nالجنس: ${gender}`;
-            const whatsappUrl = `https://wa.me/967778005033?text=${encodeURIComponent(whatsappMessage)}`;
-            window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
-        
-        if (result.success) {
-            successMsg.classList.add('show');
-            document.getElementById('certificateForm').reset();
-            setTimeout(() => {
-                successMsg.classList.remove('show');
-                window.location.href = 'index.html';
-            }, 3000);
-        } else {
-            errorMsg.textContent = '✗ حدث خطأ أثناء الإرسال';
-            errorMsg.classList.add('show');
-        }
-    } catch (err) {
-        console.error('Submit error:', err);
-        errorMsg.textContent = '✗ تعذّر الاتصال بقاعدة البيانات:\n' + (err.message || 'خطأ غير معروف');
-        errorMsg.classList.add('show');
-    } finally {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = '✓ إرسال الطلب';
-    }
-}
-
-setBirthDateLimits();
-document.addEventListener('click', hideBirthPlaceSuggestions);
-window.validateArabicName = validateArabicName;
-window.validateEnglishName = validateEnglishName;
-window.toggleOtherCourse = toggleOtherCourse;
-window.formatPhoneNumber = formatPhoneNumber;
-window.validateBirthDate = validateBirthDate;
-window.formatBirthDate = formatBirthDate;
-window.updateBirthDateFromParts = updateBirthDateFromParts;
-window.toggleBirthDatePicker = toggleBirthDatePicker;
-window.filterBirthPlaces = filterBirthPlaces;
-window.selectBirthPlace = selectBirthPlace;
-window.handleCertificateSubmit = handleCertificateSubmit;
-</script>
-
+            try {
+                await submitCertificateRequest(data);
+                
+                const msg = `طلب شهادة جديد\nالاسم (عربي): ${data.fullNameAr}\nالاسم (إنجليزي): ${data.fullNameEn}\nالدورة: ${data.courseName}\nالهاتف: ${data.phone}`;
+                window.open(`https://wa.me/967778005033?text=${encodeURIComponent(msg)}`, '_blank');
+                
+                alert('تم استلام طلبك بنجاح! سيتم التواصل معك قريباً.');
+                event.target.reset();
+            } catch (error) {
+                alert('حدث خطأ. يرجى المحاولة مرة أخرى أو التواصل معنا مباشرة.');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerText = originalText;
+            }
+        };
+    </script>
 </body>
 </html>
