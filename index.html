@@ -170,6 +170,19 @@
     .form-message.success { background: #eaf9ef; color: #15733d; }
     .form-message.error { background: #fff0f0; color: #ac2d2d; }
 
+    .journey-section { padding-top: 10px; background: var(--white); }
+    .journey-heading { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 30px; }
+    .journey-heading .section-heading { margin-bottom: 0; }
+    .journey-note { max-width: 235px; padding: 15px 17px; border-right: 3px solid var(--gold); border-radius: 14px; background: #fff9dc; color: var(--navy); font-size: .78rem; line-height: 1.8; }
+    .journey-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; counter-reset: journey; }
+    .journey-card { position: relative; min-height: 190px; padding: 23px 23px 21px; border: 1px solid var(--line); border-radius: 22px; background: #fbfcff; overflow: hidden; counter-increment: journey; }
+    .journey-card::before { content: counter(journey, decimal-leading-zero); position: absolute; top: -14px; left: 18px; color: rgba(17,103,196,.08); font-size: 6rem; font-weight: 900; line-height: 1; }
+    .journey-card > * { position: relative; z-index: 1; }
+    .journey-step { display: inline-flex; align-items: center; gap: 7px; margin-bottom: 16px; color: var(--blue); font-size: .76rem; font-weight: 800; }
+    .journey-step::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 5px rgba(247,212,59,.18); }
+    .journey-card h3 { margin: 0 0 7px; color: var(--navy); font-size: 1.03rem; }
+    .journey-card p { margin: 0; color: var(--muted); font-size: .82rem; }
+    .mobile-cta { display: none; }
     .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s var(--ease), transform .6s var(--ease); }
     .reveal.visible { opacity: 1; transform: translateY(0); }
     @keyframes reveal { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
@@ -195,9 +208,14 @@
       .trust-inner { grid-template-columns: 1fr; }
       .trust-item + .trust-item { border-right: 0; border-top: 1px solid var(--line); }
       .section { padding: 75px 0; }
-      .benefits, .programs-grid { grid-template-columns: 1fr; }
+      .benefits, .programs-grid, .journey-grid { grid-template-columns: 1fr; }
+      .journey-heading { align-items: flex-start; flex-direction: column; gap: 14px; }
+      .journey-note { max-width: 100%; }
       .program-card { min-height: 270px; }
       .social-grid { grid-template-columns: repeat(2, 1fr); }
+      .mobile-cta { position: fixed; z-index: 19; right: 12px; bottom: 12px; left: 12px; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 9px 10px 9px 14px; border: 1px solid rgba(255,255,255,.2); border-radius: 15px; background: rgba(8,31,73,.94); box-shadow: 0 15px 36px rgba(8,31,73,.24); color: var(--white); backdrop-filter: blur(15px); }
+      .mobile-cta span { font-size: .78rem; font-weight: 700; }
+      .mobile-cta a { display: inline-flex; align-items: center; justify-content: center; min-height: 39px; padding: 8px 14px; border-radius: 10px; background: var(--gold); color: var(--navy); font-size: .78rem; font-weight: 900; }
       .footer-main, .footer-bottom { align-items: flex-start; flex-direction: column; }
       .form-grid { grid-template-columns: 1fr; gap: 0; }
       .form-group.full { grid-column: auto; }
@@ -232,6 +250,8 @@
 
     <section class="section programs-section" id="programs"><div class="container"><div class="section-heading reveal"><span class="eyebrow">مساراتك تبدأ باختيارك</span><h2>اختر المهارة التي تريد تطويرها</h2><p>تصفح خدماتنا الأساسية، ثم تواصل معنا لنساعدك في تحديد البرنامج الأنسب لك.</p></div><div class="programs-grid"><article class="program-card featured reveal"><div class="program-number"><span>المسار 01</span><span>01</span></div><h3>اللغة الإنجليزية</h3><p>طوّر مهاراتك في المحادثة والفهم والكتابة ضمن مسار يناسب مستواك وأهدافك.</p><a class="program-link" href="#register" data-open-modal>اطلب تفاصيل البرنامج <span>←</span></a></article><article class="program-card reveal"><div class="program-number"><span>المسار 02</span><span>02</span></div><h3>الحاسوب والمهارات الرقمية</h3><p>اكتسب أساسيات عملية تساعدك في الدراسة والعمل وتزيد من جاهزيتك للفرص القادمة.</p><a class="program-link" href="#register" data-open-modal>استفسر عن البرامج <span>←</span></a></article><article class="program-card reveal"><div class="program-number"><span>المسار 03</span><span>03</span></div><h3>برامج تدريبية متنوعة</h3><p>تعرّف على عروضنا الحالية والبرامج المتاحة، واختر ما يطابق احتياجك الآن.</p><a class="program-link" href="offers.html">شاهد العروض الحالية <span>←</span></a></article></div></div></section>
 
+    <section class="section journey-section" aria-labelledby="journeyTitle"><div class="container"><div class="journey-heading"><div class="section-heading reveal"><span class="eyebrow">بداية واضحة بلا تعقيد</span><h2 id="journeyTitle">من الاستفسار إلى الإنجاز في ثلاث خطوات</h2><p>نرتب لك الطريق حتى تعرف ما الذي سيحدث بعد أول تواصل مع المركز.</p></div><div class="journey-note reveal">لا تعرف أي برنامج يناسبك؟ ابدأ بالاستفسار، وسيساعدك فريقنا في الاختيار.</div></div><div class="journey-grid"><article class="journey-card reveal"><span class="journey-step">الخطوة الأولى</span><h3>تواصل معنا</h3><p>أرسل بياناتك أو ابدأ محادثة عبر واتساب وشاركنا هدفك التعليمي.</p></article><article class="journey-card reveal"><span class="journey-step">الخطوة الثانية</span><h3>نحدد المسار المناسب</h3><p>نستمع إلى احتياجك ونساعدك على اختيار البرنامج والمستوى الأقرب لك.</p></article><article class="journey-card reveal"><span class="journey-step">الخطوة الثالثة</span><h3>ابدأ بثقة</h3><p>تتلقى تفاصيل التسجيل وتبدأ رحلتك التعليمية بخطوة عملية واضحة.</p></article></div></div></section>
+
     <section class="section cta-section" id="contact"><div class="container"><div class="cta-panel reveal"><div><span class="eyebrow" style="color: var(--gold)">مستعد للخطوة التالية؟</span><h2>أخبرنا بما تريد تعلّمه، وسنرشدك إلى البداية المناسبة.</h2><p>اترك بياناتك وسيتواصل معك فريق المركز، أو ابدأ محادثة سريعة عبر واتساب.</p></div><div class="cta-actions"><a class="button button-primary" href="#register" data-open-modal>قدّم طلب التسجيل</a><a class="button button-ghost" href="tel:+967778005033">اتصل بنا الآن</a></div></div></div></section>
 
     <section class="section social-section" aria-labelledby="socialTitle"><div class="container"><div class="section-heading reveal"><span class="eyebrow">ابقَ على تواصل</span><h2 id="socialTitle">تابع جديد المركز</h2><p>آخر الأخبار والأنشطة والعروض تصلك عبر قنواتنا الرسمية.</p></div><div class="social-grid"><a class="social-card reveal" href="https://www.instagram.com/alc_yemen?utm_source=qr&igsh=dmpva2l1bDY3MHZv" target="_blank" rel="noopener noreferrer"><img src="logo.i.png" alt="" /><h3>إنستغرام</h3><span>تابع أخبارنا</span></a><a class="social-card reveal" href="https://www.facebook.com/ALC.Yemen/?from_intent_redirect=1" target="_blank" rel="noopener noreferrer"><img src="logo.f.png" alt="" /><h3>فيسبوك</h3><span>اكتشف الجديد</span></a><a class="social-card reveal" href="https://wa.me/967778005033" target="_blank" rel="noopener noreferrer"><img src="logo.w.png" alt="" /><h3>واتساب</h3><span>دردشة سريعة</span></a><a class="social-card reveal" href="https://whatsapp.com/channel/0029VaPru5D5q08boHy1Yo0u" target="_blank" rel="noopener noreferrer"><img src="logo.w.png" alt="" /><h3>قناة واتساب</h3><span>تحديثات يومية</span></a><a class="social-card reveal" href="https://maps.app.goo.gl/tRwSPfsoHGSUfkkf7?g_st=ac" target="_blank" rel="noopener noreferrer"><img src="logo.p.png" alt="" /><h3>موقعنا</h3><span>افتح الخريطة</span></a></div></div></section>
@@ -240,6 +260,8 @@
   <footer class="site-footer"><div class="container"><div class="footer-main"><a class="footer-brand" href="#top"><img src="1.svg" alt="" /><span><strong>مركز الأمجاد للغات والتدريب</strong><span>تعلّم بثقة، وتقدّم بمهارة.</span></span></a><div class="footer-contact"><a href="tel:+967778005033">+967 778 005 033</a><span>صنعاء، اليمن</span><a href="about.html">عن المركز</a><a href="certificates.html">طلب شهادة</a></div></div><div class="footer-bottom"><span>جميع الحقوق محفوظة © 2026</span><span>تصميم وتطوير: يحيى المريسي</span></div></div></footer>
 
   <div class="modal" id="register" aria-hidden="true"><div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="registrationTitle"><button class="modal-close" id="modalClose" type="button" aria-label="إغلاق">×</button><span class="eyebrow">ابدأ الآن</span><h2 class="modal-title" id="registrationTitle">طلب تسجيل</h2><p class="modal-subtitle">أرسل بياناتك وسنتواصل معك لمساعدتك في اختيار البرنامج المناسب.</p><form id="registrationForm"><div class="form-grid"><div class="form-group"><label for="regName">الاسم الكامل *</label><input type="text" id="regName" name="regName" placeholder="أدخل اسمك الكامل" required /></div><div class="form-group"><label for="regPhone">رقم الهاتف *</label><input type="tel" id="regPhone" name="regPhone" placeholder="أدخل رقم هاتفك" required /></div><div class="form-group"><label for="regEmail">البريد الإلكتروني</label><input type="email" id="regEmail" name="regEmail" placeholder="example@email.com" /></div><div class="form-group"><label for="regCourse">البرنامج أو الدورة *</label><input type="text" id="regCourse" name="regCourse" placeholder="مثال: لغة إنجليزية" required /></div><div class="form-group"><label for="regLevel">المستوى الحالي</label><select id="regLevel" name="regLevel"><option value="">اختر المستوى</option><option value="مبتدئ">مبتدئ</option><option value="متوسط">متوسط</option><option value="متقدم">متقدم</option></select></div><div class="form-group full"><label for="regMessage">ملاحظات إضافية *</label><textarea id="regMessage" name="regMessage" placeholder="اكتب أي تفاصيل تساعدنا على خدمتك..." required></textarea></div></div><button class="button button-primary form-submit" type="submit">إرسال طلب التسجيل <span>←</span></button><p class="form-message" id="formMessage" role="status"></p></form></div></div>
+
+  <div class="mobile-cta"><span>جاهز تبدأ رحلتك؟</span><a href="#register" data-open-modal>طلب تسجيل</a></div>
 
   <script type="module">
     import { submitOfferRequest } from './firebase-config.js';
