@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
   <style>
-    :root { --ink: #172038; --navy: #1c2b5a; --blue: #355cff; --sky: #7dddf2; --teal: #17c3b2; --yellow: #ffd166; --coral: #ff795e; --lilac: #a493ff; --cream: #fbf8f1; --mist: #f2f6fb; --muted: #69758a; --white: #fff; --line: rgba(28,43,90,.12); --shadow: 0 22px 55px rgba(28,43,90,.11); --ease: cubic-bezier(.23,1,.32,1); }
+    :root { --ink: #33405d; --navy: #40539c; --blue: #5b68ee; --sky: #82ddeb; --teal: #19bcae; --yellow: #ffc857; --coral: #f37b68; --lilac: #a997f4; --cream: #fffaf2; --mist: #f4f6ff; --muted: #71809b; --white: #fff; --line: rgba(64,83,156,.14); --shadow: 0 22px 55px rgba(64,83,156,.12); --ease: cubic-bezier(.23,1,.32,1); }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body { margin: 0; color: var(--ink); background: var(--cream); font-family: "Cairo", Tahoma, Arial, sans-serif; line-height: 1.75; overflow-x: hidden; }
@@ -33,7 +33,7 @@
     .site-header.scrolled { padding: 10px 0; background: rgba(255,255,255,.93); border-bottom-color: var(--line); box-shadow: 0 6px 24px rgba(28,43,90,.06); }
     .nav { display: flex; align-items: center; justify-content: space-between; gap: 25px; }
     .brand { display: inline-flex; align-items: center; gap: 10px; color: var(--navy); font-weight: 900; white-space: nowrap; }
-    .brand-mark { width: 44px; height: 44px; padding: 5px; border-radius: 14px; background: var(--navy); object-fit: contain; }
+    .brand-mark { width: 47px; height: 47px; padding: 5px; border: 1px solid rgba(64,83,156,.12); border-radius: 16px; background: linear-gradient(135deg, #fff4ca, #e2f8f5); object-fit: contain; }
     .brand-copy { display: grid; line-height: 1.2; }
     .brand-copy strong { font-size: .9rem; }
     .brand-copy span { color: var(--muted); font-size: .64rem; font-weight: 600; }
@@ -100,7 +100,7 @@
     .path-option:nth-child(3) .path-icon { background: var(--lilac); }
     .path-option strong { display: block; margin-bottom: 2px; font-size: .88rem; }
     .path-option small { color: var(--muted); font-size: .7rem; }
-    .path-result { position: relative; display: grid; grid-template-columns: 1fr .95fr; align-items: center; gap: 18px; min-height: 325px; padding: 28px; border-radius: 26px; background: var(--navy); color: var(--white); overflow: hidden; }
+    .path-result { position: relative; display: grid; grid-template-columns: 1fr .95fr; align-items: center; gap: 18px; min-height: 325px; padding: 28px; border: 1px solid rgba(255,255,255,.45); border-radius: 26px; background: linear-gradient(135deg, #5265ba 0%, #6b5ee2 100%); color: var(--white); overflow: hidden; box-shadow: 0 18px 35px rgba(74,82,168,.18); }
     .path-result::before { content: ""; position: absolute; width: 280px; height: 280px; left: -110px; bottom: -155px; border: 1px solid rgba(255,209,102,.35); border-radius: 50%; box-shadow: 0 0 0 27px rgba(255,209,102,.06), 0 0 0 54px rgba(255,209,102,.035); }
     .path-result-copy, .path-result-visual { position: relative; z-index: 1; }
     .path-result-copy h3 { margin: 8px 0 9px; font-size: clamp(1.35rem, 2.7vw, 2.2rem); line-height: 1.25; letter-spacing: -.045em; }
@@ -155,10 +155,10 @@
     .social-card h3 { margin: 0 0 2px; color: var(--navy); font-size: .83rem; }
     .social-card span { color: var(--muted); font-size: .68rem; }
 
-    .site-footer { padding: 33px 0 22px; background: var(--navy); color: var(--white); }
+    .site-footer { padding: 33px 0 22px; background: linear-gradient(135deg, #5265ba 0%, #6b5ee2 100%); color: var(--white); }
     .footer-main { display: flex; align-items: center; justify-content: space-between; gap: 25px; padding-bottom: 24px; }
     .footer-brand { display: flex; align-items: center; gap: 10px; }
-    .footer-brand img { width: 45px; height: 45px; object-fit: contain; }
+    .footer-brand img { width: 47px; height: 47px; padding: 5px; border: 1px solid rgba(255,255,255,.35); border-radius: 16px; background: rgba(255,255,255,.88); object-fit: contain; }
     .footer-brand strong { display: block; font-size: .86rem; }
     .footer-brand span span { display: block; color: rgba(255,255,255,.57); font-size: .68rem; }
     .footer-contact { display: flex; flex-wrap: wrap; gap: 16px; color: rgba(255,255,255,.67); font-size: .75rem; }
@@ -233,7 +233,7 @@
 <body>
   <header class="site-header" id="siteHeader">
     <div class="container nav">
-      <a class="brand" href="#top" aria-label="العودة إلى الرئيسية"><img class="brand-mark" src="1.svg" alt="" /><span class="brand-copy"><strong>مركز الأمجاد</strong><span>للغات والتدريب</span></span></a>
+      <a class="brand" href="#top" aria-label="العودة إلى الرئيسية"><img class="brand-mark" src="assets/almagdad-brand-mark.webp" alt="" /><span class="brand-copy"><strong>مركز الأمجاد</strong><span>للغات والتدريب</span></span></a>
       <nav class="nav-links" id="navLinks" aria-label="التنقل الرئيسي"><a href="#paths">اكتشف مسارك</a><a href="#programs">البرامج</a><a href="#steps">كيف نساعدك؟</a><a class="nav-cta" href="#register" data-open-modal>ابدأ الآن</a></nav>
       <button class="menu-toggle" id="menuToggle" type="button" aria-label="فتح القائمة" aria-expanded="false"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
     </div>
@@ -255,7 +255,7 @@
     <section class="section social-section" aria-labelledby="socialTitle"><div class="container"><div class="section-head"><div><span class="eyebrow">مجتمع الأمجاد</span><h2 id="socialTitle">ابقَ قريبًا من جديدنا</h2></div><p>الأخبار والأنشطة والعروض تصلك عبر قنواتنا الرسمية.</p></div><div class="social-grid"><a class="social-card reveal" href="https://www.instagram.com/alc_yemen?utm_source=qr&igsh=dmpva2l1bDY3MHZv" target="_blank" rel="noopener noreferrer"><img src="logo.i.png" alt="" /><h3>إنستغرام</h3><span>تابع أخبارنا</span></a><a class="social-card reveal" href="https://www.facebook.com/ALC.Yemen/?from_intent_redirect=1" target="_blank" rel="noopener noreferrer"><img src="logo.f.png" alt="" /><h3>فيسبوك</h3><span>اكتشف الجديد</span></a><a class="social-card reveal" href="https://wa.me/967778005033" target="_blank" rel="noopener noreferrer"><img src="logo.w.png" alt="" /><h3>واتساب</h3><span>دردشة سريعة</span></a><a class="social-card reveal" href="https://whatsapp.com/channel/0029VaPru5D5q08boHy1Yo0u" target="_blank" rel="noopener noreferrer"><img src="logo.w.png" alt="" /><h3>قناة واتساب</h3><span>تحديثات يومية</span></a><a class="social-card reveal" href="https://maps.app.goo.gl/tRwSPfsoHGSUfkkf7?g_st=ac" target="_blank" rel="noopener noreferrer"><img src="logo.p.png" alt="" /><h3>موقعنا</h3><span>افتح الخريطة</span></a></div></div></section>
   </main>
 
-  <footer class="site-footer"><div class="container"><div class="footer-main"><a class="footer-brand" href="#top"><img src="1.svg" alt="" /><span><strong>مركز الأمجاد للغات والتدريب</strong><span>تعلّم يتفاعل معك، وتقدّم بثقة.</span></span></a><div class="footer-contact"><a href="tel:+967778005033">+967 778 005 033</a><span>صنعاء، اليمن</span><a href="about.html">عن المركز</a><a href="certificates.html">طلب شهادة</a></div></div><div class="footer-bottom"><span>جميع الحقوق محفوظة © 2026</span><span>تصميم وتطوير: يحيى المريسي</span></div></div></footer>
+  <footer class="site-footer"><div class="container"><div class="footer-main"><a class="footer-brand" href="#top"><img src="assets/almagdad-brand-mark.webp" alt="" /><span><strong>مركز الأمجاد للغات والتدريب</strong><span>تعلّم يتفاعل معك، وتقدّم بثقة.</span></span></a><div class="footer-contact"><a href="tel:+967778005033">+967 778 005 033</a><span>صنعاء، اليمن</span><a href="about.html">عن المركز</a><a href="certificates.html">طلب شهادة</a></div></div><div class="footer-bottom"><span>جميع الحقوق محفوظة © 2026</span><span>تصميم وتطوير: يحيى المريسي</span></div></div></footer>
 
   <div class="modal" id="register" aria-hidden="true"><div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="registrationTitle"><button class="modal-close" id="modalClose" type="button" aria-label="إغلاق">×</button><span class="eyebrow">ابدأ الآن</span><h2 class="modal-title" id="registrationTitle">طلب تسجيل</h2><p class="modal-subtitle">أرسل بياناتك وسنتواصل معك لمساعدتك في اختيار البرنامج الأنسب.</p><form id="registrationForm"><div class="form-grid"><div class="form-group"><label for="regName">الاسم الكامل *</label><input type="text" id="regName" name="regName" placeholder="أدخل اسمك الكامل" required /></div><div class="form-group"><label for="regPhone">رقم الهاتف *</label><input type="tel" id="regPhone" name="regPhone" placeholder="أدخل رقم هاتفك" required /></div><div class="form-group"><label for="regEmail">البريد الإلكتروني</label><input type="email" id="regEmail" name="regEmail" placeholder="example@email.com" /></div><div class="form-group"><label for="regCourse">البرنامج أو الدورة *</label><input type="text" id="regCourse" name="regCourse" placeholder="مثال: لغة إنجليزية" required /></div><div class="form-group"><label for="regLevel">المستوى الحالي</label><select id="regLevel" name="regLevel"><option value="">اختر المستوى</option><option value="مبتدئ">مبتدئ</option><option value="متوسط">متوسط</option><option value="متقدم">متقدم</option></select></div><div class="form-group full"><label for="regMessage">ملاحظات إضافية *</label><textarea id="regMessage" name="regMessage" placeholder="اكتب أي تفاصيل تساعدنا على خدمتك..." required></textarea></div></div><button class="button button-primary form-submit" type="submit">إرسال طلب التسجيل <span>←</span></button><p class="form-message" id="formMessage" role="status"></p></form></div></div>
   <div class="mobile-cta"><span>جاهز تبدأ رحلتك؟</span><a href="#register" data-open-modal>طلب تسجيل</a></div>
