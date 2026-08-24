@@ -3,264 +3,261 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="مركز الأمجاد للغات والتدريب — برامج لغات ومهارات عملية بمعايير دولية." />
-  <meta name="theme-color" content="#081f49" />
-  <title>مركز الأمجاد للغات والتدريب | تعلّم بثقة</title>
+  <meta name="description" content="مركز الأمجاد للغات والتدريب — تعلّم تفاعلي، مهارات عملية، ومستقبل أوسع." />
+  <meta name="theme-color" content="#1c2b5a" />
+  <title>مركز الأمجاد | تعلّم يتفاعل معك</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
   <style>
-    :root {
-      --navy: #081f49;
-      --navy-2: #0d3471;
-      --blue: #1167c4;
-      --blue-bright: #2189e8;
-      --gold: #f7d43b;
-      --gold-soft: #fff6c8;
-      --ink: #14213d;
-      --muted: #65738b;
-      --paper: #f7f9fc;
-      --white: #fff;
-      --line: rgba(20, 53, 102, .12);
-      --shadow-sm: 0 10px 28px rgba(8, 31, 73, .08);
-      --shadow-lg: 0 30px 80px rgba(8, 31, 73, .16);
-      --radius-lg: 28px;
-      --radius-md: 18px;
-      --ease: cubic-bezier(.23, 1, .32, 1);
-    }
-
+    :root { --ink: #172038; --navy: #1c2b5a; --blue: #355cff; --sky: #7dddf2; --teal: #17c3b2; --yellow: #ffd166; --coral: #ff795e; --lilac: #a493ff; --cream: #fbf8f1; --mist: #f2f6fb; --muted: #69758a; --white: #fff; --line: rgba(28,43,90,.12); --shadow: 0 22px 55px rgba(28,43,90,.11); --ease: cubic-bezier(.23,1,.32,1); }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-    body { margin: 0; color: var(--ink); background: var(--paper); font-family: "Cairo", Tahoma, Arial, sans-serif; line-height: 1.75; overflow-x: hidden; }
+    body { margin: 0; color: var(--ink); background: var(--cream); font-family: "Cairo", Tahoma, Arial, sans-serif; line-height: 1.75; overflow-x: hidden; }
     body.modal-open { overflow: hidden; }
     img { display: block; max-width: 100%; }
     a { color: inherit; text-decoration: none; }
     button, input, textarea, select { font: inherit; }
     button, a { -webkit-tap-highlight-color: transparent; }
-    :focus-visible { outline: 3px solid rgba(33, 137, 232, .45); outline-offset: 4px; }
-
-    .container { width: min(1160px, calc(100% - 40px)); margin-inline: auto; }
-    .eyebrow { display: inline-flex; align-items: center; gap: 9px; color: var(--blue); font-size: .83rem; font-weight: 800; letter-spacing: .05em; }
-    .eyebrow::before { content: ""; width: 28px; height: 3px; border-radius: 99px; background: var(--gold); }
-    .section-heading { max-width: 640px; margin-bottom: 38px; }
-    .section-heading h2 { margin: 10px 0 12px; color: var(--navy); font-size: clamp(1.75rem, 3.5vw, 2.8rem); line-height: 1.25; letter-spacing: -.04em; }
-    .section-heading p { margin: 0; color: var(--muted); font-size: 1.02rem; }
-
-    .site-header { position: absolute; inset: 0 0 auto; z-index: 20; padding: 21px 0; color: var(--white); transition: background .25s var(--ease), box-shadow .25s var(--ease), padding .25s var(--ease); }
-    .site-header.scrolled { position: fixed; padding: 12px 0; background: rgba(8, 31, 73, .92); box-shadow: 0 8px 28px rgba(0,0,0,.12); backdrop-filter: blur(16px); }
-    .nav { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-    .brand { display: inline-flex; align-items: center; gap: 11px; font-weight: 800; white-space: nowrap; }
-    .brand-mark { width: 42px; height: 42px; border: 2px solid rgba(255,255,255,.76); border-radius: 13px; padding: 5px; object-fit: contain; }
-    .brand-copy { display: grid; line-height: 1.25; }
-    .brand-copy strong { font-size: .92rem; }
-    .brand-copy span { color: rgba(255,255,255,.7); font-size: .68rem; font-weight: 500; }
-    .nav-links { display: flex; align-items: center; gap: 26px; font-size: .88rem; font-weight: 600; color: rgba(255,255,255,.82); }
-    .nav-links a { transition: color .2s ease; }
-    .nav-links a:hover { color: var(--gold); }
-    .nav-cta { padding: 10px 18px; border-radius: 999px; background: var(--gold); color: var(--navy); font-size: .83rem; font-weight: 800; box-shadow: 0 9px 18px rgba(247,212,59,.18); transition: transform .2s var(--ease), box-shadow .2s ease; }
-    .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 13px 25px rgba(247,212,59,.28); }
-    .menu-toggle { display: none; width: 42px; height: 42px; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,.24); border-radius: 12px; background: transparent; color: var(--white); cursor: pointer; }
-
-    .hero { position: relative; min-height: 705px; display: grid; align-items: center; padding: 145px 0 105px; overflow: hidden; background: radial-gradient(circle at 15% 18%, rgba(33,137,232,.27), transparent 27%), radial-gradient(circle at 84% 70%, rgba(247,212,59,.12), transparent 22%), linear-gradient(122deg, #061a3d 0%, #0a2b61 55%, #0c4d98 100%); color: var(--white); }
-    .hero::before { content: ""; position: absolute; inset: 0; opacity: .33; background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px); background-size: 46px 46px; mask-image: linear-gradient(90deg, black, transparent 78%); }
-    .hero::after { content: ""; position: absolute; width: 540px; height: 540px; border: 1px solid rgba(255,255,255,.13); border-radius: 50%; left: -210px; bottom: -270px; box-shadow: 0 0 0 45px rgba(255,255,255,.025), 0 0 0 90px rgba(255,255,255,.02); }
-    .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(330px, .88fr); align-items: center; gap: clamp(35px, 7vw, 100px); }
-    .hero-copy { max-width: 680px; animation: reveal .7s var(--ease) both; }
-    .hero .eyebrow { color: var(--gold); }
-    .hero-title { margin: 18px 0 20px; max-width: 670px; font-size: clamp(2.55rem, 5.8vw, 5rem); line-height: 1.16; letter-spacing: -.065em; font-weight: 900; }
-    .hero-title em { color: var(--gold); font-style: normal; }
-    .hero-description { max-width: 590px; margin: 0; color: rgba(255,255,255,.78); font-size: clamp(1rem, 1.6vw, 1.18rem); }
-    .hero-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 13px; margin-top: 32px; }
-    .button { display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 50px; padding: 12px 22px; border: 1px solid transparent; border-radius: 13px; font-weight: 800; font-size: .91rem; cursor: pointer; transition: transform .2s var(--ease), box-shadow .2s ease, background .2s ease; }
-    .button:active { transform: scale(.97); }
-    .button-primary { background: var(--gold); color: var(--navy); box-shadow: 0 16px 28px rgba(247,212,59,.2); }
-    .button-primary:hover { transform: translateY(-3px); box-shadow: 0 20px 34px rgba(247,212,59,.32); }
-    .button-ghost { border-color: rgba(255,255,255,.26); color: var(--white); background: rgba(255,255,255,.06); }
-    .button-ghost:hover { background: rgba(255,255,255,.13); transform: translateY(-2px); }
-    .hero-note { display: flex; align-items: center; gap: 10px; margin-top: 20px; color: rgba(255,255,255,.57); font-size: .82rem; }
-    .hero-note svg { color: var(--gold); flex: 0 0 auto; }
-    .hero-visual { position: relative; justify-self: end; width: min(100%, 410px); animation: reveal .8s .12s var(--ease) both; }
-    .hero-logo-card { position: relative; display: grid; place-items: center; min-height: 380px; padding: 36px; overflow: hidden; border: 1px solid rgba(255,255,255,.2); border-radius: 34px; background: linear-gradient(145deg, rgba(255,255,255,.15), rgba(255,255,255,.035)); box-shadow: var(--shadow-lg); backdrop-filter: blur(13px); }
-    .hero-logo-card::before { content: ""; position: absolute; width: 270px; height: 270px; border: 1px solid rgba(247,212,59,.3); border-radius: 50%; box-shadow: 0 0 0 30px rgba(247,212,59,.045), 0 0 0 60px rgba(247,212,59,.025); }
-    .hero-logo { position: relative; width: min(100%, 330px); filter: drop-shadow(0 18px 28px rgba(0,0,0,.22)); }
-    .floating-label { position: absolute; right: -26px; bottom: 38px; display: flex; align-items: center; gap: 9px; padding: 12px 15px; border: 1px solid rgba(255,255,255,.16); border-radius: 14px; background: rgba(8,31,73,.8); box-shadow: 0 12px 27px rgba(0,0,0,.2); color: var(--white); font-size: .77rem; font-weight: 700; }
-    .floating-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 5px rgba(247,212,59,.15); }
-
-    .trust-strip { position: relative; z-index: 2; margin-top: -39px; }
-    .trust-inner { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; padding: 8px; border: 1px solid var(--line); border-radius: 20px; background: var(--white); box-shadow: var(--shadow-sm); }
-    .trust-item { display: flex; align-items: center; justify-content: center; gap: 11px; min-height: 66px; padding: 10px 16px; color: var(--navy); font-size: .86rem; font-weight: 800; text-align: center; }
-    .trust-item + .trust-item { border-right: 1px solid var(--line); }
-    .trust-icon { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 11px; background: var(--gold-soft); color: var(--blue); }
-
+    :focus-visible { outline: 3px solid rgba(53,92,255,.35); outline-offset: 4px; }
+    .container { width: min(1180px, calc(100% - 42px)); margin-inline: auto; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; color: var(--blue); font-size: .77rem; font-weight: 900; letter-spacing: .03em; }
+    .eyebrow::before { content: ""; width: 25px; height: 4px; border-radius: 99px; background: var(--yellow); }
     .section { padding: 105px 0; }
-    .intro-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(40px, 8vw, 110px); align-items: start; }
-    .intro-aside { position: relative; padding: 31px; border-radius: var(--radius-lg); background: var(--navy); color: var(--white); overflow: hidden; }
-    .intro-aside::after { content: ""; position: absolute; width: 190px; height: 190px; left: -65px; bottom: -75px; border: 1px solid rgba(247,212,59,.45); border-radius: 50%; box-shadow: 0 0 0 22px rgba(247,212,59,.06); }
-    .intro-aside h3 { position: relative; z-index: 1; margin: 0 0 12px; font-size: 1.28rem; }
-    .intro-aside p { position: relative; z-index: 1; margin: 0; color: rgba(255,255,255,.7); font-size: .92rem; }
-    .intro-aside a { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 7px; margin-top: 25px; color: var(--gold); font-size: .85rem; font-weight: 800; }
-    .benefits { display: grid; grid-template-columns: repeat(2, 1fr); gap: 19px; }
-    .benefit { padding: 24px; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--white); box-shadow: 0 8px 25px rgba(8,31,73,.035); transition: transform .25s var(--ease), box-shadow .25s ease; }
-    .benefit:hover { transform: translateY(-5px); box-shadow: var(--shadow-sm); }
-    .benefit-icon { display: grid; place-items: center; width: 42px; height: 42px; margin-bottom: 17px; border-radius: 13px; background: #eaf4ff; color: var(--blue); }
-    .benefit h3 { margin: 0 0 7px; color: var(--navy); font-size: 1rem; }
-    .benefit p { margin: 0; color: var(--muted); font-size: .84rem; line-height: 1.75; }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 25px; margin-bottom: 36px; }
+    .section-head h2 { margin: 9px 0 10px; color: var(--navy); font-size: clamp(1.75rem, 3.6vw, 3rem); line-height: 1.2; letter-spacing: -.055em; }
+    .section-head p { max-width: 570px; margin: 0; color: var(--muted); font-size: .98rem; }
+    .section-kicker { color: var(--muted); font-size: .8rem; font-weight: 700; }
 
-    .programs-section { background: #eef4fb; }
-    .programs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    .program-card { position: relative; display: flex; flex-direction: column; min-height: 315px; padding: 27px; border: 1px solid rgba(17,103,196,.1); border-radius: var(--radius-lg); background: var(--white); overflow: hidden; transition: transform .3s var(--ease), box-shadow .3s ease; }
-    .program-card:hover { transform: translateY(-7px); box-shadow: var(--shadow-sm); }
-    .program-card.featured { background: var(--navy); color: var(--white); }
-    .program-card::after { content: ""; position: absolute; width: 175px; height: 175px; left: -90px; bottom: -100px; border: 1px solid rgba(17,103,196,.16); border-radius: 50%; }
-    .program-card.featured::after { border-color: rgba(247,212,59,.3); }
-    .program-number { display: flex; align-items: center; justify-content: space-between; margin-bottom: 29px; color: var(--blue); font-size: .78rem; font-weight: 800; }
-    .featured .program-number { color: var(--gold); }
-    .program-number span:last-child { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; border: 1px solid currentColor; opacity: .75; }
-    .program-card h3 { margin: 0 0 11px; color: var(--navy); font-size: 1.3rem; }
-    .featured h3 { color: var(--white); }
-    .program-card p { margin: 0; color: var(--muted); font-size: .87rem; }
-    .featured p { color: rgba(255,255,255,.68); }
-    .program-link { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 8px; margin-top: auto; padding-top: 24px; color: var(--blue); font-size: .85rem; font-weight: 800; }
-    .featured .program-link { color: var(--gold); }
+    .site-header { position: fixed; inset: 0 0 auto; z-index: 50; padding: 16px 0; background: rgba(251,248,241,.82); border-bottom: 1px solid transparent; backdrop-filter: blur(16px); transition: padding .25s var(--ease), background .25s ease, box-shadow .25s ease; }
+    .site-header.scrolled { padding: 10px 0; background: rgba(255,255,255,.93); border-bottom-color: var(--line); box-shadow: 0 6px 24px rgba(28,43,90,.06); }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 25px; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; color: var(--navy); font-weight: 900; white-space: nowrap; }
+    .brand-mark { width: 44px; height: 44px; padding: 5px; border-radius: 14px; background: var(--navy); object-fit: contain; }
+    .brand-copy { display: grid; line-height: 1.2; }
+    .brand-copy strong { font-size: .9rem; }
+    .brand-copy span { color: var(--muted); font-size: .64rem; font-weight: 600; }
+    .nav-links { display: flex; align-items: center; gap: 24px; color: var(--muted); font-size: .82rem; font-weight: 700; }
+    .nav-links a { transition: color .2s ease; }
+    .nav-links a:hover { color: var(--blue); }
+    .nav-cta { padding: 10px 17px; border-radius: 12px; background: var(--navy); color: var(--white); box-shadow: 0 8px 16px rgba(28,43,90,.13); }
+    .nav-cta:hover { color: var(--white) !important; transform: translateY(-2px); }
+    .menu-toggle { display: none; width: 42px; height: 42px; align-items: center; justify-content: center; border: 1px solid var(--line); border-radius: 13px; background: var(--white); color: var(--navy); cursor: pointer; }
 
-    .cta-section { padding-top: 0; }
-    .cta-panel { position: relative; display: grid; grid-template-columns: 1.2fr .8fr; align-items: center; gap: 32px; padding: clamp(30px, 5vw, 58px); border-radius: 32px; overflow: hidden; background: linear-gradient(115deg, var(--blue) 0%, var(--navy-2) 100%); color: var(--white); }
-    .cta-panel::before { content: ""; position: absolute; width: 340px; height: 340px; left: -110px; top: -180px; border: 1px solid rgba(255,255,255,.16); border-radius: 50%; box-shadow: 0 0 0 35px rgba(255,255,255,.03), 0 0 0 70px rgba(255,255,255,.02); }
+    .hero { position: relative; min-height: 735px; display: grid; align-items: center; padding: 145px 0 110px; overflow: hidden; background: var(--cream); }
+    .hero::before { content: ""; position: absolute; top: -190px; left: -190px; width: 570px; height: 570px; border: 1px solid rgba(23,195,178,.18); border-radius: 50%; box-shadow: 0 0 0 32px rgba(23,195,178,.035), 0 0 0 65px rgba(23,195,178,.025); }
+    .hero::after { content: ""; position: absolute; right: -110px; bottom: -170px; width: 370px; height: 370px; border-radius: 50%; background: radial-gradient(circle, rgba(164,147,255,.18), rgba(164,147,255,0) 66%); }
+    .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); align-items: center; gap: clamp(40px, 7vw, 100px); }
+    .hero-copy { max-width: 650px; animation: rise .7s var(--ease) both; }
+    .hero-title { max-width: 650px; margin: 17px 0 19px; color: var(--navy); font-size: clamp(2.6rem, 5.6vw, 5.35rem); line-height: 1.12; letter-spacing: -.085em; font-weight: 900; }
+    .hero-title span { position: relative; display: inline-block; color: var(--blue); }
+    .hero-title span::after { content: ""; position: absolute; right: 0; bottom: -4px; left: 8px; height: 10px; border-radius: 99px; background: var(--yellow); opacity: .75; transform: rotate(-2deg); z-index: -1; }
+    .hero-description { max-width: 560px; margin: 0; color: var(--muted); font-size: clamp(.98rem, 1.5vw, 1.13rem); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 29px; }
+    .button { display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 50px; padding: 12px 21px; border: 1px solid transparent; border-radius: 13px; font-size: .87rem; font-weight: 900; cursor: pointer; transition: transform .2s var(--ease), box-shadow .2s ease, background .2s ease; }
+    .button:active { transform: scale(.97); }
+    .button-primary { background: var(--blue); color: var(--white); box-shadow: 0 15px 25px rgba(53,92,255,.23); }
+    .button-primary:hover { color: var(--white); transform: translateY(-3px); box-shadow: 0 20px 32px rgba(53,92,255,.3); }
+    .button-dark { background: var(--navy); color: var(--white); box-shadow: 0 12px 22px rgba(28,43,90,.14); }
+    .button-dark:hover { color: var(--white); transform: translateY(-3px); }
+    .button-outline { border-color: var(--line); background: rgba(255,255,255,.45); color: var(--navy); }
+    .button-outline:hover { background: var(--white); transform: translateY(-2px); }
+    .hero-proof { display: flex; align-items: center; gap: 12px; margin-top: 24px; color: var(--muted); font-size: .77rem; font-weight: 700; }
+    .proof-dots { display: flex; direction: ltr; }
+    .proof-dots span { display: block; width: 24px; height: 24px; margin-right: -7px; border: 2px solid var(--cream); border-radius: 50%; background: var(--yellow); }
+    .proof-dots span:nth-child(2) { background: var(--teal); }
+    .proof-dots span:nth-child(3) { background: var(--lilac); }
+    .proof-dots span:nth-child(4) { background: var(--coral); }
+    .hero-art { position: relative; justify-self: end; width: min(100%, 550px); animation: rise .8s .12s var(--ease) both; }
+    .hero-art-card { position: relative; min-height: 440px; display: grid; place-items: center; padding: 35px 22px 15px; border-radius: 42px; background: linear-gradient(145deg, #e7f8f7 0%, #dce9ff 52%, #eeeafd 100%); box-shadow: var(--shadow); overflow: hidden; }
+    .hero-art-card::before { content: ""; position: absolute; top: 30px; left: 30px; width: 105px; height: 105px; border: 1px dashed rgba(53,92,255,.3); border-radius: 50%; }
+    .hero-art-card::after { content: "✦"; position: absolute; top: 33px; right: 35px; color: var(--coral); font-size: 2.5rem; transform: rotate(18deg); }
+    .hero-art-image { position: relative; z-index: 1; width: 100%; max-width: 520px; }
+    .art-badge { position: absolute; z-index: 2; display: flex; align-items: center; gap: 8px; padding: 10px 14px; border-radius: 14px; background: var(--white); color: var(--navy); box-shadow: 0 12px 24px rgba(28,43,90,.12); font-size: .73rem; font-weight: 900; }
+    .art-badge.one { right: -17px; top: 102px; }
+    .art-badge.two { bottom: 33px; left: -17px; }
+    .badge-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--teal); box-shadow: 0 0 0 5px rgba(23,195,178,.14); }
+    .badge-dot.yellow { background: var(--yellow); box-shadow: 0 0 0 5px rgba(255,209,102,.19); }
+
+    .ticker { position: relative; z-index: 2; margin-top: -26px; }
+    .ticker-inner { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; padding: 8px; border: 1px solid var(--line); border-radius: 18px; background: var(--white); box-shadow: 0 13px 35px rgba(28,43,90,.07); }
+    .ticker-item { display: flex; align-items: center; justify-content: center; gap: 9px; min-height: 58px; padding: 8px 13px; color: var(--navy); font-size: .76rem; font-weight: 900; text-align: center; }
+    .ticker-item + .ticker-item { border-right: 1px solid var(--line); }
+    .ticker-icon { display: grid; place-items: center; width: 29px; height: 29px; border-radius: 10px; background: #fff3c9; color: var(--navy); }
+    .ticker-item:nth-child(2) .ticker-icon { background: #d9f7f1; }
+    .ticker-item:nth-child(3) .ticker-icon { background: #e6e1ff; }
+    .ticker-item:nth-child(4) .ticker-icon { background: #ffe3dc; }
+
+    .paths-section { background: var(--white); }
+    .path-layout { display: grid; grid-template-columns: .9fr 1.1fr; align-items: stretch; gap: 24px; }
+    .path-menu { display: grid; gap: 12px; align-content: start; }
+    .path-option { position: relative; display: flex; align-items: center; gap: 15px; width: 100%; padding: 17px; border: 1px solid var(--line); border-radius: 18px; background: var(--cream); color: var(--navy); text-align: right; cursor: pointer; transition: transform .22s var(--ease), border .22s ease, background .22s ease, box-shadow .22s ease; }
+    .path-option:hover { transform: translateX(-5px); border-color: rgba(53,92,255,.3); box-shadow: 0 10px 22px rgba(28,43,90,.06); }
+    .path-option.active { border-color: var(--blue); background: #eef1ff; box-shadow: 0 10px 22px rgba(53,92,255,.1); }
+    .path-option.active::after { content: ""; position: absolute; left: 15px; width: 7px; height: 7px; border-radius: 50%; background: var(--blue); }
+    .path-icon { display: grid; place-items: center; flex: 0 0 auto; width: 46px; height: 46px; border-radius: 14px; background: var(--yellow); color: var(--navy); }
+    .path-option:nth-child(2) .path-icon { background: var(--sky); }
+    .path-option:nth-child(3) .path-icon { background: var(--lilac); }
+    .path-option strong { display: block; margin-bottom: 2px; font-size: .88rem; }
+    .path-option small { color: var(--muted); font-size: .7rem; }
+    .path-result { position: relative; display: grid; grid-template-columns: 1fr .95fr; align-items: center; gap: 18px; min-height: 325px; padding: 28px; border-radius: 26px; background: var(--navy); color: var(--white); overflow: hidden; }
+    .path-result::before { content: ""; position: absolute; width: 280px; height: 280px; left: -110px; bottom: -155px; border: 1px solid rgba(255,209,102,.35); border-radius: 50%; box-shadow: 0 0 0 27px rgba(255,209,102,.06), 0 0 0 54px rgba(255,209,102,.035); }
+    .path-result-copy, .path-result-visual { position: relative; z-index: 1; }
+    .path-result-copy h3 { margin: 8px 0 9px; font-size: clamp(1.35rem, 2.7vw, 2.2rem); line-height: 1.25; letter-spacing: -.045em; }
+    .path-result-copy p { margin: 0; color: rgba(255,255,255,.7); font-size: .82rem; }
+    .path-result-copy .button { margin-top: 20px; min-height: 43px; padding: 9px 16px; background: var(--yellow); color: var(--navy); box-shadow: none; }
+    .path-result-visual { display: grid; place-items: center; min-height: 220px; }
+    .path-result-visual img { width: 100%; max-width: 265px; filter: drop-shadow(0 14px 15px rgba(0,0,0,.18)); }
+
+    .programs-section { background: var(--mist); }
+    .program-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 17px; }
+    .program-card { position: relative; display: flex; flex-direction: column; min-height: 390px; padding: 17px; border: 1px solid var(--line); border-radius: 25px; background: var(--white); overflow: hidden; transition: transform .28s var(--ease), box-shadow .28s ease; }
+    .program-card:hover { transform: translateY(-7px); box-shadow: var(--shadow); }
+    .program-visual { display: grid; place-items: center; min-height: 185px; border-radius: 18px; background: #fff3c9; overflow: hidden; }
+    .program-card:nth-child(2) .program-visual { background: #daf7f3; }
+    .program-card:nth-child(3) .program-visual { background: #e7e2ff; }
+    .program-visual img { width: 100%; height: 190px; object-fit: contain; filter: drop-shadow(0 9px 10px rgba(28,43,90,.1)); }
+    .program-content { padding: 21px 7px 6px; }
+    .program-tag { display: inline-flex; padding: 5px 10px; border-radius: 999px; background: #fff3c9; color: #8a6500; font-size: .68rem; font-weight: 900; }
+    .program-card:nth-child(2) .program-tag { background: #d9f7f1; color: #08776b; }
+    .program-card:nth-child(3) .program-tag { background: #e6e1ff; color: #5143ab; }
+    .program-card h3 { margin: 10px 0 6px; color: var(--navy); font-size: 1.15rem; }
+    .program-card p { margin: 0; color: var(--muted); font-size: .79rem; }
+    .program-link { display: inline-flex; align-items: center; gap: 7px; margin-top: auto; padding: 15px 7px 0; color: var(--blue); font-size: .78rem; font-weight: 900; }
+
+    .steps-section { background: var(--cream); }
+    .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .step-card { position: relative; min-height: 205px; padding: 25px; border: 1px solid var(--line); border-radius: 21px; background: rgba(255,255,255,.65); overflow: hidden; }
+    .step-number { display: flex; align-items: center; justify-content: center; width: 41px; height: 41px; border-radius: 13px; background: var(--navy); color: var(--yellow); font-family: "Plus Jakarta Sans", Arial, sans-serif; font-size: .85rem; font-weight: 800; }
+    .step-card:nth-child(2) .step-number { background: var(--teal); color: var(--white); }
+    .step-card:nth-child(3) .step-number { background: var(--coral); color: var(--white); }
+    .step-card h3 { margin: 18px 0 6px; color: var(--navy); font-size: 1rem; }
+    .step-card p { margin: 0; color: var(--muted); font-size: .8rem; }
+    .step-card::after { content: ""; position: absolute; left: 18px; bottom: -41px; width: 115px; height: 115px; border: 1px dashed rgba(53,92,255,.23); border-radius: 50%; }
+
+    .cta-section { padding-top: 0; background: var(--cream); }
+    .cta-panel { position: relative; display: grid; grid-template-columns: 1.2fr .8fr; align-items: center; gap: 28px; padding: clamp(30px, 5vw, 58px); border-radius: 30px; background: linear-gradient(118deg, var(--blue), #604ae5); color: var(--white); overflow: hidden; }
+    .cta-panel::before { content: ""; position: absolute; left: -120px; top: -170px; width: 380px; height: 380px; border: 1px solid rgba(255,255,255,.22); border-radius: 50%; box-shadow: 0 0 0 35px rgba(255,255,255,.05), 0 0 0 70px rgba(255,255,255,.03); }
     .cta-panel > * { position: relative; z-index: 1; }
-    .cta-panel h2 { margin: 0 0 11px; font-size: clamp(1.55rem, 3vw, 2.45rem); line-height: 1.3; letter-spacing: -.04em; }
-    .cta-panel p { max-width: 570px; margin: 0; color: rgba(255,255,255,.7); font-size: .94rem; }
-    .cta-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 12px; }
+    .cta-panel .eyebrow { color: var(--yellow); }
+    .cta-panel h2 { margin: 10px 0 9px; font-size: clamp(1.55rem, 3.2vw, 2.65rem); line-height: 1.25; letter-spacing: -.055em; }
+    .cta-panel p { max-width: 570px; margin: 0; color: rgba(255,255,255,.76); font-size: .88rem; }
+    .cta-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 11px; }
+    .cta-actions .button-primary { background: var(--yellow); color: var(--navy); box-shadow: 0 13px 24px rgba(255,209,102,.23); }
+    .cta-actions .button-outline { border-color: rgba(255,255,255,.35); background: rgba(255,255,255,.08); color: var(--white); }
+    .cta-actions .button-outline:hover { background: rgba(255,255,255,.16); }
 
-    .social-section { padding-top: 35px; }
-    .social-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
-    .social-card { display: flex; min-height: 180px; flex-direction: column; align-items: center; justify-content: center; padding: 18px 13px; border: 1px solid var(--line); border-radius: 20px; background: var(--white); text-align: center; transition: transform .25s var(--ease), box-shadow .25s ease; }
-    .social-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-sm); }
-    .social-card img { width: 58px; height: 58px; margin-bottom: 12px; object-fit: contain; }
-    .social-card h3 { margin: 0 0 3px; color: var(--navy); font-size: .91rem; }
-    .social-card span { color: var(--muted); font-size: .72rem; }
+    .social-section { padding-top: 64px; background: var(--cream); }
+    .social-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+    .social-card { display: flex; min-height: 157px; flex-direction: column; align-items: center; justify-content: center; padding: 15px 11px; border: 1px solid var(--line); border-radius: 18px; background: rgba(255,255,255,.67); text-align: center; transition: transform .22s var(--ease), background .22s ease, box-shadow .22s ease; }
+    .social-card:hover { transform: translateY(-5px); background: var(--white); box-shadow: 0 14px 27px rgba(28,43,90,.07); }
+    .social-card img { width: 52px; height: 52px; margin-bottom: 10px; object-fit: contain; }
+    .social-card h3 { margin: 0 0 2px; color: var(--navy); font-size: .83rem; }
+    .social-card span { color: var(--muted); font-size: .68rem; }
 
-    .site-footer { padding: 35px 0 22px; background: var(--navy); color: var(--white); }
-    .footer-main { display: flex; align-items: center; justify-content: space-between; gap: 30px; padding-bottom: 25px; }
+    .site-footer { padding: 33px 0 22px; background: var(--navy); color: var(--white); }
+    .footer-main { display: flex; align-items: center; justify-content: space-between; gap: 25px; padding-bottom: 24px; }
     .footer-brand { display: flex; align-items: center; gap: 10px; }
-    .footer-brand img { width: 47px; height: 47px; object-fit: contain; }
-    .footer-brand strong { display: block; font-size: .92rem; }
-    .footer-brand span { display: block; color: rgba(255,255,255,.58); font-size: .72rem; }
-    .footer-contact { display: flex; flex-wrap: wrap; align-items: center; gap: 17px; color: rgba(255,255,255,.72); font-size: .8rem; }
-    .footer-contact a:hover { color: var(--gold); }
-    .footer-bottom { display: flex; align-items: center; justify-content: space-between; gap: 15px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.12); color: rgba(255,255,255,.5); font-size: .72rem; }
+    .footer-brand img { width: 45px; height: 45px; object-fit: contain; }
+    .footer-brand strong { display: block; font-size: .86rem; }
+    .footer-brand span span { display: block; color: rgba(255,255,255,.57); font-size: .68rem; }
+    .footer-contact { display: flex; flex-wrap: wrap; gap: 16px; color: rgba(255,255,255,.67); font-size: .75rem; }
+    .footer-contact a:hover { color: var(--yellow); }
+    .footer-bottom { display: flex; justify-content: space-between; gap: 15px; padding-top: 17px; border-top: 1px solid rgba(255,255,255,.12); color: rgba(255,255,255,.46); font-size: .68rem; }
 
-    .modal { position: fixed; z-index: 100; inset: 0; display: grid; place-items: center; padding: 20px; background: rgba(2, 11, 28, .68); opacity: 0; visibility: hidden; transition: opacity .25s ease, visibility .25s ease; }
+    .modal { position: fixed; z-index: 100; inset: 0; display: grid; place-items: center; padding: 18px; background: rgba(9,16,40,.68); opacity: 0; visibility: hidden; transition: opacity .25s ease, visibility .25s ease; }
     .modal.is-open { opacity: 1; visibility: visible; }
-    .modal-content { position: relative; width: min(100%, 590px); max-height: min(770px, 92vh); overflow-y: auto; padding: clamp(24px, 4vw, 39px); border-radius: 24px; background: var(--white); box-shadow: 0 28px 80px rgba(0,0,0,.25); transform: translateY(14px) scale(.98); transition: transform .3s var(--ease); }
+    .modal-content { position: relative; width: min(100%, 600px); max-height: 92vh; overflow-y: auto; padding: clamp(25px, 4vw, 40px); border-radius: 25px; background: var(--white); box-shadow: 0 30px 80px rgba(0,0,0,.26); transform: translateY(14px) scale(.98); transition: transform .3s var(--ease); }
     .modal.is-open .modal-content { transform: translateY(0) scale(1); }
-    .modal-close { position: absolute; top: 17px; left: 17px; display: grid; place-items: center; width: 36px; height: 36px; border: 0; border-radius: 50%; background: #eef2f7; color: var(--navy); font-size: 1.3rem; cursor: pointer; }
-    .modal-title { margin: 4px 0 5px; color: var(--navy); font-size: 1.6rem; }
-    .modal-subtitle { margin: 0 0 25px; color: var(--muted); font-size: .85rem; }
-    .form-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-    .form-group { margin-bottom: 16px; }
+    .modal-close { position: absolute; top: 16px; left: 16px; display: grid; place-items: center; width: 35px; height: 35px; border: 0; border-radius: 50%; background: var(--mist); color: var(--navy); font-size: 1.25rem; cursor: pointer; }
+    .modal-title { margin: 5px 0 4px; color: var(--navy); font-size: 1.55rem; }
+    .modal-subtitle { margin: 0 0 23px; color: var(--muted); font-size: .8rem; }
+    .form-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+    .form-group { margin-bottom: 14px; }
     .form-group.full { grid-column: 1 / -1; }
-    .form-group label { display: block; margin-bottom: 6px; color: var(--navy); font-size: .8rem; font-weight: 800; }
-    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 11px 13px; border: 1px solid var(--line); border-radius: 11px; background: #fbfcfe; color: var(--ink); font-size: .85rem; transition: border .2s ease, box-shadow .2s ease; }
-    .form-group textarea { min-height: 98px; resize: vertical; }
-    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--blue); outline: 0; box-shadow: 0 0 0 4px rgba(17,103,196,.1); }
-    .form-submit { width: 100%; margin-top: 4px; border: 0; }
+    .form-group label { display: block; margin-bottom: 6px; color: var(--navy); font-size: .76rem; font-weight: 900; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 11px 13px; border: 1px solid var(--line); border-radius: 11px; background: #fcfdff; color: var(--ink); font-size: .82rem; }
+    .form-group textarea { min-height: 96px; resize: vertical; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--blue); outline: 0; box-shadow: 0 0 0 4px rgba(53,92,255,.1); }
+    .form-submit { width: 100%; margin-top: 3px; border: 0; }
     .form-submit:disabled { cursor: wait; opacity: .65; transform: none; }
-    .form-message { display: none; margin: 14px 0 0; padding: 11px 13px; border-radius: 10px; font-size: .78rem; font-weight: 700; text-align: center; }
+    .form-message { display: none; margin: 13px 0 0; padding: 11px 13px; border-radius: 10px; font-size: .76rem; font-weight: 800; text-align: center; }
     .form-message.show { display: block; }
-    .form-message.success { background: #eaf9ef; color: #15733d; }
-    .form-message.error { background: #fff0f0; color: #ac2d2d; }
-
-    .journey-section { padding-top: 10px; background: var(--white); }
-    .journey-heading { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 30px; }
-    .journey-heading .section-heading { margin-bottom: 0; }
-    .journey-note { max-width: 235px; padding: 15px 17px; border-right: 3px solid var(--gold); border-radius: 14px; background: #fff9dc; color: var(--navy); font-size: .78rem; line-height: 1.8; }
-    .journey-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; counter-reset: journey; }
-    .journey-card { position: relative; min-height: 190px; padding: 23px 23px 21px; border: 1px solid var(--line); border-radius: 22px; background: #fbfcff; overflow: hidden; counter-increment: journey; }
-    .journey-card::before { content: counter(journey, decimal-leading-zero); position: absolute; top: -14px; left: 18px; color: rgba(17,103,196,.08); font-size: 6rem; font-weight: 900; line-height: 1; }
-    .journey-card > * { position: relative; z-index: 1; }
-    .journey-step { display: inline-flex; align-items: center; gap: 7px; margin-bottom: 16px; color: var(--blue); font-size: .76rem; font-weight: 800; }
-    .journey-step::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 5px rgba(247,212,59,.18); }
-    .journey-card h3 { margin: 0 0 7px; color: var(--navy); font-size: 1.03rem; }
-    .journey-card p { margin: 0; color: var(--muted); font-size: .82rem; }
+    .form-message.success { background: #e7faf4; color: #08776b; }
+    .form-message.error { background: #fff0ec; color: #ae3a25; }
     .mobile-cta { display: none; }
-    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s var(--ease), transform .6s var(--ease); }
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .65s var(--ease), transform .65s var(--ease); }
     .reveal.visible { opacity: 1; transform: translateY(0); }
-    @keyframes reveal { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes rise { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-    @media (max-width: 900px) {
-      .hero { min-height: auto; padding: 135px 0 95px; }
-      .hero-grid, .intro-grid, .cta-panel { grid-template-columns: 1fr; }
-      .hero-visual { justify-self: start; width: min(100%, 390px); }
-      .cta-actions { justify-content: flex-start; }
-      .social-grid { grid-template-columns: repeat(3, 1fr); }
-    }
-    @media (max-width: 700px) {
-      .container { width: min(100% - 30px, 1160px); }
-      .nav-links { position: absolute; top: calc(100% + 10px); right: 15px; left: 15px; display: grid; gap: 0; padding: 7px; border: 1px solid rgba(255,255,255,.16); border-radius: 16px; background: rgba(8,31,73,.98); box-shadow: var(--shadow-lg); opacity: 0; visibility: hidden; transform: translateY(-8px); transition: opacity .2s ease, transform .2s var(--ease), visibility .2s ease; }
+    @media (max-width: 960px) { .hero { min-height: auto; padding-top: 130px; } .hero-grid, .path-layout, .cta-panel { grid-template-columns: 1fr; } .hero-art { justify-self: start; width: min(100%, 590px); } .cta-actions { justify-content: flex-start; } .social-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 720px) {
+      .container { width: min(100% - 30px, 1180px); }
+      .nav-links { position: absolute; top: calc(100% + 8px); right: 15px; left: 15px; display: grid; gap: 0; padding: 7px; border: 1px solid var(--line); border-radius: 16px; background: var(--white); box-shadow: var(--shadow); opacity: 0; visibility: hidden; transform: translateY(-8px); transition: opacity .2s ease, transform .2s var(--ease), visibility .2s ease; }
       .nav-links.open { opacity: 1; visibility: visible; transform: translateY(0); }
       .nav-links a { padding: 12px 14px; border-radius: 10px; }
-      .nav-links a:hover { background: rgba(255,255,255,.08); }
+      .nav-links a:hover { background: var(--mist); }
       .nav-cta { margin: 5px; text-align: center; }
       .menu-toggle { display: inline-flex; }
-      .hero-title { font-size: clamp(2.35rem, 11vw, 3.8rem); }
-      .hero-logo-card { min-height: 310px; }
-      .floating-label { right: 15px; bottom: 20px; }
-      .trust-inner { grid-template-columns: 1fr; }
-      .trust-item + .trust-item { border-right: 0; border-top: 1px solid var(--line); }
-      .section { padding: 75px 0; }
-      .benefits, .programs-grid, .journey-grid { grid-template-columns: 1fr; }
-      .journey-heading { align-items: flex-start; flex-direction: column; gap: 14px; }
-      .journey-note { max-width: 100%; }
-      .program-card { min-height: 270px; }
+      .hero { padding: 118px 0 88px; }
+      .hero-title { font-size: clamp(2.4rem, 12vw, 4rem); }
+      .hero-actions .button { flex: 1 1 100%; }
+      .hero-art-card { min-height: 300px; padding: 23px 10px 10px; border-radius: 27px; }
+      .art-badge.one { right: 7px; top: 74px; }
+      .art-badge.two { bottom: 16px; left: 7px; }
+      .ticker-inner { grid-template-columns: repeat(2, 1fr); }
+      .ticker-item { min-height: 55px; }
+      .ticker-item + .ticker-item { border-right: 0; }
+      .ticker-item:nth-child(n+3) { border-top: 1px solid var(--line); }
+      .section { padding: 74px 0; }
+      .section-head { align-items: flex-start; flex-direction: column; gap: 7px; margin-bottom: 27px; }
+      .path-result { grid-template-columns: 1fr; min-height: auto; padding: 23px; }
+      .path-result-visual { min-height: 150px; order: -1; }
+      .path-result-visual img { max-width: 220px; max-height: 175px; object-fit: contain; }
+      .program-grid, .steps-grid { grid-template-columns: 1fr; }
+      .program-card { min-height: 0; }
+      .program-visual { min-height: 165px; }
+      .program-visual img { height: 170px; }
       .social-grid { grid-template-columns: repeat(2, 1fr); }
-      .mobile-cta { position: fixed; z-index: 19; right: 12px; bottom: 12px; left: 12px; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 9px 10px 9px 14px; border: 1px solid rgba(255,255,255,.2); border-radius: 15px; background: rgba(8,31,73,.94); box-shadow: 0 15px 36px rgba(8,31,73,.24); color: var(--white); backdrop-filter: blur(15px); }
-      .mobile-cta span { font-size: .78rem; font-weight: 700; }
-      .mobile-cta a { display: inline-flex; align-items: center; justify-content: center; min-height: 39px; padding: 8px 14px; border-radius: 10px; background: var(--gold); color: var(--navy); font-size: .78rem; font-weight: 900; }
       .footer-main, .footer-bottom { align-items: flex-start; flex-direction: column; }
       .form-grid { grid-template-columns: 1fr; gap: 0; }
       .form-group.full { grid-column: auto; }
+      .mobile-cta { position: fixed; z-index: 49; right: 11px; bottom: 11px; left: 11px; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 8px 9px 8px 14px; border: 1px solid rgba(255,255,255,.18); border-radius: 15px; background: rgba(28,43,90,.95); box-shadow: 0 14px 32px rgba(28,43,90,.2); color: var(--white); backdrop-filter: blur(15px); }
+      .mobile-cta span { font-size: .73rem; font-weight: 800; }
+      .mobile-cta a { display: inline-flex; align-items: center; justify-content: center; min-height: 38px; padding: 8px 13px; border-radius: 10px; background: var(--yellow); color: var(--navy); font-size: .74rem; font-weight: 900; }
     }
-    @media (max-width: 430px) {
-      .brand-copy span { display: none; }
-      .hero-actions .button { width: 100%; }
-      .hero-note { align-items: flex-start; }
-      .social-card { min-height: 160px; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
-    }
+    @media (max-width: 390px) { .brand-copy span { display: none; } .hero-proof { align-items: flex-start; } }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
   </style>
 </head>
 <body>
   <header class="site-header" id="siteHeader">
     <div class="container nav">
       <a class="brand" href="#top" aria-label="العودة إلى الرئيسية"><img class="brand-mark" src="1.svg" alt="" /><span class="brand-copy"><strong>مركز الأمجاد</strong><span>للغات والتدريب</span></span></a>
-      <nav class="nav-links" id="navLinks" aria-label="التنقل الرئيسي"><a href="#about">لماذا الأمجاد؟</a><a href="#programs">برامجنا</a><a href="#contact">تواصل معنا</a><a class="nav-cta" href="#register" data-open-modal>طلب تسجيل</a></nav>
-      <button class="menu-toggle" id="menuToggle" type="button" aria-label="فتح القائمة" aria-expanded="false"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+      <nav class="nav-links" id="navLinks" aria-label="التنقل الرئيسي"><a href="#paths">اكتشف مسارك</a><a href="#programs">البرامج</a><a href="#steps">كيف نساعدك؟</a><a class="nav-cta" href="#register" data-open-modal>ابدأ الآن</a></nav>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="فتح القائمة" aria-expanded="false"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
     </div>
   </header>
 
   <main id="top">
-    <section class="hero"><div class="container hero-grid"><div class="hero-copy"><span class="eyebrow">تعليم يفتح لك أبوابًا جديدة</span><h1 class="hero-title">طوّر مهاراتك،<br /><em>واصنع فرصتك.</em></h1><p class="hero-description">في مركز الأمجاد للغات والتدريب، نمنحك المعرفة والثقة والمهارات العملية التي تحتاجها لتتقدم في دراستك وحياتك المهنية.</p><div class="hero-actions"><a class="button button-primary" href="#register" data-open-modal>ابدأ رحلتك التعليمية <span aria-hidden="true">←</span></a><a class="button button-ghost" href="https://wa.me/967778005033" target="_blank" rel="noopener noreferrer">تحدث معنا عبر واتساب <span aria-hidden="true">↗</span></a></div><div class="hero-note"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M3 12h18"/></svg>برامج مرنة، متابعة قريبة، وبيئة تشجعك على الاستمرار</div></div><div class="hero-visual" aria-label="شعار مركز الأمجاد"><div class="hero-logo-card"><img class="hero-logo" src="1.svg" alt="مركز الأمجاد للغات والتدريب" /><div class="floating-label"><span class="floating-dot"></span> تعلّم بمعايير دولية</div></div></div></div></section>
+    <section class="hero"><div class="container hero-grid"><div class="hero-copy"><span class="eyebrow">تعلّم يتفاعل معك</span><h1 class="hero-title">مهارات جديدة.<br /><span>فرص أكبر.</span></h1><p class="hero-description">تجربة تعليمية عملية وممتعة تساعدك على تطوير اللغة والمهارات الرقمية، بخطوات واضحة ودعم قريب من احتياجك.</p><div class="hero-actions"><a class="button button-primary" href="#paths">اكتشف مسارك <span>←</span></a><a class="button button-outline" href="https://wa.me/967778005033" target="_blank" rel="noopener noreferrer">اسألنا عبر واتساب <span>↗</span></a></div><div class="hero-proof"><span class="proof-dots" aria-hidden="true"><span></span><span></span><span></span><span></span></span><span>تعليم واضح، تفاعل أكثر، وبدء أسهل</span></div></div><div class="hero-art"><div class="hero-art-card"><img class="hero-art-image" src="assets/alc-hero-illustration.webp" alt="طلاب ومدربة يتعلمون معًا باستخدام التقنية" /><div class="art-badge one"><span class="badge-dot"></span>تعلّم جماعي ممتع</div><div class="art-badge two"><span class="badge-dot yellow"></span>خطوة بخطوة</div></div></div></div></section>
 
-    <div class="container trust-strip" aria-label="مميزات المركز"><div class="trust-inner"><div class="trust-item"><span class="trust-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9L12 3Z"/></svg></span>تعليم عملي قابل للتطبيق</div><div class="trust-item"><span class="trust-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 5v6c0 5 3.4 9.3 8 11 4.6-1.7 8-6 8-11V5l-8-3Z"/><path d="m8.5 12 2.3 2.3 4.7-5"/></svg></span>شهادات إتمام موثقة</div><div class="trust-item"><span class="trust-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>مواعيد تناسب احتياجاتك</div></div></div>
+    <div class="container ticker" aria-label="مميزات التجربة"><div class="ticker-inner"><div class="ticker-item"><span class="ticker-icon">✦</span>أنشطة تجعل الفكرة أسهل</div><div class="ticker-item"><span class="ticker-icon">↗</span>مسارات تناسب هدفك</div><div class="ticker-item"><span class="ticker-icon">✓</span>متابعة من البداية</div><div class="ticker-item"><span class="ticker-icon">★</span>تعلّم بثقة</div></div></div>
 
-    <section class="section" id="about"><div class="container intro-grid"><div class="intro-aside reveal"><span class="eyebrow">تجربة تعليمية مختلفة</span><h3>خطوتك الأولى تبدأ من هنا.</h3><p>نساعدك على اختيار البرنامج المناسب، ونرافقك من أول استفسار حتى إتمام رحلتك التعليمية بثقة.</p><a href="about.html">تعرّف على هويتنا التعليمية <span>←</span></a></div><div><div class="section-heading reveal"><span class="eyebrow">لماذا مركز الأمجاد؟</span><h2>نحوّل التعلّم إلى تقدّم ملموس</h2><p>صمّمنا خدماتنا لتكون واضحة، عملية، وقريبة من أهدافك — سواء كنت تبدأ من الصفر أو تبحث عن مهارة جديدة.</p></div><div class="benefits"><article class="benefit reveal"><div class="benefit-icon"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5V5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v14A1.5 1.5 0 0 1 18.5 21h-13A1.5 1.5 0 0 1 4 19.5Z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></div><h3>محتوى واضح ومنظم</h3><p>تعلّم بخطة مفهومة ومراحل تساعدك على قياس تطورك خطوة بخطوة.</p></article><article class="benefit reveal"><div class="benefit-icon"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><h3>متابعة قريبة</h3><p>نستمع لاحتياجك ونساعدك على اختيار المسار الذي يناسب مستواك ووقتك.</p></article><article class="benefit reveal"><div class="benefit-icon"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2 4 5v6c0 5 3.4 9.3 8 11 4.6-1.7 8-6 8-11V5l-8-3Z"/><path d="M9 12h6M12 9v6"/></svg></div><h3>مهارات تصنع فرقًا</h3><p>نركز على ما يمكنك استخدامه في الدراسة والعمل والتواصل اليومي.</p></article><article class="benefit reveal"><div class="benefit-icon"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06-1.5 1.5-.06-.06a1.7 1.7 0 0 0-1.88-.34 1.7 1.7 0 0 0-1.03 1.56V20h-2.12v-.4a1.7 1.7 0 0 0-1.04-1.56 1.7 1.7 0 0 0-1.88.34l-.06.06-1.5-1.5.06-.06A1.7 1.7 0 0 0 9.2 15a1.7 1.7 0 0 0-1.56-1.03H7.2v-2.12h.44A1.7 1.7 0 0 0 9.2 10.8a1.7 1.7 0 0 0-.34-1.88L8.8 8.86l1.5-1.5.06.06a1.7 1.7 0 0 0 1.88.34A1.7 1.7 0 0 0 13.28 6.2v-.4h2.12v.4a1.7 1.7 0 0 0 1.03 1.56 1.7 1.7 0 0 0 1.88-.34l.06-.06 1.5 1.5-.06.06a1.7 1.7 0 0 0-.34 1.88A1.7 1.7 0 0 0 21.03 11h.4v2.12h-.4A1.7 1.7 0 0 0 19.4 15Z"/></svg></div><h3>بيئة مريحة</h3><p>تجربة إنسانية تشجعك على السؤال والممارسة وبناء الثقة في كل مرحلة.</p></article></div></div></div></section>
+    <section class="section paths-section" id="paths"><div class="container"><div class="section-head"><div><span class="eyebrow">لنبدأ من احتياجك</span><h2>ما المهارة التي تريد تطويرها؟</h2></div><p>اختر ما يشبه هدفك، وسنقترح لك نقطة بداية واضحة بدل أن تضيع بين الخيارات.</p></div><div class="path-layout"><div class="path-menu" role="tablist" aria-label="اختيار المسار"><button class="path-option active" type="button" data-path="language" role="tab" aria-selected="true"><span class="path-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5v-15Z"/><path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H20M8 7h7M8 11h5"/></svg></span><span><strong>أطوّر لغتي</strong><small>محادثة وفهم وكتابة</small></span></button><button class="path-option" type="button" data-path="digital" role="tab" aria-selected="false"><span class="path-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4M7 8h3M7 11h7"/></svg></span><span><strong>أطوّر مهاراتي الرقمية</strong><small>حاسوب وأدوات عملية</small></span></button><button class="path-option" type="button" data-path="certificate" role="tab" aria-selected="false"><span class="path-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M5 4h14v16H5z"/><path d="M8 8h8M8 12h6M12 20v-4"/><path d="m9.5 16 2.5 2 2.5-2"/></svg></span><span><strong>أستعد للإنجاز</strong><small>شهادة وخطوة مهنية</small></span></button></div><div class="path-result" aria-live="polite"><div class="path-result-copy"><span class="eyebrow" style="color: var(--yellow)" id="pathEyebrow">المسار المقترح لك</span><h3 id="pathTitle">ابدأ من اللغة الإنجليزية</h3><p id="pathBody">ابنِ ثقتك في المحادثة والفهم والكتابة ضمن تجربة عملية تناسب مستواك وتقرّبك من أهدافك.</p><a class="button" id="pathCta" href="#register" data-open-modal>أريد معرفة المزيد <span>←</span></a></div><div class="path-result-visual"><img id="pathImage" src="assets/alc-language-illustration.webp" alt="رسم توضيحي لمسار تعلم اللغة" /></div></div></div></div></section>
 
-    <section class="section programs-section" id="programs"><div class="container"><div class="section-heading reveal"><span class="eyebrow">مساراتك تبدأ باختيارك</span><h2>اختر المهارة التي تريد تطويرها</h2><p>تصفح خدماتنا الأساسية، ثم تواصل معنا لنساعدك في تحديد البرنامج الأنسب لك.</p></div><div class="programs-grid"><article class="program-card featured reveal"><div class="program-number"><span>المسار 01</span><span>01</span></div><h3>اللغة الإنجليزية</h3><p>طوّر مهاراتك في المحادثة والفهم والكتابة ضمن مسار يناسب مستواك وأهدافك.</p><a class="program-link" href="#register" data-open-modal>اطلب تفاصيل البرنامج <span>←</span></a></article><article class="program-card reveal"><div class="program-number"><span>المسار 02</span><span>02</span></div><h3>الحاسوب والمهارات الرقمية</h3><p>اكتسب أساسيات عملية تساعدك في الدراسة والعمل وتزيد من جاهزيتك للفرص القادمة.</p><a class="program-link" href="#register" data-open-modal>استفسر عن البرامج <span>←</span></a></article><article class="program-card reveal"><div class="program-number"><span>المسار 03</span><span>03</span></div><h3>برامج تدريبية متنوعة</h3><p>تعرّف على عروضنا الحالية والبرامج المتاحة، واختر ما يطابق احتياجك الآن.</p><a class="program-link" href="offers.html">شاهد العروض الحالية <span>←</span></a></article></div></div></section>
+    <section class="section programs-section" id="programs"><div class="container"><div class="section-head"><div><span class="eyebrow">تعلم بطريقة أقرب لك</span><h2>مسارات عملية، لا معلومات مبعثرة</h2></div><a class="section-kicker" href="offers.html">شاهد العروض الحالية ←</a></div><div class="program-grid"><article class="program-card reveal"><div class="program-visual"><img src="assets/alc-language-illustration.webp" alt="مدربة وطلاب يتعلمون اللغة" /></div><div class="program-content"><span class="program-tag">لغة وتواصل</span><h3>اللغة الإنجليزية</h3><p>طوّر المحادثة والفهم والكتابة ضمن محتوى حيوي وممارسة تساعدك على التقدم.</p><a class="program-link" href="#register" data-open-modal>اطلب تفاصيل المسار <span>←</span></a></div></article><article class="program-card reveal"><div class="program-visual"><img src="assets/alc-digital-illustration.webp" alt="متعلم يستخدم الحاسوب لتطوير مهاراته" /></div><div class="program-content"><span class="program-tag">مهارات رقمية</span><h3>الحاسوب والتقنية</h3><p>تعلم أدوات عملية تمنحك حضورًا أقوى في الدراسة والعمل والفرص الرقمية.</p><a class="program-link" href="#register" data-open-modal>اختر هذا المسار <span>←</span></a></div></article><article class="program-card reveal"><div class="program-visual"><img src="assets/alc-certificate-illustration.webp" alt="متعلم يحتفل بشهادة إنجاز" /></div><div class="program-content"><span class="program-tag">إنجاز وتقدم</span><h3>الشهادات والعروض</h3><p>تابع عروضنا وتعرّف على خطوات الحصول على شهادة إتمام مسارك التدريبي.</p><a class="program-link" href="certificates.html">انتقل إلى طلب شهادة <span>←</span></a></div></article></div></div></section>
 
-    <section class="section journey-section" aria-labelledby="journeyTitle"><div class="container"><div class="journey-heading"><div class="section-heading reveal"><span class="eyebrow">بداية واضحة بلا تعقيد</span><h2 id="journeyTitle">من الاستفسار إلى الإنجاز في ثلاث خطوات</h2><p>نرتب لك الطريق حتى تعرف ما الذي سيحدث بعد أول تواصل مع المركز.</p></div><div class="journey-note reveal">لا تعرف أي برنامج يناسبك؟ ابدأ بالاستفسار، وسيساعدك فريقنا في الاختيار.</div></div><div class="journey-grid"><article class="journey-card reveal"><span class="journey-step">الخطوة الأولى</span><h3>تواصل معنا</h3><p>أرسل بياناتك أو ابدأ محادثة عبر واتساب وشاركنا هدفك التعليمي.</p></article><article class="journey-card reveal"><span class="journey-step">الخطوة الثانية</span><h3>نحدد المسار المناسب</h3><p>نستمع إلى احتياجك ونساعدك على اختيار البرنامج والمستوى الأقرب لك.</p></article><article class="journey-card reveal"><span class="journey-step">الخطوة الثالثة</span><h3>ابدأ بثقة</h3><p>تتلقى تفاصيل التسجيل وتبدأ رحلتك التعليمية بخطوة عملية واضحة.</p></article></div></div></section>
+    <section class="section steps-section" id="steps"><div class="container"><div class="section-head"><div><span class="eyebrow">تجربة بلا تعقيد</span><h2>من أول سؤال إلى أول إنجاز</h2></div><p>نحوّل البداية إلى خطوات صغيرة وواضحة، حتى تشعر بالتقدم من أول تواصل.</p></div><div class="steps-grid"><article class="step-card reveal"><div class="step-number">01</div><h3>شاركنا هدفك</h3><p>قل لنا ما تريد تعلّمه أو طوّره، حتى نبدأ من احتياجك الحقيقي.</p></article><article class="step-card reveal"><div class="step-number">02</div><h3>نرشح لك المسار</h3><p>نساعدك في اختيار البرنامج والمستوى والموعد الأقرب إلى ظروفك.</p></article><article class="step-card reveal"><div class="step-number">03</div><h3>ابدأ وتقدّم</h3><p>تتعلّم، تطبّق، وتحصل على دعم يذكّرك أن كل خطوة تصنع فرقًا.</p></article></div></div></section>
 
-    <section class="section cta-section" id="contact"><div class="container"><div class="cta-panel reveal"><div><span class="eyebrow" style="color: var(--gold)">مستعد للخطوة التالية؟</span><h2>أخبرنا بما تريد تعلّمه، وسنرشدك إلى البداية المناسبة.</h2><p>اترك بياناتك وسيتواصل معك فريق المركز، أو ابدأ محادثة سريعة عبر واتساب.</p></div><div class="cta-actions"><a class="button button-primary" href="#register" data-open-modal>قدّم طلب التسجيل</a><a class="button button-ghost" href="tel:+967778005033">اتصل بنا الآن</a></div></div></div></section>
+    <section class="section cta-section" id="contact"><div class="container"><div class="cta-panel reveal"><div><span class="eyebrow">خطوتك التالية أسهل مما تتوقع</span><h2>جاهز تبدأ تجربة تعليمية تشبهك؟</h2><p>اترك بياناتك، وسيتواصل معك فريق المركز لمساعدتك في اختيار البداية المناسبة.</p></div><div class="cta-actions"><a class="button button-primary" href="#register" data-open-modal>قدّم طلب التسجيل</a><a class="button button-outline" href="tel:+967778005033">اتصل بنا الآن</a></div></div></div></section>
 
-    <section class="section social-section" aria-labelledby="socialTitle"><div class="container"><div class="section-heading reveal"><span class="eyebrow">ابقَ على تواصل</span><h2 id="socialTitle">تابع جديد المركز</h2><p>آخر الأخبار والأنشطة والعروض تصلك عبر قنواتنا الرسمية.</p></div><div class="social-grid"><a class="social-card reveal" href="https://www.instagram.com/alc_yemen?utm_source=qr&igsh=dmpva2l1bDY3MHZv" target="_blank" rel="noopener noreferrer"><img src="logo.i.png" alt="" /><h3>إنستغرام</h3><span>تابع أخبارنا</span></a><a class="social-card reveal" href="https://www.facebook.com/ALC.Yemen/?from_intent_redirect=1" target="_blank" rel="noopener noreferrer"><img src="logo.f.png" alt="" /><h3>فيسبوك</h3><span>اكتشف الجديد</span></a><a class="social-card reveal" href="https://wa.me/967778005033" target="_blank" rel="noopener noreferrer"><img src="logo.w.png" alt="" /><h3>واتساب</h3><span>دردشة سريعة</span></a><a class="social-card reveal" href="https://whatsapp.com/channel/0029VaPru5D5q08boHy1Yo0u" target="_blank" rel="noopener noreferrer"><img src="logo.w.png" alt="" /><h3>قناة واتساب</h3><span>تحديثات يومية</span></a><a class="social-card reveal" href="https://maps.app.goo.gl/tRwSPfsoHGSUfkkf7?g_st=ac" target="_blank" rel="noopener noreferrer"><img src="logo.p.png" alt="" /><h3>موقعنا</h3><span>افتح الخريطة</span></a></div></div></section>
+    <section class="section social-section" aria-labelledby="socialTitle"><div class="container"><div class="section-head"><div><span class="eyebrow">مجتمع الأمجاد</span><h2 id="socialTitle">ابقَ قريبًا من جديدنا</h2></div><p>الأخبار والأنشطة والعروض تصلك عبر قنواتنا الرسمية.</p></div><div class="social-grid"><a class="social-card reveal" href="https://www.instagram.com/alc_yemen?utm_source=qr&igsh=dmpva2l1bDY3MHZv" target="_blank" rel="noopener noreferrer"><img src="logo.i.png" alt="" /><h3>إنستغرام</h3><span>تابع أخبارنا</span></a><a class="social-card reveal" href="https://www.facebook.com/ALC.Yemen/?from_intent_redirect=1" target="_blank" rel="noopener noreferrer"><img src="logo.f.png" alt="" /><h3>فيسبوك</h3><span>اكتشف الجديد</span></a><a class="social-card reveal" href="https://wa.me/967778005033" target="_blank" rel="noopener noreferrer"><img src="logo.w.png" alt="" /><h3>واتساب</h3><span>دردشة سريعة</span></a><a class="social-card reveal" href="https://whatsapp.com/channel/0029VaPru5D5q08boHy1Yo0u" target="_blank" rel="noopener noreferrer"><img src="logo.w.png" alt="" /><h3>قناة واتساب</h3><span>تحديثات يومية</span></a><a class="social-card reveal" href="https://maps.app.goo.gl/tRwSPfsoHGSUfkkf7?g_st=ac" target="_blank" rel="noopener noreferrer"><img src="logo.p.png" alt="" /><h3>موقعنا</h3><span>افتح الخريطة</span></a></div></div></section>
   </main>
 
-  <footer class="site-footer"><div class="container"><div class="footer-main"><a class="footer-brand" href="#top"><img src="1.svg" alt="" /><span><strong>مركز الأمجاد للغات والتدريب</strong><span>تعلّم بثقة، وتقدّم بمهارة.</span></span></a><div class="footer-contact"><a href="tel:+967778005033">+967 778 005 033</a><span>صنعاء، اليمن</span><a href="about.html">عن المركز</a><a href="certificates.html">طلب شهادة</a></div></div><div class="footer-bottom"><span>جميع الحقوق محفوظة © 2026</span><span>تصميم وتطوير: يحيى المريسي</span></div></div></footer>
+  <footer class="site-footer"><div class="container"><div class="footer-main"><a class="footer-brand" href="#top"><img src="1.svg" alt="" /><span><strong>مركز الأمجاد للغات والتدريب</strong><span>تعلّم يتفاعل معك، وتقدّم بثقة.</span></span></a><div class="footer-contact"><a href="tel:+967778005033">+967 778 005 033</a><span>صنعاء، اليمن</span><a href="about.html">عن المركز</a><a href="certificates.html">طلب شهادة</a></div></div><div class="footer-bottom"><span>جميع الحقوق محفوظة © 2026</span><span>تصميم وتطوير: يحيى المريسي</span></div></div></footer>
 
-  <div class="modal" id="register" aria-hidden="true"><div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="registrationTitle"><button class="modal-close" id="modalClose" type="button" aria-label="إغلاق">×</button><span class="eyebrow">ابدأ الآن</span><h2 class="modal-title" id="registrationTitle">طلب تسجيل</h2><p class="modal-subtitle">أرسل بياناتك وسنتواصل معك لمساعدتك في اختيار البرنامج المناسب.</p><form id="registrationForm"><div class="form-grid"><div class="form-group"><label for="regName">الاسم الكامل *</label><input type="text" id="regName" name="regName" placeholder="أدخل اسمك الكامل" required /></div><div class="form-group"><label for="regPhone">رقم الهاتف *</label><input type="tel" id="regPhone" name="regPhone" placeholder="أدخل رقم هاتفك" required /></div><div class="form-group"><label for="regEmail">البريد الإلكتروني</label><input type="email" id="regEmail" name="regEmail" placeholder="example@email.com" /></div><div class="form-group"><label for="regCourse">البرنامج أو الدورة *</label><input type="text" id="regCourse" name="regCourse" placeholder="مثال: لغة إنجليزية" required /></div><div class="form-group"><label for="regLevel">المستوى الحالي</label><select id="regLevel" name="regLevel"><option value="">اختر المستوى</option><option value="مبتدئ">مبتدئ</option><option value="متوسط">متوسط</option><option value="متقدم">متقدم</option></select></div><div class="form-group full"><label for="regMessage">ملاحظات إضافية *</label><textarea id="regMessage" name="regMessage" placeholder="اكتب أي تفاصيل تساعدنا على خدمتك..." required></textarea></div></div><button class="button button-primary form-submit" type="submit">إرسال طلب التسجيل <span>←</span></button><p class="form-message" id="formMessage" role="status"></p></form></div></div>
-
+  <div class="modal" id="register" aria-hidden="true"><div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="registrationTitle"><button class="modal-close" id="modalClose" type="button" aria-label="إغلاق">×</button><span class="eyebrow">ابدأ الآن</span><h2 class="modal-title" id="registrationTitle">طلب تسجيل</h2><p class="modal-subtitle">أرسل بياناتك وسنتواصل معك لمساعدتك في اختيار البرنامج الأنسب.</p><form id="registrationForm"><div class="form-grid"><div class="form-group"><label for="regName">الاسم الكامل *</label><input type="text" id="regName" name="regName" placeholder="أدخل اسمك الكامل" required /></div><div class="form-group"><label for="regPhone">رقم الهاتف *</label><input type="tel" id="regPhone" name="regPhone" placeholder="أدخل رقم هاتفك" required /></div><div class="form-group"><label for="regEmail">البريد الإلكتروني</label><input type="email" id="regEmail" name="regEmail" placeholder="example@email.com" /></div><div class="form-group"><label for="regCourse">البرنامج أو الدورة *</label><input type="text" id="regCourse" name="regCourse" placeholder="مثال: لغة إنجليزية" required /></div><div class="form-group"><label for="regLevel">المستوى الحالي</label><select id="regLevel" name="regLevel"><option value="">اختر المستوى</option><option value="مبتدئ">مبتدئ</option><option value="متوسط">متوسط</option><option value="متقدم">متقدم</option></select></div><div class="form-group full"><label for="regMessage">ملاحظات إضافية *</label><textarea id="regMessage" name="regMessage" placeholder="اكتب أي تفاصيل تساعدنا على خدمتك..." required></textarea></div></div><button class="button button-primary form-submit" type="submit">إرسال طلب التسجيل <span>←</span></button><p class="form-message" id="formMessage" role="status"></p></form></div></div>
   <div class="mobile-cta"><span>جاهز تبدأ رحلتك؟</span><a href="#register" data-open-modal>طلب تسجيل</a></div>
 
   <script type="module">
@@ -272,16 +269,30 @@
     const modalClose = document.getElementById('modalClose');
     const form = document.getElementById('registrationForm');
     const formMessage = document.getElementById('formMessage');
+    const pathData = {
+      language: { title: 'ابدأ من اللغة الإنجليزية', body: 'ابنِ ثقتك في المحادثة والفهم والكتابة ضمن تجربة عملية تناسب مستواك وتقرّبك من أهدافك.', image: 'assets/alc-language-illustration.webp', alt: 'رسم توضيحي لمسار تعلم اللغة' },
+      digital: { title: 'اجعل التقنية أسهل', body: 'تعلّم الأدوات الرقمية التي تحتاجها في الدراسة والعمل، واكتسب مهارات يمكنك استخدامها من اليوم.', image: 'assets/alc-digital-illustration.webp', alt: 'رسم توضيحي لمسار المهارات الرقمية' },
+      certificate: { title: 'وثّق خطوة إنجازك', body: 'تعرّف على خيارات الشهادة والعروض، وخطط للخطوة التالية في رحلتك التعليمية بثقة.', image: 'assets/alc-certificate-illustration.webp', alt: 'رسم توضيحي لمسار الإنجاز والشهادة' }
+    };
     function setMenu(open) { navLinks.classList.toggle('open', open); menuToggle.setAttribute('aria-expanded', String(open)); }
-    function openRegistrationModal(event) { if (event) event.preventDefault(); modal.classList.add('is-open'); modal.setAttribute('aria-hidden', 'false'); document.body.classList.add('modal-open'); setTimeout(() => document.getElementById('regName').focus(), 150); }
-    function closeRegistrationModal() { modal.classList.remove('is-open'); modal.setAttribute('aria-hidden', 'true'); document.body.classList.remove('modal-open'); }
+    function openModal(event) { if (event) event.preventDefault(); modal.classList.add('is-open'); modal.setAttribute('aria-hidden', 'false'); document.body.classList.add('modal-open'); setTimeout(() => document.getElementById('regName').focus(), 150); }
+    function closeModal() { modal.classList.remove('is-open'); modal.setAttribute('aria-hidden', 'true'); document.body.classList.remove('modal-open'); }
     menuToggle.addEventListener('click', () => setMenu(!navLinks.classList.contains('open')));
     navLinks.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setMenu(false)));
-    document.querySelectorAll('[data-open-modal]').forEach((button) => button.addEventListener('click', openRegistrationModal));
-    modalClose.addEventListener('click', closeRegistrationModal);
-    modal.addEventListener('click', (event) => { if (event.target === modal) closeRegistrationModal(); });
-    document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && modal.classList.contains('is-open')) closeRegistrationModal(); });
-    window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 24), { passive: true });
+    document.querySelectorAll('[data-open-modal]').forEach((element) => element.addEventListener('click', openModal));
+    modalClose.addEventListener('click', closeModal);
+    modal.addEventListener('click', (event) => { if (event.target === modal) closeModal(); });
+    document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && modal.classList.contains('is-open')) closeModal(); });
+    window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 20), { passive: true });
+    document.querySelectorAll('[data-path]').forEach((option) => option.addEventListener('click', () => {
+      const data = pathData[option.dataset.path];
+      document.querySelectorAll('[data-path]').forEach((item) => { const active = item === option; item.classList.toggle('active', active); item.setAttribute('aria-selected', String(active)); });
+      document.getElementById('pathTitle').textContent = data.title;
+      document.getElementById('pathBody').textContent = data.body;
+      const image = document.getElementById('pathImage');
+      image.src = data.image;
+      image.alt = data.alt;
+    }));
     const revealObserver = new IntersectionObserver((entries) => { entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add('visible'); revealObserver.unobserve(entry.target); } }); }, { threshold: .12 });
     document.querySelectorAll('.reveal').forEach((element) => revealObserver.observe(element));
     form.addEventListener('submit', async (event) => {
@@ -294,27 +305,19 @@
       formMessage.className = 'form-message';
       formMessage.textContent = '';
       try {
-        const name = data.get('regName').trim();
-        const phone = data.get('regPhone').trim();
-        const email = data.get('regEmail').trim();
-        const course = data.get('regCourse').trim();
-        const level = data.get('regLevel').trim();
-        const message = data.get('regMessage').trim();
+        const name = data.get('regName').trim(); const phone = data.get('regPhone').trim(); const email = data.get('regEmail').trim(); const course = data.get('regCourse').trim(); const level = data.get('regLevel').trim(); const message = data.get('regMessage').trim();
         await submitOfferRequest({ fullName: name, phone, email: email || null, offerIndex: 'عام - ' + course, notes: `المستوى: ${level}\nالملاحظات: ${message}` });
         const registrationMessage = `طلب تسجيل جديد\nالاسم: ${name}\nرقم الهاتف: ${phone}\nالبريد الإلكتروني: ${email}\nالدورة: ${course}\nالمستوى الحالي: ${level}\nالملاحظات: ${message}`;
         window.open(`https://wa.me/967778005033?text=${encodeURIComponent(registrationMessage)}`, '_blank', 'noopener,noreferrer');
         form.reset();
         formMessage.className = 'form-message success show';
         formMessage.textContent = 'تم إرسال طلبك بنجاح. سيتواصل معك الفريق قريبًا.';
-        setTimeout(closeRegistrationModal, 2600);
+        setTimeout(closeModal, 2600);
       } catch (error) {
         console.error('Registration submission error:', error);
         formMessage.className = 'form-message error show';
         formMessage.textContent = 'تعذر إرسال الطلب حاليًا. يرجى المحاولة مجددًا أو التواصل معنا عبر واتساب.';
-      } finally {
-        submitButton.disabled = false;
-        submitButton.innerHTML = originalText;
-      }
+      } finally { submitButton.disabled = false; submitButton.innerHTML = originalText; }
     });
   </script>
 </body>
