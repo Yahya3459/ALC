@@ -312,7 +312,7 @@ background: rgba(15,91,183,0.08);
 
 <div class="form-group">
 <label for="fullNameEn">الاسم الرباعي (إنجليزي) </label>
-<input type="text" id="fullNameEn" name="fullNameEn" required placeholder="مثال: Mohammed Ali Ahmed Hassan" oninput="validateEnglishName(this)">
+<input type="text" id="fullNameEn" name="fullNameEn" required placeholder="مثال: Mohammed Ali Ahmed Hassan" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" oninput="validateEnglishName(this)">
 <span class="input-hint">يرجى كتابة الاسم بشكل صحيح مطابق لجواز السفر</span>
 <span class="error-hint" id="fullNameEnError">يجب كتابة الاسم الرباعي باللغة الإنجليزية فقط</span>
 </div>
@@ -336,33 +336,10 @@ background: rgba(15,91,183,0.08);
 <span class="input-hint">اكتب اسم المحافظة ثم اخترها من القائمة</span>
 </div>
 <div class="form-group">
-<label for="birthDate">تاريخ الميلاد </label>
-<input type="text" id="birthDate" name="birthDate" required placeholder="مثال: 1990/01/01" inputmode="numeric" oninput="formatBirthDate(this)">
-<button type="button" id="toggleDatePickerBtn" onclick="toggleBirthDatePicker()" style="margin-top:8px; padding:6px 10px; border:1px solid #ccc; border-radius:6px; background:#f8f8f8; cursor:pointer;">اختيار من القوائم</button>
-<div id="birthDatePicker" style="display:none; margin-top:8px; gap:8px; flex-wrap:wrap;">
-  <select id="birthDay" onchange="updateBirthDateFromParts()" style="min-width:80px;">
-    <option value="">اليوم</option>
-  </select>
-  <select id="birthMonth" onchange="updateBirthDateFromParts()" style="min-width:90px;">
-    <option value="">الشهر</option>
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-    <option value="6">6</option>
-    <option value="7">7</option>
-    <option value="8">8</option>
-    <option value="9">9</option>
-    <option value="10">10</option>
-    <option value="11">11</option>
-    <option value="12">12</option>
-  </select>
-  <select id="birthYear" onchange="updateBirthDateFromParts()" style="min-width:95px;">
-    <option value="">السنة</option>
-  </select>
-</div>
-<span class="input-hint">اكتب التاريخ يدويًا أو اضغط على الزر لاختيار اليوم والشهر والسنة</span>
+<label for="birthDate">سنة الميلاد </label>
+<input type="text" id="birthDate" name="birthDate" required placeholder="مثال: 1990" inputmode="numeric" maxlength="4" pattern="[0-9]{4}" autocomplete="bday-year" oninput="formatBirthYear(this)">
+<span class="input-hint">اكتب سنة الميلاد فقط، مكوّنة من 4 أرقام</span>
+<span class="error-hint" id="birthDateError">يرجى إدخال سنة ميلاد صحيحة بين 1900 والسنة الحالية</span>
 </div>
 </div>
 
@@ -406,6 +383,7 @@ function validateArabicName(input) {
 }
 
 function validateEnglishName(input) {
+    // التحقق من اللغة فقط؛ لا يتم تصحيح أو تغيير النص الذي يكتبه الطالب.
     const value = input.value.trim();
     const englishRegex = /^[A-Za-z\s'-]+$/;
     const errorHint = document.getElementById('fullNameEnError');
@@ -433,117 +411,28 @@ function toggleOtherCourse(value) {
 
 function setBirthDateLimits() {
     const birthDateInput = document.getElementById('birthDate');
-    birthDateInput.removeAttribute('min');
-    birthDateInput.removeAttribute('max');
-
-    const yearSelect = document.getElementById('birthYear');
     const currentYear = new Date().getFullYear();
-    for (let year = currentYear; year >= 1900; year--) {
-        const option = document.createElement('option');
-        option.value = year;
-        option.textContent = year;
-        yearSelect.appendChild(option);
-    }
-
-    const daySelect = document.getElementById('birthDay');
-    for (let day = 1; day <= 31; day++) {
-        const option = document.createElement('option');
-        option.value = day;
-        option.textContent = day;
-        daySelect.appendChild(option);
-    }
+    birthDateInput.min = '1900';
+    birthDateInput.max = String(currentYear);
 }
 
-function toggleBirthDatePicker() {
-    const picker = document.getElementById('birthDatePicker');
-    const button = document.getElementById('toggleDatePickerBtn');
-    const isHidden = picker.style.display === 'none';
-    picker.style.display = isHidden ? 'flex' : 'none';
-    button.textContent = isHidden ? 'إخفاء القوائم' : 'اختيار من القوائم';
+function formatBirthYear(input) {
+    input.value = input.value.replace(/\D/g, '').slice(0, 4);
+    validateBirthYear(input);
 }
 
-function updateBirthDateFromParts() {
-    const year = document.getElementById('birthYear').value;
-    const month = document.getElementById('birthMonth').value;
-    const day = document.getElementById('birthDay').value;
-    const birthDateInput = document.getElementById('birthDate');
-
-    if (year && month && day) {
-        birthDateInput.value = `${year}/${String(month).padStart(2, '0')}/${String(day).padStart(2, '0')}`;
-        validateBirthDate(birthDateInput);
-    } else if (year && month) {
-        birthDateInput.value = `${year}/${String(month).padStart(2, '0')}`;
-    } else if (year) {
-        birthDateInput.value = year;
-    }
-}
-
-function syncBirthDateDropdownsFromInput(input) {
+function validateBirthYear(input) {
     const value = input.value.trim();
-    const parts = value.split('/').filter(Boolean);
+    const currentYear = new Date().getFullYear();
+    const year = Number(value);
+    const isValid = /^\d{4}$/.test(value) && year >= 1900 && year <= currentYear;
+    const errorHint = document.getElementById('birthDateError');
 
-    if (parts.length >= 3) {
-        document.getElementById('birthYear').value = parts[0];
-        document.getElementById('birthMonth').value = String(parts[1]).padStart(2, '0').replace(/^0/, '');
-        document.getElementById('birthDay').value = String(parts[2]).padStart(2, '0').replace(/^0/, '');
+    input.classList.toggle('invalid', Boolean(value) && !isValid);
+    if (errorHint) {
+        errorHint.style.display = Boolean(value) && !isValid ? 'block' : 'none';
     }
-}
-
-function formatBirthDate(input) {
-    const raw = input.value.replace(/[^\d/]/g, '');
-    const parts = raw.split('/');
-
-    if (parts[0]) {
-        parts[0] = parts[0].slice(0, 4);
-    }
-    if (parts[1]) {
-        parts[1] = parts[1].slice(0, 2);
-    }
-    if (parts[2]) {
-        parts[2] = parts[2].slice(0, 2);
-    }
-
-    input.value = parts.slice(0, 3).join('/');
-    validateBirthDate(input);
-}
-
-function validateBirthDate(input) {
-    const value = input.value.trim();
-    if (!value) {
-        input.classList.remove('invalid');
-        return;
-    }
-
-    const parts = value.split(/[/.]/).filter(Boolean);
-    if (parts.length < 3) {
-        input.classList.add('invalid');
-        return;
-    }
-
-    const year = Number(parts[0]);
-    const month = Number(parts[1]);
-    const day = Number(parts[2]);
-    const isValidDate = Number.isInteger(year) && Number.isInteger(month) && Number.isInteger(day) &&
-        month >= 1 && month <= 12 && day >= 1 && day <= 31;
-
-    if (!isValidDate) {
-        input.classList.add('invalid');
-        return;
-    }
-
-    const selectedDate = new Date(year, month - 1, day);
-    const today = new Date();
-    const isRealDate = selectedDate.getFullYear() === year &&
-        selectedDate.getMonth() === month - 1 &&
-        selectedDate.getDate() === day;
-    const isFuture = selectedDate > today;
-
-    input.classList.toggle('invalid', !isRealDate || isFuture);
-
-    if (isRealDate) {
-        input.value = `${year}/${String(month).padStart(2, '0')}/${String(day).padStart(2, '0')}`;
-        syncBirthDateDropdownsFromInput(input);
-    }
+    return isValid;
 }
 
 function formatPhoneNumber(input) {
@@ -660,19 +549,13 @@ async function handleCertificateSubmit(event) {
         return;
     }
 
-    if (!birthDate) {
-        alert('يرجى اختيار تاريخ الميلاد');
+    const birthYear = Number(birthDate);
+    if (!validateBirthYear(document.getElementById('birthDate'))) {
+        alert('يرجى إدخال سنة ميلاد صحيحة بين 1900 والسنة الحالية');
         return;
     }
 
-    const selectedDate = new Date(birthDate);
-    const today = new Date();
-    const age = today.getFullYear() - selectedDate.getFullYear() - ((today.getMonth() < selectedDate.getMonth() || (today.getMonth() === selectedDate.getMonth() && today.getDate() < selectedDate.getDate())) ? 1 : 0);
-
-    if (selectedDate > today) {
-        alert('تاريخ الميلاد لا يمكن أن يكون في المستقبل');
-        return;
-    }
+    const age = new Date().getFullYear() - birthYear;
 
     if (!isChildCourse(courseName) && age < 10) {
         alert('يجب أن يكون عمر المتقدم 10 سنوات على الأقل لهذه الدورة');
@@ -701,7 +584,7 @@ async function handleCertificateSubmit(event) {
             });
 
             // إرسال نسخة إلى الواتساب كرسالة تأكيدية
-            const whatsappMessage = `طلب شهادة جديد\nالدورة: ${courseName}\nالاسم (عربي): ${fullNameAr}\nالاسم (إنجليزي): ${fullNameEn}\nالهاتف: ${phone}\nمحل الميلاد: ${birthPlace}\nتاريخ الميلاد: ${birthDate}\nالجنس: ${gender}`;
+            const whatsappMessage = `طلب شهادة جديد\nالدورة: ${courseName}\nالاسم (عربي): ${fullNameAr}\nالاسم (إنجليزي): ${fullNameEn}\nالهاتف: ${phone}\nمحل الميلاد: ${birthPlace}\nسنة الميلاد: ${birthDate}\nالجنس: ${gender}`;
             const whatsappUrl = `https://wa.me/967778005033?text=${encodeURIComponent(whatsappMessage)}`;
             window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
         
@@ -732,10 +615,8 @@ window.validateArabicName = validateArabicName;
 window.validateEnglishName = validateEnglishName;
 window.toggleOtherCourse = toggleOtherCourse;
 window.formatPhoneNumber = formatPhoneNumber;
-window.validateBirthDate = validateBirthDate;
-window.formatBirthDate = formatBirthDate;
-window.updateBirthDateFromParts = updateBirthDateFromParts;
-window.toggleBirthDatePicker = toggleBirthDatePicker;
+window.validateBirthYear = validateBirthYear;
+window.formatBirthYear = formatBirthYear;
 window.filterBirthPlaces = filterBirthPlaces;
 window.selectBirthPlace = selectBirthPlace;
 window.handleCertificateSubmit = handleCertificateSubmit;
