@@ -104,13 +104,26 @@ box-shadow: 0 0 0 3px rgba(15,91,183,0.1);
 .form-group input.invalid {
 border-color: var(--error);
 background-color: rgba(231, 76, 60, 0.05);
-animation: shake 0.4s ease-in-out;
+animation: errorPulse 0.65s ease-in-out;
 }
 
-@keyframes shake {
-0%, 100% { transform: translateX(0); }
-25% { transform: translateX(-5px); }
-75% { transform: translateX(5px); }
+@keyframes errorPulse {
+0%, 100% {
+transform: translateX(0);
+box-shadow: 0 0 0 0 rgba(231, 76, 60, 0);
+}
+25% {
+transform: translateX(-4px);
+box-shadow: 0 0 0 4px rgba(231, 76, 60, 0.14);
+}
+50% {
+transform: translateX(4px);
+box-shadow: 0 0 0 2px rgba(231, 76, 60, 0.08);
+}
+75% {
+transform: translateX(-2px);
+box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+}
 }
 
 .error-hint {
@@ -313,13 +326,13 @@ background: rgba(15,91,183,0.08);
 <!-- الأسماء -->
 <div class="form-group">
 <label for="fullNameAr">الاسم الرباعي (عربي) </label>
-<input type="text" id="fullNameAr" name="fullNameAr" required placeholder="مثال: محمد علي أحمد حسن" oninput="validateArabicName(this)">
+<input type="text" id="fullNameAr" name="fullNameAr" required placeholder="مثال: محمد علي أحمد حسن" oninput="validateArabicName(this, false)" onblur="validateArabicName(this, true)">
 <span class="error-hint" id="fullNameArError">يجب كتابة الاسم الرباعي باللغة العربية فقط</span>
 </div>
 
 <div class="form-group">
 <label for="fullNameEn">الاسم الرباعي (إنجليزي) </label>
-<input type="text" id="fullNameEn" name="fullNameEn" required placeholder="مثال: Mohammed Ali Ahmed Hassan" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" oninput="validateEnglishName(this)">
+<input type="text" id="fullNameEn" name="fullNameEn" required placeholder="مثال: Mohammed Ali Ahmed Hassan" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" oninput="validateEnglishName(this, false)" onblur="validateEnglishName(this, true)">
 <span class="input-hint">يرجى كتابة الاسم بشكل صحيح مطابق لجواز السفر</span>
 <span class="error-hint" id="fullNameEnError">يجب كتابة الاسم الرباعي باللغة الإنجليزية فقط</span>
 </div>
@@ -327,7 +340,7 @@ background: rgba(15,91,183,0.08);
 <!-- رقم الهاتف -->
 <div class="form-group">
 <label for="phone">رقم الهاتف </label>
-<input type="tel" id="phone" name="phone" required placeholder="مثال: 771234567" inputmode="tel" maxlength="13" autocomplete="tel" oninput="formatPhoneNumber(this)">
+<input type="tel" id="phone" name="phone" required placeholder="مثال: 771234567" inputmode="tel" maxlength="13" autocomplete="tel" oninput="formatPhoneNumber(this)" onblur="validatePhoneNumber(this, true)">
 <span class="input-hint">سيتم إضافة +967 تلقائياً</span>
 <span class="error-hint" id="phoneError">يرجى إدخال رقم هاتف يمني صحيح يبدأ بـ +967 ويحتوي على 9 أرقام</span>
 </div>
@@ -344,7 +357,7 @@ background: rgba(15,91,183,0.08);
 </div>
 <div class="form-group">
 <label for="birthDate">سنة الميلاد </label>
-<input type="text" id="birthDate" name="birthDate" required placeholder="مثال: 1990" inputmode="numeric" maxlength="4" pattern="[0-9]{4}" autocomplete="bday-year" oninput="formatBirthYear(this)">
+<input type="text" id="birthDate" name="birthDate" required placeholder="مثال: 1990" inputmode="numeric" maxlength="4" pattern="[0-9]{4}" autocomplete="bday-year" oninput="formatBirthYear(this)" onblur="validateBirthYear(this, true)">
 <span class="input-hint">اكتب سنة الميلاد فقط، مكوّنة من 4 أرقام</span>
 <span class="error-hint" id="birthDateError">يرجى إدخال سنة ميلاد صحيحة بين 1900 والسنة الحالية</span>
 </div>
@@ -376,33 +389,57 @@ background: rgba(15,91,183,0.08);
 <script type="module">
 	import { submitCertificateRequest, submitOfferRequest } from './firebase-config.js'; 
 
-function validateArabicName(input) {
-    const value = input.value.trim();
-    const arabicRegex = /^[\u0600-\u06FF\s]+$/;
-    const errorHint = document.getElementById('fullNameArError');
-    
-    if (value && !arabicRegex.test(value)) {
-        input.classList.add('invalid');
-        errorHint.style.display = 'block';
-    } else {
-        input.classList.remove('invalid');
+function clearValidationState(input, errorHint) {
+    input.classList.remove('invalid');
+    if (errorHint) {
         errorHint.style.display = 'none';
     }
 }
 
-function validateEnglishName(input) {
+function setValidationState(input, errorHint, isInvalid) {
+    if (!isInvalid) {
+        clearValidationState(input, errorHint);
+        return;
+    }
+
+    // إعادة تشغيل الوميض فقط عند اكتشاف خطأ بعد اكتمال الإدخال أو مغادرة الحقل.
+    input.classList.remove('invalid');
+    void input.offsetWidth;
+    input.classList.add('invalid');
+    if (errorHint) {
+        errorHint.style.display = 'block';
+    }
+}
+
+function validateArabicName(input, shouldValidate = true) {
+    const value = input.value.trim();
+    const arabicRegex = /^[\u0600-\u06FF\s]+$/;
+    const errorHint = document.getElementById('fullNameArError');
+
+    if (!shouldValidate) {
+        clearValidationState(input, errorHint);
+        return !value || arabicRegex.test(value);
+    }
+
+    const isInvalid = Boolean(value) && !arabicRegex.test(value);
+    setValidationState(input, errorHint, isInvalid);
+    return !isInvalid;
+}
+
+function validateEnglishName(input, shouldValidate = true) {
     // التحقق من اللغة فقط؛ لا يتم تصحيح أو تغيير النص الذي يكتبه الطالب.
     const value = input.value.trim();
     const englishRegex = /^[A-Za-z\s'-]+$/;
     const errorHint = document.getElementById('fullNameEnError');
-    
-    if (value && !englishRegex.test(value)) {
-        input.classList.add('invalid');
-        errorHint.style.display = 'block';
-    } else {
-        input.classList.remove('invalid');
-        errorHint.style.display = 'none';
+
+    if (!shouldValidate) {
+        clearValidationState(input, errorHint);
+        return !value || englishRegex.test(value);
     }
+
+    const isInvalid = Boolean(value) && !englishRegex.test(value);
+    setValidationState(input, errorHint, isInvalid);
+    return !isInvalid;
 }
 
 function toggleOtherCourse(value) {
@@ -426,20 +463,30 @@ function setBirthDateLimits() {
 
 function formatBirthYear(input) {
     input.value = input.value.replace(/\D/g, '').slice(0, 4);
-    validateBirthYear(input);
+    const errorHint = document.getElementById('birthDateError');
+
+    // لا نعرض أي خطأ أثناء كتابة سنة غير مكتملة مثل 2 أو 20 أو 200.
+    if (input.value.length < 4) {
+        clearValidationState(input, errorHint);
+        return false;
+    }
+
+    return validateBirthYear(input, true);
 }
 
-function validateBirthYear(input) {
+function validateBirthYear(input, shouldValidate = true) {
     const value = input.value.trim();
     const currentYear = new Date().getFullYear();
     const year = Number(value);
     const isValid = /^\d{4}$/.test(value) && year >= 1900 && year <= currentYear;
     const errorHint = document.getElementById('birthDateError');
 
-    input.classList.toggle('invalid', Boolean(value) && !isValid);
-    if (errorHint) {
-        errorHint.style.display = Boolean(value) && !isValid ? 'block' : 'none';
+    if (!shouldValidate || !value) {
+        clearValidationState(input, errorHint);
+        return isValid;
     }
+
+    setValidationState(input, errorHint, !isValid);
     return isValid;
 }
 
@@ -454,21 +501,29 @@ function formatPhoneNumber(input) {
 
     digits = digits.slice(0, 9);
     input.value = digits ? `+967${digits}` : '';
-    validatePhoneNumber(input);
+    const errorHint = document.getElementById('phoneError');
+
+    // ننتظر اكتمال أرقام الهاتف التسعة قبل إظهار الخطأ أثناء الكتابة.
+    if (digits.length < 9) {
+        clearValidationState(input, errorHint);
+        return false;
+    }
+
+    return validatePhoneNumber(input, true);
 }
 
-function validatePhoneNumber(input) {
+function validatePhoneNumber(input, shouldValidate = true) {
     const value = input.value.trim();
     const errorHint = document.getElementById('phoneError');
     const isValid = /^\+967(70|71|73|77|78)\d{7}$/.test(value);
 
-    if (value && !isValid) {
-        input.classList.add('invalid');
-        errorHint.style.display = 'block';
-    } else {
-        input.classList.remove('invalid');
-        errorHint.style.display = 'none';
+    if (!shouldValidate || !value) {
+        clearValidationState(input, errorHint);
+        return isValid;
     }
+
+    setValidationState(input, errorHint, !isValid);
+    return isValid;
 }
 
 const governorates = [
@@ -532,9 +587,11 @@ async function handleCertificateSubmit(event) {
         return;
     }
 
-    // Check for language errors before submit
-    if (document.getElementById('fullNameAr').classList.contains('invalid') || 
-        document.getElementById('fullNameEn').classList.contains('invalid')) {
+    // نفّذ التحقق النهائي عند الإرسال حتى لو لم يغادر المستخدم حقول الأسماء.
+    const fullNameArInput = document.getElementById('fullNameAr');
+    const fullNameEnInput = document.getElementById('fullNameEn');
+    const namesAreValid = validateArabicName(fullNameArInput, true) && validateEnglishName(fullNameEnInput, true);
+    if (!namesAreValid) {
         alert('يرجى تصحيح الأخطاء في الأسماء قبل الإرسال');
         return;
     }
