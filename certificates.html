@@ -235,13 +235,6 @@ margin-top: 60px;
 font-size: 0.95rem;
 }
 
-.build-marker {
-display: block;
-margin-top: 6px;
-font-size: 0.75rem;
-opacity: 0.75;
-}
-
 .info-box {
 background: rgba(15,91,183,0.05);
 border-right: 4px solid var(--blue);
@@ -327,14 +320,14 @@ background: rgba(15,91,183,0.08);
 <div class="form-group">
 <label for="fullNameAr">الاسم الرباعي (عربي) </label>
 <input type="text" id="fullNameAr" name="fullNameAr" required placeholder="مثال: محمد علي أحمد حسن" oninput="validateArabicName(this, false)" onblur="validateArabicName(this, true)">
-<span class="error-hint" id="fullNameArError">يجب كتابة الاسم الرباعي باللغة العربية فقط</span>
+<span class="error-hint" id="fullNameArError">يجب كتابة الاسم الرباعي باللغة العربية، بأربع كلمات على الأقل</span>
 </div>
 
 <div class="form-group">
 <label for="fullNameEn">الاسم الرباعي (إنجليزي) </label>
 <input type="text" id="fullNameEn" name="fullNameEn" required placeholder="مثال: Mohammed Ali Ahmed Hassan" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" oninput="validateEnglishName(this, false)" onblur="validateEnglishName(this, true)">
 <span class="input-hint">يرجى كتابة الاسم بشكل صحيح مطابق لجواز السفر</span>
-<span class="error-hint" id="fullNameEnError">يجب كتابة الاسم الرباعي باللغة الإنجليزية فقط</span>
+<span class="error-hint" id="fullNameEnError">يجب كتابة الاسم الرباعي باللغة الإنجليزية، بأربع كلمات على الأقل</span>
 </div>
 
 <!-- رقم الهاتف -->
@@ -383,7 +376,6 @@ background: rgba(15,91,183,0.08);
 
 <footer>
 <p>جميع الحقوق محفوظة © 2026 | تصميم وتطوير: يحيى المريسي</p>
-<span class="build-marker">علامة اختبار التحديث: ALC-20260829</span>
 </footer>
 
 <script type="module">
@@ -411,35 +403,44 @@ function setValidationState(input, errorHint, isInvalid) {
     }
 }
 
+function countNameParts(value) {
+    return value.split(/\s+/).filter(part => part.length > 0).length;
+}
+
 function validateArabicName(input, shouldValidate = true) {
     const value = input.value.trim();
     const arabicRegex = /^[\u0600-\u06FF\s]+$/;
     const errorHint = document.getElementById('fullNameArError');
+    const hasValidLanguage = Boolean(value) && arabicRegex.test(value);
+    const hasFourParts = countNameParts(value) >= 4;
 
     if (!shouldValidate) {
+        // أثناء الكتابة لا نتحقق من عدد الكلمات ولا نعرض أي تنبيه.
         clearValidationState(input, errorHint);
-        return !value || arabicRegex.test(value);
+        return !value || hasValidLanguage;
     }
 
-    const isInvalid = Boolean(value) && !arabicRegex.test(value);
-    setValidationState(input, errorHint, isInvalid);
-    return !isInvalid;
+    const isValid = hasValidLanguage && hasFourParts;
+    setValidationState(input, errorHint, !isValid);
+    return isValid;
 }
 
 function validateEnglishName(input, shouldValidate = true) {
-    // التحقق من اللغة فقط؛ لا يتم تصحيح أو تغيير النص الذي يكتبه الطالب.
+    // التحقق من اللغة وعدد أجزاء الاسم فقط بعد اكتمال الإدخال أو مغادرة الحقل.
     const value = input.value.trim();
     const englishRegex = /^[A-Za-z\s'-]+$/;
     const errorHint = document.getElementById('fullNameEnError');
+    const hasValidLanguage = Boolean(value) && englishRegex.test(value);
+    const hasFourParts = countNameParts(value) >= 4;
 
     if (!shouldValidate) {
         clearValidationState(input, errorHint);
-        return !value || englishRegex.test(value);
+        return !value || hasValidLanguage;
     }
 
-    const isInvalid = Boolean(value) && !englishRegex.test(value);
-    setValidationState(input, errorHint, isInvalid);
-    return !isInvalid;
+    const isValid = hasValidLanguage && hasFourParts;
+    setValidationState(input, errorHint, !isValid);
+    return isValid;
 }
 
 function toggleOtherCourse(value) {
@@ -574,25 +575,18 @@ async function handleCertificateSubmit(event) {
     const fullNameAr = document.getElementById('fullNameAr').value.trim();
     const fullNameEn = document.getElementById('fullNameEn').value.trim();
     
-    // Check if names are quad (at least 4 words)
-    const arWords = fullNameAr.split(/\s+/).filter(w => w.length > 0);
-    const enWords = fullNameEn.split(/\s+/).filter(w => w.length > 0);
-    
-    if (arWords.length < 4) {
-        alert('يرجى كتابة الاسم الرباعي باللغة العربية');
-        return;
-    }
-    if (enWords.length < 4) {
-        alert('Please enter your full name (4 parts) in English');
-        return;
-    }
-
-    // نفّذ التحقق النهائي عند الإرسال حتى لو لم يغادر المستخدم حقول الأسماء.
+    // نفّذ التحقق النهائي للغة والاسم الرباعي عند الإرسال حتى لو لم يغادر المستخدم الحقول.
     const fullNameArInput = document.getElementById('fullNameAr');
     const fullNameEnInput = document.getElementById('fullNameEn');
-    const namesAreValid = validateArabicName(fullNameArInput, true) && validateEnglishName(fullNameEnInput, true);
-    if (!namesAreValid) {
-        alert('يرجى تصحيح الأخطاء في الأسماء قبل الإرسال');
+    const arabicNameIsValid = validateArabicName(fullNameArInput, true);
+    const englishNameIsValid = validateEnglishName(fullNameEnInput, true);
+
+    if (!arabicNameIsValid) {
+        alert('يرجى كتابة الاسم الرباعي باللغة العربية، بأربع كلمات على الأقل');
+        return;
+    }
+    if (!englishNameIsValid) {
+        alert('يرجى كتابة الاسم الرباعي باللغة الإنجليزية، بأربع كلمات على الأقل');
         return;
     }
 
